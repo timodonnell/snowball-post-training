@@ -37,5 +37,6 @@
   },
   "output_tokens": 284469,
   "exact_prompts_and_token_counts": true,
-  "native_context_respected": true
+  "native_context_respected": true,
+  "native_verifier_reward_replayed": true
 }

@@ -10,10 +10,10 @@ from pathlib import Path
 import pyarrow.parquet as pq
 
 from .pins import CONTEXT
-from .scoring import tool_events
+from .scoring import load_scorer, score, tool_events
 
 
-def audit_record(record, tasks):
+def audit_record(record, tasks, scorer=None):
     extras = record["trajectory"]["environment_extras"]
     task = tasks[extras["path"]]
     if record["prompt"]["messages"] != task["prompt"]:
@@ -34,6 +34,19 @@ def audit_record(record, tasks):
         raise ValueError(f"Truncated or tool-using response received reward: {task['path']}")
     if record["disposition"]["exception_type"] is not None:
         raise ValueError(f"Runtime generation exception: {task['path']}")
+    if scorer is not None:
+        messages = response["messages"] or []
+        text = "".join(m.get("content") or "" for m in messages if m.get("role") == "assistant")
+        replayed = score(
+            scorer,
+            text,
+            task["reward_model"]["ground_truth"],
+            truncated=response["stop_reason"] == "length",
+            refusal=any(bool(m.get("refusal")) for m in messages),
+            tool_violation=tool_events(messages),
+        )
+        if replayed["reward"] != reward:
+            raise ValueError(f"Native verifier reward differs from retained reward: {task['path']}")
     return task["family"], reward, output_tokens
 
 
@@ -41,9 +54,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tasks", type=Path, required=True)
     parser.add_argument("--archives", type=Path, nargs="+", required=True)
+    parser.add_argument("--verifier", type=Path, help="Replay rewards with the frozen native verifier")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     tasks = {r["path"]: r for r in pq.read_table(args.tasks).to_pylist()}
+    scorer = load_scorer(args.verifier) if args.verifier else None
     counts, successes, phases = Counter(), Counter(), Counter()
     seen = set()
     tokens = 0
@@ -56,7 +71,7 @@ def main():
                 if record["record_id"] in seen:
                     raise ValueError("Duplicate trajectory record")
                 seen.add(record["record_id"])
-                family, reward, output_tokens = audit_record(record, tasks)
+                family, reward, output_tokens = audit_record(record, tasks, scorer)
                 counts[family] += 1
                 successes[family] += reward
                 phases[record["phase"]] += 1
@@ -71,6 +86,7 @@ def main():
         "output_tokens": tokens,
         "exact_prompts_and_token_counts": True,
         "native_context_respected": True,
+        "native_verifier_reward_replayed": scorer is not None,
     }
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(result, indent=2) + "\n")

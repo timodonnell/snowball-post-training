@@ -12,10 +12,12 @@ The full validation baseline is complete: **230/1,003 correct (22.93%)**, with
 truncations, and no tool violations. Per-family counts and scores are in
 [`results/baseline-validation.json`](results/baseline-validation.json).
 
-The CoreWeave smoke run has loaded the model, completed its initial 107-task
-validation panel, and started training rollouts. All 107 retained validation
-traces match the frozen prompts and native token counts. Optimizer updates have
-not yet been verified. No improvement is claimed. See `runs.json` for run IDs,
+The CoreWeave smoke completed one optimizer update with a finite, nonzero
+gradient, then exhausted GPU memory during the second update. Its 107 retained
+initial validation traces match the frozen prompts and native token counts.
+The retry increases expert sharding and reduces temporary log-probability
+buffers, with the same GPU count and context budgets. No checkpoint or
+improvement is claimed yet. See `runs.json` for run IDs,
 W&B links, and the durable raw baseline results location.
 
 ## Frozen inputs
@@ -83,9 +85,11 @@ token count against the frozen native count.
 
 `launch.py` is the configuration source and uses `@rl_build_options`. The explicit
 role plan requests 40 H100s on `cw-rno2a`: four eight-GPU Megatron policy nodes
-(TP1, PP2, EP8) plus one eight-GPU vLLM rollout node (DP8, EP8). Each node requests
+(TP1, PP2, EP16) plus one eight-GPU vLLM rollout node (DP8, EP8). Each node requests
 64 CPUs, 1,800 GB host RAM, and 1,000 GB disk, following MarinSkyRL's Snowball
-Megatron recipe. The current pinned runtime supports Megatron for this model.
+Megatron recipe. Policy EP16 and 256-token log-probability chunks provide more
+memory headroom after the EP8 smoke exhausted memory on its second long-context
+update. The current pinned runtime supports Megatron for this model.
 
 GRPO uses learning rate 1e-6, 32 prompts per update, four samples per prompt,
 microbatch size one, gradient checkpointing, optimizer offload during rollout,
@@ -161,7 +165,7 @@ its checkpoint/export. Use a fresh immutable calendar version for a changed run.
 ```bash
 uv run python experiments/001-pdbthink-coordinate/run_marin.py \
   --marin data/marin --python data/marin/.venv/bin/python \
-  --version 2026.10.07.5 --scale smoke \
+  --version 2026.10.07.6 --scale smoke \
   --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2 \
   --model-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf \
   --adapter-sha256 8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29
@@ -210,8 +214,26 @@ per-task generation requests. It reports accuracy deltas and paired gains/losses
 by family; these are descriptive results, not a statistical significance claim.
 
 Audit downloaded MarinSkyRL trajectory archives with `python -m
-snowball_pdbthink.audit_rollouts --tasks PREPARED_SPLIT.parquet --archives
+snowball_pdbthink.audit_rollouts --tasks PREPARED_SPLIT.parquet --verifier
+PREPARED/native_verifier --archives
 ARCHIVE.zip ... --output AUDIT.json`. This checks runtime prompts, native token
-counts, context limits, binary rewards, and generation failures against the
+counts, context limits, binary rewards, and generation failures, and replays
+the native verifier against the
 frozen inputs. Use `monitor.parquet` for monitor traces and the relevant training
 parquet for training traces.
+
+`finish_run.py` waits for a successful terminal export, starts the same Marin
+evaluation server used for the baseline, evaluates the complete validation
+cohort, cancels the serving job in a `finally` block, and saves a paired
+comparison plus raw responses to an immutable CoreWeave results prefix. It
+rejects a failed training coordinator before allocating evaluation GPUs. An
+optional `--wandb-run entity/project/id` adds the full held-out results to that
+run's summary. It leaves the test split reserved for final checkpoint selection.
+
+Run it through `coreweave.py` and `run_marin.py --module
+experiments.snowball_pdbthink.finish_run`, supplying `--terminal-uri`,
+`--coordinator`, a fresh `--server-name`, absolute `--tasks`, `--verifier`,
+`--baseline`, `--output`, and an immutable `--results-uri`. Keep this local
+follow-up process alive while training runs. Progress is written beside the
+output directory as `OUTPUT-status.json`; final artifacts are in `OUTPUT`.
+Evaluation can resume completed task files with a fresh serving job name.

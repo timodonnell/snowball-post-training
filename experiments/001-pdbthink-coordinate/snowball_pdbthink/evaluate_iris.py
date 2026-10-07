@@ -12,17 +12,7 @@ from rigging.timing import Duration
 from .evaluate import evaluate
 
 
-def main():
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--endpoint", required=True)
-    parser.add_argument("--cluster-config", type=Path, default=Path("lib/iris/config/marin.yaml"))
-    parser.add_argument("--tasks", type=Path, required=True)
-    parser.add_argument("--verifier", type=Path, required=True)
-    parser.add_argument("--model-identity", required=True)
-    parser.add_argument("--output", type=Path, required=True)
-    parser.add_argument("--concurrency", type=int, default=16)
-    parser.add_argument("--ready-timeout", type=int, default=1800)
-    args = parser.parse_args()
+def evaluate_endpoint(args):
     with open_iris_client(config_file=args.cluster_config, workspace=Path.cwd()) as iris:
         started = time.monotonic()
         while not iris.list_endpoint_instances(args.endpoint):
@@ -42,6 +32,19 @@ def main():
             raise RuntimeError(f"Cannot query Iris model identity: {type(error).__name__}") from None
         print("Model endpoint ready; beginning frozen-cohort evaluation", flush=True)
         asyncio.run(evaluate(args))
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--endpoint", required=True)
+    parser.add_argument("--cluster-config", type=Path, default=Path("lib/iris/config/marin.yaml"))
+    parser.add_argument("--tasks", type=Path, required=True)
+    parser.add_argument("--verifier", type=Path, required=True)
+    parser.add_argument("--model-identity", required=True)
+    parser.add_argument("--output", type=Path, required=True)
+    parser.add_argument("--concurrency", type=int, default=16)
+    parser.add_argument("--ready-timeout", type=int, default=1800)
+    evaluate_endpoint(parser.parse_args())
 
 
 if __name__ == "__main__":

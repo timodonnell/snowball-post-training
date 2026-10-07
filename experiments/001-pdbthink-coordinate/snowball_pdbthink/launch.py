@@ -76,8 +76,9 @@ def recipe(scale, data_uri, adapter_sha256):
                     "tensor_model_parallel_size": 1,
                     "pipeline_model_parallel_size": 2,
                     "context_parallel_size": 1,
-                    "expert_model_parallel_size": 8,
+                    "expert_model_parallel_size": 16,
                     "expert_tensor_parallel_size": 1,
+                    "logprob_chunk_size": 256,
                     "optimizer_checkpoint_sharding_type": "dp_reshardable",
                     "ddp_config": {
                         "overlap_grad_reduce": True,

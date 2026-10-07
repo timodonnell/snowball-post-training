@@ -1,12 +1,12 @@
 config:
   artifacts:
-    attempts_root: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/attempts
-    checkpoint_root: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/checkpoints
+    attempts_root: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/attempts
+    checkpoint_root: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/checkpoints
     draft_model_cache_ttl_days: 14
-    export_root: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/exports
-    resolved_config_uri: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/resolved-launch.yaml
+    export_root: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/exports
+    resolved_config_uri: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/resolved-launch.yaml
     resume_checkpoint_count: 2
-    terminal_manifest_uri: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/terminal.json
+    terminal_manifest_uri: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/terminal.json
   ingress:
     host: ''
     mode: direct
@@ -43,7 +43,7 @@ config:
       num_nodes: 5
     cluster: cw-rno2a
     cluster_config: lib/iris/config/cw-rno2a.yaml
-    job_name: checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-299426ec6411
+    job_name: checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-52f14b0670d3
     max_retries: 0
     parent_cluster_config: null
     priority: interactive
@@ -53,16 +53,16 @@ config:
   ray:
     cluster_join_timeout: 1800
     driver_liveness_timeout: 9000
-    log_dir: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/attempts/ray-logs
+    log_dir: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/attempts/ray-logs
     port: 6379
-    rendezvous_dir: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/attempts/rendezvous
+    rendezvous_dir: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/attempts/rendezvous
     rendezvous_timeout: 1800
     spill_backend: local
     spill_dir: /tmp/skyrl-ray-spill
   run:
-    attempt_id: 299426ec6411
+    attempt_id: 52f14b0670d3
     export_hf: true
-    id: checkpoints/bizon/snowball-pdbthink-smoke-2026.10.07.5
+    id: checkpoints/bizon/snowball-pdbthink-smoke-2026.10.07.6
     mode: train
     seed: 17
     submission: wait
@@ -280,7 +280,7 @@ config:
         max_bytes_per_step: null
         model_path: /tmp/marinskyrl/models/snowball-pdbthink-step38
         model_source_identity: models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec
-        output_path: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/attempts/trajectories
+        output_path: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/attempts/trajectories
         phases:
         - train
         - eval
@@ -290,7 +290,7 @@ config:
         resume_path: null
         reward_above: null
         reward_below: null
-        run_id: checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-299426ec6411
+        run_id: checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-52f14b0670d3
         sample_count_per_step: 0
         sample_fraction: 1.0
         shutdown_timeout_seconds: 30
@@ -394,7 +394,7 @@ config:
       bf16: true
       callbacks: null
       ckpt_interval: 2
-      ckpt_path: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/checkpoints
+      ckpt_path: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/checkpoints
       collective_phase_diagnostics: null
       critic:
         model:
@@ -433,7 +433,7 @@ config:
       eval_interval: 2
       eval_num_prompts: null
       export_hf_artifact: true
-      export_path: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/exports
+      export_path: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/exports
       flash_attn: false
       gradient_checkpointing: true
       gradient_checkpointing_use_reentrant: false
@@ -496,9 +496,9 @@ config:
             overlap_grad_reduce: true
             overlap_param_gather: true
           empty_cuda_cache: true
-          expert_model_parallel_size: 8
+          expert_model_parallel_size: 16
           expert_tensor_parallel_size: 1
-          logprob_chunk_size: 1024
+          logprob_chunk_size: 256
           model_config_kwargs: {}
           moe_router_replay: false
           optimizer_checkpoint_sharding_type: dp_reshardable
@@ -599,7 +599,7 @@ config:
       rollout_spans: true
       rope_scaling: null
       rope_theta: null
-      run_name: checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-299426ec6411
+      run_name: checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-52f14b0670d3
       seed: 17
       step_phase_budgets:
         advantages: 300

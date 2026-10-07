@@ -1,6 +1,6 @@
 {
   "issue": "https://github.com/timodonnell/snowball-post-training/issues/1",
-  "status": "baseline_complete_and_smoke_training",
+  "status": "baseline_complete_and_smoke_retry_running",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
   "adapter_sha256": "8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29",
@@ -20,7 +20,10 @@
     "live_launcher_preflight": "prepared",
     "exact_chat_capability_preflight": "passed after correcting the first smoke",
     "wandb_write_access": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/setup-20261007",
-    "fresh_process_installed_runtime_registry_and_reward": "passed"
+    "fresh_process_installed_runtime_registry_and_reward": "passed",
+    "native_verifier_replayed_eval_records": 107,
+    "native_verifier_replayed_train_records": 256,
+    "followup_failed_coordinator_guard": "passed"
   },
   "runs": [
     {
@@ -75,8 +78,8 @@
       "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-coordinator-0b4331a8",
       "cluster": "cw-rno2a",
       "gpus": "40 H100",
-      "state": "generating_first_training_batch",
-      "optimizer_steps_verified": 0,
+      "state": "failed_second_optimizer_update",
+      "optimizer_steps_verified": 1,
       "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/terminal.json",
       "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-coordinator-0b4331a8/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-299426ec6411",
       "wandb": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/wrpzc35e",
@@ -109,7 +112,31 @@
         "task_weighted_accuracy": 0.18691588785046728,
         "covered_tasks": 107,
         "expected_tasks": 107
+      },
+      "failure": "Second update exhausted H100 memory in vocab entropy after optimizer state materialized. Retry keeps 40 H100s, increases policy EP8 to EP16 and reduces logprob chunk 1024 to 256.",
+      "first_update": {
+        "policy_loss": 0.02046249166596681,
+        "raw_grad_norm": 0.14631128311157227,
+        "raw_reward": 0.125,
+        "pass_at_4": 0.25
       }
+    },
+    {
+      "scale": "smoke",
+      "version": "2026.10.07.6",
+      "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-coordinator-4569b704",
+      "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-coordinator-4569b704/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-52f14b0670d3",
+      "cluster": "cw-rno2a",
+      "gpus": "40 H100",
+      "state": "loading_models",
+      "optimizer_steps_verified": 0,
+      "policy_geometry": "TP1 PP2 EP16",
+      "logprob_chunk_size": 256,
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/terminal.json",
+      "live_launcher_preflight": "passed",
+      "wandb": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/0xf25fq5",
+      "followup_results_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/evaluations/2026.10.07/smoke-v6-validation",
+      "followup_local_status": "runs/001/smoke-v6-followup-status.json"
     }
   ],
   "baseline": {
