@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from snowball_pdbthink.adapter import build_adapter
+from snowball_pdbthink.audit_rollouts import audit_record
 from snowball_pdbthink.compare import compare
 from snowball_pdbthink.evaluate import request_for, summarize
 from snowball_pdbthink.scoring import load_scorer, score, tool_events
@@ -142,3 +143,32 @@ def test_paired_comparison_rejects_task_or_budget_changes():
     trained["a"]["request"]["max_tokens"] = 8192
     with pytest.raises(ValueError, match="generation request changed"):
         compare(contract, baseline, updated, trained)
+
+
+def test_runtime_audit_rejects_hidden_content_and_context_overflow():
+    task = {
+        "path": "a",
+        "family": "G01",
+        "source_group": "protein-a",
+        "input_tokens": 2,
+        "prompt": [{"role": "system", "content": "rules"}, {"role": "user", "content": "coordinates"}],
+    }
+    record = {
+        "trajectory": {"environment_extras": task},
+        "prompt": {"messages": task["prompt"], "token_ids": [1, 2]},
+        "response": {
+            "token_ids": [3],
+            "messages": [{"role": "assistant", "content": "FINAL: 7"}],
+            "stop_reason": "stop",
+        },
+        "reward": {"outcome": 1},
+        "disposition": {"exception_type": None},
+    }
+    assert audit_record(record, {"a": task}) == ("G01", 1, 1)
+    record["prompt"]["messages"] = task["prompt"] + [{"role": "user", "content": "hidden answer"}]
+    with pytest.raises(ValueError, match="Runtime prompt differs"):
+        audit_record(record, {"a": task})
+    record["prompt"]["messages"] = task["prompt"]
+    record["response"]["token_ids"] = [3] * 32767
+    with pytest.raises(ValueError, match="exceeded native context"):
+        audit_record(record, {"a": task})

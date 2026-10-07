@@ -59,7 +59,9 @@ def recipe(scale, data_uri, adapter_sha256):
             "epochs": 2 if scale == "smoke" else 1,
             "max_steps": steps,
             "update_epochs_per_batch": 1,
-            "eval_batch_size": 32,
+            # Submit the full 107-task monitor panel together after the smoke.
+            # Sequential small batches otherwise wait repeatedly for long tails.
+            "eval_batch_size": 32 if scale == "smoke" else 128,
             "micro_forward_batch_size_per_gpu": 1,
             "eval_before_train": True,
             "eval_interval": 2 if scale == "smoke" else 8,

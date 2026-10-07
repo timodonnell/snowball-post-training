@@ -7,11 +7,16 @@ other teacher traces are used.
 
 ## Status
 
-The cohort is prepared and verified. Unit tests, the installed environment, the
-Marin artifact plan, Hydra composition, and MarinSkyRL's live `prepare` preflight
-pass. The verified model is staged on CoreWeave and the GPU smoke coordinator
-has been resubmitted after startup integration fixes. Full validation baseline
-evaluation is in progress. Optimizer updates have not yet been verified. No improvement is claimed. See `runs.json` for the current run record.
+The full validation baseline is complete: **230/1,003 correct (22.93%)**, with
+23.44% family-macro accuracy. There were 419 format errors, 138 context-limit
+truncations, and no tool violations. Per-family counts and scores are in
+[`results/baseline-validation.json`](results/baseline-validation.json).
+
+The CoreWeave smoke run has loaded the model, completed its initial 107-task
+validation panel, and started training rollouts. All 107 retained validation
+traces match the frozen prompts and native token counts. Optimizer updates have
+not yet been verified. No improvement is claimed. See `runs.json` for run IDs,
+W&B links, and the durable raw baseline results location.
 
 ## Frozen inputs
 
@@ -90,7 +95,9 @@ batches; upstream batching may omit the final incomplete batch. A pilot does
 not imply every training task has been visited.
 
 Validation runs before training, every eight pilot updates, and at completion.
-Smoke evaluates at step two. Checkpoints follow the same interval, with two
+Smoke evaluates at step two. Pilot evaluation submits the complete monitor panel
+in one batch to avoid repeatedly waiting for long responses in small batches.
+Checkpoints follow the same interval, with two
 resume checkpoints retained and a terminal Hugging Face export. Temporary
 training/trajectory artifacts follow Marin's 14-day TTL; preserve any needed
 raw traces before expiry. Final exports and terminal metadata use the durable
@@ -201,3 +208,10 @@ BASELINE_DIR --trained TRAINED_DIR --output runs/001/comparison.json`. The
 comparison rejects mismatched task IDs, cohort fingerprints, metadata, or
 per-task generation requests. It reports accuracy deltas and paired gains/losses
 by family; these are descriptive results, not a statistical significance claim.
+
+Audit downloaded MarinSkyRL trajectory archives with `python -m
+snowball_pdbthink.audit_rollouts --tasks PREPARED_SPLIT.parquet --archives
+ARCHIVE.zip ... --output AUDIT.json`. This checks runtime prompts, native token
+counts, context limits, binary rewards, and generation failures against the
+frozen inputs. Use `monitor.parquet` for monitor traces and the relevant training
+parquet for training traces.

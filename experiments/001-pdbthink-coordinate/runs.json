@@ -1,6 +1,6 @@
 {
   "issue": "https://github.com/timodonnell/snowball-post-training/issues/1",
-  "status": "baseline_running_and_smoke_initializing",
+  "status": "baseline_complete_and_smoke_training",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
   "adapter_sha256": "8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29",
@@ -13,7 +13,7 @@
   },
   "monitor_tasks": 107,
   "validation": {
-    "unit_tests_passed": 7,
+    "unit_tests_passed": 8,
     "installed_environment_reward_checked": true,
     "artifact_plan": "passed",
     "hydra_composition": "passed",
@@ -75,19 +75,180 @@
       "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-coordinator-0b4331a8",
       "cluster": "cw-rno2a",
       "gpus": "40 H100",
-      "state": "starting",
+      "state": "generating_first_training_batch",
       "optimizer_steps_verified": 0,
-      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/terminal.json"
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/terminal.json",
+      "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-coordinator-0b4331a8/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-299426ec6411",
+      "wandb": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/wrpzc35e",
+      "worker_startup_checks_passed": 5,
+      "retained_rollout_audit": {
+        "verified_records": 107,
+        "phase": "eval",
+        "exact_prompts_and_token_counts": true,
+        "native_context_respected": true
+      },
+      "initial_monitor": {
+        "step": 0,
+        "family_accuracy": {
+          "G01": 0.125,
+          "G02": 0,
+          "G03": 0,
+          "G04": 0,
+          "N01": 0,
+          "P01": 0.5,
+          "P02": 0.625,
+          "P03": 0.125,
+          "S01": 0,
+          "S02": 0,
+          "S03": 0.5,
+          "S04": 0.125,
+          "S05": 0.125,
+          "S09": 0.375
+        },
+        "family_macro_accuracy": 0.17857142857142858,
+        "task_weighted_accuracy": 0.18691588785046728,
+        "covered_tasks": 107,
+        "expected_tasks": 107
+      }
     }
   ],
-  "baseline": null,
+  "baseline": {
+    "completed": 1003,
+    "expected": 1003,
+    "coverage": 1.0,
+    "task_weighted_accuracy": 0.22931206380857427,
+    "family_macro_accuracy": 0.23435161855569672,
+    "format_errors": 419,
+    "truncations": 138,
+    "tool_violations": 0,
+    "mean_output_tokens": 3898.000997008973,
+    "finish_reasons": {
+      "stop": 865,
+      "length": 138
+    },
+    "families": {
+      "G01": {
+        "n": 110,
+        "successes": 11.0,
+        "accuracy": 0.1,
+        "format_error_rate": 0.5363636363636364,
+        "truncation_rate": 0.06363636363636363,
+        "mean_output_tokens": 2289.0272727272727
+      },
+      "G02": {
+        "n": 120,
+        "successes": 0.0,
+        "accuracy": 0.0,
+        "format_error_rate": 0.6833333333333333,
+        "truncation_rate": 0.2916666666666667,
+        "mean_output_tokens": 8900.141666666666
+      },
+      "G03": {
+        "n": 108,
+        "successes": 18.0,
+        "accuracy": 0.16666666666666666,
+        "format_error_rate": 0.6203703703703703,
+        "truncation_rate": 0.1111111111111111,
+        "mean_output_tokens": 3955.2314814814813
+      },
+      "G04": {
+        "n": 3,
+        "successes": 0.0,
+        "accuracy": 0.0,
+        "format_error_rate": 1.0,
+        "truncation_rate": 0.6666666666666666,
+        "mean_output_tokens": 19599.666666666668
+      },
+      "N01": {
+        "n": 72,
+        "successes": 0.0,
+        "accuracy": 0.0,
+        "format_error_rate": 0.5555555555555556,
+        "truncation_rate": 0.5277777777777778,
+        "mean_output_tokens": 8983.263888888889
+      },
+      "P01": {
+        "n": 32,
+        "successes": 20.0,
+        "accuracy": 0.625,
+        "format_error_rate": 0.1875,
+        "truncation_rate": 0.03125,
+        "mean_output_tokens": 903.34375
+      },
+      "P02": {
+        "n": 23,
+        "successes": 13.0,
+        "accuracy": 0.5652173913043478,
+        "format_error_rate": 0.13043478260869565,
+        "truncation_rate": 0.043478260869565216,
+        "mean_output_tokens": 889.1739130434783
+      },
+      "P03": {
+        "n": 118,
+        "successes": 27.0,
+        "accuracy": 0.2288135593220339,
+        "format_error_rate": 0.211864406779661,
+        "truncation_rate": 0.0847457627118644,
+        "mean_output_tokens": 2408.322033898305
+      },
+      "S01": {
+        "n": 50,
+        "successes": 0.0,
+        "accuracy": 0.0,
+        "format_error_rate": 0.86,
+        "truncation_rate": 0.2,
+        "mean_output_tokens": 4621.8
+      },
+      "S02": {
+        "n": 9,
+        "successes": 0.0,
+        "accuracy": 0.0,
+        "format_error_rate": 0.5555555555555556,
+        "truncation_rate": 0.2222222222222222,
+        "mean_output_tokens": 5813.666666666667
+      },
+      "S03": {
+        "n": 119,
+        "successes": 70.0,
+        "accuracy": 0.5882352941176471,
+        "format_error_rate": 0.09243697478991597,
+        "truncation_rate": 0.03361344537815126,
+        "mean_output_tokens": 1908.0
+      },
+      "S04": {
+        "n": 111,
+        "successes": 55.0,
+        "accuracy": 0.4954954954954955,
+        "format_error_rate": 0.10810810810810811,
+        "truncation_rate": 0.018018018018018018,
+        "mean_output_tokens": 909.5045045045046
+      },
+      "S05": {
+        "n": 12,
+        "successes": 5.0,
+        "accuracy": 0.4166666666666667,
+        "format_error_rate": 0.3333333333333333,
+        "truncation_rate": 0.16666666666666666,
+        "mean_output_tokens": 2518.9166666666665
+      },
+      "S09": {
+        "n": 116,
+        "successes": 11.0,
+        "accuracy": 0.09482758620689655,
+        "format_error_rate": 0.5086206896551724,
+        "truncation_rate": 0.10344827586206896,
+        "mean_output_tokens": 4154.646551724138
+      }
+    },
+    "raw_results_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/evaluations/2026.10.07/baseline-validation"
+  },
   "trained_evaluation": null,
   "improvement": "Not measured yet.",
   "baseline_server": {
     "job": "/bizon/snowball-pdbthink-baseline-20261007-v3",
     "cluster": "cw-rno2a",
     "gpus": "8 H100",
-    "state": "evaluating",
+    "state": "stopped_after_complete_evaluation",
     "validation_tasks": 1003,
     "previous_attempts": [
       {

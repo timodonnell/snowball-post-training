@@ -1,0 +1,11 @@
+{
+  "tasks_sha256": "5627d95cc0050f1b8de8add89e5bad3312d8398464914e46b6f46f6ce72eed8b",
+  "model": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+  "model_identity": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+  "tokenizer_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+  "context": 32768,
+  "temperature": 0.0,
+  "budget": "32768 - exact native prompt tokens",
+  "tools": null,
+  "tool_choice": "none"
+}
