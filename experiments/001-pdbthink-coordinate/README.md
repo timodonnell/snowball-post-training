@@ -12,12 +12,13 @@ The full validation baseline is complete: **230/1,003 correct (22.93%)**, with
 truncations, and no tool violations. Per-family counts and scores are in
 [`results/baseline-validation.json`](results/baseline-validation.json).
 
-The CoreWeave smoke completed one optimizer update with a finite, nonzero
-gradient, then exhausted GPU memory during the second update. Its 107 retained
-initial validation traces match the frozen prompts and native token counts.
-The retry increases expert sharding and reduces temporary log-probability
-buffers, with the same GPU count and context budgets. No checkpoint or
-improvement is claimed yet. See `runs.json` for run IDs,
+The revised CoreWeave smoke completed both optimizer updates and committed its
+step-2 checkpoint. Final validation and native HF export are pending. The earlier
+EP8 run exhausted GPU memory on its second update; EP16 and smaller temporary
+log-probability buffers passed this check with the same GPU count and context
+budgets. All 107 validation and 256 training traces from the earlier attempt
+passed prompt, context, and native reward replay checks. No improvement is
+claimed yet. See `runs.json` for run IDs,
 W&B links, and the durable raw baseline results location.
 
 ## Frozen inputs
@@ -47,7 +48,8 @@ intact and disjoint:
 
 Validation covers 14 families. It has no T01, S06, I01, S07, or S08 examples;
 do not infer held-out performance on these families. The manifest gives exact
-counts for each split and family.
+counts for each split and family. Test covers 16 families, including S07 (three
+tasks) and S08 (50 tasks); it has no T01, S06, or I01 examples.
 
 Durable prepared input prefix:
 `s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2`.
@@ -228,7 +230,12 @@ cohort, cancels the serving job in a `finally` block, and saves a paired
 comparison plus raw responses to an immutable CoreWeave results prefix. It
 rejects a failed training coordinator before allocating evaluation GPUs. An
 optional `--wandb-run entity/project/id` adds the full held-out results to that
-run's summary. It leaves the test split reserved for final checkpoint selection.
+run's summary. By default it leaves the test split reserved. For the final pilot,
+`--test-tasks PREPARED/test.parquet --test-baseline-model-uri ORIGINAL_MODEL_URI`
+also evaluates the frozen baseline and the preselected terminal checkpoint on
+test. It records the checkpoint selection before making any test predictions,
+reuses the trained validation server for its test evaluation, and releases that
+server before starting the test baseline. Smoke runs never use this option.
 
 Run it through `coreweave.py` and `run_marin.py --module
 experiments.snowball_pdbthink.finish_run`, supplying `--terminal-uri`,
