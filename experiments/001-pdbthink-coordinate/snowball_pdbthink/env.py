@@ -36,12 +36,18 @@ class PDBThinkEnv(BaseTextEnv):
     def step(self, action):
         if self.evidence is None:
             raise RuntimeError("Missing generation evidence; cannot verify termination or tool use")
+        message = self.evidence.metadata.get("assistant_message")
+        if not isinstance(message, dict) or message.get("role") != "assistant":
+            raise RuntimeError("Missing original structured assistant message")
+        # SkyRL's action text can strip thinking blocks. The native benchmark
+        # and held-out evaluator score the original API content, so use that
+        # exact content here too, without a second answer-extraction policy.
         result = score(
             SCORER,
-            action,
+            message.get("content") or "",
             self.ground_truth,
             truncated=self.evidence.stop_reason == "length",
-            refusal=any(bool(m.get("refusal")) for m in self.evidence.messages),
+            refusal=bool(message.get("refusal")),
             tool_violation=tool_events(self.evidence.messages) or tool_events(self.evidence.metadata),
         )
         self.metrics = {

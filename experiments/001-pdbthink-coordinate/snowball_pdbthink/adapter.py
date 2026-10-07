@@ -59,9 +59,10 @@ from skyrl_gym.verification import RolloutEvidence
 assert Path(skyrl_gym.__file__).is_relative_to(Path(sys.argv[1]) / "skyrl-gym")
 env = skyrl_gym.make("pdbthink", env_config={}, extras={"family":"probe", "path":"probe",
     "reward_model":{"ground_truth":json.dumps({"answer_schema":"integer","gold_answer":{"value":7},"parameters":{}})}})
-env.set_rollout_evidence(RolloutEvidence(messages=[{"role":"assistant","content":"FINAL: 7"}],
+message = {"role":"assistant","content":chr(10).join(["<thinking>", "FINAL: 7", "</thinking>"])}
+env.set_rollout_evidence(RolloutEvidence(messages=[message], metadata={"assistant_message":message},
     stop_reason="stop", generated_token_count=3))
-assert env.step("FINAL: 7")["reward"] == 1.0
+assert env.step("SkyRL's extracted action has no FINAL field")["reward"] == 1.0
 print("PDBThink registry and native reward verified in fresh runtime interpreter", flush=True)
 '''
 subprocess.run([sys.executable, "-c", check, str(root)], check=True)

@@ -1,0 +1,42 @@
+{
+  "records": 107,
+  "phases": {
+    "eval": 107
+  },
+  "family_counts": {
+    "S09": 8,
+    "S05": 8,
+    "S03": 8,
+    "S02": 8,
+    "S01": 8,
+    "S04": 8,
+    "P01": 8,
+    "P03": 8,
+    "P02": 8,
+    "N01": 8,
+    "G02": 8,
+    "G04": 3,
+    "G03": 8,
+    "G01": 8
+  },
+  "family_successes": {
+    "S09": 0.0,
+    "S05": 0.0,
+    "S03": 6.0,
+    "S02": 0.0,
+    "S01": 0.0,
+    "S04": 2.0,
+    "P01": 4.0,
+    "P03": 1.0,
+    "P02": 4.0,
+    "N01": 1.0,
+    "G02": 0.0,
+    "G04": 0.0,
+    "G03": 1.0,
+    "G01": 0.0
+  },
+  "output_tokens": 353105,
+  "exact_prompts_and_token_counts": true,
+  "native_context_respected": true,
+  "native_verifier_reward_replayed": true
+}

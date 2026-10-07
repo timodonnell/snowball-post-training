@@ -1,0 +1,18 @@
+{
+  "replayed_records": {
+    "train": 256,
+    "eval": 214
+  },
+  "original_api_content_matches_standalone_evaluator": true,
+  "corrections": [
+    {
+      "record_id": "b8deb31f348242276b633601d2436e3fa400280d9b2d7440ee59dcbaa49bce9c",
+      "step": 2,
+      "phase": "train",
+      "path": "pdbthink-g03-4b180488f0722315db62",
+      "recorded_reward": 0.0,
+      "native_content_reward": 1.0
+    }
+  ],
+  "adapter_sha256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969"
+}

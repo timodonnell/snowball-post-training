@@ -12,14 +12,19 @@ The full validation baseline is complete: **230/1,003 correct (22.93%)**, with
 truncations, and no tool violations. Per-family counts and scores are in
 [`results/baseline-validation.json`](results/baseline-validation.json).
 
-The revised CoreWeave smoke completed both optimizer updates and committed its
-step-2 checkpoint. Final validation and native HF export are pending. The earlier
-EP8 run exhausted GPU memory on its second update; EP16 and smaller temporary
-log-probability buffers passed this check with the same GPU count and context
-budgets. All 107 validation and 256 training traces from the earlier attempt
-passed prompt, context, and native reward replay checks. No improvement is
-claimed yet. See `runs.json` for run IDs,
-W&B links, and the durable raw baseline results location.
+The revised CoreWeave smoke completed both optimizer updates, committed its
+step-2 checkpoint, and finished its final monitor evaluation. Native HF export
+is running. The 107-task monitor rose from **19 to 24 correct**; this small panel
+is not a full held-out improvement claim. All 214 monitor outcomes replayed
+exactly. The earlier EP8 run exhausted GPU memory on its second update; EP16
+and smaller temporary log-probability buffers passed this check.
+
+Auditing the smoke found one under-reward among 256 training responses:
+SkyRL stripped a thinking block before verification, whereas the benchmark and
+standalone evaluator score original API content. Adapter v3 scores that original
+content consistently; all 470 retained smoke responses passed replay through the
+corrected installed environment. See `results/adapter-v3-replay.json` for the
+single correction and `runs.json` for run IDs and durable result locations.
 
 ## Frozen inputs
 
@@ -52,7 +57,7 @@ counts for each split and family. Test covers 16 families, including S07 (three
 tasks) and S08 (50 tasks); it has no T01, S06, or I01 examples.
 
 Durable prepared input prefix:
-`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2`.
+`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3`.
 Model mirror prefix:
 `s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf`.
 The model mirror writes `source.json` only after all files pass size and SHA256
@@ -86,8 +91,10 @@ token count against the frozen native count.
 ## Training configuration
 
 `launch.py` is the configuration source and uses `@rl_build_options`. The explicit
-role plan requests 40 H100s on `cw-rno2a`: four eight-GPU Megatron policy nodes
-(TP1, PP2, EP16) plus one eight-GPU vLLM rollout node (DP8, EP8). Each node requests
+role plan requests four eight-GPU Megatron policy nodes (TP1, PP2, EP16) on
+`cw-rno2a`. Smoke adds one eight-GPU vLLM rollout node (40 H100s total); pilot adds
+two (48 H100s total), each DP8/EP8. Generation dominated the measured smoke
+steps, so pilot adds inference capacity with the same policy geometry. Each node requests
 64 CPUs, 1,800 GB host RAM, and 1,000 GB disk, following MarinSkyRL's Snowball
 Megatron recipe. Policy EP16 and 256-token log-probability chunks provide more
 memory headroom after the EP8 smoke exhausted memory on its second long-context
@@ -114,7 +121,7 @@ MarinSkyRL environment registry has no external plugin setting. It bundles the c
 `PDBThinkEnv`, and preserves an explicitly disabled tool list in structured chat
 transport. Training, loss, model, placement, and checkpoint logic remain in the
 pinned upstream runtime. The exact overlay SHA256 is
-`8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29`.
+`6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969`.
 
 ## Reproduce
 
@@ -154,23 +161,25 @@ CoreWeave task credentials to a child command without printing or saving them.
 uv run python -m snowball_pdbthink.coreweave --kubeconfig "$KUBECONFIG" -- \
   data/marin/.venv/bin/python -m snowball_pdbthink.stage \
   --prepared data/pdbthink-001 \
-  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2
+  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3
 uv run python -m snowball_pdbthink.coreweave --kubeconfig "$KUBECONFIG" -- \
   .venv/bin/python -m snowball_pdbthink.stage \
   --model-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf
 ```
 
 First plan without `--run`. Append `--run` to submit through the Marin Iris hub.
+The command below plans the corrected pilot; `smoke-launch.yaml` preserves the
+actual adapter-v2 smoke configuration.
 Only launch `--scale pilot` after the smoke advances optimizer steps and produces
 its checkpoint/export. Use a fresh immutable calendar version for a changed run.
 
 ```bash
 uv run python experiments/001-pdbthink-coordinate/run_marin.py \
   --marin data/marin --python data/marin/.venv/bin/python \
-  --version 2026.10.07.6 --scale smoke \
-  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2 \
+  --version 2026.10.07.1 --scale pilot \
+  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3 \
   --model-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf \
-  --adapter-sha256 8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29
+  --adapter-sha256 6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969
 ```
 
 Inspect the coordinator and its child jobs using `iris --cluster=marin job

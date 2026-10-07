@@ -149,7 +149,11 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
         kind=LevanterCheckpoint,
         config={"hf_repo": MODEL, "revision": MODEL_REVISION},
     )
-    pool = ArtifactStep.adopt("documents/bizon/snowball-pdbthink", "2026.10.07.2", data_uri, kind=Artifact)
+    pool = ArtifactStep.adopt("documents/bizon/snowball-pdbthink", "2026.10.07.3", data_uri, kind=Artifact)
+    # Rollouts dominated the measured smoke step; a second inference node keeps
+    # the same policy geometry while reducing time spent waiting for generations.
+    inference_nodes = 1 if scale == "smoke" else 2
+    roles = replace(ROLE_PLAN, num_inference_engines=inference_nodes)
     name = f"checkpoints/bizon/snowball-pdbthink-{scale}"
     step = skyrl_step(
         SkyRLSpec(
@@ -162,7 +166,7 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
                 ArtifactDataSource(pool, relative_path="smoke.parquet" if scale == "smoke" else "train.parquet"),
             ),
             validation_data=(ArtifactDataSource(pool, relative_path="monitor.parquet"),),
-            topology=SkyRLTopology(num_nodes=5, gpus_per_node=8, gpu_variant="H100", role_plan=ROLE_PLAN),
+            topology=SkyRLTopology(num_nodes=4 + inference_nodes, gpus_per_node=8, gpu_variant="H100", role_plan=roles),
             retention=SkyRLRetentionPolicy(resume_checkpoint_count=2),
             seed=SEED,
         ),
