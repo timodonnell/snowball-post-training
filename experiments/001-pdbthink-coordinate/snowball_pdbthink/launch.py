@@ -45,6 +45,7 @@ ROLE_PLAN = SkyRLRolePlan(
 
 def recipe(scale, data_uri, adapter_sha256):
     steps = {"smoke": 2, "pilot": 64, "epoch": 876}[scale]
+    checkpoint_interval = 2 if scale == "smoke" else 8
     return {
         "entrypoint": "standard",
         "context_budget": {"request_window_tokens": CONTEXT, "max_new_tokens_per_turn": RESERVE, "max_turns": 1},
@@ -65,7 +66,10 @@ def recipe(scale, data_uri, adapter_sha256):
             "micro_forward_batch_size_per_gpu": 1,
             "eval_before_train": True,
             "eval_interval": 2 if scale == "smoke" else 8,
-            "ckpt_interval": 2 if scale == "smoke" else 8,
+            "ckpt_interval": checkpoint_interval,
+            # Pending HF requests protect checkpoints from native retention.
+            # Request only the terminal export so the two-checkpoint bound holds.
+            "hf_save_interval": ((steps + checkpoint_interval - 1) // checkpoint_interval) * checkpoint_interval,
             "resume_mode": "none",
             "logger": "wandb",
             "project_name": "snowball-pdbthink",

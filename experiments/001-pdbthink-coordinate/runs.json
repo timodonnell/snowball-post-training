@@ -23,7 +23,8 @@
     "fresh_process_installed_runtime_registry_and_reward": "passed",
     "native_verifier_replayed_eval_records": 107,
     "native_verifier_replayed_train_records": 256,
-    "followup_failed_coordinator_guard": "passed"
+    "followup_failed_coordinator_guard": "passed",
+    "pilot_launcher_preflight": "passed with EP16, eval batch 128, terminal-only HF export"
   },
   "runs": [
     {
@@ -128,7 +129,7 @@
       "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-coordinator-4569b704/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-52f14b0670d3",
       "cluster": "cw-rno2a",
       "gpus": "40 H100",
-      "state": "loading_models",
+      "state": "generating_first_training_batch",
       "optimizer_steps_verified": 0,
       "policy_geometry": "TP1 PP2 EP16",
       "logprob_chunk_size": 256,
