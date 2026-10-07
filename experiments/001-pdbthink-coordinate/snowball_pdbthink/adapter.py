@@ -16,15 +16,15 @@ import zipfile
 from pathlib import Path
 
 INSTALL = r"""
-import hashlib, io, json, sys, zipfile
+import hashlib, io, json, site, subprocess, sys, zipfile
 from pathlib import Path
 from rigging.filesystem.storage_path import StoragePath
-uri, expected = sys.argv[1:]
+uri, expected = sys.argv[1:3]
 with StoragePath(uri).open("rb") as stream:
     payload = stream.read()
 if hashlib.sha256(payload).hexdigest() != expected:
     raise ValueError("PDBThink adapter checksum mismatch")
-root = Path("/app/marinskyrl")
+root = Path(sys.argv[3]) if len(sys.argv) > 3 else Path("/app/marinskyrl")
 package = root / "skyrl-gym/skyrl_gym/envs/pdbthink"
 with zipfile.ZipFile(io.BytesIO(payload)) as archive:
     for name in archive.namelist():
@@ -44,6 +44,27 @@ if source.count(old) != 1:
     raise ValueError("Pinned structured-chat transport changed")
 # OpenAI-compatible transport accepts null for an explicitly disabled tool list.
 transport.write_text(source.replace(old, '            result["tools"] = None'))
+# Runtime packages are wheels; put this job's source overlay ahead of them in
+# every fresh interpreter, including Ray workers. Never modify the uv cache.
+site_packages = Path(site.getsitepackages()[0])
+if not site_packages.is_relative_to(sys.prefix):
+    raise ValueError("Expected an isolated runtime virtual environment")
+paths = [str(root / "skyrl-gym"), str(root / "skyrl-train")]
+(site_packages / "snowball_pdbthink.pth").write_text("import sys; sys.path[:0] = " + repr(paths) + "\n")
+check = '''
+import json, sys
+from pathlib import Path
+import skyrl_gym
+from skyrl_gym.verification import RolloutEvidence
+assert Path(skyrl_gym.__file__).is_relative_to(Path(sys.argv[1]) / "skyrl-gym")
+env = skyrl_gym.make("pdbthink", env_config={}, extras={"family":"probe", "path":"probe",
+    "reward_model":{"ground_truth":json.dumps({"answer_schema":"integer","gold_answer":{"value":7},"parameters":{}})}})
+env.set_rollout_evidence(RolloutEvidence(messages=[{"role":"assistant","content":"FINAL: 7"}],
+    stop_reason="stop", generated_token_count=3))
+assert env.step("FINAL: 7")["reward"] == 1.0
+print("PDBThink registry and native reward verified in fresh runtime interpreter", flush=True)
+'''
+subprocess.run([sys.executable, "-c", check, str(root)], check=True)
 (root / "pdbthink-adapter.json").write_text(json.dumps({"uri": uri, "sha256": expected}))
 print("Installed PDBThink adapter", expected, flush=True)
 """

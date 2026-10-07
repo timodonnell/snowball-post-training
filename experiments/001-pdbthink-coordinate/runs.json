@@ -19,7 +19,8 @@
     "hydra_composition": "passed",
     "live_launcher_preflight": "prepared",
     "exact_chat_capability_preflight": "passed after correcting the first smoke",
-    "wandb_write_access": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/setup-20261007"
+    "wandb_write_access": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/setup-20261007",
+    "fresh_process_installed_runtime_registry_and_reward": "passed"
   },
   "runs": [
     {
@@ -62,10 +63,21 @@
       "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.4-coordinator-79240e0c/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.4-e281080f7201",
       "cluster": "cw-rno2a",
       "gpus": "40 H100",
-      "state": "starting",
+      "state": "failed_before_rollout",
       "optimizer_steps_verified": 0,
       "wandb": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/aap0ax15",
-      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.4/terminal.json"
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.4/terminal.json",
+      "failure": "Ray imported the installed SkyRL Gym wheel rather than the registered source overlay. Fixed interpreter search path and added a fresh-process gym.make/reward startup check."
+    },
+    {
+      "scale": "smoke",
+      "version": "2026.10.07.5",
+      "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.5-coordinator-0b4331a8",
+      "cluster": "cw-rno2a",
+      "gpus": "40 H100",
+      "state": "starting",
+      "optimizer_steps_verified": 0,
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.5/terminal.json"
     }
   ],
   "baseline": null,

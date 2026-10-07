@@ -10,9 +10,8 @@ other teacher traces are used.
 The cohort is prepared and verified. Unit tests, the installed environment, the
 Marin artifact plan, Hydra composition, and MarinSkyRL's live `prepare` preflight
 pass. The verified model is staged on CoreWeave and the GPU smoke coordinator
-is running. Full validation baseline evaluation is in progress, and the smoke
-has loaded its rollout model and is initializing Megatron. Optimizer updates
-have not yet been verified. No improvement is claimed. See `runs.json` for the current run record.
+has been resubmitted after startup integration fixes. Full validation baseline
+evaluation is in progress. Optimizer updates have not yet been verified. No improvement is claimed. See `runs.json` for the current run record.
 
 ## Frozen inputs
 
@@ -155,7 +154,7 @@ its checkpoint/export. Use a fresh immutable calendar version for a changed run.
 ```bash
 uv run python experiments/001-pdbthink-coordinate/run_marin.py \
   --marin data/marin --python data/marin/.venv/bin/python \
-  --version 2026.10.07.4 --scale smoke \
+  --version 2026.10.07.5 --scale smoke \
   --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2 \
   --model-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf \
   --adapter-sha256 8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29

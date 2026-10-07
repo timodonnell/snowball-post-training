@@ -90,7 +90,7 @@ def recipe(scale, data_uri, adapter_sha256):
             "model_dtype": "bfloat16",
             "vllm_attention_backend": "FLASH_ATTN",
             "gpu_memory_utilization": 0.80,
-            "enforce_eager": True,
+            "enforce_eager": False,
             "run_engines_locally": True,
             "weight_sync_backend": "nccl",
             "require_exact_chat_transport": True,
