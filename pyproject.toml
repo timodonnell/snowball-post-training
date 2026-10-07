@@ -1,0 +1,18 @@
+[project]
+name = "snowball-post-training"
+version = "0.1.0"
+requires-python = ">=3.12"
+dependencies = ["huggingface-hub==1.33.0", "transformers==5.17.0", "tokenizers==0.23.2", "pyarrow==25.0.1", "httpx==0.28.1", "pyyaml>=6.0"]
+
+[project.optional-dependencies]
+operations = ["boto3>=1.40", "wandb>=0.21"]
+
+[dependency-groups]
+dev = ["pytest==9.1.1", "ruff>=0.12"]
+
+[tool.pytest.ini_options]
+pythonpath = ["experiments/001-pdbthink-coordinate"]
+testpaths = ["experiments/001-pdbthink-coordinate/tests"]
+
+[tool.ruff]
+line-length = 120

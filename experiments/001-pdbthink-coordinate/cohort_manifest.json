@@ -1,0 +1,112 @@
+{
+  "cohort_reserve": 8192,
+  "cohort_sha256": "92c85e37eb99d918f1ef4fe38f1b31f5b2434482f8386d048b70fe3bbb5d82c0",
+  "context": 32768,
+  "counts": {
+    "test": 1370,
+    "train": 28045,
+    "validation": 1003
+  },
+  "dataset": "open-athena/pdbthink-coordinate-tasks",
+  "dataset_revision": "3734406cb97b1702844319f9a5d860cbbf8fe660",
+  "enable_thinking": true,
+  "family_counts": {
+    "test": {
+      "G01": 136,
+      "G02": 151,
+      "G03": 130,
+      "G04": 2,
+      "N01": 126,
+      "P01": 40,
+      "P02": 28,
+      "P03": 152,
+      "S01": 82,
+      "S02": 8,
+      "S03": 152,
+      "S04": 138,
+      "S05": 23,
+      "S07": 3,
+      "S08": 50,
+      "S09": 149
+    },
+    "train": {
+      "G01": 3015,
+      "G02": 3335,
+      "G03": 2892,
+      "G04": 58,
+      "I01": 12,
+      "N01": 1945,
+      "P01": 918,
+      "P02": 434,
+      "P03": 3339,
+      "S01": 1181,
+      "S02": 436,
+      "S03": 3334,
+      "S04": 3124,
+      "S05": 314,
+      "S06": 53,
+      "S07": 92,
+      "S08": 278,
+      "S09": 3285
+    },
+    "validation": {
+      "G01": 110,
+      "G02": 120,
+      "G03": 108,
+      "G04": 3,
+      "N01": 72,
+      "P01": 32,
+      "P02": 23,
+      "P03": 118,
+      "S01": 50,
+      "S02": 9,
+      "S03": 119,
+      "S04": 111,
+      "S05": 12,
+      "S09": 116
+    }
+  },
+  "model": "open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38",
+  "model_metadata_sha256": {
+    "README.md": "1597844b9030f1dab350f4b1253d98c8bc6c0d9153b02f413dff699cfe5e4246",
+    "chat_template.jinja": "414d8559d363292c811e624fe2db04d52647ca5bd89acc53e98bd4c4f371302a",
+    "config.json": "91f9c6e825604d4618b951af7e3d554fdbed91024fefe110849894b17613ec70",
+    "generation_config.json": "a91459fb01672e5af815e8375f9dea64ab4843c205a8aa7a7e0cff6125469e63",
+    "tokenizer.json": "881c9c36c359e1617afef6f7583403567931b7b4f43f6552d2b2155a131650a2",
+    "tokenizer_config.json": "6890414e11de1291c6ab14ca94f055ec5ce093167d56fa543adf40d68c773d8f"
+  },
+  "model_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+  "monitor_count": 107,
+  "monitor_family_counts": {
+    "G01": 8,
+    "G02": 8,
+    "G03": 8,
+    "G04": 3,
+    "N01": 8,
+    "P01": 8,
+    "P02": 8,
+    "P03": 8,
+    "S01": 8,
+    "S02": 8,
+    "S03": 8,
+    "S04": 8,
+    "S05": 8,
+    "S09": 8
+  },
+  "native_verifier_sha256": {
+    "coordinate_scoring/__init__.py": "8f8067d6fbd793412dd078f35617d367999a644cf040ef4996dfd96c2b2e936f",
+    "coordinate_scoring/parse.py": "72035a296ec599f0e4743141a76f8dc908be5ac6a7fd500d36fcbb29b8b3687c",
+    "coordinate_scoring/scorers.py": "8046af2d8ca0e74d40ca60624ea3c678b81fa3b76b634818fd96757282f12c34",
+    "verify.py": "91441587561c00649cec98159d22f64d11b01fff459601cce79579737f0fa37c"
+  },
+  "parquet_sha256": {
+    "monitor.parquet": "5e6223798c327228b145133333f8d52ab4f2a5c0e744e3e0e71a5434b4ada1fc",
+    "smoke.parquet": "2d0a6515d5f283cf8e937d946a148160c37e8fa8dd193df03f2e70395cf3d4e9",
+    "test.parquet": "7a5ceb080eca609fa10d49931a1152443e851e41031bba7ebe474132b0f99a2d",
+    "train.parquet": "ac3ea2c56ec4dbaed79ba30cab9e54f1eb8905a4aa3899daff96dc6e25f6bea1",
+    "validation.parquet": "5627d95cc0050f1b8de8add89e5bad3312d8398464914e46b6f46f6ce72eed8b"
+  },
+  "smoke_count": 32,
+  "source_group_disjoint": true,
+  "teacher_traces": false
+}
