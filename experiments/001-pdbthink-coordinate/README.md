@@ -16,7 +16,9 @@ The revised CoreWeave smoke completed both optimizer updates, committed its
 step-2 checkpoint, and finished its final monitor evaluation and native HF
 export. The corrected [64-update pilot](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xlyyl24u)
 is running on 48 CoreWeave H100s. Its final validation and paired test evaluations
-are queued through `finish_run.py`; the smoke full validation is already running. The 107-task monitor rose from **19 to 24 correct**; this small panel
+are queued through `finish_run.py`; the smoke full validation is running. The pilot
+has passed its first two optimizer updates. All 128 first-batch rewards and 107
+initial monitor scores replay exactly through the native verifier. The 107-task monitor rose from **19 to 24 correct**; this small panel
 is not a full held-out improvement claim. All 214 monitor outcomes replayed
 exactly. The earlier EP8 run exhausted GPU memory on its second update; EP16
 and smaller temporary log-probability buffers passed this check.
@@ -84,7 +86,10 @@ format failures, and verifier diagnostics are retained. Transient HTTP/service
 failures receive at most three identical requests with the same seed and budget;
 model answers and verifier failures are never retried.
 
-Training logs `reward/domain/<family>/avg_raw_reward`; the fixed validation panel
+Training logs `reward/domain/<encoded-family>/avg_raw_reward` (for example,
+`G01` is `_source__4701` in MarinSkyRL). `monitor.py` decodes these to family IDs
+and exports overall sampled success, pass@4, loss, and gradient norm. These are
+training-batch statistics. The fixed validation panel
 logs `eval/<family>/avg_score` and `eval/<family>/pass_at_1` to W&B project
 `timodonnell/snowball-pdbthink`. `monitor.py` produces task-weighted and family
 macro curves with coverage. Monitor accuracy is a development signal, not the
