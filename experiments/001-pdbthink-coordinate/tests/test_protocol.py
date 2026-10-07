@@ -5,6 +5,7 @@ from pathlib import Path
 
 import pytest
 from snowball_pdbthink.adapter import build_adapter
+from snowball_pdbthink.compare import compare
 from snowball_pdbthink.evaluate import request_for, summarize
 from snowball_pdbthink.scoring import load_scorer, score, tool_events
 
@@ -65,7 +66,7 @@ def test_request_uses_full_budget_and_no_gold():
     }
     request = request_for(row, "snowball")
     assert request["max_tokens"] == 29768
-    assert request["tools"] == [] and request["tool_choice"] == "none"
+    assert request["tools"] is None and request["tool_choice"] == "none"
     assert "SECRET GOLD" not in json.dumps(request)
     assert request["messages"] == row["prompt"]
     assert tool_events({"choices": [{"message": {"tool_calls": [{"name": "python"}]}}]})
@@ -108,3 +109,36 @@ def test_overlay_carries_the_verified_native_template(tmp_path):
     (tmp_path / "native_chat_template.jinja").write_bytes(template + b"changed")
     with pytest.raises(ValueError, match="Native template differs"):
         build_adapter(tmp_path)
+
+
+def test_paired_comparison_rejects_task_or_budget_changes():
+    def record(task, family, reward):
+        return {
+            "request": {"model": "checkpoint", "max_tokens": 20000},
+            "result": {
+                "path": task,
+                "family": family,
+                "source_group": task,
+                "prompt_sha256": task,
+                "reward": reward,
+                "format_error": False,
+                "truncated": False,
+                "tool_violation": False,
+                "output_tokens": 20,
+                "finish_reason": "stop",
+            },
+        }
+
+    baseline = {"a": record("a", "G01", 0), "b": record("b", "G04", 1)}
+    trained = {"a": record("a", "G01", 1), "b": record("b", "G04", 1)}
+    contract = {"model_identity": "baseline", "tasks_sha256": "same"}
+    updated = {**contract, "model_identity": "trained"}
+    result = compare(contract, baseline, updated, trained)
+    assert result["task_weighted_accuracy_delta"] == 0.5
+    assert result["families"]["G01"]["accuracy_delta"] == 1
+    assert result["transitions"] == {"gained": 1, "both_correct": 1}
+    with pytest.raises(ValueError, match="task IDs differ"):
+        compare(contract, baseline, updated, {"a": trained["a"]})
+    trained["a"]["request"]["max_tokens"] = 8192
+    with pytest.raises(ValueError, match="generation request changed"):
+        compare(contract, baseline, updated, trained)

@@ -10,8 +10,9 @@ other teacher traces are used.
 The cohort is prepared and verified. Unit tests, the installed environment, the
 Marin artifact plan, Hydra composition, and MarinSkyRL's live `prepare` preflight
 pass. The verified model is staged on CoreWeave and the GPU smoke coordinator
-has been submitted. Baseline measurements and optimizer steps are pending. No
-improvement is claimed. See `runs.json` for the current run record.
+is running. Full validation baseline evaluation is in progress, and the smoke
+has loaded its rollout model and is initializing Megatron. Optimizer updates
+have not yet been verified. No improvement is claimed. See `runs.json` for the current run record.
 
 ## Frozen inputs
 
@@ -195,3 +196,9 @@ Use different output directories for baseline and trained checkpoints. Record
 the selected checkpoint before evaluating test; report all family counts,
 macro and task-weighted accuracy, coverage, formatting, truncation, and token
 usage. Sparse monitor gains alone are insufficient to claim improvement.
+
+Compare complete paired runs with `python -m snowball_pdbthink.compare --baseline
+BASELINE_DIR --trained TRAINED_DIR --output runs/001/comparison.json`. The
+comparison rejects mismatched task IDs, cohort fingerprints, metadata, or
+per-task generation requests. It reports accuracy deltas and paired gains/losses
+by family; these are descriptive results, not a statistical significance claim.

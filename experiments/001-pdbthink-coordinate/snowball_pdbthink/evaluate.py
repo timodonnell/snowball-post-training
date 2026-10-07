@@ -48,7 +48,7 @@ def request_for(row, model):
     return {
         "model": model,
         "messages": row["prompt"],
-        "tools": [],
+        "tools": None,
         "tool_choice": "none",
         "max_tokens": CONTEXT - row["input_tokens"],
         "temperature": 0.0,
@@ -69,7 +69,7 @@ async def evaluate(args):
         "context": CONTEXT,
         "temperature": 0.0,
         "budget": "32768 - exact native prompt tokens",
-        "tools": [],
+        "tools": None,
         "tool_choice": "none",
     }
     manifest = args.output / "evaluation.json"

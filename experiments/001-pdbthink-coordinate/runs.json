@@ -1,6 +1,6 @@
 {
   "issue": "https://github.com/timodonnell/snowball-post-training/issues/1",
-  "status": "smoke_submitted",
+  "status": "baseline_running_and_smoke_initializing",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
   "adapter_sha256": "8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29",
@@ -13,7 +13,7 @@
   },
   "monitor_tasks": 107,
   "validation": {
-    "unit_tests_passed": 6,
+    "unit_tests_passed": 7,
     "installed_environment_reward_checked": true,
     "artifact_plan": "passed",
     "hydra_composition": "passed",
@@ -75,7 +75,7 @@
     "job": "/bizon/snowball-pdbthink-baseline-20261007-v3",
     "cluster": "cw-rno2a",
     "gpus": "8 H100",
-    "state": "booting",
+    "state": "evaluating",
     "validation_tasks": 1003,
     "previous_attempts": [
       {
@@ -86,7 +86,8 @@
         "job": "/bizon/snowball-pdbthink-baseline-20261007-v2",
         "failure": "RunAI S3 throughput timeout; retry uses 4 readers and 120s low-throughput interval."
       }
-    ]
+    ],
+    "output": "runs/001/baseline-validation-v2"
   },
   "wandb_project": "https://wandb.ai/timodonnell/snowball-pdbthink"
 }
