@@ -1,8 +1,10 @@
+import hashlib
 import json
 import zipfile
 from pathlib import Path
 
 import pytest
+from snowball_pdbthink.adapter import build_adapter
 from snowball_pdbthink.evaluate import request_for, summarize
 from snowball_pdbthink.scoring import load_scorer, score, tool_events
 
@@ -87,3 +89,22 @@ def test_macro_does_not_overweight_larger_families():
     assert report["family_macro_accuracy"] == 0.5
     assert report["coverage"] == 10 / 12
     assert report["families"]["G04"]["n"] == 1
+
+
+def test_overlay_carries_the_verified_native_template(tmp_path):
+    fixtures = Path(__file__).parent / "fixtures"
+    template = (fixtures / "chat_template.jinja").read_bytes()
+    (tmp_path / "native_chat_template.jinja").write_bytes(template)
+    (tmp_path / "manifest.json").write_text(
+        json.dumps({"model_metadata_sha256": {"chat_template.jinja": hashlib.sha256(template).hexdigest()}})
+    )
+    with zipfile.ZipFile(fixtures / "verifier-v1.3.0.zip") as archive:
+        archive.extractall(tmp_path / "native_verifier")
+    identity = build_adapter(tmp_path)
+    assert build_adapter(tmp_path) == identity
+    with zipfile.ZipFile(tmp_path / "adapter.zip") as archive:
+        assert archive.read("native_chat_template.jinja") == template
+        assert "native_verifier/coordinate_scoring/scorers.py" in archive.namelist()
+    (tmp_path / "native_chat_template.jinja").write_bytes(template + b"changed")
+    with pytest.raises(ValueError, match="Native template differs"):
+        build_adapter(tmp_path)

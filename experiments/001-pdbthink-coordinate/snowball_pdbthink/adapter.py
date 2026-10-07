@@ -52,6 +52,11 @@ print("Installed PDBThink adapter", expected, flush=True)
 def build_adapter(prepared):
     root = Path(__file__).parent
     contents = {name: (root / name).read_bytes() for name in ("env.py", "scoring.py", "__init__.py")}
+    template = (prepared / "native_chat_template.jinja").read_bytes()
+    manifest = json.loads((prepared / "manifest.json").read_text())
+    if hashlib.sha256(template).hexdigest() != manifest["model_metadata_sha256"]["chat_template.jinja"]:
+        raise ValueError("Native template differs from the verified model metadata")
+    contents["native_chat_template.jinja"] = template
     for path in (prepared / "native_verifier").rglob("*.py"):
         contents[str(path.relative_to(prepared))] = path.read_bytes()
     payload = io.BytesIO()
@@ -127,8 +132,13 @@ def launch_with_adapter(config_path):
     from cloud.iris import iris_backend
     from cloud.iris.launch import execute_launch
     from cloud.iris.launch_config import load_launch_config
+    from skyrl_train.config.trajectory_runner_capabilities import (
+        TrajectoryRunnerMode,
+        validate_trajectory_runner_capabilities,
+    )
 
     config = load_launch_config(config_path)
+    validate_trajectory_runner_capabilities(config.skyrl, TrajectoryRunnerMode.SKYRL_GYM)
     settings = config.runtime.task_env
     install = (
         '\n"$IRIS_VENV/bin/python" -c '

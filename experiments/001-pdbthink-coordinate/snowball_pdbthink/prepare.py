@@ -186,6 +186,7 @@ def prepare(dataset, model_path, output, workers=8):
         ],
     )
     shutil.copy2(dataset / "snowball_context.json", output / "source_context.json")
+    shutil.copy2(model_path / "chat_template.jinja", output / "native_chat_template.jinja")
     write_json(
         output / "manifest.json",
         {

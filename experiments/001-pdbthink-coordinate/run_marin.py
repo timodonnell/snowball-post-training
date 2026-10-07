@@ -14,6 +14,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--marin", type=Path, required=True)
     parser.add_argument("--python", type=Path, required=True)
+    parser.add_argument("--module", default="experiments.snowball_pdbthink.launch")
     args, options = parser.parse_known_args()
     checkout = args.marin.resolve()
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=checkout, text=True).strip()
@@ -30,7 +31,7 @@ def main():
         auth = netrc.netrc().authenticators("api.wandb.ai")
         if auth:
             env["WANDB_API_KEY"] = auth[2]
-    command = [str(args.python.absolute()), "-m", "experiments.snowball_pdbthink.launch", *options]
+    command = [str(args.python.absolute()), "-m", args.module, *options]
     raise SystemExit(subprocess.call(command, cwd=checkout, env=env))
 
 

@@ -91,8 +91,15 @@ async def evaluate(args):
         async def one(task):
             async with semaphore:
                 request = request_for(task, args.model)
-                response = await client.post(args.base_url.rstrip("/") + "/chat/completions", json=request)
-                response.raise_for_status()
+                try:
+                    response = await client.post(args.base_url.rstrip("/") + "/chat/completions", json=request)
+                    response.raise_for_status()
+                except httpx.HTTPError as error:
+                    status = getattr(getattr(error, "response", None), "status_code", None)
+                    # Iris capability URLs contain credentials; never include one in logs.
+                    raise RuntimeError(
+                        f"Model request failed for {task['path']}: {type(error).__name__}, status={status}"
+                    ) from None
                 body = response.json()
                 choice = body["choices"][0]
                 message = choice["message"]

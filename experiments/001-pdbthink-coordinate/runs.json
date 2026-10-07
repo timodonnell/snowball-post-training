@@ -3,17 +3,23 @@
   "status": "smoke_submitted",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
-  "adapter_sha256": "7187123a2445399ab409051a315a0ce5a10b7785357116e12c843356dff6ea27",
-  "data_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v1",
+  "adapter_sha256": "8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29",
+  "data_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2",
   "model_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
-  "cohort_counts": {"train": 28045, "validation": 1003, "test": 1370},
+  "cohort_counts": {
+    "train": 28045,
+    "validation": 1003,
+    "test": 1370
+  },
   "monitor_tasks": 107,
   "validation": {
-    "unit_tests_passed": 5,
+    "unit_tests_passed": 6,
     "installed_environment_reward_checked": true,
     "artifact_plan": "passed",
     "hydra_composition": "passed",
-    "live_launcher_preflight": "prepared"
+    "live_launcher_preflight": "prepared",
+    "exact_chat_capability_preflight": "passed after correcting the first smoke",
+    "wandb_write_access": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/setup-20261007"
   },
   "runs": [
     {
@@ -22,12 +28,65 @@
       "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.1-coordinator-97b34753",
       "cluster": "cw-rno2a",
       "gpus": "40 H100",
-      "state": "submitted",
+      "state": "failed_before_model_loading",
       "optimizer_steps_verified": 0,
-      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.1/terminal.json"
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.1/terminal.json",
+      "failure": "Exact structured chat requires explicit native template and integer sampled-token logprobs; coordinator cancelled after diagnosis."
+    },
+    {
+      "scale": "smoke",
+      "version": "2026.10.07.2",
+      "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.2-coordinator-ab34614f",
+      "cluster": "cw-rno2a",
+      "gpus": "40 H100",
+      "state": "failed_before_model_loading",
+      "optimizer_steps_verified": 0,
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.2/terminal.json",
+      "failure": "W&B permission denied for marin-community; write access verified in timodonnell/snowball-pdbthink before retry."
+    },
+    {
+      "scale": "smoke",
+      "version": "2026.10.07.3",
+      "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.3-coordinator-5a6b6f8f",
+      "cluster": "cw-rno2a",
+      "gpus": "40 H100",
+      "state": "failed_before_model_loading",
+      "optimizer_steps_verified": 0,
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.3/terminal.json",
+      "failure": "Explicit native template path differed from runtime metadata cache. Template bundled in immutable adapter v2 before retry."
+    },
+    {
+      "scale": "smoke",
+      "version": "2026.10.07.4",
+      "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.4-coordinator-79240e0c",
+      "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.4-coordinator-79240e0c/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.4-e281080f7201",
+      "cluster": "cw-rno2a",
+      "gpus": "40 H100",
+      "state": "starting",
+      "optimizer_steps_verified": 0,
+      "wandb": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/aap0ax15",
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.4/terminal.json"
     }
   ],
   "baseline": null,
   "trained_evaluation": null,
-  "improvement": "Not measured yet."
+  "improvement": "Not measured yet.",
+  "baseline_server": {
+    "job": "/bizon/snowball-pdbthink-baseline-20261007-v3",
+    "cluster": "cw-rno2a",
+    "gpus": "8 H100",
+    "state": "booting",
+    "validation_tasks": 1003,
+    "previous_attempts": [
+      {
+        "job": "/bizon/snowball-pdbthink-baseline-20261007",
+        "failure": "Eager execution rejected by Marin guard; retry uses default compiled execution."
+      },
+      {
+        "job": "/bizon/snowball-pdbthink-baseline-20261007-v2",
+        "failure": "RunAI S3 throughput timeout; retry uses 4 readers and 120s low-throughput interval."
+      }
+    ]
+  },
+  "wandb_project": "https://wandb.ai/timodonnell/snowball-pdbthink"
 }

@@ -43,7 +43,7 @@ do not infer held-out performance on these families. The manifest gives exact
 counts for each split and family.
 
 Durable prepared input prefix:
-`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v1`.
+`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2`.
 Model mirror prefix:
 `s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf`.
 The model mirror writes `source.json` only after all files pass size and SHA256
@@ -68,7 +68,7 @@ format failures, and verifier diagnostics are retained.
 
 Training logs `reward/domain/<family>/avg_raw_reward`; the fixed validation panel
 logs `eval/<family>/avg_score` and `eval/<family>/pass_at_1` to W&B project
-`marin-community/snowball-pdbthink`. `monitor.py` produces task-weighted and family
+`timodonnell/snowball-pdbthink`. `monitor.py` produces task-weighted and family
 macro curves with coverage. Monitor accuracy is a development signal, not the
 full validation or test result. `evaluate.py` runs resumable full held-out
 comparisons against an OpenAI-compatible endpoint and checks the server's prompt
@@ -97,11 +97,11 @@ raw traces before expiry. Final exports and terminal metadata use the durable
 Marin artifact prefix.
 
 `adapter.py` is a small, checksum-pinned runtime overlay because the current
-MarinSkyRL environment registry has no external plugin setting. It registers
-`PDBThinkEnv` and preserves an explicitly disabled tool list in structured chat
+MarinSkyRL environment registry has no external plugin setting. It bundles the checksum-verified native chat template, registers
+`PDBThinkEnv`, and preserves an explicitly disabled tool list in structured chat
 transport. Training, loss, model, placement, and checkpoint logic remain in the
 pinned upstream runtime. The exact overlay SHA256 is
-`7187123a2445399ab409051a315a0ce5a10b7785357116e12c843356dff6ea27`.
+`8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29`.
 
 ## Reproduce
 
@@ -141,7 +141,7 @@ CoreWeave task credentials to a child command without printing or saving them.
 uv run python -m snowball_pdbthink.coreweave --kubeconfig "$KUBECONFIG" -- \
   data/marin/.venv/bin/python -m snowball_pdbthink.stage \
   --prepared data/pdbthink-001 \
-  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v1
+  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2
 uv run python -m snowball_pdbthink.coreweave --kubeconfig "$KUBECONFIG" -- \
   .venv/bin/python -m snowball_pdbthink.stage \
   --model-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf
@@ -154,10 +154,10 @@ its checkpoint/export. Use a fresh immutable calendar version for a changed run.
 ```bash
 uv run python experiments/001-pdbthink-coordinate/run_marin.py \
   --marin data/marin --python data/marin/.venv/bin/python \
-  --version 2026.10.07.1 --scale smoke \
-  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v1 \
+  --version 2026.10.07.4 --scale smoke \
+  --data-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v2 \
   --model-uri s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf \
-  --adapter-sha256 7187123a2445399ab409051a315a0ce5a10b7785357116e12c843356dff6ea27
+  --adapter-sha256 8430c1b3739a4d0c66d8ec92e5e71c8fc51cf409f8afc2798e139bcae593cc29
 ```
 
 Inspect the coordinator and its child jobs using `iris --cluster=marin job
@@ -166,7 +166,7 @@ curve with the W&B run ID recorded in `runs.json`:
 
 ```bash
 uv run python -m snowball_pdbthink.monitor \
-  --run marin-community/snowball-pdbthink/RUN_ID \
+  --run timodonnell/snowball-pdbthink/RUN_ID \
   --manifest data/pdbthink-001/manifest.json --output runs/001/monitor.json
 uv run python -m snowball_pdbthink.evaluate \
   --tasks data/pdbthink-001/validation.parquet \
@@ -174,6 +174,22 @@ uv run python -m snowball_pdbthink.evaluate \
   --base-url http://MODEL_ENDPOINT/v1 --model SERVED_MODEL_NAME \
   --model-identity EXACT_CHECKPOINT_ID --output runs/001/validation-CHECKPOINT_ID
 ```
+
+For a dedicated held-out server, use `run_marin.py --module
+experiments.snowball_pdbthink.serve_evaluation --model-uri CHECKPOINT_URI --name
+UNIQUE_NAME`, with the same `--marin` and `--python` arguments. This requests
+eight H100s, runs the pinned Marin vLLM fork with TP1/DP8/EP8, and stops after
+four hours. Its loader uses four readers and a 120-second S3 low-throughput
+window, following observed model-load timeouts. These settings must match for
+baseline and trained checkpoints. The base fork currently resolves to
+`01911be34fac` in the pinned Marin runtime.
+
+Use `run_marin.py --module experiments.snowball_pdbthink.evaluate_iris` with
+`--endpoint /serve/UNIQUE_NAME`, absolute `--tasks`, `--verifier`, `--output`, and
+`--model-identity` paths/identity. It waits for readiness and keeps its scoped
+Iris capability in process memory. It never prints or saves that capability.
+Stop the dedicated server after evaluation with `iris --cluster=marin job cancel
+/bizon/UNIQUE_NAME`; a completed evaluator does not itself stop the server.
 
 Use different output directories for baseline and trained checkpoints. Record
 the selected checkpoint before evaluating test; report all family counts,

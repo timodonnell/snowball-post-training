@@ -94,14 +94,18 @@ def recipe(scale, data_uri, adapter_sha256):
             "run_engines_locally": True,
             "weight_sync_backend": "nccl",
             "require_exact_chat_transport": True,
+            "chat_template": {
+                "source": "file",
+                "name_or_path": "/app/marinskyrl/skyrl-gym/skyrl_gym/envs/pdbthink/native_chat_template.jinja",
+            },
             "chat_template_kwargs": {"enable_thinking": True},
             "max_num_seqs": 16,
             "enable_prefix_caching": False,
             "engine_init_kwargs": {
                 "default_chat_template_kwargs": {"enable_thinking": True},
             },
-            "sampling_params": {"temperature": 1.0, "top_p": 1.0},
-            "eval_sampling_params": {"temperature": 0.0, "top_p": 1.0, "max_generate_length": CONTEXT},
+            "sampling_params": {"temperature": 1.0, "top_p": 1.0, "logprobs": 0},
+            "eval_sampling_params": {"temperature": 0.0, "top_p": 1.0, "logprobs": 0, "max_generate_length": CONTEXT},
             "eval_n_samples_per_prompt": 1,
             "trajectory_retention": {
                 "enabled": True,
@@ -117,6 +121,8 @@ def recipe(scale, data_uri, adapter_sha256):
         "data": {"kind": "parquet", "shuffle": True, "train_data": [], "val_data": []},
         "extra_env": {
             "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
+            "RUNAI_STREAMER_CONCURRENCY": "4",
+            "RUNAI_STREAMER_S3_REQUEST_TIMEOUT_MS": "120000",
             "PDBTHINK_ADAPTER_URI": data_uri + "/adapter.zip",
             "PDBTHINK_ADAPTER_SHA256": adapter_sha256,
         },
@@ -136,7 +142,7 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
         kind=LevanterCheckpoint,
         config={"hf_repo": MODEL, "revision": MODEL_REVISION},
     )
-    pool = ArtifactStep.adopt("documents/bizon/snowball-pdbthink", "2026.10.07.1", data_uri, kind=Artifact)
+    pool = ArtifactStep.adopt("documents/bizon/snowball-pdbthink", "2026.10.07.2", data_uri, kind=Artifact)
     name = f"checkpoints/bizon/snowball-pdbthink-{scale}"
     step = skyrl_step(
         SkyRLSpec(
@@ -178,7 +184,7 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
 @click.option("--model-uri", required=True)
 @click.option("--adapter-sha256", required=True)
 @click.option("--cluster", default="cw-rno2a", show_default=True)
-@click.option("--wandb-entity", default="marin-community", show_default=True)
+@click.option("--wandb-entity", default="timodonnell", show_default=True)
 @click.option("--write-launch", type=click.Path(path_type=Path))
 @rl_build_options
 def main(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, write_launch):
