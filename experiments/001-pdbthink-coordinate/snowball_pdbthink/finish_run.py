@@ -193,7 +193,7 @@ def main():
             print(json.dumps({"comparison": str(args.output / "comparison.json"), "results_uri": args.results_uri}))
     except Exception as error:  # noqa: BLE001 - sanitize all provider exception messages before logging
         # API exceptions can contain scoped endpoint URLs. Keep status/logs credential-free.
-        status("failed", error_type=type(error).__name__)
+        status("failed", error_type=type(error).__name__, error_details=getattr(error, "safe_details", None))
         raise RuntimeError(f"Follow-up failed: {type(error).__name__}; inspect the saved run status") from None
 
 

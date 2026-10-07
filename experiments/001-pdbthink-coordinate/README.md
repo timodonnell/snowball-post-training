@@ -80,7 +80,9 @@ output cap. **Evaluation uses the full remaining context**, `32768 - input_token
 temperature 0, top-p 1, and one response per task. The 8K cohort reserve is not an
 evaluation cap. Baseline and trained evaluations must use identical tasks and
 this same budget policy. Raw responses, termination evidence, token counts,
-format failures, and verifier diagnostics are retained.
+format failures, and verifier diagnostics are retained. Transient HTTP/service
+failures receive at most three identical requests with the same seed and budget;
+model answers and verifier failures are never retried.
 
 Training logs `reward/domain/<family>/avg_raw_reward`; the fixed validation panel
 logs `eval/<family>/avg_score` and `eval/<family>/pass_at_1` to W&B project

@@ -13,7 +13,7 @@
   },
   "monitor_tasks": 107,
   "validation": {
-    "unit_tests_passed": 8,
+    "unit_tests_passed": 10,
     "installed_environment_reward_checked": true,
     "artifact_plan": "passed",
     "hydra_composition": "passed",
@@ -26,7 +26,8 @@
     "followup_failed_coordinator_guard": "passed",
     "pilot_launcher_preflight": "passed with 48 H100, EP16, eval batch 128, terminal-only HF export, corrected adapter v3 (attempt 7613ea08f769)",
     "followup_test_validation_overlap_guard": "passed",
-    "adapter_v3_replay": "470 real retained trajectories replayed through installed environment; fixed one smoke train under-reward due to SkyRL thinking extraction"
+    "adapter_v3_replay": "470 real retained trajectories replayed through installed environment; fixed one smoke train under-reward due to SkyRL thinking extraction",
+    "evaluation_transport_retry_contract": "passed: identical requests, no retry of model answers/auth errors, no capability exposure"
   },
   "runs": [
     {
@@ -199,7 +200,13 @@
         "tokenizer_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
         "tokenizer_uri": "open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38"
       },
-      "export_tokenizer_and_template_byte_identical": true
+      "export_tokenizer_and_template_byte_identical": true,
+      "standalone_evaluation": {
+        "state": "resuming",
+        "completed_before_interruption": 149,
+        "retry_server": "/bizon/snowball-pdbthink-smoke-v6-eval-r2",
+        "note": "First request-level RuntimeError was not classified by the old sanitizer; serving logs showed no model crash. Added bounded transport/service retries and safe structured diagnostics."
+      }
     },
     {
       "scale": "pilot",

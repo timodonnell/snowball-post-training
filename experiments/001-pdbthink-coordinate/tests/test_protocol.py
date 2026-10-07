@@ -172,3 +172,46 @@ def test_runtime_audit_rejects_hidden_content_and_context_overflow():
     record["response"]["token_ids"] = [3] * 32767
     with pytest.raises(ValueError, match="exceeded native context"):
         audit_record(record, {"a": task})
+
+
+def test_evaluation_retries_service_failures_without_changing_request(monkeypatch):
+    import asyncio
+
+    import httpx
+    from snowball_pdbthink.evaluate import request_completion
+
+    requests = []
+
+    def respond(request):
+        requests.append(json.loads(request.content))
+        return httpx.Response(503 if len(requests) == 1 else 200, json={"answer": "wrong answer"})
+
+    async def no_wait(_):
+        pass
+
+    monkeypatch.setattr(asyncio, "sleep", no_wait)
+
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(respond)) as client:
+            result = await request_completion(client, "https://example.test/v1", {"seed": 17}, "task-a")
+            assert result == {"answer": "wrong answer"}
+
+    asyncio.run(run())
+    assert requests == [{"seed": 17}, {"seed": 17}]
+
+
+def test_evaluation_does_not_retry_auth_errors_or_expose_capability():
+    import asyncio
+
+    import httpx
+    from snowball_pdbthink.evaluate import EvaluationRequestError, request_completion
+
+    async def run():
+        async with httpx.AsyncClient(transport=httpx.MockTransport(lambda _: httpx.Response(403))) as client:
+            with pytest.raises(EvaluationRequestError) as caught:
+                await request_completion(client, "https://example.test/SECRET_CAPABILITY/v1", {}, "task-a")
+            assert caught.value.safe_details["attempts"] == 1
+            assert caught.value.safe_details["status"] == 403
+            assert "SECRET_CAPABILITY" not in str(caught.value)
+
+    asyncio.run(run())

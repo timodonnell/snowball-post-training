@@ -14,6 +14,32 @@ from .pins import CONTEXT, MODEL_REVISION
 from .scoring import load_scorer, score, tool_events
 
 
+class EvaluationRequestError(RuntimeError):
+    """Request failure details that cannot contain a scoped endpoint URL."""
+
+    def __init__(self, task, error, status, attempts):
+        self.safe_details = {"task": task, "request_error": type(error).__name__, "status": status, "attempts": attempts}
+        super().__init__(json.dumps(self.safe_details))
+
+
+async def request_completion(client, url, request, task):
+    # Retry only transport/service failures, with the same prompt, seed and
+    # budget. Model answers and verifier failures are never retried.
+    for attempt in range(1, 4):
+        try:
+            response = await client.post(url, json=request)
+            response.raise_for_status()
+            return response.json()
+        except httpx.HTTPError as error:
+            status = getattr(getattr(error, "response", None), "status_code", None)
+            transient = isinstance(error, httpx.TransportError) or status in {408, 429, 500, 502, 503, 504}
+            failure = EvaluationRequestError(task, error, status, attempt)
+            if not transient or attempt == 3:
+                raise failure from None
+            print("Retrying evaluation request " + str(failure), flush=True)
+            await asyncio.sleep(2**attempt)
+
+
 def summarize(rows, expected=None):
     grouped = defaultdict(list)
     for row in rows:
@@ -91,16 +117,9 @@ async def evaluate(args):
         async def one(task):
             async with semaphore:
                 request = request_for(task, args.model)
-                try:
-                    response = await client.post(args.base_url.rstrip("/") + "/chat/completions", json=request)
-                    response.raise_for_status()
-                except httpx.HTTPError as error:
-                    status = getattr(getattr(error, "response", None), "status_code", None)
-                    # Iris capability URLs contain credentials; never include one in logs.
-                    raise RuntimeError(
-                        f"Model request failed for {task['path']}: {type(error).__name__}, status={status}"
-                    ) from None
-                body = response.json()
+                body = await request_completion(
+                    client, args.base_url.rstrip("/") + "/chat/completions", request, task["path"]
+                )
                 choice = body["choices"][0]
                 message = choice["message"]
                 result = score(
