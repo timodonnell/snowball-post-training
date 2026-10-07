@@ -13,8 +13,10 @@ truncations, and no tool violations. Per-family counts and scores are in
 [`results/baseline-validation.json`](results/baseline-validation.json).
 
 The revised CoreWeave smoke completed both optimizer updates, committed its
-step-2 checkpoint, and finished its final monitor evaluation. Native HF export
-is running. The 107-task monitor rose from **19 to 24 correct**; this small panel
+step-2 checkpoint, and finished its final monitor evaluation and native HF
+export. The corrected [64-update pilot](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xlyyl24u)
+is running on 48 CoreWeave H100s. Its final validation and paired test evaluations
+are queued through `finish_run.py`; the smoke full validation is already running. The 107-task monitor rose from **19 to 24 correct**; this small panel
 is not a full held-out improvement claim. All 214 monitor outcomes replayed
 exactly. The earlier EP8 run exhausted GPU memory on its second update; EP16
 and smaller temporary log-probability buffers passed this check.

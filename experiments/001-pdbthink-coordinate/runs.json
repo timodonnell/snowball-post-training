@@ -1,6 +1,6 @@
 {
   "issue": "https://github.com/timodonnell/snowball-post-training/issues/1",
-  "status": "baseline_complete_smoke_training_complete_export_running",
+  "status": "pilot_submitted_smoke_export_complete",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
   "adapter_sha256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969",
@@ -131,7 +131,7 @@
       "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-coordinator-4569b704/checkpoints-bizon-snowball-pdbthink-smoke-2026.10.07.6-52f14b0670d3",
       "cluster": "cw-rno2a",
       "gpus": "40 H100",
-      "state": "training_succeeded_export_running",
+      "state": "succeeded",
       "optimizer_steps_verified": 2,
       "policy_geometry": "TP1 PP2 EP16",
       "logprob_chunk_size": 256,
@@ -190,7 +190,40 @@
         "covered_tasks": 107,
         "expected_tasks": 107,
         "source": "retained native verifier-replayed trajectories"
-      }
+      },
+      "export": {
+        "checkpoint_root": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/checkpoints",
+        "global_step": 2,
+        "policy_export_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/exports/global_step_2/policy",
+        "terminal_manifest_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-smoke/2026.10.07.6/terminal.json",
+        "tokenizer_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+        "tokenizer_uri": "open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38"
+      },
+      "export_tokenizer_and_template_byte_identical": true
+    },
+    {
+      "scale": "pilot",
+      "version": "2026.10.07.1",
+      "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-coordinator-f3bd0c64",
+      "cluster": "cw-rno2a",
+      "gpus": "48 H100",
+      "state": "workers_initializing",
+      "optimizer_steps_verified": 0,
+      "max_optimizer_steps": 64,
+      "training_pool": 28045,
+      "max_training_prompts_sampled": 2048,
+      "policy_geometry": "TP1 PP2 EP16",
+      "inference_nodes": 2,
+      "adapter_sha256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969",
+      "data_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3",
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/terminal.json",
+      "final_test_rule": "Preselected terminal checkpoint, paired original Snowball baseline on all 1370 test tasks; no checkpoint selection from test results",
+      "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-coordinator-f3bd0c64/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-2f3580da6963",
+      "wandb": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/xlyyl24u",
+      "worker_startup_checks_passed": 6,
+      "followup_results_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/evaluations/2026.10.07/pilot-v1",
+      "followup_local_status": "runs/001/pilot-v1-followup-status.json",
+      "followup_includes_final_test": true
     }
   ],
   "baseline": {
