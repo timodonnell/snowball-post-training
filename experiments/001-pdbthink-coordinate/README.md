@@ -48,7 +48,19 @@ G04, N01, S01 and S02 remain at zero; G02 is 1/120. Chain fold classification
 fell from 5/12 to 4/12. Format errors fell from 419 to 256, while context-limit
 truncations increased from 138 to 189. The paired test is running separately.
 
-![Pilot full validation by family](results/pilot-validation.png)
+![Audited pilot evidence](results/pilot-evidence.png)
+
+The [critical analysis](results/pilot-evidence.md) reproduces all 2,006 native
+scores and independently recomputes 336 coordinate-based gold answers. The
+validation tasks come from only 20 source groups; 19 improve, with an approximate
+95% paired group-bootstrap interval of +10.9 to +17.9 points. Interpretation
+requires care: 133 of 186 newly correct answers were previously invalid, and
+three categorical families remain below a constant training-majority answer.
+Secondary structure is only one correct answer above that control and predicts
+`coil` on 110/111 tasks. This is strong evidence of improved benchmark performance,
+with much narrower evidence for new geometric reasoning. See the
+[reproducible audit data](results/pilot-evidence.json) and
+[vector figure](results/pilot-evidence.pdf).
 
 See [`results/pilot-validation-comparison.json`](results/pilot-validation-comparison.json)
 for the complete paired counts and per-family results.
