@@ -215,3 +215,47 @@ def test_evaluation_does_not_retry_auth_errors_or_expose_capability():
             assert "SECRET_CAPABILITY" not in str(caught.value)
 
     asyncio.run(run())
+
+
+def test_export_recovery_rejects_incomplete_weights_and_changed_tokenizer():
+    from snowball_pdbthink.recover_export import validate_export_files
+
+    files = {
+        "config.json": b"{}",
+        "model.safetensors.index.json": b'{"weight_map": {"weight": "model.safetensors"}}',
+        "model.safetensors": b"fake-weight-bytes",
+        "tokenizer.json": b"original-tokenizer",
+        "tokenizer_config.json": b"{}",
+        "chat_template.jinja": b"original-template",
+    }
+    frozen = {name: hashlib.sha256(files[name]).hexdigest() for name in ("tokenizer.json", "chat_template.jinja")}
+
+    def manifest():
+        return {
+            "format_version": 1,
+            "tokenizer_mode": "embedded",
+            "files": [
+                {"path": name, "size": len(value), "sha256": hashlib.sha256(value).hexdigest()}
+                for name, value in files.items()
+            ],
+        }
+
+    complete = manifest()
+
+    def check(publication):
+        return validate_export_files(publication, lambda name: len(files[name]), files.__getitem__, frozen)
+
+    assert check(complete)["weight_shards"] == 1
+    files["model.safetensors"] = b"partial"
+    with pytest.raises(ValueError, match="Incomplete export file"):
+        check(complete)
+    files["model.safetensors"] = b"fake-weight-bytes"
+    files["tokenizer.json"] = b"modified-tokenizer"
+    with pytest.raises(ValueError, match="metadata checksum mismatch"):
+        check(complete)
+    with pytest.raises(ValueError, match="changed the frozen tokenizer"):
+        check(manifest())
+    files["tokenizer.json"] = b"original-tokenizer"
+    del files["model.safetensors"]
+    with pytest.raises(ValueError, match="missing weight shards"):
+        check(manifest())

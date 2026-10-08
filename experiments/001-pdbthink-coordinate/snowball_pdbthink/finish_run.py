@@ -64,9 +64,16 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--results-uri", required=True)
     parser.add_argument("--wandb-run", help="Optional entity/project/run_id to receive held-out summary metrics")
-    parser.add_argument("--test-tasks", type=Path, help="Optional final test cohort, evaluated only at this terminal checkpoint")
+    parser.add_argument(
+        "--test-tasks", type=Path, help="Optional final test cohort, evaluated only at this terminal checkpoint"
+    )
     parser.add_argument("--test-baseline-model-uri", help="Frozen original model for the paired test baseline")
     parser.add_argument("--wait-hours", type=float, default=24)
+    parser.add_argument(
+        "--recover-step",
+        type=int,
+        help="Recover an already published final export after job teardown failed; verify training and all export files",
+    )
     args = parser.parse_args()
     before = load_evaluation(args.baseline)
     if hashlib.sha256(args.tasks.read_bytes()).hexdigest() != before[0]["tasks_sha256"]:
@@ -92,7 +99,7 @@ def main():
         # Mutable local progress stays outside the immutable results directory.
         args.output.with_name(args.output.name + "-status.json").write_text(json.dumps(payload, indent=2) + "\n")
 
-    status("waiting_for_export")
+    status("verifying_recovered_export" if args.recover_step is not None else "waiting_for_export")
 
     def evaluate_cohorts(iris, model_uri, identity, server_name, cohorts):
         pending = []
@@ -133,9 +140,23 @@ def main():
 
     try:
         with open_iris_client(config_file=args.cluster_config, workspace=Path.cwd()) as iris:
-            manifest = wait_for_export(iris, args.terminal_uri, args.coordinator, args.wait_hours * 3600)
-            model = exported_model(manifest)
-            (args.output / "training-terminal.json").write_text(json.dumps(manifest, indent=2) + "\n")
+            if args.recover_step is not None:
+                from .recover_export import recover_export
+
+                prepared = json.loads((args.tasks.parent / "manifest.json").read_text())
+                model, recovery = recover_export(iris, args.terminal_uri, args.coordinator, args.recover_step, prepared)
+                recovery_path = args.output / "recovered-export.json"
+                if recovery_path.exists():
+                    recorded = json.loads(recovery_path.read_text())
+                    stable_keys = ("model", "training_job", "resolved_config_sha256", "export_manifest_sha256", "checks")
+                    if any(recorded[key] != recovery[key] for key in stable_keys):
+                        raise ValueError("Cannot change the recorded recovered export")
+                else:
+                    recovery_path.write_text(json.dumps(recovery, indent=2) + "\n")
+            else:
+                manifest = wait_for_export(iris, args.terminal_uri, args.coordinator, args.wait_hours * 3600)
+                model = exported_model(manifest)
+                (args.output / "training-terminal.json").write_text(json.dumps(manifest, indent=2) + "\n")
             evaluation = args.output / "validation"
             cohorts = [(args.tasks, evaluation)]
             if args.test_tasks:

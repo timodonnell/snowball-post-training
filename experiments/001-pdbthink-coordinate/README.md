@@ -7,21 +7,37 @@ other teacher traces are used.
 
 ## Status
 
-The full validation baseline is complete: **230/1,003 correct (22.93%)**, with
-23.44% family-macro accuracy. There were 419 format errors, 138 context-limit
-truncations, and no tool violations. Per-family counts and scores are in
-[`results/baseline-validation.json`](results/baseline-validation.json).
+The [64-update pilot](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xlyyl24u)
+completed training successfully on 48 CoreWeave H100s. All six training tasks
+exited successfully, the final checkpoint and HF export are saved, and the
+training GPUs are released. This pilot sampled at most 2,048 prompts from the
+28,045-task pool; it was not a full epoch.
 
-The revised CoreWeave smoke completed both optimizer updates, committed its
-step-2 checkpoint, and finished its final monitor evaluation and native HF
-export. The corrected [64-update pilot](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xlyyl24u)
-is running on 48 CoreWeave H100s. Its final validation and paired test evaluations
-are queued through `finish_run.py`; the smoke full validation is running. The pilot
-has passed its first two optimizer updates. All 128 first-batch rewards and 107
-initial monitor scores replay exactly through the native verifier. The 107-task monitor rose from **19 to 24 correct**; this small panel
-is not a full held-out improvement claim. All 214 monitor outcomes replayed
-exactly. The earlier EP8 run exhausted GPU memory on its second update; EP16
-and smaller temporary log-probability buffers passed this check.
+| Measurement | Original Snowball | Trained | Change |
+| --- | ---: | ---: | ---: |
+| Pilot fixed monitor (107 validation tasks) | 21/107 (19.63%) | 32/107 (29.91%) | +10.28 pp |
+| Two-update smoke, full validation | 230/1,003 (22.93%) | 242/1,003 (24.13%) | +1.20 pp |
+| Pilot full validation and paired test | Pending | Pending | Pending |
+
+The pilot monitor is a small, repeatedly observed development panel. Its largest
+count gains were S03 (4 to 7 of 8), S04 (2 to 4 of 8), and S09 (1 to 3 of 8).
+All 107 final monitor rewards replay exactly through the frozen native verifier.
+The smoke's full validation gain is modest (107 newly correct, 95 newly incorrect).
+Do not compare absolute scores between the native monitor and standalone serving
+as if they were the same measurement. See [`results/pilot-monitor.json`](results/pilot-monitor.json)
+and [`results/smoke-validation-comparison.json`](results/smoke-validation-comparison.json).
+
+Pilot full validation (1,003 tasks) and the paired final test (1,370 tasks) restarted
+on October 8 using the preselected step-64 checkpoint. Export publication finished
+at 04:06 UTC, but an Iris worker disappeared during shutdown, leaving the export
+job pending and the coordinator waiting. Recovery verified successful training,
+the terminal checkpoint marker, all 45 published file sizes including 39 weight
+shards, metadata checksums, and unchanged tokenizer/template. The stale export
+job and coordinator were cancelled. `finish_run.py --recover-step 64` records
+separate recovery provenance instead of fabricating native terminal success.
+The evaluation uses one eight-H100 server at a time and releases each server
+on completion or failure. W&B's crashed label reflects logger shutdown;
+Iris training succeeded. The native terminal monitor is preserved separately.
 
 Auditing the smoke found one under-reward among 256 training responses:
 SkyRL stripped a thinking block before verification, whereas the benchmark and

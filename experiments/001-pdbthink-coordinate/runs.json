@@ -1,6 +1,6 @@
 {
   "issue": "https://github.com/timodonnell/snowball-post-training/issues/1",
-  "status": "pilot_training_smoke_full_validation_running",
+  "status": "64-update pilot training succeeded; step-64 export recovered after Iris teardown failure; full validation and paired test evaluation running",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
   "adapter_sha256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969",
@@ -202,11 +202,20 @@
       },
       "export_tokenizer_and_template_byte_identical": true,
       "standalone_evaluation": {
-        "state": "running",
-        "completed_before_interruption": 149,
-        "retry_server": "/bizon/snowball-pdbthink-smoke-v6-eval-r2",
-        "note": "First request-level RuntimeError was not classified by the old sanitizer; serving logs showed no model crash. Added bounded transport/service retries and safe structured diagnostics."
-      }
+        "state": "complete",
+        "completed": 1003,
+        "comparison": "results/smoke-validation-comparison.json",
+        "task_weighted_accuracy": 0.24127617148554337,
+        "accuracy_delta": 0.011964107676969093,
+        "transitions": {
+          "gained": 107,
+          "both_incorrect": 666,
+          "lost": 95,
+          "both_correct": 135
+        },
+        "server_released": true
+      },
+      "monitor_note": "Use verifier-replayed retained trajectories for final monitor; W&B shared-logger teardown did not preserve the terminal evaluation reliably."
     },
     {
       "scale": "pilot",
@@ -214,8 +223,8 @@
       "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-coordinator-f3bd0c64",
       "cluster": "cw-rno2a",
       "gpus": "48 H100",
-      "state": "training",
-      "optimizer_steps_verified": 2,
+      "state": "training_succeeded_export_recovered_evaluation_running",
+      "optimizer_steps_verified": 64,
       "max_optimizer_steps": 64,
       "training_pool": 28045,
       "max_training_prompts_sampled": 2048,
@@ -281,27 +290,43 @@
         "native_context_respected": true,
         "native_verifier_reward_replayed": true
       },
-      "latest_verified_update": {
-        "step": 2,
-        "sample_success_rate": 0.234375,
-        "prompt_pass_at_4": 0.375,
-        "family_sample_success_rate": {
-          "G01": 0.4166666666666667,
-          "G02": 0,
-          "G03": 0.08333333333333333,
-          "N01": 0,
-          "P02": 1,
-          "P03": 0.5625,
-          "S01": 0,
-          "S02": 0,
+      "training_job_state": "succeeded",
+      "training_gpus_released": true,
+      "final_monitor": {
+        "step": 64,
+        "family_accuracy": {
+          "G01": 0.25,
+          "G02": 0.0,
+          "G03": 0.25,
+          "G04": 0.0,
+          "N01": 0.125,
+          "P01": 0.75,
+          "P02": 0.625,
+          "P03": 0.0,
+          "S01": 0.0,
+          "S02": 0.125,
           "S03": 0.875,
           "S04": 0.5,
-          "S08": 0,
-          "S09": 0
+          "S05": 0.125,
+          "S09": 0.375
         },
-        "policy_loss": 0.003033703309483826,
-        "raw_grad_norm": 0.15094779431819916
-      }
+        "family_macro_accuracy": 0.2857142857142857,
+        "task_weighted_accuracy": 0.29906542056074764,
+        "covered_tasks": 107,
+        "expected_tasks": 107
+      },
+      "monitor_curve": "results/pilot-monitor.json",
+      "final_monitor_audit": "results/pilot-final-monitor-audit.json",
+      "actual_resolved_launch": "results/pilot-resolved-launch.json",
+      "export_recovery": "results/pilot-export-recovery.json",
+      "export_teardown": {
+        "state_before_cleanup": "2 tasks succeeded; 2 pending after worker PodDeleted during shutdown",
+        "export_published_at": "2026-10-08T04:06:13Z",
+        "cleanup": "Cancelled the stale export job and coordinator after verifying the published model; native terminal success not fabricated"
+      },
+      "evaluation_server": "/bizon/snowball-pdbthink-pilot-v1-eval-recovery",
+      "evaluation_gpus": "8 H100",
+      "wandb_state_note": "W&B reports crashed after shared logger shutdown; all six Iris training tasks succeeded and step-64 checkpoint/evaluation/export exist."
     }
   ],
   "baseline": {
@@ -434,8 +459,12 @@
     },
     "raw_results_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/evaluations/2026.10.07/baseline-validation"
   },
-  "trained_evaluation": null,
-  "improvement": "Not measured yet.",
+  "trained_evaluation": {
+    "smoke_validation": "results/smoke-validation-comparison.json",
+    "pilot_validation": "running",
+    "pilot_test": "queued after pilot validation"
+  },
+  "improvement": "Smoke full validation +1.20 percentage points; pilot fixed monitor +10.28 percentage points. Pilot full validation and test remain pending.",
   "baseline_server": {
     "job": "/bizon/snowball-pdbthink-baseline-20261007-v3",
     "cluster": "cw-rno2a",

@@ -1,0 +1,260 @@
+{
+  "recovered_at": "2026-10-08T20:55:22.759139+00:00",
+  "reason": "Evaluate a complete native export independently of export-job teardown status",
+  "training_job": "/bizon/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-coordinator-f3bd0c64/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-2f3580da6963",
+  "training_job_state": "succeeded",
+  "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-coordinator-f3bd0c64",
+  "coordinator_state_at_recovery": "killed",
+  "native_terminal_manifest_present": false,
+  "resolved_config_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/resolved-launch.yaml",
+  "resolved_config_sha256": "1d5cce249a41b0ee67d683c6a1c9c6d5ce76d8ea63ad5654f08ba1ab25c049a4",
+  "export_manifest_sha256": "b3bb0e94da58ed8c92d62f59b2bac125ff30bce939fedaae4192f9c63b5e01a3",
+  "export_manifest": {
+    "files": [
+      {
+        "path": "chat_template.jinja",
+        "sha256": "414d8559d363292c811e624fe2db04d52647ca5bd89acc53e98bd4c4f371302a",
+        "size": 5112
+      },
+      {
+        "path": "config.json",
+        "sha256": "07c2973ad03a2270eb95516d8295db6c31733ad906d3ee4d4062b84dc6e9b8b3",
+        "size": 1518
+      },
+      {
+        "path": "generation_config.json",
+        "sha256": "a91459fb01672e5af815e8375f9dea64ab4843c205a8aa7a7e0cff6125469e63",
+        "size": 139
+      },
+      {
+        "path": "model-00001-of-00039.safetensors",
+        "sha256": "546e6a8e41c0144a2e948eed0ea1a438b273324b69528ae20fee61fa60eab354",
+        "size": 4747554720
+      },
+      {
+        "path": "model-00002-of-00039.safetensors",
+        "sha256": "d30aef7bee1b446d2a3432757b914c7be191df4cd762bb798f9cfb31d14e797c",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00003-of-00039.safetensors",
+        "sha256": "a20bb665f519f42cee2e7d9b94a682a3a3754ede8741d76acf052bce748c8132",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00004-of-00039.safetensors",
+        "sha256": "0d6e0dd89fd21658cd567142f5b6b1cae2fe5c0af6c9d42b4ebb0ced8c3355bc",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00005-of-00039.safetensors",
+        "sha256": "e7234666d9d71348dd6ddc8651ef9d0646f9f9eb77a245d0bf12379bdb42cd8b",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00006-of-00039.safetensors",
+        "sha256": "72bb16ed1b73f60560b5abff4b16ec0db7b0455ab6b1ba7f9e056a82fe4e611b",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00007-of-00039.safetensors",
+        "sha256": "4c8fe8eefea8790d8ab8a3d1872753561de67853680aa6dd5af6cd3eafb660e1",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00008-of-00039.safetensors",
+        "sha256": "56e9686a4c6445c874fcbde194caf4a6a19631830f62d3f95de42623c3e5e8f1",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00009-of-00039.safetensors",
+        "sha256": "1bc27330debb83c9894d46eda9e363c147530812dd7012cb2fe2218caf984b2e",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00010-of-00039.safetensors",
+        "sha256": "ac430935febb50f0327ab90e3a7ad9f2e2919fc4f4f3ae20e585b8111192dd9b",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00011-of-00039.safetensors",
+        "sha256": "d7b8eb88de7dde9c46801fedd9f1dc3f5898ba48a7931ba2ae3977d2deec09ab",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00012-of-00039.safetensors",
+        "sha256": "71c90142a5297daa13b1858bbc7b46537771df8ce038f6a7a49deb19ef85c20f",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00013-of-00039.safetensors",
+        "sha256": "47e0e62f5db2065cf08c07c42643cf1f638fc6fe7299ee95f14941e74b7ee354",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00014-of-00039.safetensors",
+        "sha256": "fb18cc0c45ff2db53dc288fa12da9dedda82fe3c43724e5ad9f3d39b591a68ae",
+        "size": 3431580760
+      },
+      {
+        "path": "model-00015-of-00039.safetensors",
+        "sha256": "d7fa139dc8cd4842e8da92849295b8b803bc3f6314bc707e3831215af9fbea3f",
+        "size": 3431580696
+      },
+      {
+        "path": "model-00016-of-00039.safetensors",
+        "sha256": "e065f14436a8bbdb490fe10fd386fda8f04f1e08dac75fd77130ec5821e2c4a9",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00017-of-00039.safetensors",
+        "sha256": "994a13fccaca3f2b07c7134e993af49f6047ae299a9ce698f7bc11f553ce5c64",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00018-of-00039.safetensors",
+        "sha256": "c86479e8b57cd0734c2f226fe25757e8a075b49de4694066ebee8acbe4ecd8a6",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00019-of-00039.safetensors",
+        "sha256": "913e09cb7b4dde00d2ab6e450e5aae0fb72727bffe504cda77a2f53ae84af117",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00020-of-00039.safetensors",
+        "sha256": "417ac0513dc820848c7791a23efa27015665c0e35d361809c0705fa8d79336c4",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00021-of-00039.safetensors",
+        "sha256": "d211a6d150d8dd4d9be3380b1eaafac47e526f830e1d1af3428f5c13be56c20d",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00022-of-00039.safetensors",
+        "sha256": "b18ff9e41225b21522e047ac39df6c4663cdf845be8c7f325ed0d9b88a6cca33",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00023-of-00039.safetensors",
+        "sha256": "b22826594920988d85be5fcc2d28013864e74f3ae9214ee7dbdbc826f65e4f3c",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00024-of-00039.safetensors",
+        "sha256": "ed46a48a0a17c4ad0991a9266346e7168e1c486ef095c931327fc662c5bfde7e",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00025-of-00039.safetensors",
+        "sha256": "12ab1b42fb13f02dc2fe43fa4e996a2dc5679e50147327c9e19788b7cc9fef80",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00026-of-00039.safetensors",
+        "sha256": "d22ba38768320714ac7d8da80c8a6f9dfc545e91b0f6c5a3f9b390efcffac134",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00027-of-00039.safetensors",
+        "sha256": "6dfb6aff032dcf08f788651659196bb6aff140f0412d633b1ba9ef369d0cf798",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00028-of-00039.safetensors",
+        "sha256": "8f41eb65c66244a4bdb2d570694a67ee7a17ddc3d44025030db2c42faca16d83",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00029-of-00039.safetensors",
+        "sha256": "50fa66745ca4355fac4b550fb4882945ed833362d9f4da74ea353699065b48ae",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00030-of-00039.safetensors",
+        "sha256": "83bb86840a082cd5408f68052922c21721d9b39fb2826becb601a50a233a74a6",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00031-of-00039.safetensors",
+        "sha256": "da5356200a2fa73cde89f4cc4a61c837382fd48468a30abfd12bb603ca305cce",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00032-of-00039.safetensors",
+        "sha256": "be8a0fcffecdce6baf34ad393707a1d96ec65ff9ee95f1ae0e34912c0223dcf4",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00033-of-00039.safetensors",
+        "sha256": "4b5870b3129d13618bfc58456dc9a93c53e3ac6326a81d2df247f25d316f25c4",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00034-of-00039.safetensors",
+        "sha256": "1cefe12d6c33bcce2cd7a8a72a8d55aa0059681b9bf169d7c6ca1002f7e1a9f8",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00035-of-00039.safetensors",
+        "sha256": "c5afeabfeefbd21a165b3d8138c16388cd5241b5537da5241714b0f210aacb90",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00036-of-00039.safetensors",
+        "sha256": "6be6d0fe7116b7b1e7de4f89da2b9809c96f8d19c69113969de1d770dd78cce1",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00037-of-00039.safetensors",
+        "sha256": "3b594cc4039296e57da43e438bc40566c92d1ca8f02d0975753371a1a935c496",
+        "size": 3355443456
+      },
+      {
+        "path": "model-00038-of-00039.safetensors",
+        "sha256": "4bcbe447e76f74b89884e34d1631e9efe80698ae91709c74b1bafb3fa72f8aa2",
+        "size": 3431580776
+      },
+      {
+        "path": "model-00039-of-00039.safetensors",
+        "sha256": "cd37e1c48088accf83b97b1cfd346988791f9ffd3c22ccafa9e1e6e7a5baa5f8",
+        "size": 3355443456
+      },
+      {
+        "path": "model.safetensors.index.json",
+        "sha256": "7737eed0ad5faa748e709ae9fb7dfb1baded1e5a18b2d811cf13f69776b4869d",
+        "size": 42979
+      },
+      {
+        "path": "tokenizer.json",
+        "sha256": "881c9c36c359e1617afef6f7583403567931b7b4f43f6552d2b2155a131650a2",
+        "size": 17209892
+      },
+      {
+        "path": "tokenizer_config.json",
+        "sha256": "6890414e11de1291c6ab14ca94f055ec5ce093167d56fa543adf40d68c773d8f",
+        "size": 369
+      }
+    ],
+    "format_version": 1,
+    "identity": "sha256:014093fc4f8107dd746521eee7eeb4b2b894d48c1969bb585a6c17edc022ffcf",
+    "model_id": null,
+    "revision": null,
+    "tokenizer_mode": "embedded"
+  },
+  "checks": {
+    "files_verified_by_size": 45,
+    "weight_shards": 39,
+    "metadata_verified_by_sha256": 6
+  },
+  "weight_verification": "Native publisher SHA256 manifest plus remote sizes; weight bytes not downloaded again",
+  "model": {
+    "policy_export_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/exports/global_step_64/policy",
+    "global_step": 64,
+    "tokenizer_uri": "open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38",
+    "tokenizer_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+    "checkpoint_root": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/checkpoints",
+    "terminal_manifest_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/terminal.json"
+  }
+}
