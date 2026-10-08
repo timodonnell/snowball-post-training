@@ -56,18 +56,21 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--run", required=True, help="entity/project/run_id")
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--cohort", choices=["monitor", "validation"], default="monitor")
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     manifest = json.loads(args.manifest.read_text())
     run = wandb.Api().run(args.run)
     # Read full rows: requesting all sparse metric keys can drop otherwise valid history rows.
     history = list(run.scan_history())
-    curve = summarize_history(history, manifest["monitor_family_counts"])
+    counts = manifest["monitor_family_counts"] if args.cohort == "monitor" else manifest["family_counts"]["validation"]
+    curve = summarize_history(history, counts)
     training, keys = training_history(history, manifest["family_counts"]["train"])
     result = {
         "run": args.run,
         "url": run.url,
         "state": run.state,
+        "cohort": args.cohort,
         "validation": curve,
         "training": training,
         "training_metric_keys": keys,

@@ -7,6 +7,26 @@ other teacher traces are used.
 
 ## Status
 
+The [full-pass continuation](https://wandb.ai/timodonnell/snowball-pdbthink/runs/ppc4ryud)
+launched October 8 on **48 CoreWeave H100s**. It restores the pilot's step-64
+policy, optimizer, scheduler, and dataloader position and targets step 876:
+812 additional updates, completing the first 876 full batches of the training
+pool (28,032 prompts; the final incomplete 13-task batch is omitted upstream).
+The allocation and training geometry match the successful pilot. The training
+limit is 96 hours and the coordinator limit is 120 hours, including export.
+
+Scale-up evaluates **all 1,003 validation tasks every 64 updates**, plus the
+starting and terminal policies. It banks every evaluated checkpoint using native
+pending HF export requests. `finish_run.py --select-validation` selects the highest
+full-validation task-weighted accuracy, breaking ties by family macro accuracy
+and then earlier step; the starting pilot checkpoint is also eligible. Selection
+is saved before the paired 1,370-task test. Test scores do not influence selection.
+The observer verifies terminal publication even if worker teardown stalls, exports
+the selected checkpoint with the native MarinSkyRL exporter, and runs the paired
+standalone validation/test comparisons. Progress is saved in
+`runs/001/epoch-v1-followup-status.json`; full-validation latest/best summaries go
+to W&B. This is a detached local observer, not an app notification service.
+
 The [64-update pilot](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xlyyl24u)
 completed training successfully on 48 CoreWeave H100s. All six training tasks
 exited successfully, the final checkpoint and HF export are saved, and the
@@ -135,8 +155,11 @@ not imply every training task has been visited.
 Validation runs before training, every eight pilot updates, and at completion.
 Smoke evaluates at step two. Pilot evaluation submits the complete monitor panel
 in one batch to avoid repeatedly waiting for long responses in small batches.
-Checkpoints follow the same interval, with two
-resume checkpoints retained and a terminal Hugging Face export. Temporary
+Pilot checkpoints follow the same interval, with two
+resume checkpoints retained and a terminal Hugging Face export. The epoch run
+banks every 64-step checkpoint plus its terminal checkpoint for validation
+selection; pending native export requests protect these candidates from rolling
+retention. Only the terminal and selected models require GPU conversion. Temporary
 training/trajectory artifacts follow Marin's 14-day TTL; preserve any needed
 raw traces before expiry. Final exports and terminal metadata use the durable
 Marin artifact prefix.
@@ -278,3 +301,21 @@ experiments.snowball_pdbthink.finish_run`, supplying `--terminal-uri`,
 follow-up process alive while training runs. Progress is written beside the
 output directory as `OUTPUT-status.json`; final artifacts are in `OUTPUT`.
 Evaluation can resume completed task files with a fresh serving job name.
+
+### Full-pass continuation
+
+The original pilot checkpoint is an explicit artifact dependency. The launch and
+follow-up commands are saved locally under `runs/001/epoch-v1-*-command.json`.
+To inspect its full-validation history:
+
+```bash
+uv run python -m snowball_pdbthink.monitor \
+  --run timodonnell/snowball-pdbthink/ppc4ryud \
+  --manifest data/pdbthink-001-v3/manifest.json --cohort validation \
+  --output runs/001/epoch-v1-monitor.json
+```
+
+[`epoch-launch.yaml`](epoch-launch.yaml) records the planned source recipe;
+[`results/epoch-resolved-launch.json`](results/epoch-resolved-launch.json) records
+the actual native preflight result and job geometry. Reruns need a fresh artifact
+version and explicit checkpoint selection.

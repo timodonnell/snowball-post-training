@@ -70,11 +70,19 @@ def main():
     parser.add_argument("--test-baseline-model-uri", help="Frozen original model for the paired test baseline")
     parser.add_argument("--wait-hours", type=float, default=24)
     parser.add_argument(
+        "--select-validation", action="store_true", help="Select among banked full-validation checkpoints"
+    )
+    parser.add_argument("--initial-export-record", type=Path, help="Verified starting checkpoint if it wins validation")
+    parser.add_argument(
         "--recover-step",
         type=int,
         help="Recover an already published final export after job teardown failed; verify training and all export files",
     )
     args = parser.parse_args()
+    if args.select_validation and (args.recover_step is not None or args.initial_export_record is None):
+        raise ValueError(
+            "Validation selection requires the initial export record and cannot combine with --recover-step"
+        )
     before = load_evaluation(args.baseline)
     if hashlib.sha256(args.tasks.read_bytes()).hexdigest() != before[0]["tasks_sha256"]:
         raise ValueError("Follow-up tasks do not match the complete baseline cohort")
@@ -140,7 +148,13 @@ def main():
 
     try:
         with open_iris_client(config_file=args.cluster_config, workspace=Path.cwd()) as iris:
-            if args.recover_step is not None:
+            selection_rule = "Terminal checkpoint predeclared by the run configuration; no selection from test results"
+            if args.select_validation:
+                from .select_checkpoint import select_and_export
+
+                model, validation_selection = select_and_export(iris, args, status)
+                selection_rule = validation_selection["rule"] + "; no selection from test results"
+            elif args.recover_step is not None:
                 from .recover_export import recover_export
 
                 prepared = json.loads((args.tasks.parent / "manifest.json").read_text())
@@ -148,7 +162,13 @@ def main():
                 recovery_path = args.output / "recovered-export.json"
                 if recovery_path.exists():
                     recorded = json.loads(recovery_path.read_text())
-                    stable_keys = ("model", "training_job", "resolved_config_sha256", "export_manifest_sha256", "checks")
+                    stable_keys = (
+                        "model",
+                        "training_job",
+                        "resolved_config_sha256",
+                        "export_manifest_sha256",
+                        "checks",
+                    )
                     if any(recorded[key] != recovery[key] for key in stable_keys):
                         raise ValueError("Cannot change the recorded recovered export")
                 else:
@@ -162,7 +182,7 @@ def main():
             if args.test_tasks:
                 selection = {
                     "model": model,
-                    "rule": "Terminal checkpoint predeclared by the run configuration; no selection from test results",
+                    "rule": selection_rule,
                     "tasks_sha256": hashlib.sha256(args.test_tasks.read_bytes()).hexdigest(),
                     "baseline_model_uri": args.test_baseline_model_uri,
                 }

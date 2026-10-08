@@ -43,9 +43,11 @@ ROLE_PLAN = SkyRLRolePlan(
 )
 
 
-def recipe(scale, data_uri, adapter_sha256):
+def recipe(scale, data_uri, adapter_sha256, resume_checkpoint=None):
     steps = {"smoke": 2, "pilot": 64, "epoch": 876}[scale]
-    checkpoint_interval = 2 if scale == "smoke" else 8
+    checkpoint_interval = {"smoke": 2, "pilot": 8, "epoch": 64}[scale]
+    if resume_checkpoint is not None and scale != "epoch":
+        raise ValueError("Explicit pilot continuation is only supported for the epoch run")
     return {
         "entrypoint": "standard",
         "context_budget": {"request_window_tokens": CONTEXT, "max_new_tokens_per_turn": RESERVE, "max_turns": 1},
@@ -60,20 +62,24 @@ def recipe(scale, data_uri, adapter_sha256):
             "epochs": 2 if scale == "smoke" else 1,
             "max_steps": steps,
             "update_epochs_per_batch": 1,
-            # Submit the full 107-task monitor panel together after the smoke.
-            # Sequential small batches otherwise wait repeatedly for long tails.
-            "eval_batch_size": 32 if scale == "smoke" else 128,
+            # Epoch runs evaluate all validation tasks together. This avoids
+            # repeatedly waiting for long responses at small batch boundaries.
+            "eval_batch_size": {"smoke": 32, "pilot": 128, "epoch": 1024}[scale],
             "micro_forward_batch_size_per_gpu": 1,
             "eval_before_train": True,
-            "eval_interval": 2 if scale == "smoke" else 8,
+            "eval_interval": checkpoint_interval,
             "ckpt_interval": checkpoint_interval,
-            # Pending HF requests protect checkpoints from native retention.
-            # Request only the terminal export so the two-checkpoint bound holds.
-            "hf_save_interval": ((steps + checkpoint_interval - 1) // checkpoint_interval) * checkpoint_interval,
-            "resume_mode": "none",
+            # Bank every full-validation checkpoint for later selection. Native
+            # pending export requests protect these from rolling retention;
+            # conversion runs separately, after selecting by validation only.
+            "hf_save_interval": checkpoint_interval if scale == "epoch" else steps,
+            "resume_mode": "from_path" if resume_checkpoint else "none",
+            "resume_path": resume_checkpoint,
+            "restore_dataloader_state": True,
             "logger": "wandb",
             "project_name": "snowball-pdbthink",
             "hf_hub_repo_id": None,
+            "step_phase_budgets": {"evaluation": 7200 if scale == "epoch" else 1800},
             "policy": {
                 "optimizer_config": {"lr": 1.0e-6, "max_grad_norm": 1.0},
                 "megatron_config": {
@@ -136,7 +142,7 @@ def recipe(scale, data_uri, adapter_sha256):
     }
 
 
-def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
+def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, resume_checkpoint=None):
     if len(adapter_sha256) != 64:
         raise ValueError("Provide the immutable adapter SHA256 from preparation")
     runtime = SkyRLRuntime(profile=SkyRLRuntimeProfile.MEGATRON)
@@ -159,13 +165,15 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
         SkyRLSpec(
             name=name,
             version=resolve_version(name, None),
-            config_yaml=yaml.safe_dump(recipe(scale, data_uri, adapter_sha256)),
+            config_yaml=yaml.safe_dump(recipe(scale, data_uri, adapter_sha256, resume_checkpoint)),
             runtime=runtime,
             model=ArtifactHfModel(model, MODEL, MODEL_REVISION, relative_path=""),
             train_data=(
                 ArtifactDataSource(pool, relative_path="smoke.parquet" if scale == "smoke" else "train.parquet"),
             ),
-            validation_data=(ArtifactDataSource(pool, relative_path="monitor.parquet"),),
+            validation_data=(
+                ArtifactDataSource(pool, relative_path="validation.parquet" if scale == "epoch" else "monitor.parquet"),
+            ),
             topology=SkyRLTopology(num_nodes=4 + inference_nodes, gpus_per_node=8, gpu_variant="H100", role_plan=roles),
             retention=SkyRLRetentionPolicy(resume_checkpoint_count=2),
             seed=SEED,
@@ -180,12 +188,23 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
             max_retries=0,
             target_cluster=cluster,
             parent_cluster_config=IRIS_HUB_CLUSTER_CONFIG,
-            coordinator_timeout_hours=24,
-            job_timeout_seconds=21600 if scale == "smoke" else 86400,
+            coordinator_timeout_hours=120 if scale == "epoch" else 24,
+            job_timeout_seconds={"smoke": 21600, "pilot": 86400, "epoch": 345600}[scale],
             wandb_entity=wandb_entity,
         ),
         export_hf=True,
     )
+    if resume_checkpoint:
+        checkpoint = ArtifactStep.adopt(
+            "checkpoints/bizon/snowball-pdbthink-pilot-resume-step64",
+            "2026.10.07.1",
+            resume_checkpoint,
+            kind=Artifact,
+            config={"launcher_commit": SKYRL_REVISION, "tokenizer_revision": MODEL_REVISION, "global_step": 64},
+        )
+        if not resume_checkpoint.endswith("/global_step_64"):
+            raise ValueError("This continuation requires the verified pilot step-64 checkpoint")
+        step = replace(step, deps=(*step.deps, checkpoint))
     return replace(step, run=run_with_adapter)
 
 
@@ -196,10 +215,11 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity):
 @click.option("--adapter-sha256", required=True)
 @click.option("--cluster", default="cw-rno2a", show_default=True)
 @click.option("--wandb-entity", default="timodonnell", show_default=True)
+@click.option("--resume-checkpoint", help="Explicit native pilot step-64 checkpoint, including optimizer/data state")
 @click.option("--write-launch", type=click.Path(path_type=Path))
 @rl_build_options
-def main(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, write_launch):
-    step = build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity)
+def main(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, resume_checkpoint, write_launch):
+    step = build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, resume_checkpoint)
     if write_launch:
         prefix = "s3://marin-us-east-02a/marin"
         context = StepContext.for_run(step.path(prefix), prefix, runtime_args=step.runtime_args, deps=step.deps)

@@ -107,6 +107,16 @@ def run_with_adapter(config):
     if model_source["revision"] != MODEL_REVISION:
         raise ValueError("The model mirror is incomplete or identifies a different checkpoint")
 
+    import yaml
+
+    launch_config = yaml.safe_load(config.launch_config_yaml)
+    trainer = launch_config["skyrl"]["trainer"]
+    if trainer.get("resume_mode") == "from_path":
+        checkpoint = StoragePath(trainer["resume_path"])
+        for name in ("trainer_state.pt", "data.pt"):
+            if not (checkpoint / name).exists():
+                raise ValueError("Continuation requires complete trainer and dataloader state: " + name)
+
     original = skyrl._launcher_command(config.launcher_requirement, "unused")
     response = None
     try:

@@ -1,0 +1,194 @@
+schema_version: 1
+run:
+  id: checkpoints/bizon/snowball-pdbthink-epoch-2026.10.08.1
+  attempt_id: d2bf45c15425
+  seed: 17
+  mode: train
+  submission: wait
+  export_hf: true
+runtime:
+  launcher_commit: 5663f6129f53bb6aaa09549fa6cb423571503e94
+  profile: megatron
+  entrypoint: ''
+  experiments_dir: /app/experiments
+  task_env: &id001
+    PDBTHINK_ADAPTER_SHA256: 6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969
+    PDBTHINK_ADAPTER_URI: s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3/adapter.zip
+    PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True
+    RUNAI_STREAMER_CONCURRENCY: '4'
+    RUNAI_STREAMER_S3_REQUEST_TIMEOUT_MS: '120000'
+iris:
+  cluster: cw-rno2a
+  cluster_config: lib/iris/config/cw-rno2a.yaml
+  job_name: checkpoints-bizon-snowball-pdbthink-epoch-2026.10.08.1-d2bf45c15425
+  wandb_entity: timodonnell
+  allocation:
+    num_nodes: 6
+    gpus_per_node: 8
+    gpu_variant: H100
+    cpu: 64
+    memory: 1800GB
+    disk: 1000GB
+  priority: interactive
+  max_retries: 0
+  timeout: 345600
+  target_cluster: cw-rno2a
+  parent_cluster_config: lib/iris/config/marin.yaml
+ingress:
+  mode: direct
+  host: ''
+  record_literal: false
+  vllm_http_port: 8000
+ray:
+  port: 6379
+  spill_backend: local
+  spill_dir: /tmp/skyrl-ray-spill
+  rendezvous_dir: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/attempts/rendezvous
+  log_dir: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/attempts/ray-logs
+  rendezvous_timeout: 1800
+  cluster_join_timeout: 1800
+  driver_liveness_timeout: 9000
+artifacts:
+  checkpoint_root: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/checkpoints
+  export_root: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/exports
+  attempts_root: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/attempts
+  resolved_config_uri: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/resolved-launch.yaml
+  terminal_manifest_uri: s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/terminal.json
+  resume_checkpoint_count: 2
+inputs:
+  model:
+    uri: s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf
+    identity: models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec
+    local_path: /tmp/marinskyrl/models/snowball-pdbthink-step38
+    tokenizer_uri: open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38
+    tokenizer_revision: cfc1d845dae89b067cdc7250d0164abefa5a69cf
+    chat_template: null
+  data_kind: parquet
+  train_data:
+  - uri: s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3
+    identity: documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3
+    local_path: /tmp/marinskyrl/data/snowball-pdbthink
+    relative_path: train.parquet
+    kind: directory
+  validation_data:
+  - uri: s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3
+    identity: documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3
+    local_path: /tmp/marinskyrl/data/snowball-pdbthink
+    relative_path: validation.parquet
+    kind: directory
+skyrl:
+  context_budget:
+    max_new_tokens_per_turn: 8192
+    max_turns: 1
+    request_window_tokens: 32768
+  data:
+    kind: parquet
+    shuffle: true
+    train_data: []
+    val_data: []
+  entrypoint: standard
+  environment:
+    env_class: pdbthink
+  extra_env: *id001
+  generator:
+    backend: vllm
+    chat_template:
+      name_or_path: /app/marinskyrl/skyrl-gym/skyrl_gym/envs/pdbthink/native_chat_template.jinja
+      source: file
+    chat_template_kwargs:
+      enable_thinking: true
+    enable_prefix_caching: false
+    enforce_eager: false
+    engine_init_kwargs:
+      default_chat_template_kwargs:
+        enable_thinking: true
+    eval_n_samples_per_prompt: 1
+    eval_sampling_params:
+      logprobs: 0
+      max_generate_length: 32768
+      temperature: 0.0
+      top_p: 1.0
+    gpu_memory_utilization: 0.8
+    max_num_seqs: 16
+    model_dtype: bfloat16
+    require_exact_chat_transport: true
+    run_engines_locally: true
+    sampling_params:
+      logprobs: 0
+      temperature: 1.0
+      top_p: 1.0
+    trajectory_retention:
+      enabled: true
+      max_bytes_per_run: null
+      max_bytes_per_step: null
+      phases:
+      - train
+      - eval
+      required: true
+      sample_count_per_step: 0
+      sample_fraction: 1.0
+    vllm_attention_backend: FLASH_ATTN
+    weight_sync_backend: nccl
+    num_inference_engines: 2
+    inference_engine_tensor_parallel_size: 1
+    inference_engine_pipeline_parallel_size: 1
+    inference_engine_data_parallel_size: 8
+    inference_engine_expert_parallel_size: 8
+    n_samples_per_prompt: 4
+  trainer:
+    algorithm:
+      advantage_estimator: grpo
+      use_kl_in_reward: false
+      use_kl_loss: false
+    ckpt_interval: 64
+    epochs: 1
+    eval_batch_size: 1024
+    eval_before_train: true
+    eval_interval: 64
+    flash_attn: false
+    gradient_checkpointing: true
+    hf_hub_repo_id: null
+    hf_save_interval: 64
+    logger: wandb
+    max_steps: 876
+    micro_forward_batch_size_per_gpu: 1
+    offload_optimizer_during_rollouts: true
+    policy:
+      megatron_config:
+        context_parallel_size: 1
+        ddp_config:
+          grad_reduce_in_fp32: false
+          overlap_grad_reduce: true
+          overlap_param_gather: true
+        expert_model_parallel_size: 16
+        expert_tensor_parallel_size: 1
+        logprob_chunk_size: 256
+        optimizer_checkpoint_sharding_type: dp_reshardable
+        pipeline_model_parallel_size: 2
+        tensor_model_parallel_size: 1
+      optimizer_config:
+        lr: 1.0e-06
+        max_grad_norm: 1.0
+    project_name: snowball-pdbthink
+    restore_dataloader_state: true
+    resume_mode: from_path
+    resume_path: s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/checkpoints/global_step_64
+    step_phase_budgets:
+      evaluation: 7200
+    strategy: megatron
+    update_epochs_per_batch: 1
+    use_sample_packing: false
+    placement:
+      colocate_all: false
+      colocate_policy_ref: true
+      policy_num_nodes: 4
+      policy_num_gpus_per_node: 8
+      ref_num_nodes: 4
+      ref_num_gpus_per_node: 8
+    train_batch_size: 32
+    policy_mini_batch_size: 32
+    micro_train_batch_size_per_gpu: 1
+  trajectory_runner:
+    rollout_workers:
+      cpus_per_worker: 4
+      num_workers: 4

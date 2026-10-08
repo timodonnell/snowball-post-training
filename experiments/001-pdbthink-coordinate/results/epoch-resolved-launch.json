@@ -1,0 +1,758 @@
+{
+  "config": {
+    "artifacts": {
+      "attempts_root": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/attempts",
+      "checkpoint_root": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/checkpoints",
+      "draft_model_cache_ttl_days": 14,
+      "export_root": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/exports",
+      "resolved_config_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/resolved-launch.yaml",
+      "resume_checkpoint_count": 2,
+      "terminal_manifest_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/terminal.json"
+    },
+    "ingress": {
+      "host": "",
+      "mode": "direct",
+      "record_literal": false,
+      "vllm_http_port": 8000
+    },
+    "inputs": {
+      "data_kind": "parquet",
+      "model": {
+        "chat_template": null,
+        "identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+        "local_path": "/tmp/marinskyrl/models/snowball-pdbthink-step38",
+        "tokenizer_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+        "tokenizer_uri": "open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38",
+        "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf"
+      },
+      "train_data": [
+        {
+          "identity": "documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3",
+          "kind": "directory",
+          "local_path": "/tmp/marinskyrl/data/snowball-pdbthink",
+          "relative_path": "train.parquet",
+          "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3"
+        }
+      ],
+      "validation_data": [
+        {
+          "identity": "documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3",
+          "kind": "directory",
+          "local_path": "/tmp/marinskyrl/data/snowball-pdbthink",
+          "relative_path": "validation.parquet",
+          "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3"
+        }
+      ]
+    },
+    "iris": {
+      "allocation": {
+        "cpu": 64.0,
+        "disk": "1000GB",
+        "gpu_variant": "H100",
+        "gpus_per_node": 8,
+        "memory": "1800GB",
+        "num_nodes": 6
+      },
+      "cluster": "cw-rno2a",
+      "cluster_config": "lib/iris/config/cw-rno2a.yaml",
+      "job_name": "checkpoints-bizon-snowball-pdbthink-epoch-2026.10.08.1-e3229fb17f10",
+      "max_retries": 0,
+      "parent_cluster_config": null,
+      "priority": "interactive",
+      "target_cluster": null,
+      "timeout": 345600,
+      "wandb_entity": "timodonnell"
+    },
+    "ray": {
+      "cluster_join_timeout": 1800,
+      "driver_liveness_timeout": 9000,
+      "log_dir": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/attempts/ray-logs",
+      "port": 6379,
+      "rendezvous_dir": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/attempts/rendezvous",
+      "rendezvous_timeout": 1800,
+      "spill_backend": "local",
+      "spill_dir": "/tmp/skyrl-ray-spill"
+    },
+    "run": {
+      "attempt_id": "e3229fb17f10",
+      "export_hf": true,
+      "id": "checkpoints/bizon/snowball-pdbthink-epoch-2026.10.08.1",
+      "mode": "train",
+      "seed": 17,
+      "submission": "wait"
+    },
+    "runtime": {
+      "entrypoint": "skyrl_train.entrypoints.main_base",
+      "experiments_dir": "/app/experiments",
+      "launcher_commit": "5663f6129f53bb6aaa09549fa6cb423571503e94",
+      "profile": "megatron",
+      "task_env": {
+        "PDBTHINK_ADAPTER_SHA256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969",
+        "PDBTHINK_ADAPTER_URI": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3/adapter.zip",
+        "PYTORCH_CUDA_ALLOC_CONF": "expandable_segments:True",
+        "RUNAI_STREAMER_CONCURRENCY": "4",
+        "RUNAI_STREAMER_S3_REQUEST_TIMEOUT_MS": "120000"
+      },
+      "training_type": "sync"
+    },
+    "schema_version": 1,
+    "skyrl": {
+      "checkpoint_export": {
+        "checkpoint_path": null,
+        "export_root": null,
+        "hf_hub_private": false,
+        "hf_hub_repo_id": null,
+        "hf_hub_revision": "main",
+        "hf_upload_mode": "latest",
+        "step": null
+      },
+      "data": {
+        "sampling": {
+          "adaptive_exploration": 0.2,
+          "adaptive_min_informative": 0.1,
+          "adaptive_window": 10,
+          "decay": 0.95,
+          "domain_weights": {},
+          "epsilon": 0.05,
+          "grade_prior_high": 0.85,
+          "grade_prior_low": 0.05,
+          "grade_prior_strength": 8.0,
+          "instance_decay": 0.7,
+          "kind": null,
+          "prior_alpha": 1.0,
+          "prior_beta": 1.0,
+          "reversion_mass": 0.0,
+          "seed": null,
+          "weighting": "pass-variance"
+        },
+        "shuffle": true,
+        "terminal_bench_data": [],
+        "train_data": [
+          "/tmp/marinskyrl/data/snowball-pdbthink/train.parquet"
+        ],
+        "val_data": [
+          "/tmp/marinskyrl/data/snowball-pdbthink/validation.parquet"
+        ]
+      },
+      "environment": {
+        "env_class": "pdbthink",
+        "skyrl_gym": {
+          "aime": {
+            "evaluation_token_budget": 8192,
+            "length_penalty_weight": 0.0,
+            "max_gen_length": 0,
+            "min_response_length": 16,
+            "strict_box_verify": false,
+            "target_length": 768,
+            "truncated_penalty": -2.0
+          },
+          "gsm8k": {
+            "reward_method": "strict",
+            "structured_chat": false
+          },
+          "llm_as_a_judge": {
+            "base_url": null,
+            "model": "gpt-4o-mini"
+          },
+          "max_env_workers": 32,
+          "nemotron_ultra": {
+            "code_verifier": {
+              "max_memory_bytes": 4294967296,
+              "per_test_timeout_seconds": 10,
+              "total_timeout_seconds": 300
+            },
+            "genrm": {
+              "answer_bonus": 0.5,
+              "default_score": 3.0,
+              "genrm_parse_retries": 1,
+              "genrm_parse_retry_sleep_seconds": 0.2,
+              "group_answer_length_penalty_coeff": 0.1,
+              "group_reasoning_length_penalty_coeff": 0.1,
+              "judge": {
+                "api_key": "dummy_key",
+                "api_key_env": null,
+                "base_url": "http://127.0.0.1:8003/v1",
+                "model": "genrm-judge",
+                "reasoning_effort": null,
+                "response_transport": "responses_metadata",
+                "timeout_seconds": 600.0
+              },
+              "max_concurrent_comparisons": 4,
+              "max_output_tokens": 24576,
+              "num_rollouts_per_prompt": 16,
+              "reasoning_bonus": 0.5,
+              "temperature": 1.0,
+              "top_p": 0.95,
+              "top_percentile": 0.2
+            },
+            "grading": "verify",
+            "judges": {
+              "general": {
+                "api_key": "dummy_key",
+                "api_key_env": null,
+                "base_url": "http://127.0.0.1:8001/v1",
+                "model": "general-judge",
+                "reasoning_effort": null,
+                "response_transport": "responses_metadata",
+                "timeout_seconds": 600.0
+              },
+              "safety": {
+                "api_key": "dummy_key",
+                "api_key_env": null,
+                "base_url": "http://127.0.0.1:8002/v1",
+                "model": "safety-judge",
+                "reasoning_effort": null,
+                "response_transport": "responses_metadata",
+                "timeout_seconds": 600.0
+              }
+            },
+            "sandbox": {
+              "host": "127.0.0.1",
+              "port": 6000
+            }
+          },
+          "search": {
+            "log_requests": false,
+            "search_url": "http://127.0.0.1:8000/retrieve",
+            "timeout": 30,
+            "topk": 3
+          },
+          "text2sql": {
+            "db_path": "/home/ray/default/sql_data"
+          }
+        }
+      },
+      "generator": {
+        "append_eos_token_after_stop_str_in_multi_turn": true,
+        "apply_overlong_filtering": false,
+        "backend": "vllm",
+        "chat_template": {
+          "name_or_path": "/app/marinskyrl/skyrl-gym/skyrl_gym/envs/pdbthink/native_chat_template.jinja",
+          "source": "file"
+        },
+        "chat_template_kwargs": {
+          "enable_thinking": true
+        },
+        "enable_chunked_prefill": true,
+        "enable_http_endpoint": false,
+        "enable_prefix_caching": false,
+        "enforce_eager": false,
+        "engine_init_kwargs": {
+          "default_chat_template_kwargs": {
+            "enable_thinking": true
+          },
+          "max_model_len": 32768,
+          "served_model_name": "snowball-pdbthink-step38"
+        },
+        "engine_init_timeout_seconds": 1800,
+        "error_handling": {
+          "default_error_treatment": "mask",
+          "enable_error_classification": true,
+          "mask_exceptions": [],
+          "passthrough_exceptions": [],
+          "preserve_logprobs_on_timeout": true,
+          "zero_exceptions": []
+        },
+        "eval_n_samples_per_prompt": 1,
+        "eval_sampling_params": {
+          "logprobs": 0,
+          "max_generate_length": 32768,
+          "min_p": 0.0,
+          "repetition_penalty": 1.0,
+          "stop": null,
+          "temperature": 0.0,
+          "top_k": -1,
+          "top_p": 1.0
+        },
+        "expert_block_sync": {
+          "timeout_seconds": 600,
+          "verify": false
+        },
+        "fully_sharded_loras": false,
+        "fuse_weights": false,
+        "gdn_backend": "torch",
+        "gpu_memory_utilization": 0.8,
+        "http_endpoint_host": "127.0.0.1",
+        "http_endpoint_port": 8000,
+        "inference_engine_data_parallel_size": 8,
+        "inference_engine_decode_context_parallel_size": 1,
+        "inference_engine_expert_parallel_size": 8,
+        "inference_engine_mp_backend": false,
+        "inference_engine_pipeline_parallel_size": 1,
+        "inference_engine_tensor_parallel_size": 1,
+        "inference_stats_interval": 1,
+        "max_input_length": 24576,
+        "max_num_batched_tokens": 8192,
+        "max_num_seqs": 16,
+        "max_turns": 1,
+        "model_dtype": "bfloat16",
+        "model_name": "/tmp/marinskyrl/models/snowball-pdbthink-step38",
+        "n_samples_per_prompt": 4,
+        "num_inference_engines": 2,
+        "override_existing_update_group": "auto",
+        "r3_dispatch_put_timeout_seconds": 600,
+        "r3_transport": "decentral",
+        "remote_inference_engine_urls": [
+          "127.0.0.1:8001"
+        ],
+        "require_exact_chat_transport": true,
+        "rope_scaling": null,
+        "rope_theta": null,
+        "run_engines_locally": true,
+        "sampling_params": {
+          "logprobs": 0,
+          "max_generate_length": 8192,
+          "min_p": 0.0,
+          "repetition_penalty": 1.0,
+          "stop": null,
+          "temperature": 1.0,
+          "top_k": -1,
+          "top_p": 1.0
+        },
+        "speculative_decoding": null,
+        "timeout_multiplier": 1.0,
+        "trajectory_retention": {
+          "accepted_stop_reasons": [
+            "stop",
+            "complete",
+            "eos",
+            "end_turn"
+          ],
+          "always_retain_failures": true,
+          "always_retain_loops": true,
+          "always_retain_non_terminating": true,
+          "enabled": true,
+          "inference_backend": "vllm",
+          "max_bytes_per_run": null,
+          "max_bytes_per_step": null,
+          "model_path": "/tmp/marinskyrl/models/snowball-pdbthink-step38",
+          "model_source_identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+          "output_path": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/attempts/trajectories",
+          "phases": [
+            "train",
+            "eval"
+          ],
+          "publish_timeout_seconds": 120,
+          "redact_fields": [],
+          "required": true,
+          "resume_path": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/checkpoints/global_step_64",
+          "reward_above": null,
+          "reward_below": null,
+          "run_id": "checkpoints-bizon-snowball-pdbthink-epoch-2026.10.08.1-e3229fb17f10",
+          "sample_count_per_step": 0,
+          "sample_fraction": 1.0,
+          "shutdown_timeout_seconds": 30
+        },
+        "trajectory_reward_shaping": {
+          "enabled": false,
+          "loop": {
+            "advantage_penalty_per_token": 0.0,
+            "max_advantage_penalty": 0.2,
+            "max_period_tokens": 64,
+            "minimum_occurrences": 4,
+            "tail_tokens": 256
+          },
+          "non_termination": {
+            "accepted_stop_reasons": [
+              "stop",
+              "complete",
+              "eos",
+              "end_turn"
+            ],
+            "penalty": 0.0
+          },
+          "overlong": {
+            "l_cache": 2048,
+            "l_max": 8192,
+            "penalty_scale": 1.0
+          },
+          "passthrough": {
+            "penalty": 0.0
+          },
+          "schema_version": 2,
+          "successful_length": {
+            "free_tokens": 0,
+            "max_penalty": 0.2,
+            "penalty_per_token": 0.0
+          }
+        },
+        "use_conversation_multi_turn": true,
+        "vllm_attention_backend": "FLASH_ATTN",
+        "vllm_v1_disable_multiproc": true,
+        "weight_sync_backend": "nccl",
+        "weight_sync_pause": {
+          "clear_cache": true,
+          "mode": "keep"
+        },
+        "weight_sync_pause_timeout_seconds": 30.0,
+        "weight_sync_transport": "broadcast",
+        "weight_transfer_threshold_cuda_ipc_GB": 1.0
+      },
+      "trainer": {
+        "algorithm": {
+          "advantage_batch_normalize": false,
+          "advantage_estimator": "grpo",
+          "batch_invariant": false,
+          "cispo": {
+            "cispo_eps_clip_high": 5,
+            "cispo_eps_clip_low": 1.0
+          },
+          "clip_cov": {
+            "clip_cov_lb": 1.0,
+            "clip_cov_ub": 5.0,
+            "clip_ratio": 0.0002
+          },
+          "clip_ratio_c": 3.0,
+          "dynamic_sampling": {
+            "informative_on": "shaped",
+            "max_mean_reward": null,
+            "max_sample_batches": 30,
+            "min_reward_std": 0.0,
+            "type": null
+          },
+          "enable_token_reward_channel": false,
+          "entropy_loss_coef": 0.01,
+          "eps_clip_high": 0.2,
+          "eps_clip_low": 0.2,
+          "ftpo": {},
+          "gamma": 1.0,
+          "group_admission": {
+            "stall_timeout": null
+          },
+          "group_advantage_min_size": null,
+          "grpo_norm_by_std": true,
+          "kl_cov": {
+            "kl_cov_frac": 0.2,
+            "ppo_kl_coef": 1.0
+          },
+          "kl_ctrl": {
+            "horizon": 10000,
+            "kl_target": 0.1,
+            "type": "fixed"
+          },
+          "kl_estimator_type": "k3_unbiased_gradient",
+          "kl_loss_coef": 0.001,
+          "lambd": 1.0,
+          "loss_reduction": "token_mean",
+          "off_policy_correction": null,
+          "off_policy_correction_rules": null,
+          "policy_loss_type": "regular",
+          "resolved_group_advantage": {
+            "kind": "exact_physical",
+            "minimum_group_size": null,
+            "physical_group_size": 4
+          },
+          "rloo_n_filter_zero_reward_groups": true,
+          "sapo": {
+            "tau_neg": 1.05,
+            "tau_pos": 1.0
+          },
+          "think_token_weight": 1.0,
+          "tis_lcs_alert_threshold": 0.005,
+          "tis_splice": true,
+          "tito_full": null,
+          "use_entropy_loss": false,
+          "use_kl_in_reward": false,
+          "use_kl_loss": false,
+          "value_clip": 0.2,
+          "value_head_prefix": "value_head"
+        },
+        "attn_backend": "auto",
+        "bf16": true,
+        "callbacks": null,
+        "ckpt_interval": 64,
+        "ckpt_path": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/checkpoints",
+        "collective_phase_diagnostics": null,
+        "critic": {
+          "model": {
+            "lora": {
+              "alpha": 16,
+              "dropout": 0,
+              "exclude_modules": null,
+              "rank": 0,
+              "target_modules": "all-linear"
+            },
+            "path": null
+          },
+          "optimizer_config": {
+            "adam_betas": [
+              0.9,
+              0.999
+            ],
+            "lr": 5e-06,
+            "max_grad_norm": 1.0,
+            "num_warmup_steps": 0,
+            "offload_after_step": true,
+            "optimizer": "AdamW",
+            "optimizer_kwargs": {},
+            "scheduler": "constant_with_warmup",
+            "weight_decay": 0.01
+          },
+          "sequence_parallel_size": 1
+        },
+        "critic_mini_batch_size": 256,
+        "debug_mode": "light",
+        "disable_fast_tokenizer": false,
+        "distillation_token_budget": null,
+        "distributed": {
+          "placement_group_timeout_seconds": 180,
+          "worker_collective_timeout_seconds": 1800
+        },
+        "dump_data_batch": false,
+        "dump_eval_results": true,
+        "epochs": 1,
+        "eval_batch_size": 1024,
+        "eval_before_train": true,
+        "eval_interval": 64,
+        "eval_num_prompts": null,
+        "export_hf_artifact": true,
+        "export_path": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.08.1/exports",
+        "flash_attn": false,
+        "gradient_checkpointing": true,
+        "gradient_checkpointing_use_reentrant": false,
+        "hf_hub_repo_id": null,
+        "hf_save_interval": 64,
+        "hf_upload_mode": "latest",
+        "log_level": "INFO",
+        "logger": "wandb",
+        "max_ckpts_to_keep": 2,
+        "max_prompt_length": 24576,
+        "max_steps": 876,
+        "micro_forward_batch_size_per_gpu": 1,
+        "micro_train_batch_size_per_gpu": 1,
+        "mismatch_probe": {
+          "archive_uri": null,
+          "enabled": false,
+          "extra_trainer_modes": [],
+          "filtered_replay": {
+            "keep_fraction": null
+          },
+          "prompts": {
+            "count": 128,
+            "samples_per_prompt": 4
+          },
+          "rescore_prefix_cache": "off",
+          "reuse_probe": null,
+          "seed": null,
+          "updates": 2
+        },
+        "model_load_retry": {
+          "backoff_base_seconds": 2.0,
+          "backoff_cap_seconds": 32.0,
+          "max_retries": 5
+        },
+        "offload_optimizer_during_rollouts": true,
+        "placement": {
+          "colocate_all": false,
+          "colocate_policy_ref": true,
+          "critic_num_gpus_per_node": 4,
+          "critic_num_nodes": 1,
+          "enable_numa_affinity": false,
+          "policy_force_cvd_mask": false,
+          "policy_num_gpus_per_node": 8,
+          "policy_num_nodes": 4,
+          "policy_per_gpu_bundles": false,
+          "policy_strict_spread_pg": false,
+          "ref_num_gpus_per_node": 8,
+          "ref_num_nodes": 4
+        },
+        "policy": {
+          "grug_query_bias_interpolation_weight": null,
+          "grug_query_bias_update_mode": "frozen",
+          "grug_query_bias_update_rate": null,
+          "host_memory_monitor": {
+            "enabled": true,
+            "interval_seconds": 60
+          },
+          "max_consecutive_nonfinite_steps": 3,
+          "megatron_config": {
+            "check_dp_weight_consistency": false,
+            "check_train_eval_parity": false,
+            "context_parallel_size": 1,
+            "ddp_config": {
+              "average_in_collective": true,
+              "grad_reduce_in_fp32": false,
+              "overlap_grad_reduce": true,
+              "overlap_param_gather": true
+            },
+            "empty_cuda_cache": true,
+            "expert_model_parallel_size": 16,
+            "expert_tensor_parallel_size": 1,
+            "logprob_chunk_size": 256,
+            "model_config_kwargs": {},
+            "moe_router_replay": false,
+            "optimizer_checkpoint_sharding_type": "dp_reshardable",
+            "optimizer_config_kwargs": {
+              "optimizer_cpu_offload": false,
+              "optimizer_offload_fraction": 0.0,
+              "overlap_cpu_optimizer_d2h_h2d": false,
+              "use_precision_aware_optimizer": false
+            },
+            "pipeline_model_parallel_size": 2,
+            "tensor_model_parallel_size": 1,
+            "torch_profiler_config": {
+              "enable": false,
+              "ranks": [],
+              "save_path": null
+            },
+            "transformer_config_kwargs": {
+              "recompute_granularity": "full",
+              "recompute_method": "uniform",
+              "recompute_modules": [
+                "core_attn"
+              ],
+              "recompute_num_layers": 1
+            }
+          },
+          "model": {
+            "lora": {
+              "adapter_path": null,
+              "adapter_revision": null,
+              "alpha": 16,
+              "dropout": 0,
+              "exclude_modules": null,
+              "lora_sync_path": "/tmp/skyrl_lora_sync",
+              "rank": 0,
+              "target_modules": "all-linear"
+            },
+            "path": "/tmp/marinskyrl/model_metadata/59c28383f6138455bbec49f62eae4422397c6a980c848febe43e8918a27d63b7",
+            "revision": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+            "source_identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+            "source_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+            "tokenizer_path": "/tmp/marinskyrl/model_metadata/c0d354ad2c2baebab7e57f445f8134239aa1d9a67b33619ba9e2d79d6b8f2269",
+            "tokenizer_revision": null
+          },
+          "nccl_buffer_size_bytes": null,
+          "optimizer_config": {
+            "adam_betas": [
+              0.9,
+              0.999
+            ],
+            "lr": 1e-06,
+            "max_grad_norm": 1.0,
+            "num_warmup_steps": 0,
+            "offload_after_step": true,
+            "optimizer": "AdamW",
+            "optimizer_kwargs": {},
+            "scheduler": "constant_with_warmup",
+            "weight_decay": 0.01
+          },
+          "record_memory": false,
+          "sequence_parallel_size": 1,
+          "use_torch_compile": false
+        },
+        "policy_mini_batch_size": 32,
+        "policy_train_spans": true,
+        "preflight_gate": {
+          "enabled": false,
+          "max_reward": 0.75,
+          "min_reward": 0.25,
+          "num_trials": 256,
+          "on_failure": "abort"
+        },
+        "progress": {
+          "count_step": 1000,
+          "heartbeat_seconds": 60.0,
+          "min_interval_seconds": 0.5,
+          "mode": "auto",
+          "percent_step": 5.0
+        },
+        "project_name": "snowball-pdbthink",
+        "ref": {
+          "megatron_config": {
+            "context_parallel_size": 1,
+            "expert_model_parallel_size": 1,
+            "expert_tensor_parallel_size": 1,
+            "logprob_chunk_size": 1024,
+            "model_config_kwargs": {},
+            "moe_router_replay": false,
+            "pipeline_model_parallel_size": 1,
+            "tensor_model_parallel_size": 1,
+            "transformer_config_kwargs": {}
+          },
+          "model": {
+            "path": "/tmp/marinskyrl/model_metadata/59c28383f6138455bbec49f62eae4422397c6a980c848febe43e8918a27d63b7",
+            "revision": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+            "source_identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+            "source_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+            "tokenizer_path": "/tmp/marinskyrl/model_metadata/c0d354ad2c2baebab7e57f445f8134239aa1d9a67b33619ba9e2d79d6b8f2269",
+            "tokenizer_revision": null
+          },
+          "nccl_buffer_size_bytes": 262144,
+          "sequence_parallel_size": 1
+        },
+        "reset_distillation_token_count_on_resume": false,
+        "reset_global_step_on_resume": false,
+        "restore_dataloader_state": true,
+        "resume_mode": "from_path",
+        "resume_path": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-pilot/2026.10.07.1/checkpoints/global_step_64",
+        "rollout_buffer": {
+          "batch_policy": "full_batch",
+          "max_in_flight": null,
+          "max_staleness_steps": 0,
+          "object_store_root": null
+        },
+        "rollout_spans": true,
+        "rope_scaling": null,
+        "rope_theta": null,
+        "run_name": "checkpoints-bizon-snowball-pdbthink-epoch-2026.10.08.1-e3229fb17f10",
+        "seed": 17,
+        "step_phase_budgets": {
+          "advantages": 300,
+          "batch_assembly": 600,
+          "checkpoint_work": 1800,
+          "evaluation": 7200,
+          "group_admission": 1800,
+          "group_bookkeeping": 60,
+          "policy_training": 3600,
+          "step_end_bookkeeping": 60,
+          "training_preparation": 900,
+          "unaccounted": 5,
+          "weight_sync": 600
+        },
+        "step_wise_training": false,
+        "strategy": "megatron",
+        "teacher_scoring": {
+          "max_queued_per_teacher": 8,
+          "workers_per_teacher": 1
+        },
+        "tracker_commit_each_step": true,
+        "train_batch_size": 32,
+        "training_metrics": true,
+        "trajectory_selector": {
+          "type": null
+        },
+        "update_epochs_per_batch": 1,
+        "update_ref_every_epoch": false,
+        "use_sample_packing": false
+      },
+      "trajectory_runner": {
+        "rollout_workers": {
+          "cpus_per_worker": 4,
+          "executor_threads": 256,
+          "num_workers": 4,
+          "progress_timeout_seconds": 21600,
+          "start_interval_seconds": 2.0
+        }
+      }
+    }
+  },
+  "train_data_sources": [
+    {
+      "identity": "documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3",
+      "kind": "directory",
+      "local_path": "/tmp/marinskyrl/data/snowball-pdbthink",
+      "relative_path": "train.parquet",
+      "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3"
+    }
+  ],
+  "val_data_sources": [
+    {
+      "identity": "documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3",
+      "kind": "directory",
+      "local_path": "/tmp/marinskyrl/data/snowball-pdbthink",
+      "relative_path": "validation.parquet",
+      "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3"
+    }
+  ]
+}

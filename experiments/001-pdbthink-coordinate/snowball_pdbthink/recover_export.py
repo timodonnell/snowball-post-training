@@ -47,7 +47,7 @@ def validate_export_files(manifest, size_for, read_bytes, expected_metadata):
     }
 
 
-def recover_export(iris, terminal_uri, coordinator, step, prepared_manifest):
+def recover_export(iris, terminal_uri, coordinator, step, prepared_manifest, *, selected_intermediate=False):
     from iris.cluster.types import JobName
     from iris.resources.state import JobState
     from rigging.filesystem.storage_path import StoragePath
@@ -65,7 +65,8 @@ def recover_export(iris, terminal_uri, coordinator, step, prepared_manifest):
         raise ValueError("Recovery requires the pinned MarinSkyRL runtime")
     if config["inputs"]["model"]["tokenizer_revision"] != MODEL_REVISION:
         raise ValueError("Recovery requires the frozen original tokenizer")
-    if step <= 0 or config["skyrl"]["trainer"]["max_steps"] != step:
+    final_step = config["skyrl"]["trainer"]["max_steps"]
+    if step <= 0 or step > final_step or (step != final_step and not selected_intermediate):
         raise ValueError("Recovery only accepts the predeclared final checkpoint")
     artifacts = config["artifacts"]
     if artifacts["terminal_manifest_uri"] != terminal_uri or artifacts["export_root"] != str(
@@ -76,8 +77,15 @@ def recover_export(iris, terminal_uri, coordinator, step, prepared_manifest):
     if iris.job_state(JobName.from_wire(training_job)) != JobState.SUCCEEDED:
         raise ValueError("Recovery requires a successful training job")
     marker = StoragePath(artifacts["checkpoint_root"]) / "latest_ckpt_global_step.txt"
-    if int(read_bytes(marker).strip()) != step:
+    if int(read_bytes(marker).strip()) != final_step:
         raise ValueError("Checkpoint marker does not match the predeclared final step")
+    if selected_intermediate:
+        checkpoint = StoragePath(artifacts["checkpoint_root"]) / f"global_step_{step}"
+        request = json.loads(read_bytes(checkpoint / "hf_export_request.json"))
+        if request["step"] != step or request["checkpoint_path"] != str(checkpoint):
+            raise ValueError("Selected export request does not identify this checkpoint")
+        if not (checkpoint / "trainer_state.pt").exists():
+            raise ValueError("Selected checkpoint has no completed trainer state")
     root = StoragePath(artifacts["export_root"]) / f"global_step_{step}" / "policy"
     manifest_bytes = read_bytes(root / ".marinskyrl-model-manifest.json")
     manifest = json.loads(manifest_bytes)

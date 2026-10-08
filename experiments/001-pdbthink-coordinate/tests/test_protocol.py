@@ -259,3 +259,37 @@ def test_export_recovery_rejects_incomplete_weights_and_changed_tokenizer():
     del files["model.safetensors"]
     with pytest.raises(ValueError, match="missing weight shards"):
         check(manifest())
+
+
+def test_checkpoint_selection_requires_full_validation_and_keeps_earlier_best():
+    from snowball_pdbthink.select_checkpoint import best_checkpoint, validation_point
+
+    counts = {"G01": 100, "G04": 3}
+    metrics = {"eval/G01/sequences": 100, "eval/G01/avg_score": 0.5, "eval/G04/sequences": 3, "eval/G04/avg_score": 0.0}
+    best = validation_point(128, metrics, counts)
+    later = validation_point(256, {**metrics, "eval/G01/avg_score": 0.4}, counts)
+    tied = validation_point(192, metrics, counts)
+    assert best_checkpoint([later, tied, best])["step"] == 128
+    assert best["task_weighted_accuracy"] == 50 / 103
+    assert best["family_macro_accuracy"] == 0.25
+    with pytest.raises(ValueError, match="complete validation cohort"):
+        validation_point(64, {**metrics, "eval/G01/sequences": 8}, counts)
+
+
+def test_export_verification_remains_immutable_across_retry(tmp_path):
+    from snowball_pdbthink.select_checkpoint import preserve_verification
+
+    path = tmp_path / "verification.json"
+    record = {
+        "model": "step128",
+        "training_job": "job",
+        "resolved_config_sha256": "config",
+        "export_manifest_sha256": "weights",
+        "checks": {},
+        "recovered_at": "earlier",
+    }
+    preserve_verification(path, record)
+    preserve_verification(path, {**record, "recovered_at": "later"})
+    assert json.loads(path.read_text()) == record
+    with pytest.raises(ValueError, match="Cannot change"):
+        preserve_verification(path, {**record, "model": "step256"})
