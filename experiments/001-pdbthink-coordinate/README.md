@@ -37,7 +37,21 @@ training GPUs are released. This pilot sampled at most 2,048 prompts from the
 | --- | ---: | ---: | ---: |
 | Pilot fixed monitor (107 validation tasks) | 21/107 (19.63%) | 32/107 (29.91%) | +10.28 pp |
 | Two-update smoke, full validation | 230/1,003 (22.93%) | 242/1,003 (24.13%) | +1.20 pp |
-| Pilot full validation and paired test | Pending | Pending | Pending |
+| Pilot full validation | 230/1,003 (22.93%) | 378/1,003 (37.69%) | +14.76 pp |
+| Pilot paired test | Pending | Pending | Pending |
+
+The completed pilot full validation gained 186 correct answers and lost 38.
+Family-macro accuracy rose from 23.44% to 35.25%. Atom-distance questions improved
+from 10.0% to 34.5%, nearest-residue questions from 16.7% to 45.4%, coordinate
+extraction from 22.9% to 45.8%, and solvent exposure from 58.8% to 75.6%.
+G04, N01, S01 and S02 remain at zero; G02 is 1/120. Chain fold classification
+fell from 5/12 to 4/12. Format errors fell from 419 to 256, while context-limit
+truncations increased from 138 to 189. The paired test is running separately.
+
+![Pilot full validation by family](results/pilot-validation.png)
+
+See [`results/pilot-validation-comparison.json`](results/pilot-validation-comparison.json)
+for the complete paired counts and per-family results.
 
 The pilot monitor is a small, repeatedly observed development panel. Its largest
 count gains were S03 (4 to 7 of 8), S04 (2 to 4 of 8), and S09 (1 to 3 of 8).

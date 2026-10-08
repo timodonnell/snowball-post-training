@@ -326,7 +326,21 @@
       },
       "evaluation_server": "/bizon/snowball-pdbthink-pilot-v1-eval-recovery",
       "evaluation_gpus": "8 H100",
-      "wandb_state_note": "W&B reports crashed after shared logger shutdown; all six Iris training tasks succeeded and step-64 checkpoint/evaluation/export exist."
+      "wandb_state_note": "W&B reports crashed after shared logger shutdown; all six Iris training tasks succeeded and step-64 checkpoint/evaluation/export exist.",
+      "standalone_validation": {
+        "state": "complete",
+        "paired_tasks": 1003,
+        "accuracy": 0.37686939182452645,
+        "family_macro_accuracy": 0.3524736731768086,
+        "accuracy_delta": 0.14755732801595217,
+        "transitions": {
+          "gained": 186,
+          "both_incorrect": 587,
+          "lost": 38,
+          "both_correct": 192
+        },
+        "comparison": "results/pilot-validation-comparison.json"
+      }
     },
     {
       "scale": "epoch",
@@ -502,10 +516,10 @@
   },
   "trained_evaluation": {
     "smoke_validation": "results/smoke-validation-comparison.json",
-    "pilot_validation": "running",
-    "pilot_test": "queued after pilot validation"
+    "pilot_validation": "results/pilot-validation-comparison.json",
+    "pilot_test": "running"
   },
-  "improvement": "Smoke full validation +1.20 percentage points; pilot fixed monitor +10.28 percentage points. Pilot full validation and test remain pending.",
+  "improvement": "Pilot full validation: 230/1003 (22.93%) to 378/1003 (37.69%), +14.76 percentage points. Test pending. Full-pass continuation running.",
   "baseline_server": {
     "job": "/bizon/snowball-pdbthink-baseline-20261007-v3",
     "cluster": "cw-rno2a",
