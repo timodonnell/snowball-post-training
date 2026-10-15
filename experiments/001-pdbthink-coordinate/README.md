@@ -42,7 +42,10 @@ The observer verifies terminal publication even if worker teardown stalls, expor
 the selected checkpoint with the native MarinSkyRL exporter, and runs the paired
 standalone validation/test comparisons. Progress is saved in
 `runs/001/epoch-v2-followup-status.json`; the observer discovers the new W&B run
-by its unique checkpoint root and publishes validation and final summaries.
+by its unique checkpoint root. During training, W&B's native `eval/all/avg_score`
+and `eval/<family>/avg_score` histories report validation; the local status file
+also records the best checkpoint. The observer publishes derived selection and
+final summaries after training ends, so the active trainer cannot overwrite them.
 It reuses the completed original-model test baseline. A selected initial
 checkpoint can be exported from the stopped source run after verifying its
 native completion marker and state, without treating the failed run as successful.

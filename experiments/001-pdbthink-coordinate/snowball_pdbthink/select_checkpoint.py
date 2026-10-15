@@ -99,7 +99,6 @@ def select_and_export(iris, args, status):
     )
     training_job = args.coordinator + "/" + config["iris"]["job_name"]
     points = {}
-    summary_step = None
     while True:
         try:
             state = iris.job_state(JobName.from_wire(training_job))
@@ -133,7 +132,10 @@ def select_and_export(iris, args, status):
                     print("Resolved training metrics: " + args.wandb_run, flush=True)
             except wandb.errors.CommError:
                 print("W&B discovery unavailable; native validation remains authoritative", flush=True)
-        if args.wandb_run and curve and curve[-1]["step"] != summary_step:
+        # The active trainer owns its W&B summary and overwrites external API
+        # additions on its next update. Use native eval/* histories while it
+        # runs; publish derived selection summaries once the writer has exited.
+        if args.wandb_run and curve and state == JobState.SUCCEEDED:
             import wandb
 
             try:
@@ -143,7 +145,6 @@ def select_and_export(iris, args, status):
                     for key in ("step", "tasks", "task_weighted_accuracy", "family_macro_accuracy"):
                         run.summary[prefix + key] = point[key]
                 run.summary.update()
-                summary_step = curve[-1]["step"]
             except wandb.errors.CommError:
                 print("W&B summary update unavailable; native validation scores remain saved", flush=True)
         status(
