@@ -1,0 +1,76 @@
+{
+  "verified_at": "2026-10-15T19:22:20.294184+00:00",
+  "training_job": "/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d",
+  "wandb": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/e2s5w3qn",
+  "resumed_checkpoint_step": 320,
+  "state": "training",
+  "restore_log_evidence": [
+    "[18:56:00] task=/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d/0 attempt=0 | (skyrl_entrypoint pid=14205) 2026-10-15 18:56:00.015 | INFO     | skyrl_train.trainer:load_checkpoints:3073 - Successfully loaded trainer state",
+    "[18:56:00] task=/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d/0 attempt=0 | (skyrl_entrypoint pid=14205) 2026-10-15 18:56:00.288 | INFO     | skyrl_train.trainer:load_checkpoints:3084 - Successfully loaded rollout state",
+    "[19:07:49] task=/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d/0 attempt=0 | (skyrl_entrypoint pid=14205) 2026-10-15 19:07:49.175 | INFO     | skyrl_train.trainer:load_checkpoints:3106 - Successfully loaded policy checkpoint",
+    "[19:07:49] task=/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d/0 attempt=0 | (skyrl_entrypoint pid=14205) 2026-10-15 19:07:49.175 | INFO     | skyrl_train.trainer:load_checkpoints:3121 - Successfully loaded complete checkpoint state from global_step_320"
+  ],
+  "initial_validation": {
+    "step": 320,
+    "tasks": 1003,
+    "task_weighted_accuracy": 0.5782652043868395,
+    "family_macro_accuracy": 0.5035287361289666,
+    "family_accuracy": {
+      "G01": 0.9272727272727272,
+      "G02": 0.041666666666666664,
+      "G03": 0.6851851851851852,
+      "G04": 0.0,
+      "N01": 0.0,
+      "P01": 1.0,
+      "P02": 0.782608695652174,
+      "P03": 0.9576271186440678,
+      "S01": 0.16,
+      "S02": 0.0,
+      "S03": 0.7983193277310925,
+      "S04": 0.6306306306306306,
+      "S05": 0.5833333333333334,
+      "S09": 0.4827586206896552
+    }
+  },
+  "previous_step320_validation": {
+    "successes": 576,
+    "tasks": 1003,
+    "task_weighted_accuracy": 0.5742771684945165
+  },
+  "interpretation": "The repeated initial evaluation differs by four correct answers before any additional optimizer update. This difference is not a new RL gain.",
+  "first_resumed_optimizer_step": 321,
+  "optimizer_completion_evidence": [
+    "[19:21:30] task=/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d/0 attempt=0 | (skyrl_entrypoint pid=14205) 2026-10-15 19:21:30.886 | INFO     | skyrl_train.trainer:_log_optimizer_step_completed:1216 - Optimizer step completed: step=321 epoch=0 sequences=128 duration_seconds=42.983"
+  ],
+  "first_resumed_step_metrics": {
+    "generate/trajectory_retention/publish_timeouts": 0.0,
+    "policy/raw_grad_norm": 0.2594588100910187,
+    "timing/policy_train": 34.016292354092,
+    "timing/run_training": 69.99344062805176,
+    "timing/step": 301.85576800093986,
+    "trainer/epoch": 0,
+    "trainer/global_step": 321,
+    "generate/trajectory_retention/bytes_written": 3232490.0,
+    "generate/trajectory_retention/candidates": 128.0,
+    "generate/trajectory_retention/dropped_by_bounds": 0.0,
+    "generate/trajectory_retention/duplicates": 0.0,
+    "generate/trajectory_retention/enqueued": 0.0,
+    "generate/trajectory_retention/selected": 128.0,
+    "generate/trajectory_retention/write_errors": 0.0,
+    "generate/trajectory_retention/written": 128.0,
+    "policy/final_loss": 0.0163804036565125,
+    "policy/mismatch/pooled/finite_fraction": 1.0,
+    "policy/policy_lr": 9.999999974752427e-07,
+    "policy/policy_update_steps": 1,
+    "policy/skipped_steps": 0.0
+  },
+  "next_rollout_step_started": 322,
+  "training_step_completion_evidence": [
+    "[19:21:55] task=/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d/0 attempt=0 | (skyrl_entrypoint pid=14205) 2026-10-15 19:21:55.250 | INFO     | skyrl_train.trainer:_log_training_step_completed:1225 - Training step completed: step=321 total_steps=876 epoch=0 duration_seconds=301.856",
+    "[19:21:55] task=/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d/0 attempt=0 | (skyrl_entrypoint pid=14205) 2026-10-15 19:21:55.255 | INFO     | skyrl_train.trainer:_train_step:1424 - Rollout batch started: step=322 required_groups=32"
+  ],
+  "finite_metric_check": {
+    "numeric_metrics_checked": 164,
+    "all_finite": true
+  }
+}

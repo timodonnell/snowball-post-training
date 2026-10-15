@@ -1,6 +1,6 @@
 {
   "issue": "https://github.com/timodonnell/snowball-post-training/issues/1",
-  "status": "Step-320 continuation started on 48 CoreWeave H100s after archive-publication timeout; final target 876",
+  "status": "Continuation advancing on 48 CoreWeave H100s: step-320 checkpoint restored, optimizer update 321 verified; target 876",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
   "adapter_sha256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969",
@@ -223,7 +223,7 @@
       "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-pilot-2026.10.07.1-coordinator-f3bd0c64",
       "cluster": "cw-rno2a",
       "gpus": "48 H100",
-      "state": "training_succeeded_export_recovered_evaluation_running",
+      "state": "training_succeeded_export_recovered_evaluation_complete",
       "optimizer_steps_verified": 64,
       "max_optimizer_steps": 64,
       "training_pool": 28045,
@@ -340,6 +340,20 @@
           "both_correct": 192
         },
         "comparison": "results/pilot-validation-comparison.json"
+      },
+      "full_test": {
+        "tasks": 1370,
+        "source_groups": 29,
+        "baseline_accuracy": 0.2124087591240876,
+        "accuracy": 0.31605839416058396,
+        "accuracy_delta": 0.10364963503649635,
+        "transitions": {
+          "lost": 50,
+          "both_incorrect": 887,
+          "both_correct": 241,
+          "gained": 192
+        },
+        "comparison": "results/pilot-test-comparison.json"
       }
     },
     {
@@ -350,7 +364,7 @@
       "cluster": "cw-rno2a",
       "gpus": "48 H100",
       "state": "failed_trajectory_publication_timeout",
-      "workers_running": 6,
+      "workers_running": 0,
       "resume_step": 64,
       "max_optimizer_steps": 876,
       "additional_updates": 812,
@@ -396,7 +410,7 @@
       "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d",
       "cluster": "cw-rno2a",
       "gpus": "48 H100",
-      "state": "restoring_checkpoint",
+      "state": "training",
       "workers_running": 6,
       "resume_step": 320,
       "max_optimizer_steps": 876,
@@ -431,7 +445,33 @@
       "adapter_sha256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969",
       "resume_verification": "results/epoch-resume-step320.json",
       "trajectory_publish_timeout_seconds": 600,
-      "test_baseline": "Reuses complete original-model evaluation from pilot-v1"
+      "test_baseline": "Reuses complete original-model evaluation from pilot-v1",
+      "runtime_checkpoint_restore": "passed: trainer, rollout, policy, optimizer, and scheduler from step 320",
+      "startup_verification": "results/epoch-resume-startup.json",
+      "optimizer_steps_verified": 321,
+      "first_resumed_optimizer_step": 321,
+      "initial_validation": {
+        "step": 320,
+        "tasks": 1003,
+        "task_weighted_accuracy": 0.5782652043868395,
+        "family_macro_accuracy": 0.5035287361289666,
+        "family_accuracy": {
+          "G01": 0.9272727272727272,
+          "G02": 0.041666666666666664,
+          "G03": 0.6851851851851852,
+          "G04": 0.0,
+          "N01": 0.0,
+          "P01": 1.0,
+          "P02": 0.782608695652174,
+          "P03": 0.9576271186440678,
+          "S01": 0.16,
+          "S02": 0.0,
+          "S03": 0.7983193277310925,
+          "S04": 0.6306306306306306,
+          "S05": 0.5833333333333334,
+          "S09": 0.4827586206896552
+        }
+      }
     }
   ],
   "baseline": {
@@ -567,9 +607,9 @@
   "trained_evaluation": {
     "smoke_validation": "results/smoke-validation-comparison.json",
     "pilot_validation": "results/pilot-validation-comparison.json",
-    "pilot_test": "running"
+    "pilot_test": "results/pilot-test-comparison.json"
   },
-  "improvement": "Pilot full validation: 230/1003 (22.93%) to 378/1003 (37.69%), +14.76 percentage points. Test pending. Full-pass continuation running.",
+  "improvement": "Pilot paired full validation: 230/1003 (22.93%) to 378/1003 (37.69%), +14.76 percentage points. Pilot paired test: 291/1370 (21.24%) to 433/1370 (31.61%), +10.36 percentage points. Interrupted scaled run reached 576/1003 (57.43%) at step 320 in native validation; scaled standalone test remains pending. Restored checkpoint repeated native validation at 580/1003 (57.83%) before further training; the difference is not a new RL gain. Optimizer update 321 verified toward target 876.",
   "baseline_server": {
     "job": "/bizon/snowball-pdbthink-baseline-20261007-v3",
     "cluster": "cw-rno2a",

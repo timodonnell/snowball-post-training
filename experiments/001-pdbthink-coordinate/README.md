@@ -11,6 +11,11 @@ The [full-pass continuation](https://wandb.ai/timodonnell/snowball-pdbthink/runs
 was **resubmitted October 15 on 48 CoreWeave H100s**
 as artifact version `2026.10.15.1`, restoring the saved step-320 policy, optimizer,
 scheduler, and dataloader state. It targets step 876: 556 additional updates.
+The complete checkpoint restore succeeded at 19:07 UTC, and optimizer update
+321 completed at 19:21 UTC. The repeated starting validation scored 580/1,003
+(57.83%), versus 576/1,003 (57.43%) before the interruption. Those four additional
+correct answers occurred before further training and are not a new RL gain.
+See [runtime resume verification](results/epoch-resume-startup.json).
 The new coordinator is
 `/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6`.
 The allocation, runtime, learning rate, model, data, and evaluation protocol are
