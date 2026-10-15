@@ -14,6 +14,12 @@ from .pins import SKYRL_REVISION
 from .recover_export import recover_export
 
 
+class SelectionProgressError(RuntimeError):
+    def __init__(self, phase, **details):
+        self.safe_details = {"phase": phase, **details}
+        super().__init__(json.dumps(self.safe_details))
+
+
 def validation_point(step, metrics, counts):
     scores = {}
     for family, count in counts.items():
@@ -70,8 +76,10 @@ def select_and_export(iris, args, status):
         time.sleep(60)
 
     while not resolved.exists():
-        if is_job_finished(iris.job_state(JobName.from_wire(args.coordinator))):
-            raise RuntimeError("Coordinator ended before writing the resolved configuration")
+        coordinator_state = iris.job_state(JobName.from_wire(args.coordinator))
+        status("waiting_for_training", coordinator_state=str(coordinator_state))
+        if is_job_finished(coordinator_state):
+            raise SelectionProgressError("coordinator_startup", coordinator_state=str(coordinator_state))
         wait_tick()
     resolved_record = read_json(resolved)
     config = resolved_record["config"]
@@ -96,6 +104,10 @@ def select_and_export(iris, args, status):
         try:
             state = iris.job_state(JobName.from_wire(training_job))
         except ConnectError as error:
+            if error.code in {Code.UNAVAILABLE, Code.DEADLINE_EXCEEDED}:
+                print("Iris status temporarily unavailable; retrying within the existing deadline", flush=True)
+                wait_tick()
+                continue
             if error.code != Code.NOT_FOUND or is_job_finished(iris.job_state(JobName.from_wire(args.coordinator))):
                 raise
             wait_tick()
@@ -107,6 +119,20 @@ def select_and_export(iris, args, status):
                     rows = [json.loads(line) for line in source if line.strip()]
                 points[step] = validation_point(step, rows[-1], counts)
         curve = [points[step] for step in sorted(points)]
+        if not args.wandb_run and args.wandb_project:
+            import wandb
+
+            try:
+                candidates = list(wandb.Api().runs(
+                    args.wandb_project, filters={"config.trainer.ckpt_path": config["artifacts"]["checkpoint_root"]}
+                ))
+                if len(candidates) > 1:
+                    raise ValueError("Multiple W&B runs share this checkpoint root; specify --wandb-run")
+                if candidates:
+                    args.wandb_run = args.wandb_project + "/" + candidates[0].id
+                    print("Resolved training metrics: " + args.wandb_run, flush=True)
+            except wandb.errors.CommError:
+                print("W&B discovery unavailable; native validation remains authoritative", flush=True)
         if args.wandb_run and curve and curve[-1]["step"] != summary_step:
             import wandb
 
@@ -124,13 +150,14 @@ def select_and_export(iris, args, status):
             "training",
             training_job=training_job,
             training_state=str(state),
+            wandb_run=args.wandb_run,
             validation=curve,
             best_validation=best_checkpoint(curve) if curve else None,
         )
         if state == JobState.SUCCEEDED:
             break
         if is_job_finished(state):
-            raise RuntimeError("Scale-up training ended without success; banked checkpoints remain available")
+            raise SelectionProgressError("training", training_job=training_job, training_state=str(state))
         wait_tick()
     if set(points) != set(expected):
         raise ValueError("Completed training is missing a scheduled full validation evaluation")
@@ -147,7 +174,7 @@ def select_and_export(iris, args, status):
         raise ValueError("Cannot change recorded checkpoint selection")
     selection_path.write_text(json.dumps(selection, indent=2) + "\n")
 
-    def wait_publication(terminal_uri, coordinator, step, *, intermediate=False, process=None):
+    def wait_publication(terminal_uri, coordinator, step, *, intermediate=False, interrupted=False, process=None):
         model_root = StoragePath(terminal_uri).parent / "exports" / f"global_step_{step}" / "policy"
         export_deadline = time.monotonic() + 7200
         while not (model_root / ".marinskyrl-model-manifest.json").exists():
@@ -156,7 +183,10 @@ def select_and_export(iris, args, status):
             if time.monotonic() > export_deadline:
                 raise TimeoutError("Native checkpoint export did not publish within two hours")
             time.sleep(30)
-        return recover_export(iris, terminal_uri, coordinator, step, prepared, selected_intermediate=intermediate)
+        return recover_export(
+            iris, terminal_uri, coordinator, step, prepared,
+            selected_intermediate=intermediate, interrupted_training=interrupted,
+        )
 
     # Let the canonical terminal export complete. If job teardown stalls again,
     # verify the publication before releasing this run's stale coordinator tree.
@@ -175,7 +205,7 @@ def select_and_export(iris, args, status):
     step = selected["step"]
     if step == final_step:
         return terminal_model, selection
-    if step == initial_step:
+    if step == initial_step and args.initial_export_record:
         initial = json.loads(args.initial_export_record.read_text())
         if initial["model"]["checkpoint_root"] + f"/global_step_{step}" != trainer["resume_path"]:
             raise ValueError("Starting export does not match the resumed checkpoint")
@@ -183,9 +213,23 @@ def select_and_export(iris, args, status):
             iris, initial["model"]["terminal_manifest_uri"], initial["coordinator"], step, prepared
         )
     else:
+        export_config, export_terminal, export_coordinator = config, args.terminal_uri, args.coordinator
+        interrupted = step == initial_step
+        if interrupted:
+            initial = read_json(args.initial_checkpoint_record)
+            if initial["checkpoint_uri"] != trainer["resume_path"] or initial["global_step"] != step:
+                raise ValueError("Initial native checkpoint record differs from the resumed checkpoint")
+            initial_root = StoragePath(initial["source_run_root"])
+            with (initial_root / "resolved-launch.yaml").open("rb") as source:
+                initial_bytes = source.read()
+            if hashlib.sha256(initial_bytes).hexdigest() != initial["source_config_sha256"]:
+                raise ValueError("Initial checkpoint source configuration changed")
+            export_config = json.loads(initial_bytes)["config"]
+            export_terminal = str(initial_root / "terminal.json")
+            export_coordinator = initial["source_coordinator"]
         source = args.output / "resolved-training-config.json"
-        source.write_text(json.dumps(config, indent=2) + "\n")
-        model_root = run_root / "exports" / f"global_step_{step}" / "policy"
+        source.write_text(json.dumps(export_config, indent=2) + "\n")
+        model_root = StoragePath(export_terminal).parent / "exports" / f"global_step_{step}" / "policy"
         process = None
         if not (model_root / ".marinskyrl-model-manifest.json").exists():
             job_name = f"snowball-pdbthink-selected-step{step}-" + datetime.now(UTC).strftime("%Y%m%d%H%M%S")
@@ -197,7 +241,7 @@ def select_and_export(iris, args, status):
                 "-m",
                 "cloud.iris.export_hf_checkpoint",
                 "--request",
-                config["artifacts"]["checkpoint_root"] + f"/global_step_{step}",
+                export_config["artifacts"]["checkpoint_root"] + f"/global_step_{step}",
                 "--launch-config",
                 str(source.absolute()),
                 "--gpu-variant",
@@ -225,7 +269,8 @@ def select_and_export(iris, args, status):
                 process = subprocess.Popen(command, stdout=log, stderr=subprocess.STDOUT, start_new_session=True)
         try:
             model, record = wait_publication(
-                args.terminal_uri, args.coordinator, step, intermediate=True, process=process
+                export_terminal, export_coordinator, step,
+                intermediate=True, interrupted=interrupted, process=process,
             )
         finally:
             if process is not None:

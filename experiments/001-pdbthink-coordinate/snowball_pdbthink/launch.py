@@ -26,6 +26,7 @@ from marin.training.training import LevanterCheckpoint
 
 from .adapter import run_with_adapter
 from .pins import CONTEXT, MODEL, MODEL_REVISION, RESERVE, SEED, SKYRL_REVISION
+from .resume import checkpoint_location
 
 ROLE_PLAN = SkyRLRolePlan(
     colocate_all=False,
@@ -47,7 +48,7 @@ def recipe(scale, data_uri, adapter_sha256, resume_checkpoint=None):
     steps = {"smoke": 2, "pilot": 64, "epoch": 876}[scale]
     checkpoint_interval = {"smoke": 2, "pilot": 8, "epoch": 64}[scale]
     if resume_checkpoint is not None and scale != "epoch":
-        raise ValueError("Explicit pilot continuation is only supported for the epoch run")
+        raise ValueError("Explicit checkpoint continuation is only supported for the epoch run")
     return {
         "entrypoint": "standard",
         "context_budget": {"request_window_tokens": CONTEXT, "max_new_tokens_per_turn": RESERVE, "max_turns": 1},
@@ -128,6 +129,7 @@ def recipe(scale, data_uri, adapter_sha256, resume_checkpoint=None):
                 "max_bytes_per_step": None,
                 "max_bytes_per_run": None,
                 "required": True,
+                "publish_timeout_seconds": 600.0,
             },
         },
         "trajectory_runner": {"rollout_workers": {"num_workers": 4, "cpus_per_worker": 4}},
@@ -195,15 +197,17 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, res
         export_hf=True,
     )
     if resume_checkpoint:
+        location = checkpoint_location(resume_checkpoint)
         checkpoint = ArtifactStep.adopt(
-            "checkpoints/bizon/snowball-pdbthink-pilot-resume-step64",
-            "2026.10.07.1",
+            f"checkpoints/bizon/snowball-pdbthink-resume-step{location['step']}",
+            location["version"],
             resume_checkpoint,
             kind=Artifact,
-            config={"launcher_commit": SKYRL_REVISION, "tokenizer_revision": MODEL_REVISION, "global_step": 64},
+            config={
+                "launcher_commit": SKYRL_REVISION, "tokenizer_revision": MODEL_REVISION,
+                "global_step": location["step"], "source_run_root": location["run_root"],
+            },
         )
-        if not resume_checkpoint.endswith("/global_step_64"):
-            raise ValueError("This continuation requires the verified pilot step-64 checkpoint")
         step = replace(step, deps=(*step.deps, checkpoint))
     return replace(step, run=run_with_adapter)
 
@@ -215,7 +219,7 @@ def build(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, res
 @click.option("--adapter-sha256", required=True)
 @click.option("--cluster", default="cw-rno2a", show_default=True)
 @click.option("--wandb-entity", default="timodonnell", show_default=True)
-@click.option("--resume-checkpoint", help="Explicit native pilot step-64 checkpoint, including optimizer/data state")
+@click.option("--resume-checkpoint", help="Verified native checkpoint, including optimizer/data state")
 @click.option("--write-launch", type=click.Path(path_type=Path))
 @rl_build_options
 def main(scale, data_uri, model_uri, adapter_sha256, cluster, wandb_entity, resume_checkpoint, write_launch):

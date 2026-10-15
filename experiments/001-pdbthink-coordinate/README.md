@@ -7,25 +7,42 @@ other teacher traces are used.
 
 ## Status
 
-The [full-pass continuation](https://wandb.ai/timodonnell/snowball-pdbthink/runs/ppc4ryud)
-launched October 8 on **48 CoreWeave H100s**. It restores the pilot's step-64
-policy, optimizer, scheduler, and dataloader position and targets step 876:
-812 additional updates, completing the first 876 full batches of the training
-pool (28,032 prompts; the final incomplete 13-task batch is omitted upstream).
-The allocation and training geometry match the successful pilot. The training
-limit is 96 hours and the coordinator limit is 120 hours, including export.
+The [full-pass continuation](https://wandb.ai/timodonnell/snowball-pdbthink/runs/e2s5w3qn)
+was **resubmitted October 15 on 48 CoreWeave H100s**
+as artifact version `2026.10.15.1`, restoring the saved step-320 policy, optimizer,
+scheduler, and dataloader state. It targets step 876: 556 additional updates.
+The new coordinator is
+`/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6`.
+The allocation, runtime, learning rate, model, data, and evaluation protocol are
+unchanged. Required trajectory publication now allows 600 seconds instead of 120.
+The training limit is 96 hours and the coordinator limit is 120 hours, including
+export. Completing the first pass covers 28,032 prompts; upstream omits the
+final incomplete 13-task batch.
+
+The [October 8 attempt](https://wandb.ai/timodonnell/snowball-pdbthink/runs/ppc4ryud)
+failed October 10 at 00:18 UTC after optimizer step 375, when a required rollout
+archive upload exceeded its 120-second deadline. Its last complete checkpoint
+was step 320, so 55 updates are repeated. Complete validation improved from
+401/1,003 (39.98%) at the restored pilot to 576/1,003 (57.43%) at step 320.
+See [the interrupted run's validation curve](results/epoch-interruption.json)
+and [the verified resume checkpoint](results/epoch-resume-step320.json).
 
 Scale-up evaluates **all 1,003 validation tasks every 64 updates**, plus the
 starting and terminal policies. It banks every evaluated checkpoint using native
 pending HF export requests. `finish_run.py --select-validation` selects the highest
 full-validation task-weighted accuracy, breaking ties by family macro accuracy
-and then earlier step; the starting pilot checkpoint is also eligible. Selection
+and then earlier step; the starting step-320 checkpoint is also eligible. Selection
 is saved before the paired 1,370-task test. Test scores do not influence selection.
 The observer verifies terminal publication even if worker teardown stalls, exports
 the selected checkpoint with the native MarinSkyRL exporter, and runs the paired
 standalone validation/test comparisons. Progress is saved in
-`runs/001/epoch-v1-followup-status.json`; full-validation latest/best summaries go
-to W&B. This is a detached local observer, not an app notification service.
+`runs/001/epoch-v2-followup-status.json`; the observer discovers the new W&B run
+by its unique checkpoint root and publishes validation and final summaries.
+It reuses the completed original-model test baseline. A selected initial
+checkpoint can be exported from the stopped source run after verifying its
+native completion marker and state, without treating the failed run as successful.
+Failure status retains the last progress and validation curve. This is a detached
+local observer, not an app notification service or an automatic training retry.
 
 The [64-update pilot](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xlyyl24u)
 completed training successfully on 48 CoreWeave H100s. All six training tasks
@@ -38,7 +55,7 @@ training GPUs are released. This pilot sampled at most 2,048 prompts from the
 | Pilot fixed monitor (107 validation tasks) | 21/107 (19.63%) | 32/107 (29.91%) | +10.28 pp |
 | Two-update smoke, full validation | 230/1,003 (22.93%) | 242/1,003 (24.13%) | +1.20 pp |
 | Pilot full validation | 230/1,003 (22.93%) | 378/1,003 (37.69%) | +14.76 pp |
-| Pilot paired test | Pending | Pending | Pending |
+| Pilot paired test | 291/1,370 (21.24%) | 433/1,370 (31.61%) | +10.36 pp |
 
 The completed pilot full validation gained 186 correct answers and lost 38.
 Family-macro accuracy rose from 23.44% to 35.25%. Atom-distance questions improved
@@ -46,7 +63,10 @@ from 10.0% to 34.5%, nearest-residue questions from 16.7% to 45.4%, coordinate
 extraction from 22.9% to 45.8%, and solvent exposure from 58.8% to 75.6%.
 G04, N01, S01 and S02 remain at zero; G02 is 1/120. Chain fold classification
 fell from 5/12 to 4/12. Format errors fell from 419 to 256, while context-limit
-truncations increased from 138 to 189. The paired test is running separately.
+truncations increased from 138 to 189. The completed paired pilot test gained
+192 correct answers and lost 50 ([paired results](results/pilot-test-comparison.json)).
+The resumed scaled checkpoint has not yet been
+evaluated on the final test.
 
 ![Audited pilot evidence](results/pilot-evidence.png)
 

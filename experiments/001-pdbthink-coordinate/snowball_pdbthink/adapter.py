@@ -112,10 +112,12 @@ def run_with_adapter(config):
     launch_config = yaml.safe_load(config.launch_config_yaml)
     trainer = launch_config["skyrl"]["trainer"]
     if trainer.get("resume_mode") == "from_path":
-        checkpoint = StoragePath(trainer["resume_path"])
-        for name in ("trainer_state.pt", "data.pt"):
-            if not (checkpoint / name).exists():
-                raise ValueError("Continuation requires complete trainer and dataloader state: " + name)
+        from .resume import verify_checkpoint
+
+        verification = verify_checkpoint(trainer["resume_path"], expected_inputs=launch_config["inputs"])
+        verification_path = StoragePath(config.output.terminal_manifest_uri).parent / "resume-verification.json"
+        with verification_path.open("w") as stream:
+            json.dump(verification, stream, indent=2)
 
     original = skyrl._launcher_command(config.launcher_requirement, "unused")
     response = None

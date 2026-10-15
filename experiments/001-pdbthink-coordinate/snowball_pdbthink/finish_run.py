@@ -64,6 +64,7 @@ def main():
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--results-uri", required=True)
     parser.add_argument("--wandb-run", help="Optional entity/project/run_id to receive held-out summary metrics")
+    parser.add_argument("--wandb-project", help="Discover the unique training run in entity/project by checkpoint root")
     parser.add_argument(
         "--test-tasks", type=Path, help="Optional final test cohort, evaluated only at this terminal checkpoint"
     )
@@ -74,14 +75,19 @@ def main():
     )
     parser.add_argument("--initial-export-record", type=Path, help="Verified starting checkpoint if it wins validation")
     parser.add_argument(
+        "--initial-checkpoint-record", type=Path, help="Verified native resume checkpoint if its source run was interrupted"
+    )
+    parser.add_argument(
         "--recover-step",
         type=int,
         help="Recover an already published final export after job teardown failed; verify training and all export files",
     )
     args = parser.parse_args()
-    if args.select_validation and (args.recover_step is not None or args.initial_export_record is None):
+    if args.select_validation and (
+        args.recover_step is not None or bool(args.initial_export_record) == bool(args.initial_checkpoint_record)
+    ):
         raise ValueError(
-            "Validation selection requires the initial export record and cannot combine with --recover-step"
+            "Validation selection requires exactly one initial export/checkpoint record and cannot use --recover-step"
         )
     before = load_evaluation(args.baseline)
     if hashlib.sha256(args.tasks.read_bytes()).hexdigest() != before[0]["tasks_sha256"]:
@@ -105,7 +111,12 @@ def main():
             **details,
         }
         # Mutable local progress stays outside the immutable results directory.
-        args.output.with_name(args.output.name + "-status.json").write_text(json.dumps(payload, indent=2) + "\n")
+        path = args.output.with_name(args.output.name + "-status.json")
+        if state == "failed" and path.exists():
+            payload["last_progress"] = json.loads(path.read_text())
+        temporary = path.with_suffix(".tmp")
+        temporary.write_text(json.dumps(payload, indent=2) + "\n")
+        temporary.replace(path)
 
     status("verifying_recovered_export" if args.recover_step is not None else "waiting_for_export")
 

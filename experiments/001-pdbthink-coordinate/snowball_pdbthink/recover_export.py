@@ -47,9 +47,18 @@ def validate_export_files(manifest, size_for, read_bytes, expected_metadata):
     }
 
 
-def recover_export(iris, terminal_uri, coordinator, step, prepared_manifest, *, selected_intermediate=False):
+def validate_training_state(state, *, selected_intermediate, interrupted_training):
+    if interrupted_training:
+        if not selected_intermediate or state not in {"failed", "killed", "worker_failed"}:
+            raise ValueError("Interrupted recovery requires an explicitly selected checkpoint from a stopped run")
+    elif state != "succeeded":
+        raise ValueError("Recovery requires a successful training job")
+
+
+def recover_export(
+    iris, terminal_uri, coordinator, step, prepared_manifest, *, selected_intermediate=False, interrupted_training=False
+):
     from iris.cluster.types import JobName
-    from iris.resources.state import JobState
     from rigging.filesystem.storage_path import StoragePath
 
     def read_bytes(path):
@@ -74,10 +83,16 @@ def recover_export(iris, terminal_uri, coordinator, step, prepared_manifest, *, 
     ):
         raise ValueError("Resolved artifacts do not belong to this run")
     training_job = coordinator.rstrip("/") + "/" + config["iris"]["job_name"]
-    if iris.job_state(JobName.from_wire(training_job)) != JobState.SUCCEEDED:
-        raise ValueError("Recovery requires a successful training job")
+    training_state = iris.job_state(JobName.from_wire(training_job))
+    validate_training_state(
+        str(training_state), selected_intermediate=selected_intermediate, interrupted_training=interrupted_training
+    )
+    if interrupted_training:
+        from .resume import verify_checkpoint
+
+        verify_checkpoint(artifacts["checkpoint_root"] + f"/global_step_{step}", expected_inputs=config["inputs"])
     marker = StoragePath(artifacts["checkpoint_root"]) / "latest_ckpt_global_step.txt"
-    if int(read_bytes(marker).strip()) != final_step:
+    if not interrupted_training and int(read_bytes(marker).strip()) != final_step:
         raise ValueError("Checkpoint marker does not match the predeclared final step")
     if selected_intermediate:
         checkpoint = StoragePath(artifacts["checkpoint_root"]) / f"global_step_{step}"
@@ -107,7 +122,8 @@ def recover_export(iris, terminal_uri, coordinator, step, prepared_manifest, *, 
         "recovered_at": datetime.now(UTC).isoformat(),
         "reason": "Evaluate a complete native export independently of export-job teardown status",
         "training_job": training_job,
-        "training_job_state": "succeeded",
+        "training_job_state": str(training_state),
+        "interrupted_training": interrupted_training,
         "coordinator": coordinator,
         "coordinator_state_at_recovery": str(iris.job_state(JobName.from_wire(coordinator))),
         "native_terminal_manifest_present": terminal.exists(),
