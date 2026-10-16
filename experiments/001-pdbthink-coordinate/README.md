@@ -763,3 +763,67 @@ uv run python -m snowball_pdbthink.monitor \
 [`results/epoch-resolved-launch.json`](results/epoch-resolved-launch.json) records
 the actual native preflight result and job geometry. Reruns need a fresh artifact
 version and explicit checkpoint selection.
+
+### Frozen-token learner/rollout diagnostic
+
+`prepare_parity_probe.py` freezes two randomly selected validation questions per
+present family (seed `20261017`): 28 questions across 14 families, with both the
+archive-384 and archive-512 answer to each question. It preserves the original
+prompt token IDs and the first 2,048 response tokens (or the entire shorter
+response), totaling 56 sequences and 84,274 response tokens. The manifest records
+both archive steps and their reported model versions; those labels can differ
+because evaluation occurs before the next update. The probability comparison
+does not reuse the historical log probabilities.
+
+`prepare_parity_launch.py` builds two diagnostic launches that restore the native
+checkpoints at completed steps 384 and 512 into fresh workers. Each requests 48
+CoreWeave GB200 GPUs, retaining the original TP1/PP2/EP16 learner and two
+DP8/EP8 rollout replicas. Jobs run sequentially. The GPU type and physical
+placement differ from the original H100 run and must be included in the
+interpretation. The original broadcast weight installation remains unchanged.
+
+The job-local, source-hash-checked instrumentation performs these checks:
+
+1. Independently replay learner weights through the native expert-block
+   verifier into scratch buffers and compare every installed serving parameter;
+   also compare learner data-parallel peers. Canonicalize the FlashInfer CUTLASS
+   expert-stack layout in detached snapshots. Check all router weights and biases
+   separately in full FP32 on every serving worker.
+2. Rescore the identical frozen token panel with vLLM, capturing expert choices,
+   then with Megatron in native mode, with reordered/rebatched inputs, and with
+   vLLM's response expert choices forced through native router replay.
+3. Repeat vLLM scoring after the learner forwards, with unchanged weights.
+4. Generate four short, checkpoint-specific responses as an auxiliary control
+   comparing vLLM decode probabilities with prefill rescoring and learner scores.
+
+The diagnostic makes zero optimizer updates, disables evaluation/checkpoint/export
+callbacks, and raises if the optimizer-training method is called. Router replay
+covers captured **response input positions**; prompt routing remains native and
+the last unforwarded response token has no captured route. A residual gap under
+replay therefore cannot by itself rule out prompt-routing effects.
+
+Build/stage/launch through `run_marin.py` using the `snowball_pdbthink.parity_operations`
+and `snowball_pdbthink.parity_launch` modules and the usual CoreWeave credential
+wrapper. Launch configurations and content-addressed instrumentation are under
+`runs/001/parity-probe/`; `--validate` checks the launch without allocating GPUs.
+Only after a job writes `probe/complete.json`, use `parity_download --root
+REMOTE_PROBE_URI --output LOCAL_STEP_DIRECTORY` through the same wrapper to
+download exact scores/routes as Parquet. Then run:
+
+```bash
+uv run --with matplotlib --with numpy python \
+  experiments/001-pdbthink-coordinate/analyze_parity_probe.py \
+  --directory runs/001/parity-probe \
+  --panel runs/001/parity-probe/frozen-panel.json.gz \
+  --output experiments/001-pdbthink-coordinate/results/parity-probe
+```
+
+This analysis requires both completed `step-384/` and `step-512/` downloads and
+rejects differing token identities. It reports probability-ratio distributions,
+effective sample size, factors-of-two disagreements, and expert-set agreement.
+On this fixed, family-balanced panel, mean `exp(delta) - 1 - delta` is a
+descriptive mismatch statistic, **not an unbiased current-policy KL estimate**.
+Fresh restores can reproduce persistent checkpoint/backend differences; they
+cannot establish the historical in-memory synchronization state. Completion
+markers and measured results, rather than submission status, determine whether
+the check succeeded.
