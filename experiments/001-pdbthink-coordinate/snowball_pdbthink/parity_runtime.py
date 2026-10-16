@@ -184,7 +184,7 @@ def collate(probe, trainer, scores, routes, samples_per_prompt=2):
         "response_ids": [row.vllm_output_ids for row in rows],
         "loss_masks": [list(map(int, row.loss_mask)) for row in rows],
         "rewards": [[0.0] * len(row.vllm_output_ids) for row in rows],
-        "rollout_logprobs": [row.logprobs for row in scores],
+        "rollout_logprobs": [np.asarray(row.logprobs, dtype=np.float32) for row in scores],
         "rollout_routed_experts": routes,
         "stop_reasons": ["frozen_replay"] * len(rows),
         "rollout_metrics": None,
@@ -228,13 +228,21 @@ def collate(probe, trainer, scores, routes, samples_per_prompt=2):
     )
 
 
-async def decode_control(trainer, panel, root):
-    """Separate fresh decode/pre-fill differences from the common-panel comparison."""
+def decode_control_inputs(panel, dp_size):
+    """Give every data-parallel rank at least two rows, including the repeat pass."""
     chosen = {}
     for row in panel["rows"]:
         if row["family"] in {"G01", "G03", "P03", "S09"}:
             chosen.setdefault(row["family"], row)
-    inputs = list(chosen.values())
+    if len(chosen) != 4:
+        raise ValueError("The decode control requires all four selected question categories")
+    samples_per_prompt = (2 * dp_size + len(chosen) - 1) // len(chosen)
+    return [row for row in chosen.values() for _ in range(samples_per_prompt)], samples_per_prompt
+
+
+async def decode_control(trainer, panel, root):
+    """Separate fresh decode/pre-fill differences from the common-panel comparison."""
+    inputs, samples_per_prompt = decode_control_inputs(panel, trainer.policy_model.actor_infos[0].rank.dp_size)
     generated = await trainer.inference_engine_client.generate(
         {
             "prompts": None,
@@ -248,6 +256,7 @@ async def decode_control(trainer, panel, root):
                 "logprobs": 0,
                 "seed": panel["seed"],
             },
+            "sampling_params_per_prompt": [{"seed": panel["seed"] + index} for index in range(len(inputs))],
             "session_ids": None,
         }
     )
@@ -260,7 +269,7 @@ async def decode_control(trainer, panel, root):
         probe.probes.append(
             schema.ProbeRow(
                 probe_hash="pending",
-                sample_id=row["prompt_id"] + ":decode",
+                sample_id=row["prompt_id"] + f":decode-{index}",
                 prompt_id=row["prompt_id"],
                 prompt_token_ids=row["prompt_token_ids"],
                 trainer_prompt_ids=row["prompt_token_ids"],
@@ -292,7 +301,7 @@ async def decode_control(trainer, panel, root):
         route = np.zeros((len(row.vllm_output_ids), 26, 4), dtype=np.uint8)
         route[:-1] = captured[n:]
         routes.append(route)
-    collate(probe, trainer, rescored, routes, samples_per_prompt=1)
+    collate(probe, trainer, rescored, routes, samples_per_prompt=samples_per_prompt)
     trained = probe._trainer_scores(trainer, update=0)
     generation_scores = [
         schema.ScoreRow(
@@ -404,23 +413,20 @@ class ParityCallback(TrainerCallback):
                 metrics[mode] = summarize(reference, [indexed[row.sample_id].logprobs for row in probe.probes])
             probe.metrics = metrics
             archive.write(manifest=manifest(probe, trainer, status=COMPLETE_STATUS))
+            fixed_result = {
+                "global_step": trainer.global_step,
+                "checkpoint": str(trainer.loaded_checkpoint_path),
+                "optimizer_updates": 0,
+                "probe_hash": probe.probe_hash,
+                "panel_sha256": hashlib.sha256(compressed).hexdigest(),
+                "sequences": len(probe.probes),
+                "metrics": metrics,
+                "batch_layout": asdict(probe.batch_layout),
+                "at": datetime.now(UTC).isoformat(),
+            }
+            write_json(root, "fixed-panel-complete.json", fixed_result)
             auxiliary = await decode_control(trainer, panel, root)
-            write_json(
-                root,
-                "complete.json",
-                {
-                    "global_step": trainer.global_step,
-                    "checkpoint": str(trainer.loaded_checkpoint_path),
-                    "optimizer_updates": 0,
-                    "probe_hash": probe.probe_hash,
-                    "panel_sha256": hashlib.sha256(compressed).hexdigest(),
-                    "sequences": len(probe.probes),
-                    "metrics": metrics,
-                    "decode_control": auxiliary,
-                    "batch_layout": asdict(probe.batch_layout),
-                    "at": datetime.now(UTC).isoformat(),
-                },
-            )
+            write_json(root, "complete.json", {**fixed_result, "decode_control": auxiliary})
             logger.info("PARITY COMPLETE step={} metrics={}", trainer.global_step, json.dumps(metrics))
         finally:
             archive.close()

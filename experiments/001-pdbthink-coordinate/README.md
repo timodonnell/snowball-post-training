@@ -793,8 +793,10 @@ The job-local, source-hash-checked instrumentation performs these checks:
    then with Megatron in native mode, with reordered/rebatched inputs, and with
    vLLM's response expert choices forced through native router replay.
 3. Repeat vLLM scoring after the learner forwards, with unchanged weights.
-4. Generate four short, checkpoint-specific responses as an auxiliary control
+4. Generate short, checkpoint-specific responses to four questions as an auxiliary control
    comparing vLLM decode probabilities with prefill rescoring and learner scores.
+   Use eight samples per question so both forward batch sizes fill the 16
+   data-parallel ranks (32 responses of at most 256 tokens).
 
 The diagnostic makes zero optimizer updates, disables evaluation/checkpoint/export
 callbacks, and raises if the optimizer-training method is called. Router replay
@@ -827,3 +829,14 @@ Fresh restores can reproduce persistent checkpoint/backend differences; they
 cannot establish the historical in-memory synchronization state. Completion
 markers and measured results, rather than submission status, determine whether
 the check succeeded.
+
+Interpret the paired checks jointly. Larger disagreement at checkpoint 512 on
+the **same text** supports a persistent checkpoint/backend interaction beyond
+changes in the sampled answers. Larger disagreement on archive-512 text under
+**both checkpoints** supports a contribution from the response distribution.
+Both can occur together; the second figure displays this 2×2 comparison.
+Reducing disagreement by forcing response routes identifies a causal routing
+contribution in this diagnostic, without proving that routing explains the
+entire original regression. Rebatched and repeated forwards measure numerical
+sensitivity with weights held fixed. None of these tests establishes the
+historical serving weights from a checkpoint label alone.

@@ -8,15 +8,19 @@ import numpy as np
 import pytest
 
 
-def metric_function():
+def runtime_function(name):
     # The runtime module imports GPU orchestration packages. Exercise its exact
     # pure numerical function without importing those optional dependencies.
     source = Path(__file__).parents[1] / "snowball_pdbthink/parity_runtime.py"
     tree = ast.parse(source.read_text())
-    function = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == "summarize")
+    function = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == name)
     namespace = {"np": np}
     exec(compile(ast.Module(body=[function], type_ignores=[]), str(source), "exec"), namespace)  # noqa: S102
-    return namespace["summarize"]
+    return namespace[name]
+
+
+def metric_function():
+    return runtime_function("summarize")
 
 
 def test_identical_distributions_have_zero_mismatch():
@@ -49,3 +53,12 @@ def test_rejects_incomplete_and_nonfinite_scores():
         metric_function()([[-1.0], [-2.0]], [[-1.0]])
     with pytest.raises(ValueError, match="Nonfinite"):
         metric_function()([[-1.0]], [[float("nan")]])
+
+
+def test_decode_control_fills_all_data_parallel_ranks():
+    rows = [{"family": family, "prompt_id": family} for family in ("G01", "G03", "P03", "S09")]
+    inputs, samples = runtime_function("decode_control_inputs")({"rows": rows * 2}, 16)
+    assert samples == 8
+    assert len(inputs) == 32
+    for row in rows:
+        assert inputs.count(row) == 8

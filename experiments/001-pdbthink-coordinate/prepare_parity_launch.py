@@ -11,7 +11,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 OUT = ROOT / "runs/001/parity-probe"
-PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v4"
+PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v5"
 SOURCE = ROOT / "data/MarinSkyRL"
 FILES = [
     "cloud/iris/role_plan.py",
@@ -43,7 +43,7 @@ def main():
     panel = json.loads((OUT / "panel-manifest.json").read_text())
     for step in (384, 512):
         cfg = yaml.safe_load((HERE / "epoch-resume-launch.yaml").read_text())
-        name = f"snowball-parity-{step}-20261016-v4"
+        name = f"snowball-parity-{step}-20261016-v5"
         root = PREFIX + f"/step-{step}"
         cfg["run"].update(id=name, attempt_id=digest(code)[:12], export_hf=False, submission="wait")
         cfg["iris"].update(

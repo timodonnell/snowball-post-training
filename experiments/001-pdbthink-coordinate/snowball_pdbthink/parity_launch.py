@@ -61,6 +61,9 @@ def main():
         from iris.cluster.types import CoschedulingConfig
 
         cfg = load_launch_config(args.config)
+        from .parity_preflight import check_collation
+
+        check_collation(cfg.skyrl, args.config.parent / "frozen-panel.json.gz")
         original_bundle = iris_backend.build_runtime_bundle
 
         def diagnostic_bundle(expected_launcher_commit):

@@ -2,6 +2,7 @@
 
 import argparse
 import gzip
+import hashlib
 import json
 from pathlib import Path
 
@@ -36,8 +37,12 @@ def checkpoint(folder, panel):
     if complete["optimizer_updates"] != 0:
         raise ValueError("Checkpoint has optimizer updates")
     probes = {row["sample_id"]: row for row in pq.read_table(folder / "probe.parquet").to_pylist()}
+    if set(probes) != {row["sample_id"] for row in panel["rows"]}:
+        raise ValueError("The archive contains a different sample set")
     scores = pq.read_table(folder / "scores.parquet").to_pylist()
     indexed = {(row["sample_id"], row["scorer"], row["mode"]): row for row in scores}
+    if len(indexed) != len(scores):
+        raise ValueError("Duplicate sample/scorer/mode rows")
     delta, routing = {}, {}
     for mode in ("native", "repeat", "router_replay", "vllm_repeat"):
         differences, set_agreement, ordered_agreement, valid_rows = [], [], [], []
@@ -95,10 +100,13 @@ def main():
     parser.add_argument("--panel", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
-    panel = json.loads(gzip.decompress(args.panel.read_bytes()))
+    panel_bytes = args.panel.read_bytes()
+    panel = json.loads(gzip.decompress(panel_bytes))
     data = {step: checkpoint(args.directory / f"step-{step}", panel) for step in (384, 512)}
     if data[384][0]["probe_hash"] != data[512][0]["probe_hash"]:
         raise ValueError("Checkpoint probe hashes differ")
+    if any(values[0]["panel_sha256"] != hashlib.sha256(panel_bytes).hexdigest() for values in data.values()):
+        raise ValueError("Downloaded results do not identify the supplied frozen panel")
     args.output.mkdir(parents=True, exist_ok=True)
     result = {
         "checkpoints": {str(step): values[2] for step, values in data.items()},
@@ -155,6 +163,31 @@ def main():
         ax.set_axisbelow(True)
     for extension in ("png", "pdf"):
         fig.savefig(args.output / f"fixed-token-parity.{extension}", dpi=180)
+    plt.close(fig)
+    fig, axes = plt.subplots(1, 2, figsize=(10, 4), constrained_layout=True)
+    for ax, metric, title in zip(
+        axes,
+        ("mean_abs_log_ratio", "k3"),
+        ("Mean absolute log probability ratio", "Mean exp(δ) − 1 − δ"),
+        strict=True,
+    ):
+        values = np.asarray(
+            [
+                [data[step][2]["native"]["by_archive_step"][str(source)][metric] for source in (384, 512)]
+                for step in (384, 512)
+            ]
+        )
+        heatmap = ax.imshow(values, cmap="YlOrRd", vmin=0, aspect="auto")
+        for i, j in np.ndindex(values.shape):
+            ax.text(j, i, f"{values[i, j]:.4g}", ha="center", va="center", color="black")
+        ax.set_xticks([0, 1], ["Archive 384", "Archive 512"])
+        ax.set_yticks([0, 1], ["Checkpoint 384", "Checkpoint 512"])
+        ax.set_xlabel("Source of frozen response text")
+        ax.set_title(title, fontsize=11)
+        fig.colorbar(heatmap, ax=ax, shrink=0.8)
+    fig.suptitle("Does disagreement follow the checkpoint, the response text, or both?", fontsize=13)
+    for extension in ("png", "pdf"):
+        fig.savefig(args.output / f"checkpoint-by-response-source.{extension}", dpi=180)
     plt.close(fig)
     print(json.dumps(result, indent=2))
 
