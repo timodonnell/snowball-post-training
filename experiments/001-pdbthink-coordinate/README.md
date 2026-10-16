@@ -7,12 +7,15 @@ other teacher traces are used.
 
 ## Status
 
-October 16 update: optimizer step **564/876** is verified, with all six workers
-running and no worker failures. Full validation peaked at **616/1,003 (61.42%)**
+October 16 update: the trainer reports optimizer step **569/876** and remains
+running. Full validation peaked at **616/1,003 (61.42%)**
 at step 384, then fell to 591/1,003 (58.92%) at 448 and **334/1,003 (33.30%)**
 at 512. The step-384 checkpoint remains complete and eligible for selection.
-The decline coincides with shorter responses, more format errors, lower policy
-entropy, and higher gradient norms; its cause is not yet established. Training
+The [regression audit](#regression-audit) finds a real loss of answer quality and
+an optimization-stability weakness: PPO clipping is inactive in this single-pass
+recipe, with no reference-KL, entropy, or rollout-mismatch correction. Entropy
+falls and training/rollout mismatch grows before accuracy collapses. These
+observations support policy collapse, but do not isolate its initiating cause. Training
 continues toward the authorized limit, with the next full validation at 576.
 See the [progress snapshot and diagnostics](results/epoch-progress-20261016.json).
 
@@ -128,6 +131,207 @@ standalone evaluator score original API content. Adapter v3 scores that original
 content consistently; all 470 retained smoke responses passed replay through the
 corrected installed environment. See `results/adapter-v3-replay.json` for the
 single correction and `runs.json` for run IDs and durable result locations.
+
+## Regression audit
+
+The October 16 audit covers native validation at steps 320, 384, 448 and 512,
+and every training update from 321 through 565 of the resumed run. **The leading
+explanation is unstable RL optimization that increasingly concentrates the policy
+on poor answers.** A growing disagreement between training and rollout
+probabilities is left uncorrected, while the configured PPO clip provides no
+active constraint in this single-pass setup. This is a concrete recipe weakness,
+not a proven unique cause: the same settings supported the earlier gains.
+The running job's recipe has not been changed by this investigation.
+
+![Regression evidence](results/epoch-regression-evidence.png)
+
+Validation falls from **616/1,003 at step 384 to 334/1,003 at step 512**, a loss
+of 28.12 percentage points. There are 312 previously correct answers lost and
+30 newly correct answers. Of the losses, **217 become well-formed but wrong**
+and 95 become format errors. All 20 validation source groups decline. The paired
+source-group bootstrap interval is −33.1 to −24.1 points; it measures source
+composition uncertainty, not training-seed variation, serving variation, or
+the effect of choosing the best checkpoint on this validation set.
+
+| Family | Step 384 | Step 512 |
+| --- | ---: | ---: |
+| Atom distance (G01) | 100/110 (90.9%) | 16/110 (14.5%) |
+| Nearest residue (G03) | 78/108 (72.2%) | 12/108 (11.1%) |
+| Coordinate extraction (P03) | 114/118 (96.6%) | 74/118 (62.7%) |
+| Side-chain rotamer (S09) | 85/116 (73.3%) | 17/116 (14.7%) |
+
+All 54 valid step-512 rotamer answers predict `t`; the other 62 are format
+errors. G01 has zero format errors at 512, so formatting cannot explain its
+collapse. Mean validation output length falls from 5,220 to 1,400 tokens, while
+truncations fall from 127 to 3. Shorter output accompanies degraded reasoning;
+the model is not simply running out of context more often.
+
+For example, `pdbthink-g01-02584679d3817e062c91` asks for the distance between
+`(-0.792, -17.922, -10.053)` and `(2.386, 0.974, -7.489)`. At step 384, the
+model computes the three correct differences and answers 19.33 Å (gold 19.332).
+At step 512, it extracts both coordinates correctly, but substitutes
+`sqrt((-0.792 - (-17.922))² + (-10.053 - (-7.489))²)` for the distance formula:
+it mixes axes, omits a dimension, and answers 17.32. This example is the first
+lost G01 task in sorted task-ID order. The audit JSON includes complete paired
+responses for the first lost task in each of G01, G03, P03 and S09.
+
+### What the checks rule out
+
+All **4,012 validation responses** replay exactly through the frozen native
+verifier, including aggregate format/truncation rates and token counts. All
+four evaluations use identical task IDs, prompts, input token counts and gold
+answers. The replay uses the archived original API assistant content; the
+decoded-token display in eval dumps is not the verifier's input. An independent
+coordinate calculation agrees with all 336 G01/G03/P03 gold answers.
+
+All **31,360 training responses from 7,840 distinct prompts** also replay exactly.
+The audit verifies prompt hashes, input token counts, family/source metadata,
+gold answers, unshaped versus shaped reward, and model-version provenance.
+There are no recorded generation exceptions, stale policy versions, archive
+publication timeouts, skipped updates or token-alignment failures in the audited
+interval. SHA-256 checks pass for every one of the 7,844 native archives.
+This rules out a changed verifier, changed validation cohort, corrupted prompts,
+or an explicit length penalty as the observed explanation. It does not rule
+out implicit length effects from the learning objective.
+
+Training performance declines too. Holding family proportions fixed to their
+pooled mix at steps 321–448 gives success rates of **60.8% at 385–448, 58.6% at
+449–480, 45.0% at 481–512, and 37.2% at 513–565**. Families absent from at least
+one window (I01/S06) are excluded and weights renormalized, retaining 99.85% of
+reference responses. This controls family composition but not within-family
+difficulty. The evidence is inconsistent with a purely held-out overfitting
+explanation or a simple shift toward harder task families.
+
+### The optimization mechanism
+
+![Regression diagnostics](results/epoch-regression-diagnostics.png)
+
+The resolved recipe uses GRPO, `policy_loss_type=regular`, one optimizer pass
+per batch, a constant learning rate of `1e-6`, and token-mean loss reduction.
+MarinSkyRL recomputes `action_log_probs` with the current training policy just
+before updating ([trainer, pinned source](https://github.com/marin-community/MarinSkyRL/blob/5663f6129f53bb6aaa09549fa6cb423571503e94/skyrl-train/skyrl_train/trainer.py#L2639)).
+The Megatron worker supplies these as `old_action_log_probs`
+([worker](https://github.com/marin-community/MarinSkyRL/blob/5663f6129f53bb6aaa09549fa6cb423571503e94/skyrl-train/skyrl_train/workers/megatron/megatron_worker.py#L585)).
+The regular objective clips `exp(new_log_probs - old_log_probs)`
+([loss](https://github.com/marin-community/MarinSkyRL/blob/5663f6129f53bb6aaa09549fa6cb423571503e94/skyrl-train/skyrl_train/objective/losses.py#L90)).
+With one pass and no preceding update, this ratio is one: all 245 audited updates
+report exact-unit fraction 1 and PPO clip fraction 0. This is expected for a
+single-pass on-policy update; it is not itself evidence of a clipping-code bug.
+The configured ±0.2 clip does not bound the change made by the optimizer step.
+Gradient-norm clipping at 1.0 remains active and is a different constraint.
+
+The recipe also disables reference KL in both loss and reward, entropy loss,
+and off-policy correction. Positive coefficients in the resolved defaults do
+not enable those losses. The logged `generate/tis/*` exact-match metrics refer
+to token transport/alignment, not an enabled importance-weight correction.
+
+From steps 321–384 to 545–565, mean token entropy drops **0.141 → 0.053**,
+raw gradient norm rises **0.197 → 1.122**, and sampled-token training/rollout
+`kl_k3` mismatch rises **0.0078 → 0.1061**. The ratio ESS fraction falls
+**96.3% → 36.2%**. Entropy and probability-ratio diagnostics deteriorate before
+the sharp training-score drop. The mismatch compares Megatron probabilities
+with vLLM rollout probabilities; it is **not** KL to original Snowball. ESS here
+describes concentration of token probability ratios, not independent task count.
+Version staleness is zero throughout; numerical/backend or weight-transfer
+differences can still exist at the same nominal policy version.
+
+Taken together, these support a feedback loop of increasingly concentrated
+outputs and poorly constrained updates, potentially amplified by uncorrected
+training/rollout mismatch. They do **not** establish whether learning rate,
+loss normalization, MoE/backend numerics, weight synchronization, or their
+interaction initiated it. Train/eval parity and expert-block sync verification
+were disabled, so silent numerical or transport faults are not conclusively
+excluded. Reduced response length may be a symptom and/or part of the feedback.
+
+The next discriminating experiment is a fresh restore of the saved step-384
+and step-512 policies with weight-sync/parity checks, followed by a matched
+continuation from 384 comparing the current recipe with one targeted change.
+Native `behavior_clip` is a concrete candidate: it clips against the probabilities
+that actually generated the tokens and is already implemented in this pinned
+fork. It must not be combined with a separate TIS multiplier. A separate
+lower-learning-rate control would distinguish step size from that correction.
+The fork's [behavior-clipping debug note](https://github.com/marin-community/MarinSkyRL/blob/5663f6129f53bb6aaa09549fa6cb423571503e94/docs/debug-log-behavior-referenced-clipping.md)
+describes an asynchronous stale-policy failure; this synchronous run has zero
+version staleness, so the analogy is the loss reference, not proof of the same
+failure. None of these interventions has yet been tested on Snowball.
+
+Step 384 remains the highest-scoring saved checkpoint and has been verified
+complete. Final checkpoint selection and the reserved paired test still follow
+the protocol above. The pilot's separately matched test improvement remains
+valid; this regression shows that longer training with the present recipe does
+not reliably preserve those gains.
+
+### Reproduce the audit and plots
+
+[Audit data](results/epoch-regression-audit.json) contains per-step metrics,
+family-adjusted windows, paired examples, the resolved recipe, and evidence
+hashes. Vector figures: [validation and answer changes](results/epoch-regression-evidence.pdf),
+[training diagnostics](results/epoch-regression-diagnostics.pdf).
+The figures render from committed JSON without GPUs, raw responses, or credentials:
+
+```bash
+python experiments/001-pdbthink-coordinate/plot_regression.py
+```
+
+The plotting environment needs Matplotlib and NumPy (rendered with 3.9.3 and
+1.26.4). The full replay uses prepared artifact v3 and evidence under
+`runs/001/regression-audit`. The complete frozen evidence is preserved in a
+**1.28 GB bundle in the permanent CoreWeave export prefix**, including all 7,844
+native archives, raw eval dumps, recovered original API responses, W&B history,
+and download/hash manifests. Its [bundle manifest](results/epoch-regression-evidence-bundle.json)
+records the URI, exact length and SHA-256. To recover it, run the following Python
+inside `coreweave.py` with the existing task credentials, then extract the tar
+into `runs/001/regression-audit`:
+
+```python
+import hashlib
+import json
+import os
+from pathlib import Path
+
+import boto3
+from botocore.config import Config
+
+manifest = json.loads(Path(
+    "experiments/001-pdbthink-coordinate/results/epoch-regression-evidence-bundle.json"
+).read_text())
+bucket, key = manifest["uri"].removeprefix("s3://").split("/", 1)
+target = Path("runs/001/regression-audit-evidence-through565.tar")
+target.parent.mkdir(parents=True, exist_ok=True)
+client = boto3.client("s3", endpoint_url=os.environ["AWS_ENDPOINT_URL"],
+                      config=Config(s3={"addressing_style": "virtual"}))
+client.download_file(bucket, key, str(target))
+assert target.stat().st_size == manifest["bytes"]
+with target.open("rb") as stream:
+    assert hashlib.file_digest(stream, "sha256").hexdigest() == manifest["sha256"]
+```
+
+The original archives live under the resumed run's
+`attempts/trajectories/schema_v5/archives` in the temporary S3 prefix recorded
+in `epoch-resume-launch.yaml`; eval display dumps live under the permanent export
+root. To collect again from the original archives, the read-only commands below
+use the native retention ledger included in the bundle. The final analysis
+command runs directly against the extracted bundle:
+
+```bash
+export PYTHONPATH=experiments/001-pdbthink-coordinate
+# Run these collectors inside coreweave.py to supply existing S3 credentials.
+.venv/bin/python -m snowball_pdbthink.regression_audit collect-training \
+  --evidence runs/001/regression-audit --prepared data/pdbthink-001-v3 \
+  --retention-root "$RETENTION_ROOT" --max-step 565
+.venv/bin/python -m snowball_pdbthink.regression_audit collect-evals \
+  --evidence runs/001/regression-audit --prepared data/pdbthink-001-v3 \
+  --retention-root "$RETENTION_ROOT"
+.venv/bin/python -m snowball_pdbthink.regression_audit analyze \
+  --evidence runs/001/regression-audit --prepared data/pdbthink-001-v3 \
+  --config experiments/001-pdbthink-coordinate/results/epoch-resume-resolved-launch.json \
+  --output experiments/001-pdbthink-coordinate/results/epoch-regression-audit.json
+```
+
+The analyzer uses the W&B history snapshot and eval-dump download manifest;
+their hashes are recorded in the audit JSON. Analysis is frozen at update 565 and validation 512;
+later training observations are outside these figures. The audit does not
+generate new answers or use the reserved test split.
 
 ## Frozen inputs
 

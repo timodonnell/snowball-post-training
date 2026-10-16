@@ -1,0 +1,20 @@
+{
+  "created_at": "2026-10-16T16:13:26.605141+00:00",
+  "uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.15.1/exports/analysis/regression-through565-cb8cf1f493c6cbd7.tar",
+  "bytes": 1277900800,
+  "sha256": "cb8cf1f493c6cbd757e5b7dc6acdf19e9f6ccd2f1783c1e1c1a0bf5062a141b8",
+  "training_steps": [
+    321,
+    565
+  ],
+  "validation_steps": [
+    320,
+    384,
+    448,
+    512
+  ],
+  "training_archives": 7840,
+  "evaluation_archives": 4,
+  "contents": "Native archives, recovered API responses, eval dumps, training-history snapshot, retention ledger, replayed training records, download/hash manifests. Extract into runs/001/regression-audit.",
+  "remote_check": "S3 HEAD byte length and stored SHA-256 metadata match local bundle; each native archive content hash verified before bundling."
+}
