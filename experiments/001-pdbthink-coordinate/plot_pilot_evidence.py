@@ -154,7 +154,7 @@ def plot(data, output):
     fig.text(0.20, 0.045,
              "Evidence: 1,003 paired validation tasks from 20 held-out source groups; 19/20 groups improved.\n"
              "All 2,006 scores replay exactly. Approximate 95% interval: 50,000 paired group resamples (seed 17).\n"
-             "One RL run; no seed-replication interval. Separate paired test was incomplete at this analysis.",
+             "One RL run; no seed-replication interval. See the paired-test comparison for the separate 1,370-task result.",
              fontsize=10, linespacing=1.5, color="#596979")
     output.parent.mkdir(parents=True, exist_ok=True)
     for suffix in (".png", ".pdf"):

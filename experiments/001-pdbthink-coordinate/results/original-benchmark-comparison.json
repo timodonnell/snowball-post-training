@@ -1,0 +1,5300 @@
+{
+  "n": 40,
+  "total_benchmark": 88,
+  "excluded": 48,
+  "dataset_fingerprint": "dee3923c6a5f4996a02a5e42f3cc1ac31ca15b249763470fe10916e7b65a1bfc",
+  "selection": {
+    "selected_at": "2026-10-16T16:52:19.400251+00:00",
+    "rule": "Highest complete native full-validation task-weighted accuracy available at selection; ties by family macro, then earlier step",
+    "scope": "Best available checkpoint; training has not finished. Original benchmark outcomes are not used for selection.",
+    "selected": {
+      "step": 384,
+      "tasks": 1003,
+      "task_weighted_accuracy": 0.6141575274177468,
+      "family_macro_accuracy": 0.5309688774188475,
+      "family_accuracy": {
+        "G01": 0.9090909090909091,
+        "G02": 0.03333333333333333,
+        "G03": 0.7222222222222222,
+        "G04": 0.0,
+        "N01": 0.0,
+        "P01": 1.0,
+        "P02": 0.6956521739130435,
+        "P03": 0.9661016949152542,
+        "S01": 0.28,
+        "S02": 0.0,
+        "S03": 0.8151260504201681,
+        "S04": 0.6126126126126126,
+        "S05": 0.6666666666666666,
+        "S09": 0.7327586206896551
+      }
+    },
+    "validation_snapshot": {
+      "state": "training",
+      "updated_at": "2026-10-16T16:52:04.174239+00:00",
+      "terminal_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.15.1/terminal.json",
+      "coordinator": "/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6",
+      "training_job": "/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d",
+      "training_state": "running",
+      "wandb_run": "timodonnell/snowball-pdbthink/e2s5w3qn",
+      "validation": [
+        {
+          "step": 320,
+          "tasks": 1003,
+          "task_weighted_accuracy": 0.5782652043868395,
+          "family_macro_accuracy": 0.5035287361289666,
+          "family_accuracy": {
+            "G01": 0.9272727272727272,
+            "G02": 0.041666666666666664,
+            "G03": 0.6851851851851852,
+            "G04": 0.0,
+            "N01": 0.0,
+            "P01": 1.0,
+            "P02": 0.782608695652174,
+            "P03": 0.9576271186440678,
+            "S01": 0.16,
+            "S02": 0.0,
+            "S03": 0.7983193277310925,
+            "S04": 0.6306306306306306,
+            "S05": 0.5833333333333334,
+            "S09": 0.4827586206896552
+          }
+        },
+        {
+          "step": 384,
+          "tasks": 1003,
+          "task_weighted_accuracy": 0.6141575274177468,
+          "family_macro_accuracy": 0.5309688774188475,
+          "family_accuracy": {
+            "G01": 0.9090909090909091,
+            "G02": 0.03333333333333333,
+            "G03": 0.7222222222222222,
+            "G04": 0.0,
+            "N01": 0.0,
+            "P01": 1.0,
+            "P02": 0.6956521739130435,
+            "P03": 0.9661016949152542,
+            "S01": 0.28,
+            "S02": 0.0,
+            "S03": 0.8151260504201681,
+            "S04": 0.6126126126126126,
+            "S05": 0.6666666666666666,
+            "S09": 0.7327586206896551
+          }
+        },
+        {
+          "step": 448,
+          "tasks": 1003,
+          "task_weighted_accuracy": 0.5892323030907278,
+          "family_macro_accuracy": 0.48281573171165376,
+          "family_accuracy": {
+            "G01": 0.8363636363636363,
+            "G02": 0.13333333333333333,
+            "G03": 0.6203703703703703,
+            "G04": 0.0,
+            "N01": 0.0,
+            "P01": 1.0,
+            "P02": 0.4782608695652174,
+            "P03": 0.8559322033898306,
+            "S01": 0.06,
+            "S02": 0.0,
+            "S03": 0.7899159663865546,
+            "S04": 0.6576576576576577,
+            "S05": 0.5,
+            "S09": 0.8275862068965517
+          }
+        },
+        {
+          "step": 512,
+          "tasks": 1003,
+          "task_weighted_accuracy": 0.33300099700897307,
+          "family_macro_accuracy": 0.3375653981085705,
+          "family_accuracy": {
+            "G01": 0.14545454545454545,
+            "G02": 0.03333333333333333,
+            "G03": 0.1111111111111111,
+            "G04": 0.0,
+            "N01": 0.0,
+            "P01": 1.0,
+            "P02": 0.4782608695652174,
+            "P03": 0.6271186440677966,
+            "S01": 0.0,
+            "S02": 0.2222222222222222,
+            "S03": 0.7478991596638656,
+            "S04": 0.6306306306306306,
+            "S05": 0.5833333333333334,
+            "S09": 0.14655172413793102
+          }
+        },
+        {
+          "step": 576,
+          "tasks": 1003,
+          "task_weighted_accuracy": 0.3968095712861416,
+          "family_macro_accuracy": 0.34055472288500355,
+          "family_accuracy": {
+            "G01": 0.7272727272727273,
+            "G02": 0.0,
+            "G03": 0.12037037037037036,
+            "G04": 0.0,
+            "N01": 0.0,
+            "P01": 0.96875,
+            "P02": 0.17391304347826086,
+            "P03": 0.8220338983050848,
+            "S01": 0.02,
+            "S02": 0.0,
+            "S03": 0.7310924369747899,
+            "S04": 0.5405405405405406,
+            "S05": 0.5,
+            "S09": 0.16379310344827586
+          }
+        }
+      ],
+      "best_validation": {
+        "step": 384,
+        "tasks": 1003,
+        "task_weighted_accuracy": 0.6141575274177468,
+        "family_macro_accuracy": 0.5309688774188475,
+        "family_accuracy": {
+          "G01": 0.9090909090909091,
+          "G02": 0.03333333333333333,
+          "G03": 0.7222222222222222,
+          "G04": 0.0,
+          "N01": 0.0,
+          "P01": 1.0,
+          "P02": 0.6956521739130435,
+          "P03": 0.9661016949152542,
+          "S01": 0.28,
+          "S02": 0.0,
+          "S03": 0.8151260504201681,
+          "S04": 0.6126126126126126,
+          "S05": 0.6666666666666666,
+          "S09": 0.7327586206896551
+        }
+      }
+    },
+    "resolved_sha256": "97a453875e943fc51ea48c7318d77cb5719e79a8f6b9b698c5ab257bfcf2ffd3"
+  },
+  "contracts": {
+    "baseline": {
+      "model_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+      "plan_sha256": "ba21582a72b80ad77f66c06c4d3c26122950bbefcebb7667bba0506fab510901",
+      "concurrency": 4,
+      "server": "serve_evaluation.submit_server",
+      "gpus": "4 CoreWeave GB200",
+      "cluster": "cw-us-east-08a",
+      "sampling": "Frozen clean-coordinate-v4 requests; one completion, seed 20260929, temperature 0.6"
+    },
+    "trained": {
+      "model_uri": "s3://marin-us-east-02a/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.15.1/exports/global_step_384/policy",
+      "plan_sha256": "ba21582a72b80ad77f66c06c4d3c26122950bbefcebb7667bba0506fab510901",
+      "concurrency": 4,
+      "server": "serve_evaluation.submit_server",
+      "gpus": "4 CoreWeave GB200",
+      "cluster": "cw-us-east-08a",
+      "sampling": "Frozen clean-coordinate-v4 requests; one completion, seed 20260929, temperature 0.6"
+    }
+  },
+  "source_groups": 28,
+  "results": [
+    {
+      "render_id": "G01-fb_7t9r-c7993bcf::minimal_pdb::89332432",
+      "family": "G01",
+      "protein_group_id": "fb_7t9r",
+      "prompt_tokens": 14693,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "8.22",
+            "fields": {},
+            "value": 8.22,
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "absolute_error": 0.592,
+            "tolerance": 0.02,
+            "predicted": 8.22,
+            "gold": 8.812
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 14693,
+          "total_tokens": 16395,
+          "completion_tokens": 1702,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "98997015c844d3917502133188a9e0947fd62ba660aaf45e63fa58b91da1f389"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "8.81",
+            "fields": {},
+            "value": 8.81,
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "absolute_error": 0.002,
+            "tolerance": 0.02,
+            "predicted": 8.81,
+            "gold": 8.812
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "8.81",
+            "fields": {},
+            "value": 8.81,
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "absolute_error": 0.002,
+            "tolerance": 0.02,
+            "predicted": 8.81,
+            "gold": 8.812
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 14693,
+          "total_tokens": 18121,
+          "completion_tokens": 3428,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "77941ba814713de4c8109cbc1ed35be0e47cc081e0947b6e2f5be8ff301edcd6"
+      }
+    },
+    {
+      "render_id": "G02-fb_7v3o-3098d134::minimal_pdb::25938054",
+      "family": "G02",
+      "protein_group_id": "fb_7v3o",
+      "prompt_tokens": 25985,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 25985,
+          "total_tokens": 32768,
+          "completion_tokens": 6783,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "68415aaac533d4b914a4893b4cd57e1b83560dd2c726535a34cba71d59ff231d"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 25985,
+          "total_tokens": 32768,
+          "completion_tokens": 6783,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "bea1d92ccf461900b8fcf7746333108ef6a9ca1e6325536c340a5ad75730712c"
+      }
+    },
+    {
+      "render_id": "G02-fb_8k3b-efebcbc0::minimal_pdb::29684582",
+      "family": "G02",
+      "protein_group_id": "fb_8k3b",
+      "prompt_tokens": 22440,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:ASP28:OD1",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not an atom identifier: 'A:ASP28:OD1'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not an atom identifier: 'A:ASP28:OD1'"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:ASP28:OD1",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not an atom identifier: 'A:ASP28:OD1'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not an atom identifier: 'A:ASP28:OD1'"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 22440,
+          "total_tokens": 27150,
+          "completion_tokens": 4710,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "ef39bf4ccf5c3cdb634fa3de00a69b3b6a38fd896f1c1d191a0ef11636c5feca"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "B:R271:CA",
+            "fields": {},
+            "value": "B:R271:CA",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "B:R271:CA",
+            "gold": "B:R271:CB"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "B:R271:CA",
+            "fields": {},
+            "value": "B:R271:CA",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "B:R271:CA",
+            "gold": "B:R271:CB"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 22440,
+          "total_tokens": 30736,
+          "completion_tokens": 8296,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "b8d5c7470cd73ccdda08389dd19588563b2e52119b865e531cd862dac2c192cd"
+      }
+    },
+    {
+      "render_id": "G02-plastocyanin-dd41895f::minimal_pdb::56077901",
+      "family": "G02",
+      "protein_group_id": "plastocyanin",
+      "prompt_tokens": 30167,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 30167,
+          "total_tokens": 32768,
+          "completion_tokens": 2601,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "1407d7cca79653c8b6ce3f379d7942569ee12f976bedda536b341b26201ff5b7"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 30167,
+          "total_tokens": 32768,
+          "completion_tokens": 2601,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "766747ffe64d7ed7f42e21ba6fc77da7414945bb638fc773c99ebcbe367031b4"
+      }
+    },
+    {
+      "render_id": "G03-fb_7t9r-c27105b2::minimal_pdb::41461733",
+      "family": "G03",
+      "protein_group_id": "fb_7t9r",
+      "prompt_tokens": 14709,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:C29",
+            "fields": {},
+            "value": "A:C29",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "A:C29",
+            "gold": "A:K38"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 14709,
+          "total_tokens": 16387,
+          "completion_tokens": 1678,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "5d25f755a4f35bca0f53df70d276226820f6aebc55a61342b624b6f53b40e03a"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:K38",
+            "fields": {},
+            "value": "A:K38",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "A:K38",
+            "gold": "A:K38"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:K38",
+            "fields": {},
+            "value": "A:K38",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "A:K38",
+            "gold": "A:K38"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 14709,
+          "total_tokens": 18324,
+          "completion_tokens": 3615,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "f99ba696f6072f8b68efa642130423120f385b28c03f67b7ba4b92a40984f06d"
+      }
+    },
+    {
+      "render_id": "G04-v2_2dlb_1-2080f98f::minimal_pdb::54609214",
+      "family": "G04",
+      "protein_group_id": "v2_2dlb_1",
+      "prompt_tokens": 21773,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "LEU2004--LEU2005",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'LEU2004'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'LEU2004'"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 21773,
+          "total_tokens": 27646,
+          "completion_tokens": 5873,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "e389f8a290dc8b172e3f06b189caa7e0294c1d815257b359feb63218c8bcb7fd"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21773,
+          "total_tokens": 32768,
+          "completion_tokens": 10995,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "9695acc24717bffbb59f2cd90c658715912fd69e1d8933d77ec7aecd061915fd"
+      }
+    },
+    {
+      "render_id": "G04-v2_2gf4_1-1be73820::minimal_pdb::90800991",
+      "family": "G04",
+      "protein_group_id": "v2_2gf4_1",
+      "prompt_tokens": 28644,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 28644,
+          "total_tokens": 32768,
+          "completion_tokens": 4124,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "20433c77d032fdd8ac4d1eca6594d37fa997b6f09317b7db2ee5a564e71bc773"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 28644,
+          "total_tokens": 32768,
+          "completion_tokens": 4124,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "8ecc558a978df936f57913d6da975cea4ef503e216ad7ac3b48f698a5106ff82"
+      }
+    },
+    {
+      "render_id": "G04-v2_4lws_1-769d0511::minimal_pdb::33927848",
+      "family": "G04",
+      "protein_group_id": "v2_4lws_1",
+      "prompt_tokens": 26570,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 26570,
+          "total_tokens": 32768,
+          "completion_tokens": 6198,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "5121cb3fc5bd8fdf0321e225b79e8cdf1885b6d2334c889d61dae53b17dbc146"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 26570,
+          "total_tokens": 32768,
+          "completion_tokens": 6198,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "0698bc4cfc6f3e0b3e639a23b1d81860d95a2e8a4f980a61980f5d9e548a87e6"
+      }
+    },
+    {
+      "render_id": "G04-v2_7des_1-a4e98648::minimal_pdb::57065584",
+      "family": "G04",
+      "protein_group_id": "v2_7des_1",
+      "prompt_tokens": 30190,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "PHE6--GLU7",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'PHE6'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'PHE6'"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 30190,
+          "total_tokens": 31146,
+          "completion_tokens": 956,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "b4d9ccde86b827fe516abab649bf1dfb324c5dcf7fdc95101172d1e7b8cd4427"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 30190,
+          "total_tokens": 32768,
+          "completion_tokens": 2578,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "c7a2e61cad4afb3afad88a609b51bef4368b41dd584ab5fe2db270ba68f0e5c8"
+      }
+    },
+    {
+      "render_id": "I01-v2_2xvc_1_assembly1-0961c27a::minimal_pdb::76446947",
+      "family": "I01",
+      "protein_group_id": "v2_2xvc_1_assembly1",
+      "prompt_tokens": 22350,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "I think that's acceptable",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: \"I think that's acceptable\""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: \"I think that's acceptable\""
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "FINAL field is empty"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "FINAL field is empty"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 22350,
+          "total_tokens": 23540,
+          "completion_tokens": 1190,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "da40903668cd426f064b81c6178d6822a4b7456c0f30146073cf770cb7ad4729"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 22350,
+          "total_tokens": 32768,
+          "completion_tokens": 10418,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "9620f495e26bf319268a3a0b09105452ab092a48683b4e79d8b40b96c262ed9a"
+      }
+    },
+    {
+      "render_id": "N01-fb_8jdx-d5bcead5::minimal_pdb::35549019",
+      "family": "N01",
+      "protein_group_id": "fb_8jdx",
+      "prompt_tokens": 29372,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:465",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'A:465'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'A:465'"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 29372,
+          "total_tokens": 30693,
+          "completion_tokens": 1321,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "b8a83d7f280b3de84b5f64ac918db0f093d00f392831eb539c0563d8932a104c"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 29372,
+          "total_tokens": 32768,
+          "completion_tokens": 3396,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "b6320e212eb3e4057d8e2c279cb30e9c22f0d38aaf6946bdf41209d913dffc71"
+      }
+    },
+    {
+      "render_id": "P01-fb_8zmm-763fe080::minimal_pdb::64126910",
+      "family": "P01",
+      "protein_group_id": "fb_8zmm",
+      "prompt_tokens": 21513,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B, C",
+            "fields": {},
+            "value": [
+              "A",
+              "B",
+              "C"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 3,
+            "n_predicted": 3,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B",
+              "C"
+            ],
+            "gold": [
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B, C",
+            "fields": {},
+            "value": [
+              "A",
+              "B",
+              "C"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 3,
+            "n_predicted": 3,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B",
+              "C"
+            ],
+            "gold": [
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21513,
+          "total_tokens": 21574,
+          "completion_tokens": 61,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "6a2d80cf7f7d80cb7384d56db9527e189f5e5643d6245ff44401361ba4f50145"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B, C",
+            "fields": {},
+            "value": [
+              "A",
+              "B",
+              "C"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 3,
+            "n_predicted": 3,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B",
+              "C"
+            ],
+            "gold": [
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B, C",
+            "fields": {},
+            "value": [
+              "A",
+              "B",
+              "C"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 3,
+            "n_predicted": 3,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B",
+              "C"
+            ],
+            "gold": [
+              "A",
+              "B",
+              "C"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21513,
+          "total_tokens": 22002,
+          "completion_tokens": 489,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "03987412325ce2a9d1eb9ca4aad3e6a2acf9259966f58628c3ea30b5e0507a21"
+      }
+    },
+    {
+      "render_id": "P01-insulin-8edee5ea::minimal_pdb::66210121",
+      "family": "P01",
+      "protein_group_id": "insulin",
+      "prompt_tokens": 16710,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B",
+            "fields": {},
+            "value": [
+              "A",
+              "B"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 2,
+            "n_predicted": 2,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B"
+            ],
+            "gold": [
+              "A",
+              "B"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B",
+            "fields": {},
+            "value": [
+              "A",
+              "B"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 2,
+            "n_predicted": 2,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B"
+            ],
+            "gold": [
+              "A",
+              "B"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 16710,
+          "total_tokens": 16766,
+          "completion_tokens": 56,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "41d2d2e79ca18364c8e7962a50f86856e8b6b2b978af123906a67ed57c74bec1"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B",
+            "fields": {},
+            "value": [
+              "A",
+              "B"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 2,
+            "n_predicted": 2,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B"
+            ],
+            "gold": [
+              "A",
+              "B"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B",
+            "fields": {},
+            "value": [
+              "A",
+              "B"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 2,
+            "n_predicted": 2,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B"
+            ],
+            "gold": [
+              "A",
+              "B"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 16710,
+          "total_tokens": 17847,
+          "completion_tokens": 1137,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "93d0e04eccf9e096a14105adf34ff777abc5a11ce0d7ca163b90262f8c1b1b7a"
+      }
+    },
+    {
+      "render_id": "P01-leucine_zipper-dc24b069::minimal_pdb::24551246",
+      "family": "P01",
+      "protein_group_id": "leucine_zipper",
+      "prompt_tokens": 21590,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B",
+            "fields": {},
+            "value": [
+              "A",
+              "B"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 2,
+            "n_predicted": 2,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B"
+            ],
+            "gold": [
+              "A",
+              "B"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 21590,
+          "total_tokens": 21671,
+          "completion_tokens": 81,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "e8fb9790c28b1b47f80038c5099b847f6a7b981780cdba465ed49af32893d4b7"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B",
+            "fields": {},
+            "value": [
+              "A",
+              "B"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 2,
+            "n_predicted": 2,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B"
+            ],
+            "gold": [
+              "A",
+              "B"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A, B",
+            "fields": {},
+            "value": [
+              "A",
+              "B"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "f1": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "exact_set": 1.0,
+            "correct": true,
+            "n_gold": 2,
+            "n_predicted": 2,
+            "missing": [],
+            "spurious": [],
+            "predicted": [
+              "A",
+              "B"
+            ],
+            "gold": [
+              "A",
+              "B"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21590,
+          "total_tokens": 22667,
+          "completion_tokens": 1077,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "70df91f284f6188b741506ee2e05e6910997e010acd0afbf163734d8b3c447dc"
+      }
+    },
+    {
+      "render_id": "P02-crambin-5f487424::minimal_pdb::65490789",
+      "family": "P02",
+      "protein_group_id": "crambin",
+      "prompt_tokens": 13479,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "46",
+            "fields": {},
+            "value": 46,
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": 46,
+            "gold": 46
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "46",
+            "fields": {},
+            "value": 46,
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": 46,
+            "gold": 46
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 13479,
+          "total_tokens": 13988,
+          "completion_tokens": 509,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "755359e8ce5be9f2b87cca93f4427ce5b763b01950ed15c0d8748bf6d27f7937"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "46",
+            "fields": {},
+            "value": 46,
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": 46,
+            "gold": 46
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "46",
+            "fields": {},
+            "value": 46,
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": 46,
+            "gold": 46
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 13479,
+          "total_tokens": 15195,
+          "completion_tokens": 1716,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "2663b7767a42c1393b9fec90c5687adf0504d818b82c7270b71646b2f79e4bb4"
+      }
+    },
+    {
+      "render_id": "P03-crambin-e64aa612::minimal_pdb::6375552",
+      "family": "P03",
+      "protein_group_id": "crambin",
+      "prompt_tokens": 13526,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "-6.096, -4.202, 1.441",
+            "fields": {},
+            "value": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "component_errors": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "components_within_tolerance": 3,
+            "tolerance": 0.001,
+            "predicted": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "gold": [
+              -6.096,
+              -4.202,
+              1.441
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "-6.096, -4.202, 1.441",
+            "fields": {},
+            "value": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "component_errors": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "components_within_tolerance": 3,
+            "tolerance": 0.001,
+            "predicted": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "gold": [
+              -6.096,
+              -4.202,
+              1.441
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 13526,
+          "total_tokens": 15000,
+          "completion_tokens": 1474,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "6c7a4b97739f506f7b9c8c9aecf8d7815e037f3403db16377e683311558f71a3"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "-6.096, -4.202, 1.441",
+            "fields": {},
+            "value": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "component_errors": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "components_within_tolerance": 3,
+            "tolerance": 0.001,
+            "predicted": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "gold": [
+              -6.096,
+              -4.202,
+              1.441
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "-6.096, -4.202, 1.441",
+            "fields": {},
+            "value": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "component_errors": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "components_within_tolerance": 3,
+            "tolerance": 0.001,
+            "predicted": [
+              -6.096,
+              -4.202,
+              1.441
+            ],
+            "gold": [
+              -6.096,
+              -4.202,
+              1.441
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 13526,
+          "total_tokens": 14169,
+          "completion_tokens": 643,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "5ec5cc752c21507ba5b18ba158f2eb3463ee6f69750e3aa849edd9312865ba75"
+      }
+    },
+    {
+      "render_id": "P03-fb_7t9r-8598ff4d::minimal_pdb::72659671",
+      "family": "P03",
+      "protein_group_id": "fb_7t9r",
+      "prompt_tokens": 14694,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "-3.357, -6.581, 8.602",
+            "fields": {},
+            "value": [
+              -3.357,
+              -6.581,
+              8.602
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "component_errors": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "components_within_tolerance": 3,
+            "tolerance": 0.001,
+            "predicted": [
+              -3.357,
+              -6.581,
+              8.602
+            ],
+            "gold": [
+              -3.357,
+              -6.581,
+              8.602
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 14694,
+          "total_tokens": 19003,
+          "completion_tokens": 4309,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "0b0c4645fc6ca9149ac5999501b6983f4a38aba46b73fa43c34770defd94dd85"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "-3.357, -6.581, 8.602",
+            "fields": {},
+            "value": [
+              -3.357,
+              -6.581,
+              8.602
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "component_errors": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "components_within_tolerance": 3,
+            "tolerance": 0.001,
+            "predicted": [
+              -3.357,
+              -6.581,
+              8.602
+            ],
+            "gold": [
+              -3.357,
+              -6.581,
+              8.602
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "-3.357, -6.581, 8.602",
+            "fields": {},
+            "value": [
+              -3.357,
+              -6.581,
+              8.602
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "component_errors": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "components_within_tolerance": 3,
+            "tolerance": 0.001,
+            "predicted": [
+              -3.357,
+              -6.581,
+              8.602
+            ],
+            "gold": [
+              -3.357,
+              -6.581,
+              8.602
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 14694,
+          "total_tokens": 15788,
+          "completion_tokens": 1094,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "7d1f435b243aea97656c337f72813695eb67042b384e4e012cea79a97abe4a22"
+      }
+    },
+    {
+      "render_id": "S01-fb_7v3o-a9fd902f::minimal_pdb::93561383",
+      "family": "S01",
+      "protein_group_id": "fb_7v3o",
+      "prompt_tokens": 15740,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 15740,
+          "total_tokens": 32768,
+          "completion_tokens": 17028,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "e83d58817798d1bae3e6617a1a84d712baf2b1b40b77b5c1df0b4d1efe85b688"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:Asp32",
+            "fields": {},
+            "value": "A:ASP32",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "A:ASP32",
+            "gold": "A:D32",
+            "truncated": true
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:Asp32",
+            "fields": {},
+            "value": "A:ASP32",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "A:ASP32",
+            "gold": "A:D32",
+            "truncated": true
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 15740,
+          "total_tokens": 32768,
+          "completion_tokens": 17028,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "f11b3b3f4c72aef70f77c5d3a5d62bf11770f71fcc63619c6132c08fd761def5"
+      }
+    },
+    {
+      "render_id": "S01-fb_8k3b-20152ce1::minimal_pdb::38297471",
+      "family": "S01",
+      "protein_group_id": "fb_8k3b",
+      "prompt_tokens": 31211,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 31211,
+          "total_tokens": 32768,
+          "completion_tokens": 1557,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "f43822d55cdbfb5ba3432605fd800c51f25a2d86215a6b801e1f5a5e873de4c8"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 31211,
+          "total_tokens": 32768,
+          "completion_tokens": 1557,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "c8adbb3fccaa6f28e238feee55ce3b1941e3b362c99bc82e2efff7e09c0401d2"
+      }
+    },
+    {
+      "render_id": "S01-plastocyanin-2ddad07b::minimal_pdb::54057568",
+      "family": "S01",
+      "protein_group_id": "plastocyanin",
+      "prompt_tokens": 30220,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 30220,
+          "total_tokens": 32768,
+          "completion_tokens": 2548,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "9ca02f14023b7159557dc26bbf2894d2e72d153b0ed5645fe31863f80a320009"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 30220,
+          "total_tokens": 32768,
+          "completion_tokens": 2548,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "3202e4fc1e60fddc488480b3b00116cc66c14055d3ed43d218dab94bfee19049"
+      }
+    },
+    {
+      "render_id": "S02-ph_ubiquitin_thr12-e7ce5a3c::minimal_pdb::51405081",
+      "family": "S02",
+      "protein_group_id": "ph_ubiquitin_thr12",
+      "prompt_tokens": 24676,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "TPO:A12",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'TPO:A12'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'TPO:A12'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "TPO:A12",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'TPO:A12'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'TPO:A12'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 24676,
+          "total_tokens": 25149,
+          "completion_tokens": 473,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "a6cbeaa590dcca69ed5eacc0781e6f0c76af44407343db5ceb0ee432b486841f"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 24676,
+          "total_tokens": 32768,
+          "completion_tokens": 8092,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "d3dcce713bbfc7c67588ab26e9a80b4ae5059aa254007e7498b4bb13c6cbc969"
+      }
+    },
+    {
+      "render_id": "S03-v2_2dlb_1-62aac8ba::minimal_pdb::9346728",
+      "family": "S03",
+      "protein_group_id": "v2_2dlb_1",
+      "prompt_tokens": 21800,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "cannot_determine",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "category 'cannot_determine' is not one of ['buried', 'solvent-exposed']"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "category 'cannot_determine' is not one of ['buried', 'solvent-exposed']"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "cannot_determine",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "category 'cannot_determine' is not one of ['buried', 'solvent-exposed']"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "category 'cannot_determine' is not one of ['buried', 'solvent-exposed']"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 21800,
+          "total_tokens": 23712,
+          "completion_tokens": 1912,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "2668c7ca389073bb1abbf4a634140228cb0c59adcdacded1952e73501235a7cc"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "solvent-exposed",
+            "gold": "solvent-exposed"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "solvent-exposed",
+            "gold": "solvent-exposed"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21800,
+          "total_tokens": 26366,
+          "completion_tokens": 4566,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "9a9fdb7ac78a10f25ae3f67143b295c6011f7000259d265c60ed55ebd847cca8"
+      }
+    },
+    {
+      "render_id": "S03-v2_3d7i_1-6157f11a::minimal_pdb::38162095",
+      "family": "S03",
+      "protein_group_id": "v2_3d7i_1",
+      "prompt_tokens": 28907,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "solvent-exposed",
+            "gold": "solvent-exposed"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "solvent-exposed",
+            "gold": "solvent-exposed"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 28907,
+          "total_tokens": 30388,
+          "completion_tokens": 1481,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "c374abd2bd448e844b20ae6f37b1b0ddcaca68d1a2c74c8114e51a0242860be5"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 28907,
+          "total_tokens": 32768,
+          "completion_tokens": 3861,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "2fe44a9dc76640901cbefcd6d77363f77a1346c821c35acbb590267f3c19d800"
+      }
+    },
+    {
+      "render_id": "S03-v2_6e6q_1-50e54b33::minimal_pdb::91206494",
+      "family": "S03",
+      "protein_group_id": "v2_6e6q_1",
+      "prompt_tokens": 17668,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "solvent-exposed",
+            "gold": "buried"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "solvent-exposed",
+            "gold": "buried"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 17668,
+          "total_tokens": 19359,
+          "completion_tokens": 1691,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "fee1b8a42e7d85d4801fd40359392045aca44d100874ae4a0f58486a9b7ebe68"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "solvent-exposed",
+            "gold": "buried"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "solvent-exposed",
+            "fields": {},
+            "value": "solvent-exposed",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "solvent-exposed",
+            "gold": "buried"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 17668,
+          "total_tokens": 19063,
+          "completion_tokens": 1395,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "c3ccf355cb829c7aec3c2ec70a7505542a2b255b7c21da93f71aad7301abc460"
+      }
+    },
+    {
+      "render_id": "S04-v2_3d7i_1-f325bcb4::minimal_pdb::93301296",
+      "family": "S04",
+      "protein_group_id": "v2_3d7i_1",
+      "prompt_tokens": 28863,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 28863,
+          "total_tokens": 29809,
+          "completion_tokens": 946,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "02dd060301f13cfddbf20b4cf4a757029187f0952b3df791678b4bf6ccd20bd3"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "coil",
+            "fields": {},
+            "value": "coil",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "coil",
+            "gold": "helix"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "coil",
+            "fields": {},
+            "value": "coil",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "coil",
+            "gold": "helix"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 28863,
+          "total_tokens": 31064,
+          "completion_tokens": 2201,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "a25808db820122b00a697553188f306efb7482f39cddfb06c73845565a3ed501"
+      }
+    },
+    {
+      "render_id": "S05-v2_1w6x_1-4355ea75::minimal_pdb::56028099",
+      "family": "S05",
+      "protein_group_id": "v2_1w6x_1",
+      "prompt_tokens": 17754,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 17754,
+          "total_tokens": 18139,
+          "completion_tokens": 385,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "ce24ed4d2ed00fa6c929e0e467ab1a918a3ccfacf0d53615ebed8f41f7c5e127"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 17754,
+          "total_tokens": 19166,
+          "completion_tokens": 1412,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "907616391295e942d1a2721c8f02be60f9b79d5bfd07ddde833cbc1730561be2"
+      }
+    },
+    {
+      "render_id": "S05-v2_1zuy_1-8bd93875::minimal_pdb::45456029",
+      "family": "S05",
+      "protein_group_id": "v2_1zuy_1",
+      "prompt_tokens": 18553,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 18553,
+          "total_tokens": 19465,
+          "completion_tokens": 912,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "e12f0eb542adfcedaba3ab42819dd4de490c007e486731ec90e81bbd4f016abc"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 18553,
+          "total_tokens": 21376,
+          "completion_tokens": 2823,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "57f282e9ca7a7ae6a3aeef943d5d403e2d94d6db8366daea2b91018196688601"
+      }
+    },
+    {
+      "render_id": "S05-v2_4esr_1-993afc94::minimal_pdb::58153380",
+      "family": "S05",
+      "protein_group_id": "v2_4esr_1",
+      "prompt_tokens": 21187,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "mixed alpha/beta",
+            "fields": {},
+            "value": "mixed alpha/beta",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "mixed alpha/beta",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "mixed alpha/beta",
+            "fields": {},
+            "value": "mixed alpha/beta",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "mixed alpha/beta",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 21187,
+          "total_tokens": 21359,
+          "completion_tokens": 172,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "4600ed5e3442ac2b3eca1f3ddfd7bbf1aa97144d983d17b9a6599c3a05a233d6"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21187,
+          "total_tokens": 23644,
+          "completion_tokens": 2457,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "7a9c4b00ed34f5ff53efde4dfa6f437753c40a15205d61cbeabadfa34496ff49"
+      }
+    },
+    {
+      "render_id": "S05-v2_6r5m_1-882f6cf8::minimal_pdb::34856149",
+      "family": "S05",
+      "protein_group_id": "v2_6r5m_1",
+      "prompt_tokens": 18479,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "mixed alpha/beta",
+            "fields": {},
+            "value": "mixed alpha/beta",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "mixed alpha/beta",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "mixed alpha/beta",
+            "fields": {},
+            "value": "mixed alpha/beta",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "mixed alpha/beta",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 18479,
+          "total_tokens": 18980,
+          "completion_tokens": 501,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "f8dd4c5dc40420e32e29feb1a558a88403d9d9346f3d2f454df4ce794c50962f"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "predominantly alpha helical",
+            "fields": {},
+            "value": "predominantly alpha helical",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "predominantly alpha helical",
+            "gold": "predominantly beta sheet"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 18479,
+          "total_tokens": 20340,
+          "completion_tokens": 1861,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "3023e8a890fa0f294a0fa237e1a8569f15f590bd12e2fc868449749d94141461"
+      }
+    },
+    {
+      "render_id": "S06-v2_1isu_1-7c046afc::minimal_pdb::66225663",
+      "family": "S06",
+      "protein_group_id": "v2_1isu_1",
+      "prompt_tokens": 18491,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "\\boxed{FINAL:}",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: '\\\\boxed{FINAL:}'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: '\\\\boxed{FINAL:}'"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "FINAL field is empty"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "FINAL field is empty"
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 18491,
+          "total_tokens": 21518,
+          "completion_tokens": 3027,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "dfd533c79179da2636acd3e6c5c8aa509f2885e63506587efcbd0f8efe97a9f5"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "CYS A22",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A22'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A22'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "CYS A22",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A22'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A22'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 18491,
+          "total_tokens": 29016,
+          "completion_tokens": 10525,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "c954285f47cae666506c37378c2fe2497d21bd96f6f1983cb1ab43e5410b4c07"
+      }
+    },
+    {
+      "render_id": "S06-v2_4r4l_1-8894036c::minimal_pdb::24253932",
+      "family": "S06",
+      "protein_group_id": "v2_4r4l_1",
+      "prompt_tokens": 15863,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "We'll now produce the final answer",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: \"We'll now produce the final answer\""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: \"We'll now produce the final answer\""
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "FINAL field is empty"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "FINAL field is empty"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 15863,
+          "total_tokens": 17228,
+          "completion_tokens": 1365,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "0b87979cf8d763750778d4812af363a1d36014836524b54234c3325eada5df1d"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 15863,
+          "total_tokens": 32768,
+          "completion_tokens": 16905,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "90319ad35d96c9a5950443b49845035cb33a938b333ba3fd0cc2d7b6c407a55e"
+      }
+    },
+    {
+      "render_id": "S06-v2_6l0w_1-dce0da3e::minimal_pdb::57798435",
+      "family": "S06",
+      "protein_group_id": "v2_6l0w_1",
+      "prompt_tokens": 21251,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "But the system expects",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'But the system expects'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'But the system expects'",
+            "truncated": true
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "But the system expects",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'But the system expects'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'But the system expects'",
+            "truncated": true
+          },
+          "format_error": false,
+          "refusal": true,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21251,
+          "total_tokens": 32768,
+          "completion_tokens": 11517,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "2479743531f9c2db7a7fdd931c7587cbf8999929505e20d0221391061fd331be"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 21251,
+          "total_tokens": 32768,
+          "completion_tokens": 11517,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "c78f6ffa4b5ad8c2d280daf07b81d033b41022aab72b4498462292dfdbfd7414"
+      }
+    },
+    {
+      "render_id": "S07-fb_7v3o-24ba31c6::minimal_pdb::54019699",
+      "family": "S07",
+      "protein_group_id": "fb_7v3o",
+      "prompt_tokens": 29527,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 29527,
+          "total_tokens": 32768,
+          "completion_tokens": 3241,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "b5d9c9afda7b81d4f620eff4a44ffa96b9080cb354f0f7a579ef42c8f8fcb929"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 29527,
+          "total_tokens": 32768,
+          "completion_tokens": 3241,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "b729ccaa2b96a1c651c625f563d91f20c0a2172717d5cdf2f1bae589bf50cc3c"
+      }
+    },
+    {
+      "render_id": "S07-fb_7yuj-8eb6fe47::minimal_pdb::43195889",
+      "family": "S07",
+      "protein_group_id": "fb_7yuj",
+      "prompt_tokens": 12956,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:CYS376",
+            "fields": {},
+            "value": [
+              "A:CYS376"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "exact_set": 0.0,
+            "correct": false,
+            "n_gold": 4,
+            "n_predicted": 1,
+            "missing": [
+              "A:C371",
+              "A:C376",
+              "A:C391",
+              "A:C394"
+            ],
+            "spurious": [
+              "A:CYS376"
+            ],
+            "predicted": [
+              "A:CYS376"
+            ],
+            "gold": [
+              "A:C371",
+              "A:C376",
+              "A:C391",
+              "A:C394"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:CYS376",
+            "fields": {},
+            "value": [
+              "A:CYS376"
+            ],
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "f1": 0.0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "exact_set": 0.0,
+            "correct": false,
+            "n_gold": 4,
+            "n_predicted": 1,
+            "missing": [
+              "A:C371",
+              "A:C376",
+              "A:C391",
+              "A:C394"
+            ],
+            "spurious": [
+              "A:CYS376"
+            ],
+            "predicted": [
+              "A:CYS376"
+            ],
+            "gold": [
+              "A:C371",
+              "A:C376",
+              "A:C391",
+              "A:C394"
+            ]
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 12956,
+          "total_tokens": 15148,
+          "completion_tokens": 2192,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "8448bd85a00fc9f748ec354cec2cb4645110a7b234ea0bc2de6663bbc3835ecd"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "CYS A371,CYS A376,CYS A391,CYS A394",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A371'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A371'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "CYS A371,CYS A376,CYS A391,CYS A394",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A371'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS A371'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 12956,
+          "total_tokens": 22766,
+          "completion_tokens": 9810,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "8d6eee93643dc4ba38fee88a7a418ad95f96a595366ba0437d84464a220e958c"
+      }
+    },
+    {
+      "render_id": "S08-af_interleukin_8-4ebfb994::minimal_pdb::6863916",
+      "family": "S08",
+      "protein_group_id": "af_interleukin_8",
+      "prompt_tokens": 31577,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 31577,
+          "total_tokens": 32768,
+          "completion_tokens": 1191,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "e73a2f73d1c84574c26321bec857d255719d9cb1a70739c75faf4e4fdb80c3e2"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 31577,
+          "total_tokens": 32768,
+          "completion_tokens": 1191,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "ed6269af4c07b7b0aad0a171caedc8bc728a607b18d8e690536eb042c643b11e"
+      }
+    },
+    {
+      "render_id": "S08-crambin-db77c715::minimal_pdb::2862202",
+      "family": "S08",
+      "protein_group_id": "crambin",
+      "prompt_tokens": 13536,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "no FINAL field found"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "no FINAL field found",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 13536,
+          "total_tokens": 32768,
+          "completion_tokens": 19232,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "d2af6f92676719070f8a70dba6c5e6ef0ee7edf1fa292fe5469c28c77cf9156e"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:16",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'A:16'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'A:16'",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "A:16",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'A:16'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'A:16'",
+            "truncated": true
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": true,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 13536,
+          "total_tokens": 32768,
+          "completion_tokens": 19232,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "length",
+        "response_sha256": "f193ca9affe57dc5d691764d02be59cc7d9d48e142b169e625384d451fe6fac6"
+      }
+    },
+    {
+      "render_id": "S08-fb_8kce-6a67ea87::minimal_pdb::68023460",
+      "family": "S08",
+      "protein_group_id": "fb_8kce",
+      "prompt_tokens": 25698,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "B:C210",
+            "fields": {},
+            "value": "B:C210",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "B:C210",
+            "gold": "B:C279"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "B:C210",
+            "fields": {},
+            "value": "B:C210",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "B:C210",
+            "gold": "B:C279"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 25698,
+          "total_tokens": 29057,
+          "completion_tokens": 3359,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "d747f7b8bf813ba320aeae6becc73ade65a0d39ff8287c5a89ad378938ee7818"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "CYS B279",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS B279'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS B279'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "CYS B279",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS B279'"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "not a residue identifier: 'CYS B279'"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 25698,
+          "total_tokens": 27429,
+          "completion_tokens": 1731,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "bca1771b7ea5b3958ee1f74e7df2d85742ed5bbff49e01d486493a788be624d4"
+      }
+    },
+    {
+      "render_id": "S09-fb_7v3o-c1d5a19b::minimal_pdb::37263558",
+      "family": "S09",
+      "protein_group_id": "fb_7v3o",
+      "prompt_tokens": 12632,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "t",
+            "fields": {},
+            "value": "t",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "t",
+            "gold": "g+"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "t",
+            "fields": {},
+            "value": "t",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "t",
+            "gold": "g+"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 12632,
+          "total_tokens": 14597,
+          "completion_tokens": 1965,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "f88d3dcd881bb14190ada9a2620e779a6153bb3cafa07a46a7e384af81a2648c"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "g-",
+            "fields": {},
+            "value": "g-",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "g-",
+            "gold": "g+"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "g-",
+            "fields": {},
+            "value": "g-",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "g-",
+            "gold": "g+"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 12632,
+          "total_tokens": 22285,
+          "completion_tokens": 9653,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "7316c04961b69dd290c6e0362a486fb5a0e5547eec73340a751bc6a55481fc9d"
+      }
+    },
+    {
+      "render_id": "S09-fb_8aga-7ea4857a::minimal_pdb::27964320",
+      "family": "S09",
+      "protein_group_id": "fb_8aga",
+      "prompt_tokens": 19615,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "g+",
+            "fields": {},
+            "value": "g+",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "g+",
+            "gold": "t"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "g+",
+            "fields": {},
+            "value": "g+",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "predicted": "g+",
+            "gold": "t"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 19615,
+          "total_tokens": 22150,
+          "completion_tokens": 2535,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "4f4ebdb679dbacf1ec20d6a1b662e05695298778686e0e8bf6bec26af576caef"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "t",
+            "fields": {},
+            "value": "t",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "t",
+            "gold": "t"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "t",
+            "fields": {},
+            "value": "t",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "t",
+            "gold": "t"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 19615,
+          "total_tokens": 24367,
+          "completion_tokens": 4752,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "bac5bbaeda12cafe31a8b0eabd2a8e904f7f73295d0a9377775a0c7ee4a8f435"
+      }
+    },
+    {
+      "render_id": "S09-fb_8jdx-145d10b6::minimal_pdb::15254585",
+      "family": "S09",
+      "protein_group_id": "fb_8jdx",
+      "prompt_tokens": 17364,
+      "baseline": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "answer: g+",
+            "fields": {},
+            "value": null,
+            "format_error": true,
+            "error": "category 'answer: g+' is not one of ['g+', 't', 'g-']"
+          },
+          "score": {
+            "score": 0.0,
+            "correct": false,
+            "format_error": true,
+            "error": "category 'answer: g+' is not one of ['g+', 't', 'g-']"
+          },
+          "format_error": true,
+          "refusal": false,
+          "truncated": false,
+          "correct": false
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "g+",
+            "fields": {},
+            "value": "g+",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "g+",
+            "gold": "g+"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": true,
+        "usage": {
+          "prompt_tokens": 17364,
+          "total_tokens": 22358,
+          "completion_tokens": 4994,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "db95651d95d88f5dc0531d6a84b3348597e98cfc50e0abffc0dbdd430d97118a"
+      },
+      "trained": {
+        "strict": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "g+",
+            "fields": {},
+            "value": "g+",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "g+",
+            "gold": "g+"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "boxed": {
+          "scoring_version": "1.1.0",
+          "parsed": {
+            "raw_final": "g+",
+            "fields": {},
+            "value": "g+",
+            "format_error": false,
+            "error": ""
+          },
+          "score": {
+            "score": 1.0,
+            "correct": true,
+            "predicted": "g+",
+            "gold": "g+"
+          },
+          "format_error": false,
+          "refusal": false,
+          "truncated": false,
+          "correct": true
+        },
+        "box_normalized": false,
+        "usage": {
+          "prompt_tokens": 17364,
+          "total_tokens": 25161,
+          "completion_tokens": 7797,
+          "prompt_tokens_details": null,
+          "completion_tokens_details": null
+        },
+        "finish_reason": "stop",
+        "response_sha256": "6ba9149a135d1ba01e60b114fdf0c69ebf6a360c92a841ef770140a3353fa05c"
+      }
+    }
+  ],
+  "response_statistics": {
+    "baseline": {
+      "total_output_tokens": 127850,
+      "mean_output_tokens": 3196.25,
+      "finish_reasons": {
+        "stop": 29,
+        "length": 11
+      }
+    },
+    "trained": {
+      "total_output_tokens": 214743,
+      "mean_output_tokens": 5368.575,
+      "finish_reasons": {
+        "stop": 22,
+        "length": 18
+      }
+    }
+  },
+  "strict": {
+    "families": {
+      "G01": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 1
+      },
+      "G02": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "G03": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 1
+      },
+      "G04": {
+        "n": 4,
+        "baseline": 0,
+        "trained": 0
+      },
+      "I01": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "N01": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "P01": {
+        "n": 3,
+        "baseline": 2,
+        "trained": 3
+      },
+      "P02": {
+        "n": 1,
+        "baseline": 1,
+        "trained": 1
+      },
+      "P03": {
+        "n": 2,
+        "baseline": 1,
+        "trained": 2
+      },
+      "S01": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S02": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S03": {
+        "n": 3,
+        "baseline": 1,
+        "trained": 1
+      },
+      "S04": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S05": {
+        "n": 4,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S06": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S07": {
+        "n": 2,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S08": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S09": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 2
+      }
+    },
+    "baseline": {
+      "correct": 5,
+      "accuracy": 0.125,
+      "family_macro": 0.1388888888888889,
+      "format_error": 18,
+      "refusal": 8,
+      "truncated": 11
+    },
+    "trained": {
+      "correct": 11,
+      "accuracy": 0.275,
+      "family_macro": 0.3333333333333333,
+      "format_error": 20,
+      "refusal": 0,
+      "truncated": 18
+    },
+    "gains": 7,
+    "losses": 1,
+    "difference_pp": 15.000000000000002,
+    "family_macro_difference_pp": 19.444444444444443,
+    "group_bootstrap_95_delta_pp": [
+      0.0,
+      32.70833333333427
+    ],
+    "bootstrap_method": "50000 paired protein_group_id resamples, seed 17; source-composition uncertainty only, not decoding or training-seed uncertainty"
+  },
+  "boxed": {
+    "families": {
+      "G01": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 1
+      },
+      "G02": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "G03": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 1
+      },
+      "G04": {
+        "n": 4,
+        "baseline": 0,
+        "trained": 0
+      },
+      "I01": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "N01": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "P01": {
+        "n": 3,
+        "baseline": 3,
+        "trained": 3
+      },
+      "P02": {
+        "n": 1,
+        "baseline": 1,
+        "trained": 1
+      },
+      "P03": {
+        "n": 2,
+        "baseline": 2,
+        "trained": 2
+      },
+      "S01": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S02": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S03": {
+        "n": 3,
+        "baseline": 1,
+        "trained": 1
+      },
+      "S04": {
+        "n": 1,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S05": {
+        "n": 4,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S06": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S07": {
+        "n": 2,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S08": {
+        "n": 3,
+        "baseline": 0,
+        "trained": 0
+      },
+      "S09": {
+        "n": 3,
+        "baseline": 1,
+        "trained": 2
+      }
+    },
+    "baseline": {
+      "correct": 8,
+      "accuracy": 0.2,
+      "family_macro": 0.20370370370370372,
+      "format_error": 13,
+      "refusal": 8,
+      "truncated": 11
+    },
+    "trained": {
+      "correct": 11,
+      "accuracy": 0.275,
+      "family_macro": 0.3333333333333333,
+      "format_error": 20,
+      "refusal": 0,
+      "truncated": 18
+    },
+    "gains": 4,
+    "losses": 1,
+    "difference_pp": 7.500000000000001,
+    "family_macro_difference_pp": 12.96296296296296,
+    "group_bootstrap_95_delta_pp": [
+      -4.166666666666666,
+      20.51282051282051
+    ],
+    "bootstrap_method": "50000 paired protein_group_id resamples, seed 17; source-composition uncertainty only, not decoding or training-seed uncertainty"
+  }
+}

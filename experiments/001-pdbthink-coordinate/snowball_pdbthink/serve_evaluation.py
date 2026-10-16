@@ -14,8 +14,12 @@ from marin.inference.iris import IrisServiceConfig, run_iris_service
 LOADER_ENV = {"RUNAI_STREAMER_CONCURRENCY": "4", "RUNAI_STREAMER_S3_REQUEST_TIMEOUT_MS": "120000"}
 
 
-def submit_server(client, model_uri, name, hours=4):
-    resources = ResourceConfig.with_gpu("H100", count=8, cpu=32, ram="512g", disk="200g", target_cluster="cw-rno2a")
+def submit_server(client, model_uri, name, hours=4, *, gpus=8, gpu_variant="H100", target_cluster="cw-rno2a"):
+    if gpus not in {2, 4, 8}:
+        raise ValueError("Snowball inference requires 2, 4, or 8 GPUs")
+    resources = ResourceConfig.with_gpu(
+        gpu_variant, count=gpus, cpu=4 * gpus, ram=f"{64 * gpus}g", disk="200g", target_cluster=target_cluster
+    )
     environment = create_environment(workspace=str(Path.cwd()), env_vars=LOADER_ENV)
     service = IrisServiceConfig(
         model=ServedModelConfig(weights=model_uri, dtype="bfloat16", max_model_len=32768, tensor_parallel_size=1),
@@ -26,7 +30,7 @@ def submit_server(client, model_uri, name, hours=4):
             max_num_seqs=16,
             extra_args=(
                 "--data-parallel-size",
-                "8",
+                str(gpus),
                 "--enable-expert-parallel",
                 "--model-loader-extra-config",
                 '{"distributed":true}',

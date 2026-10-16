@@ -5,18 +5,97 @@ Train Snowball directly against PDBThink's native verifier with Marin's artifact
 launcher, MarinSkyRL, Megatron, vLLM, and Iris on CoreWeave. No GLM responses or
 other teacher traces are used.
 
+## Result report and original benchmark
+
+The [detailed PDF report](results/snowball-rl-result-report.pdf) contains the RL
+methods, full learning curves from step 0, validation-set history, plot glossary,
+pilot and regression audits, and every paired original-benchmark outcome.
+
+On October 16 we selected **checkpoint 384 using native validation alone**, before
+examining original-benchmark results. It remains the best available checkpoint;
+the 876-update training run is still active. We exported it with the pinned native
+MarinSkyRL converter and evaluated it against a fresh original-model baseline on
+matching **4-GB200 CoreWeave servers**. Both servers completed and were released.
+Training continues on H100s.
+
+The frozen original `clean-coordinate-v4.0` benchmark has 88 questions. Exactly
+**40 fit Snowball's 32,768-token context**, spanning 18 families and 28 protein
+groups; the other 48 are context-excluded. Both models received identical prompts
+and sampling parameters, with one response per question, temperature 0.6, and the
+full remaining context as the output budget. No prompts were truncated and no
+tools were available.
+
+| Matched original-benchmark score | Original Snowball | RL step 384 | Change |
+| --- | ---: | ---: | ---: |
+| Strict exact accuracy | 5/40 (12.5%) | 11/40 (27.5%) | +15.0 pp |
+| Existing terminal-box correction | 8/40 (20.0%) | 11/40 (27.5%) | +7.5 pp |
+| Strict family-macro accuracy | 13.89% | 33.33% | +19.44 pp |
+| Box-corrected family-macro accuracy | 20.37% | 33.33% | +12.96 pp |
+
+This is an encouraging point estimate with substantial uncertainty. Paired
+protein-group bootstrap 95% intervals are **0.0 to +32.7 points** strictly and
+**−4.2 to +20.5 points** after box normalization. Both include zero and exclude
+decoding/training-seed uncertainty. Strict scoring has seven gains and one loss;
+box correction leaves four gains and one loss. Three corrected gains are
+previously well-formed wrong answers (G01, G03, S09); G01/G03 share one protein
+group. The other gain was a refusal. Correct final values do not certify the
+reasoning: some successful responses contain invented metadata or an incorrect
+description of the geometric calculation, as detailed in the report.
+
+Truncations increase from 11 to 18 and mean generated length from 3,196 to 5,369
+tokens. The model still scores zero in 11 eligible families. This does not
+establish broad molecular-reasoning mastery or performance on the 48 excluded
+questions. The native 61.42% validation peak uses a different dataset and serving
+protocol and is not substituted for this matched benchmark result.
+
+![Original benchmark comparison](results/original-benchmark.png)
+
+[Paired scores](results/original-benchmark-comparison.json),
+[vector figure](results/original-benchmark.pdf), and
+[evidence manifest](results/original-benchmark-manifest.json) accompany the PDF.
+The durable evidence archive contains all 80 raw API responses, frozen requests,
+benchmark source snapshot and hashes, selection, runtime provenance, and export
+verification. Its URI and SHA256 are recorded in the manifest and report.
+
+The original benchmark source was snapshotted without modifying that repository.
+All 80 historical scoring decisions (40 responses under both policies) replayed
+without disagreement. Historical scores are not used as the paired control:
+both baseline and trained results above come from the fresh matched runtime.
+
+To redraw the benchmark figure from committed evidence:
+
+```bash
+python experiments/001-pdbthink-coordinate/plot_original_benchmark.py \
+  --data experiments/001-pdbthink-coordinate/results/original-benchmark-comparison.json
+```
+
+To reproduce scoring and the PDF, restore the manifest's evidence archive into
+`runs/001/original-benchmark` and use the original PDBThink environment (which
+provides its native scorer, NumPy, ReportLab, Pillow, and PyMuPDF):
+
+```bash
+../pdbthink/.venv/bin/python experiments/001-pdbthink-coordinate/original_benchmark.py score \
+  --repo ../pdbthink --output runs/001/original-benchmark
+python experiments/001-pdbthink-coordinate/plot_original_benchmark.py
+../pdbthink/.venv/bin/python experiments/001-pdbthink-coordinate/build_result_report.py
+```
+
+Scoring refuses changed benchmark source hashes or mismatched inference contracts.
+The standalone serving helper now supports explicit GPU counts, variants and
+clusters; its existing H100 defaults for the final-training observer are unchanged.
+
 ## Status
 
-October 16 update: the trainer reports optimizer step **569/876** and remains
+October 16 update: the trainer reports optimizer step **584/876** and remains
 running. Full validation peaked at **616/1,003 (61.42%)**
 at step 384, then fell to 591/1,003 (58.92%) at 448 and **334/1,003 (33.30%)**
-at 512. The step-384 checkpoint remains complete and eligible for selection.
+at 512. Step 576 partially recovered to **398/1,003 (39.68%)**. The step-384 checkpoint remains complete and eligible for selection.
 The [regression audit](#regression-audit) finds a real loss of answer quality and
 an optimization-stability weakness: PPO clipping is inactive in this single-pass
 recipe, with no reference-KL, entropy, or rollout-mismatch correction. Entropy
 falls and training/rollout mismatch grows before accuracy collapses. These
 observations support policy collapse, but do not isolate its initiating cause. Training
-continues toward the authorized limit, with the next full validation at 576.
+continues toward the authorized limit, with the next full validation at 640.
 See the [progress snapshot and diagnostics](results/epoch-progress-20261016.json).
 
 The [full-pass continuation](https://wandb.ai/timodonnell/snowball-pdbthink/runs/e2s5w3qn)
@@ -136,7 +215,7 @@ single correction and `runs.json` for run IDs and durable result locations.
 
 The [full-history validation figure](results/full-training-evidence.png) and
 [full-history optimizer diagnostics](results/full-training-diagnostics.png)
-extend the view back to step **0**, through the captured update **573**. They
+extend the view back to step **0**, through the captured update **584**. They
 include the pilot, first continuation, and resumed continuation. Discarded
 updates 321–375 from the failed attempt are shown separately in gray; the
 missing pilot optimizer record at 64 remains a gap. The standalone 1,003-task
