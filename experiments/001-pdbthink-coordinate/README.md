@@ -7,6 +7,15 @@ other teacher traces are used.
 
 ## Status
 
+October 16 update: optimizer step **564/876** is verified, with all six workers
+running and no worker failures. Full validation peaked at **616/1,003 (61.42%)**
+at step 384, then fell to 591/1,003 (58.92%) at 448 and **334/1,003 (33.30%)**
+at 512. The step-384 checkpoint remains complete and eligible for selection.
+The decline coincides with shorter responses, more format errors, lower policy
+entropy, and higher gradient norms; its cause is not yet established. Training
+continues toward the authorized limit, with the next full validation at 576.
+See the [progress snapshot and diagnostics](results/epoch-progress-20261016.json).
+
 The [full-pass continuation](https://wandb.ai/timodonnell/snowball-pdbthink/runs/e2s5w3qn)
 was **resubmitted October 15 on 48 CoreWeave H100s**
 as artifact version `2026.10.15.1`, restoring the saved step-320 policy, optimizer,

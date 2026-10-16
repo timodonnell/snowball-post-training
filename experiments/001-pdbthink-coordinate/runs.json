@@ -1,6 +1,6 @@
 {
   "issue": "https://github.com/timodonnell/snowball-post-training/issues/1",
-  "status": "Continuation advancing on 48 CoreWeave H100s: step-320 checkpoint restored, optimizer update 321 verified; target 876",
+  "status": "October 16: step 564/876 verified on 48 H100; full validation peaked at 61.42% at step 384 and fell to 33.30% at step 512. Best checkpoint retained; training continues.",
   "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
   "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
   "adapter_sha256": "6fa472524ddea6e042905f87615f83a07fd5fee6339bd0d9f48cae5956fbc969",
@@ -410,7 +410,7 @@
       "child_job": "/bizon/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-coordinator-132637f6/checkpoints-bizon-snowball-pdbthink-epoch-2026.10.15.1-0cd2b2c0d83d",
       "cluster": "cw-rno2a",
       "gpus": "48 H100",
-      "state": "training",
+      "state": "training_with_validation_regression",
       "workers_running": 6,
       "resume_step": 320,
       "max_optimizer_steps": 876,
@@ -448,7 +448,7 @@
       "test_baseline": "Reuses complete original-model evaluation from pilot-v1",
       "runtime_checkpoint_restore": "passed: trainer, rollout, policy, optimizer, and scheduler from step 320",
       "startup_verification": "results/epoch-resume-startup.json",
-      "optimizer_steps_verified": 321,
+      "optimizer_steps_verified": 564,
       "first_resumed_optimizer_step": 321,
       "initial_validation": {
         "step": 320,
@@ -471,7 +471,52 @@
           "S05": 0.5833333333333334,
           "S09": 0.4827586206896552
         }
-      }
+      },
+      "latest_full_validation": {
+        "step": 512,
+        "tasks": 1003,
+        "task_weighted_accuracy": 0.33300099700897307,
+        "family_macro_accuracy": 0.3375653981085705,
+        "family_accuracy": {
+          "G01": 0.14545454545454545,
+          "G02": 0.03333333333333333,
+          "G03": 0.1111111111111111,
+          "G04": 0.0,
+          "N01": 0.0,
+          "P01": 1.0,
+          "P02": 0.4782608695652174,
+          "P03": 0.6271186440677966,
+          "S01": 0.0,
+          "S02": 0.2222222222222222,
+          "S03": 0.7478991596638656,
+          "S04": 0.6306306306306306,
+          "S05": 0.5833333333333334,
+          "S09": 0.14655172413793102
+        }
+      },
+      "best_full_validation": {
+        "step": 384,
+        "tasks": 1003,
+        "task_weighted_accuracy": 0.6141575274177468,
+        "family_macro_accuracy": 0.5309688774188475,
+        "family_accuracy": {
+          "G01": 0.9090909090909091,
+          "G02": 0.03333333333333333,
+          "G03": 0.7222222222222222,
+          "G04": 0.0,
+          "N01": 0.0,
+          "P01": 1.0,
+          "P02": 0.6956521739130435,
+          "P03": 0.9661016949152542,
+          "S01": 0.28,
+          "S02": 0.0,
+          "S03": 0.8151260504201681,
+          "S04": 0.6126126126126126,
+          "S05": 0.6666666666666666,
+          "S09": 0.7327586206896551
+        }
+      },
+      "progress_snapshot": "results/epoch-progress-20261016.json"
     }
   ],
   "baseline": {
