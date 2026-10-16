@@ -134,6 +134,33 @@ single correction and `runs.json` for run IDs and durable result locations.
 
 ## Regression audit
 
+The [full-history validation figure](results/full-training-evidence.png) and
+[full-history optimizer diagnostics](results/full-training-diagnostics.png)
+extend the view back to step **0**, through the captured update **573**. They
+include the pilot, first continuation, and resumed continuation. Discarded
+updates 321–375 from the failed attempt are shown separately in gray; the
+missing pilot optimizer record at 64 remains a gap. The standalone 1,003-task
+evaluations at 0/64, native 107-task pilot monitor, and native 1,003-task scaled
+evaluations remain separate series because their protocols differ.
+
+This wider view shows that entropy was already decreasing during successful
+learning. Declining entropy alone therefore does not identify the regression;
+the later rise in training/rollout mismatch and gradient norms is more specific
+to the collapse. The regression audit below remains frozen at update 565.
+
+The full-history plots render without credentials from
+[`full-training-history.json`](results/full-training-history.json):
+
+```bash
+python experiments/001-pdbthink-coordinate/plot_full_training.py
+# Optional: refresh the three W&B histories, preserving their separate lineage.
+PYTHONPATH=experiments/001-pdbthink-coordinate .venv/bin/python \
+  -m snowball_pdbthink.full_history --refresh
+```
+
+Vector figures: [full validation history](results/full-training-evidence.pdf),
+[full optimizer history](results/full-training-diagnostics.pdf).
+
 The October 16 audit covers native validation at steps 320, 384, 448 and 512,
 and every training update from 321 through 565 of the resumed run. **The leading
 explanation is unstable RL optimization that increasingly concentrates the policy
