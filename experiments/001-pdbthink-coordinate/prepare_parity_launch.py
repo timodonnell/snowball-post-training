@@ -11,7 +11,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
 OUT = ROOT / "runs/001/parity-probe"
-PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v5"
+PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v7"
 SOURCE = ROOT / "data/MarinSkyRL"
 FILES = [
     "cloud/iris/role_plan.py",
@@ -43,7 +43,7 @@ def main():
     panel = json.loads((OUT / "panel-manifest.json").read_text())
     for step in (384, 512):
         cfg = yaml.safe_load((HERE / "epoch-resume-launch.yaml").read_text())
-        name = f"snowball-parity-{step}-20261016-v5"
+        name = f"snowball-parity-{step}-20261016-v7"
         root = PREFIX + f"/step-{step}"
         cfg["run"].update(id=name, attempt_id=digest(code)[:12], export_hf=False, submission="wait")
         cfg["iris"].update(
@@ -51,7 +51,7 @@ def main():
             target_cluster="cw-us-east-08a",
             cluster_config="lib/iris/config/cw-us-east-08a.yaml",
             job_name=name,
-            priority="batch",
+            priority="interactive",
             timeout=21600,
         )
         cfg["iris"]["allocation"].update(num_nodes=12, gpus_per_node=4, gpu_variant="GB200", cpu=32, memory="600GB")
@@ -120,6 +120,7 @@ def main():
                     "Neutral temperature-1 scoring, no minimum-token EOS suppression",
                     "Checkpoint/evaluation/export callbacks disabled; optimizer call raises",
                     "Prefer a common NVLink rack; allow InfiniBand between racks because free capacity is fragmented",
+                    "Normal interactive research priority after an opportunistic batch attempt was preempted",
                 ],
             },
             indent=2,

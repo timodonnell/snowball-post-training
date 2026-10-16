@@ -808,6 +808,12 @@ Build/stage/launch through `run_marin.py` using the `snowball_pdbthink.parity_op
 and `snowball_pdbthink.parity_launch` modules and the usual CoreWeave credential
 wrapper. Launch configurations and content-addressed instrumentation are under
 `runs/001/parity-probe/`; `--validate` checks the launch without allocating GPUs.
+The CPU preflight exercises the actual native collation, manifest construction,
+and FineStore archive round trip for both panels. Its synthetic full-panel
+learner routing records exceed 100 MB, reproducing the transaction-size failure
+that occurred in the initial diagnostic. Archive writes use batches of 16 rows;
+the completion manifest is written after every score batch. Synthetic preflight
+values are temporary and are never used as model measurements.
 Only after a job writes `probe/complete.json`, use `parity_download --root
 REMOTE_PROBE_URI --output LOCAL_STEP_DIRECTORY` through the same wrapper to
 download exact scores/routes as Parquet. Then run:

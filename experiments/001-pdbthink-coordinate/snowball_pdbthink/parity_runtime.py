@@ -30,6 +30,16 @@ def write_json(root, name, data):
         json.dump(data, stream, indent=2, allow_nan=False)
 
 
+def write_archive(archive, *, probes=None, scores=None, manifest=None):
+    """Bound each transaction; full-panel routing tensors exceed FineStore's 100 MB cap."""
+    for name, rows in (("probes", probes), ("scores", scores)):
+        if rows:
+            for start in range(0, len(rows), 16):
+                archive.write(**{name: rows[start : start + 16]})
+    if manifest is not None:
+        archive.write(manifest=manifest)
+
+
 def summarize(reference, candidate):
     delta = np.concatenate(
         [
@@ -277,7 +287,7 @@ async def decode_control(trainer, panel, root):
                 trainer_input_ids=tokens,
                 response_mask=[True] * len(tokens),
                 loss_mask=[True] * len(tokens),
-                request_seed=panel["seed"],
+                request_seed=panel["seed"] + index,
                 batch_position=index,
             )
         )
@@ -322,7 +332,8 @@ async def decode_control(trainer, panel, root):
     probe.metrics = metrics
     archive = MismatchArchive(probe.archive_uri, writer_id=f"decode-{trainer.global_step}")
     try:
-        archive.write(
+        write_archive(
+            archive,
             probes=probe.probes,
             scores=rescored + trained + generation_scores,
             manifest=manifest(probe, trainer, status=COMPLETE_STATUS),
@@ -396,23 +407,29 @@ class ParityCallback(TrainerCallback):
         collate(probe, trainer, vllm_scores, routes)
         archive = MismatchArchive(root, writer_id=f"parity-{trainer.global_step}")
         try:
-            archive.write(probes=probe.probes, scores=vllm_scores)
+            write_archive(archive, probes=probe.probes, scores=vllm_scores)
             logger.info(
                 "PARITY vLLM frozen replay complete: {} response tokens", sum(len(r.logprobs) for r in vllm_scores)
             )
             trainer_scores = probe._trainer_scores(trainer, update=0)
-            archive.write(scores=trainer_scores)
-            # Repeat vLLM after the learner forwards, with unchanged parameters.
-            repeated, _ = await score_vllm(probe, trainer)
-            repeated = [row.model_copy(update={"mode": "repeat"}) for row in repeated]
-            archive.write(scores=repeated)
             reference = [row.logprobs for row in vllm_scores]
-            metrics = {"vllm_repeat": summarize(reference, [row.logprobs for row in repeated])}
+            metrics = {}
             for mode in ("native", "repeat", *probe.spec.extra_trainer_modes):
                 indexed = {row.sample_id: row for row in trainer_scores if row.mode == mode}
                 metrics[mode] = summarize(reference, [indexed[row.sample_id].logprobs for row in probe.probes])
+            write_json(
+                root,
+                "learner-forward-summary.json",
+                {"global_step": trainer.global_step, "optimizer_updates": 0, "metrics": metrics},
+            )
+            write_archive(archive, scores=trainer_scores)
+            # Repeat vLLM after the learner forwards, with unchanged parameters.
+            repeated, _ = await score_vllm(probe, trainer)
+            repeated = [row.model_copy(update={"mode": "repeat"}) for row in repeated]
+            write_archive(archive, scores=repeated)
+            metrics["vllm_repeat"] = summarize(reference, [row.logprobs for row in repeated])
             probe.metrics = metrics
-            archive.write(manifest=manifest(probe, trainer, status=COMPLETE_STATUS))
+            write_archive(archive, manifest=manifest(probe, trainer, status=COMPLETE_STATUS))
             fixed_result = {
                 "global_step": trainer.global_step,
                 "checkpoint": str(trainer.loaded_checkpoint_path),
