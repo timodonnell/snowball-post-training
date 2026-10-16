@@ -1,0 +1,177 @@
+{
+  "analysis_source_commit": "525d8cdca68887bf854b78c6f8fa7180cdce2666",
+  "marin_revision": "44c95a7914864fdab8b74d597052e30cbc92b8cc",
+  "marinskyrl_revision": "5663f6129f53bb6aaa09549fa6cb423571503e94",
+  "run_date_utc": "2026-10-16",
+  "cluster": "cw-us-east-08a",
+  "gpus": {
+    "type": "NVIDIA GB200",
+    "count_per_job": 48,
+    "nodes_per_job": 12,
+    "gpus_per_node": 4,
+    "observed_driver_version": "595.71.05",
+    "learner": {
+      "gpus": 32,
+      "TP": 1,
+      "PP": 2,
+      "DP": 16,
+      "EP": 16
+    },
+    "rollout": {
+      "gpus": 16,
+      "replicas": 2,
+      "TP": 1,
+      "PP": 1,
+      "DP_per_replica": 8,
+      "EP_per_replica": 8
+    }
+  },
+  "observed_vllm_backends": {
+    "attention": "FlashAttention 4",
+    "moe": "TRITON unquantized"
+  },
+  "frozen_panel_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v8/frozen-panel.json.gz",
+  "frozen_panel_sha256": "f2ccda6b0e073d8c67a0f8bcfcf788ace40ae5aa7c3f2b4d59a06dd2ed520241",
+  "checkpoint_comparisons": {
+    "384": {
+      "job": "/bizon/snowball-parity-384-20261016-v7",
+      "job_outcome": "failed in auxiliary request after primary comparison completed",
+      "primary_comparison_complete": true,
+      "auxiliary_decode_complete": false,
+      "archive_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v7/step-384/probe",
+      "checkpoint": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.15.1/checkpoints/global_step_384",
+      "primary_completed_at": "2026-10-16T21:26:58.404871+00:00",
+      "tokenizer_fingerprint": "sha256:0366e934c6bd0d28e35023d3d2e447f276d0b65040e934db79c566b476800cec",
+      "software": {
+        "marin_finestore_version": "0.2.135.dev36906221286",
+        "marinskyrl_commit": "5663f6129f53bb6aaa09549fa6cb423571503e94",
+        "marinskyrl_version": "0.1.0",
+        "python": "3.12.14",
+        "torch": "2.13.0+cu132",
+        "vllm_version": "0.0.0.dev20260929+marin.39e62869693c.cu132"
+      },
+      "verification_artifacts": {
+        "evidence/step-384/started.json": {
+          "bytes": 68,
+          "sha256": "8fbf55a14e961bdb60490b48b7774c556697d884d28bb68a47b98377f52c3da1"
+        },
+        "evidence/step-384/fixed-panel-complete.json": {
+          "bytes": 6960,
+          "sha256": "0583fba48ca9f89dcf508829f1c86eef5b747e2f3c918d3788b38d882d70ea66"
+        },
+        "evidence/step-384/weight-verification.json": {
+          "bytes": 13310,
+          "sha256": "0a2c470b499599533af0de6f95b9149d2be86d23bd239c10a62de4727ffe3ab7"
+        },
+        "evidence/step-384/router-weight-verification.json": {
+          "bytes": 248346,
+          "sha256": "ea1c2809e7fe60947dc2235511c2409721f7f6f52a853f08c6ccc8f4897c4634"
+        }
+      },
+      "local_table_extracts": {
+        "manifest.parquet": {
+          "bytes": 40942,
+          "sha256": "b19a4d9601939e65e3706539e8f96976ddd3f438bbdd46ad48fe347fec096897",
+          "rows": 1
+        },
+        "probe.parquet": {
+          "bytes": 9469849,
+          "sha256": "1bd594f1ff0225877e3396d6c876671da3470f37f7f5e813fa8f8290b2c2de6d",
+          "rows": 56
+        },
+        "scores.parquet": {
+          "bytes": 26788861,
+          "sha256": "97302d110037ed6d971b9786a6709a8aef5757e48d37491ef31277b67efa9eef",
+          "rows": 280
+        }
+      }
+    },
+    "512": {
+      "job": "/bizon/snowball-parity-512-20261016-v8",
+      "job_outcome": "succeeded",
+      "primary_comparison_complete": true,
+      "auxiliary_decode_complete": true,
+      "archive_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v8/step-512/probe",
+      "checkpoint": "s3://marin-us-east-02a/tmp/ttl=14d/skyrl/marin/checkpoints/bizon/snowball-pdbthink-epoch/2026.10.15.1/checkpoints/global_step_512",
+      "primary_completed_at": "2026-10-16T21:49:41.593844+00:00",
+      "tokenizer_fingerprint": "sha256:0366e934c6bd0d28e35023d3d2e447f276d0b65040e934db79c566b476800cec",
+      "software": {
+        "marin_finestore_version": "0.2.135.dev36906221286",
+        "marinskyrl_commit": "5663f6129f53bb6aaa09549fa6cb423571503e94",
+        "marinskyrl_version": "0.1.0",
+        "python": "3.12.14",
+        "torch": "2.13.0+cu132",
+        "vllm_version": "0.0.0.dev20260929+marin.39e62869693c.cu132"
+      },
+      "verification_artifacts": {
+        "evidence/step-512/started.json": {
+          "bytes": 68,
+          "sha256": "1672431738d1cc62ea968e022cb63407cb4b0c1b4c8439509589ab6fdac9f0df"
+        },
+        "evidence/step-512/fixed-panel-complete.json": {
+          "bytes": 6889,
+          "sha256": "05b111c7d9ae00a21edf99c89033caec2e50ce5e1fcedab79462f254da186c27"
+        },
+        "evidence/step-512/complete.json": {
+          "bytes": 8873,
+          "sha256": "7275e614960d85ac9f7096926f3a5bbc9c7b8836b9e3779b64bc205dd6a70a91"
+        },
+        "evidence/step-512/weight-verification.json": {
+          "bytes": 13309,
+          "sha256": "f386fcc5d2d3f36d6d385b7831c319f199257477af8bc035a6e8f79f0c2b7ef4"
+        },
+        "evidence/step-512/router-weight-verification.json": {
+          "bytes": 248346,
+          "sha256": "ea1c2809e7fe60947dc2235511c2409721f7f6f52a853f08c6ccc8f4897c4634"
+        }
+      },
+      "local_table_extracts": {
+        "decode-control/manifest.parquet": {
+          "bytes": 34544,
+          "sha256": "f766aa66a76010295b5ed2b0b14167563d7bc0c476ae5bdaf15bec016415d072",
+          "rows": 1
+        },
+        "decode-control/probe.parquet": {
+          "bytes": 1008677,
+          "sha256": "a4fe01d15cbac3d5d09e896480e8d962e3ac2b0f2db405f74716110cc7209d5f",
+          "rows": 32
+        },
+        "decode-control/scores.parquet": {
+          "bytes": 2706910,
+          "sha256": "680895649c08707a5b19c631d24dcac97693406162fcc8891d47a94dce694ec4",
+          "rows": 160
+        },
+        "manifest.parquet": {
+          "bytes": 40625,
+          "sha256": "7b17be274698a8d0ec4611433f109afc15c37ac26d13c3647dc5646650a09f43",
+          "rows": 1
+        },
+        "probe.parquet": {
+          "bytes": 9554472,
+          "sha256": "4f8c9daa17ea4b6150ece879e16e3915c394e64b8483969e8892a9221fa85190",
+          "rows": 56
+        },
+        "scores.parquet": {
+          "bytes": 26762474,
+          "sha256": "fc4034cdf7a59102ea74cb4beab280c500ad7154d2a6b3fa64210ea8a1cd17dd",
+          "rows": 280
+        }
+      }
+    }
+  },
+  "restore_control": {
+    "checkpoint": 384,
+    "first_archive_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v6/step-384/probe",
+    "second_archive_uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/parity/2026.10.16-v7/step-384/probe",
+    "scope": "Only committed vLLM scores and captured routes from the first failed attempt; this is not a completed learner comparison."
+  },
+  "completion_note": "Both primary fixed-token comparisons are complete. Checkpoint 384 auxiliary generation failed before decoding; checkpoint 512 auxiliary completed. Native job 512 succeeded with all 12 workers complete.",
+  "auxiliary_validation": {
+    "checkpoint": 512,
+    "samples": 32,
+    "score_records": 160,
+    "response_tokens": 7896,
+    "offline_statistics_match_in_job_metrics": true,
+    "replayed_expert_sets_match_generation_routes": true
+  }
+}

@@ -1,0 +1,604 @@
+{
+  "global_step": 384,
+  "preparation": {
+    "plan": 0.7867747647687793,
+    "bind": 2.8240725393407047
+  },
+  "policy": [
+    {
+      "replay": {
+        "participant": 0,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 0,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 1,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 1,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 2,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 2,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 3,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 3,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 4,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 4,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 5,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 5,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 6,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 6,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 7,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 7,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 8,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 8,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 9,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 9,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 10,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 10,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 11,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 11,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 12,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 12,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 13,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 13,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 14,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 14,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 15,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 15,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 16,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 16,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 17,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 17,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 18,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 18,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 19,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 19,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 20,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 20,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 21,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 21,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 22,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 22,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 23,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 23,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 24,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 24,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 25,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 25,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 26,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 26,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 27,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 27,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 28,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 28,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 29,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 29,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 30,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 30,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    },
+    {
+      "replay": {
+        "participant": 31,
+        "version": 384,
+        "compared_bytes": 0,
+        "parameter_bytes": 0,
+        "mismatched_bytes": 0
+      },
+      "replicas": {
+        "participant": 31,
+        "version": 384,
+        "compared_bytes": 5737193472,
+        "mismatched_bytes": 0
+      }
+    }
+  ],
+  "receivers": [
+    {
+      "participant": 32,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 33,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 34,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 35,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 36,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 37,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 38,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 39,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 40,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 41,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 42,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 43,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 44,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 45,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 46,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    },
+    {
+      "participant": 47,
+      "version": 384,
+      "compared_bytes": 19653279744,
+      "parameter_bytes": 19653279744,
+      "mismatched_bytes": 0
+    }
+  ],
+  "method": "Original broadcast installation; independent native expert-block scratch replay, no install"
+}
