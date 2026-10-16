@@ -266,7 +266,6 @@ async def decode_control(trainer, panel, root):
                 "logprobs": 0,
                 "seed": panel["seed"],
             },
-            "sampling_params_per_prompt": [{"seed": panel["seed"] + index} for index in range(len(inputs))],
             "session_ids": None,
         }
     )
@@ -287,7 +286,7 @@ async def decode_control(trainer, panel, root):
                 trainer_input_ids=tokens,
                 response_mask=[True] * len(tokens),
                 loss_mask=[True] * len(tokens),
-                request_seed=panel["seed"] + index,
+                request_seed=panel["seed"],
                 batch_position=index,
             )
         )
@@ -346,7 +345,7 @@ async def decode_control(trainer, panel, root):
         {
             "global_step": trainer.global_step,
             "metrics": metrics,
-            "note": "Checkpoint-specific generated answers; auxiliary control",
+            "note": "Checkpoint-specific generated answers; shared request seed, repeated prompts are not independent samples",
         },
     )
     return metrics

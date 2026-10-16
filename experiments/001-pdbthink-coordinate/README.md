@@ -766,6 +766,24 @@ version and explicit checkpoint selection.
 
 ### Frozen-token learner/rollout diagnostic
 
+The completed comparison is in the [five-page diagnostic report](results/parity-probe/probability-diagnostic-report.pdf),
+also appended to the [full result report](results/snowball-rl-report-with-probability-diagnostic.pdf).
+On the same 84,274 tokens, mean absolute log-probability disagreement increased
+from 0.05719 at checkpoint 384 to 0.17820 at checkpoint 512. Forcing matching
+response expert choices reduced it by 65.4% and 70.8%, respectively, with
+improvement on every sampled question. All serving-weight and FP32 router-state
+comparisons passed. The [plots](results/parity-probe/fixed-token-parity.png),
+[checkpoint-by-text comparison](results/parity-probe/checkpoint-by-response-source.png),
+and [numerical results](results/parity-probe/comparison.json) accompany the report.
+
+The checkpoint effect is strongly text-dependent: disagreement increased on
+archive-384 text but decreased slightly on archive-512 text. The experiment
+identifies a routing contribution to probability mismatch; it does not prove
+that mismatch caused the task-accuracy regression. Both primary panels completed.
+The auxiliary decode control completed at 512; at 384 it failed before generation
+after the primary panel was saved. Raw archive locations and extracted-file
+hashes are recorded in [the evidence manifest](results/parity-probe/evidence-manifest.json).
+
 `prepare_parity_probe.py` freezes two randomly selected validation questions per
 present family (seed `20261017`): 28 questions across 14 families, with both the
 archive-384 and archive-512 answer to each question. It preserves the original
@@ -796,7 +814,8 @@ The job-local, source-hash-checked instrumentation performs these checks:
 4. Generate short, checkpoint-specific responses to four questions as an auxiliary control
    comparing vLLM decode probabilities with prefill rescoring and learner scores.
    Use eight samples per question so both forward batch sizes fill the 16
-   data-parallel ranks (32 responses of at most 256 tokens).
+   data-parallel ranks (32 responses of at most 256 tokens). The supported API
+   uses a shared request seed; repeated prompts are not independent samples.
 
 The diagnostic makes zero optimizer updates, disables evaluation/checkpoint/export
 callbacks, and raises if the optimizer-training method is called. Router replay
@@ -814,20 +833,28 @@ learner routing records exceed 100 MB, reproducing the transaction-size failure
 that occurred in the initial diagnostic. Archive writes use batches of 16 rows;
 the completion manifest is written after every score batch. Synthetic preflight
 values are temporary and are never used as model measurements.
-Only after a job writes `probe/complete.json`, use `parity_download --root
-REMOTE_PROBE_URI --output LOCAL_STEP_DIRECTORY` through the same wrapper to
-download exact scores/routes as Parquet. Then run:
+After `probe/complete.json`, use `parity_download --root REMOTE_PROBE_URI --output
+LOCAL_STEP_DIRECTORY` through the same wrapper to download scores/routes as
+Parquet. The primary panel also has its own `fixed-panel-complete.json` marker,
+written before the auxiliary decode control. If the auxiliary stage fails, use
+`--fixed-panel-only` to recover the completed primary comparison; this preserves
+the narrower completion marker and does not claim an auxiliary result. The
+separate `--vllm-only` recovery mode is explicitly partial and cannot satisfy
+the primary analysis. Then run:
 
 ```bash
 uv run --with matplotlib --with numpy python \
   experiments/001-pdbthink-coordinate/analyze_parity_probe.py \
   --directory runs/001/parity-probe \
   --panel runs/001/parity-probe/frozen-panel.json.gz \
+  --restore-control runs/001/parity-probe/attempt-v6-step-384 \
   --output experiments/001-pdbthink-coordinate/results/parity-probe
 ```
 
-This analysis requires both completed `step-384/` and `step-512/` downloads and
-rejects differing token identities. It reports probability-ratio distributions,
+This analysis requires both completed primary `step-384/` and `step-512/`
+downloads and rejects differing token identities or incomplete weight checks.
+The optional `--restore-control` compares the recovered checkpoint-384 vLLM
+scores with a separate fresh restore of that checkpoint. It reports probability-ratio distributions,
 effective sample size, factors-of-two disagreements, and expert-set agreement.
 On this fixed, family-balanced panel, mean `exp(delta) - 1 - delta` is a
 descriptive mismatch statistic, **not an unbiased current-policy KL estimate**.
