@@ -5,6 +5,77 @@ Train Snowball directly against PDBThink's native verifier with Marin's artifact
 launcher, MarinSkyRL, Megatron, vLLM, and Iris on CoreWeave. No GLM responses or
 other teacher traces are used.
 
+## Paired validation rollout audit
+
+The [updated PDF report](results/snowball-rl-result-report-with-rollout-audit.pdf)
+includes the original methods/results report and a 31-page reasoning audit.
+The [audit alone](results/reasoning-audit/rollout-audit.pdf) and
+[paired response viewer](results/reasoning-audit/rollout-audit.html) cover **100
+randomly selected validation questions at both steps 0 and 384: 200 responses**.
+Every pair has a review; the viewer preserves full prompts and unabridged responses.
+
+Selection uses seed `20261016`, stratifying by family and the joint binary
+success/failure outcomes. Each family contributes seven questions, except all
+three G04 and thirteen S09 questions. Allocation balances available outcome
+strata, subject to capacity, then samples uniformly without replacement. The
+sample spans 17 source groups. Its accuracy is deliberately unrepresentative;
+all population counts below use the full validation category.
+
+The audit supports better coordinate lookup, Euclidean distance calculations,
+and some charged-atom salt-bridge calculations. It also substantially qualifies
+the interpretation of the validation gains:
+
+| Category | Full-category evidence at step 384 | Interpretation |
+| --- | --- | --- |
+| G03 nearest residue | 104/108 predictions match the nearest-alpha-carbon proxy; model scores 78/108, proxy 79/108 | Usually substitutes CA distances for the required minimum heavy-atom distance. |
+| S03 solvent exposure | All 118 parseable answers say exposed; model 97/119, always exposed 98/119 | No demonstrated surface-area calculation. |
+| S04 local secondary structure | All 110 parseable answers say coil; model and always coil both 68/111 | No demonstrated backbone/DSSP calculation. |
+| S05 fold class | Model and always alpha helical both 8/12 | Gains do not establish fold classification from coordinates. |
+| S09 rotamer | Model 85/116 versus 46/116 for always g−; all 13 sampled trained traces attempt geometry | More than a constant label, but no sampled trace has a fully verified calculation. |
+
+For S09, a recurring dihedral formula omits the central-bond norm. An independent
+control applying that wrong formula to the **correct** coordinates preserves
+all 116 validation bins despite changing the angles. The category reward cannot
+detect this error on these geometries. Four of thirteen sampled trained traces
+also miscopy input coordinates; other examples lose an `atan2` quadrant or
+assign a positive angle to g−. Seven still receive reward 1. The PDF gives
+per-category findings, concrete examples, limitations, and all 100 case notes.
+
+Step 0 is archived standalone inference and step 384 is native training
+evaluation. Frozen prompts and scoring agree, but the execution paths differ.
+This is a descriptive reasoning audit, not a matched causal estimate of RL.
+Long repetitive responses were reviewed through deduplicated views and targeted
+passages; not every arithmetic line was independently checked. All raw text is
+preserved. The matched original-benchmark comparison below remains unchanged.
+
+![Full validation scores and shortcut controls](results/reasoning-audit/category-controls.png)
+
+Reproducibility artifacts: [selection manifest](results/reasoning-audit/sample-manifest.json),
+[all raw sampled data](results/reasoning-audit/sample.json.gz),
+[annotations](results/reasoning-audit/annotations.json),
+[full-category statistics](results/reasoning-audit/statistics.json),
+[independent geometry](results/reasoning-audit/geometry.json), and
+[artifact hashes](results/reasoning-audit/artifact-manifest.json).
+The sample includes all validation families; I01/S06/S07/S08/T01 are absent
+from this validation cohort and cannot be assessed by this audit.
+
+With the frozen local validation data and archived evaluation records restored:
+
+```bash
+PYTHONPATH=experiments/001-pdbthink-coordinate .venv/bin/python experiments/001-pdbthink-coordinate/sample_reasoning_audit.py
+PYTHONPATH=experiments/001-pdbthink-coordinate .venv/bin/python experiments/001-pdbthink-coordinate/analyze_reasoning_audit.py
+python experiments/001-pdbthink-coordinate/plot_reasoning_audit.py
+../pdbthink/.venv/bin/python experiments/001-pdbthink-coordinate/build_reasoning_audit.py
+```
+
+The sampler refuses to change an existing frozen manifest. Analysis replays all
+2,006 rewards and independently checks all S09/G03 gold geometry plus sampled
+G01/P03/S01 answers. NumPy/PyArrow are needed for analysis, Matplotlib for plots,
+and ReportLab/Pillow/PyMuPDF for the PDF. To rebuild the viewer/PDF from committed
+sample data alone, decompress `sample.json.gz` into
+`runs/001/reasoning-audit/sample.json`; the committed statistics and reviews
+supply the remaining inputs.
+
 ## Result report and original benchmark
 
 The [detailed PDF report](results/snowball-rl-result-report.pdf) contains the RL

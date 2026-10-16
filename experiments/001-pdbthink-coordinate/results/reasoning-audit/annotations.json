@@ -1,0 +1,5991 @@
+[
+  {
+    "index": 0,
+    "id": "pdbthink-g01-37da72df37f7fdc06014",
+    "family": "G01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "distance",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 15.035
+      },
+      "parameters": {
+        "atom1": "C:S105:OG",
+        "atom2": "C:S109:OG",
+        "tolerance": 0.02
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct atom lookup and Euclidean method; mistaken square self-correction still within tolerance.",
+      "step384": "Correct lookup and Euclidean calculation; final 15.04 agrees within tolerance.",
+      "tags": [
+        "distance",
+        "arithmetic"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "c9a492575459481d3c7a48747b34aa6b57535a0be37aa99de495ee0e324893fd",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "15.03",
+          "fields": {},
+          "value": 15.03,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "e70180b0caf124a3e01c0cfe4ffa522ebb6c271e2a1f63b2f6b4420a09107496",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "15.04",
+          "fields": {},
+          "value": 15.04,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 1,
+    "id": "pdbthink-g01-42d1e9b9cd0c41faec01",
+    "family": "G01",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "distance",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 23.86
+      },
+      "parameters": {
+        "atom1": "A:D80:OD1",
+        "atom2": "A:L94:CB",
+        "tolerance": 0.02
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Uses D73 OD1 and L79 CB instead of requested D80/L94; computes 20.58 and malformed final.",
+      "step384": "Uses requested atoms and computes 23.86 correctly.",
+      "tags": [
+        "distance",
+        "lookup_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "5d2ff4daa9346ff58b09c0e213492fbab2fdaf863eb8c9601e0a481f698f7c9f",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "5378dfa8ebab4198708fab4eec09acaa54cb7e618044743eac0eb5ec7eb8e83c",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "23.86",
+          "fields": {},
+          "value": 23.86,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 2,
+    "id": "pdbthink-g01-8c9718bbadeec9826f24",
+    "family": "G01",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "distance",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 12.2
+      },
+      "parameters": {
+        "atom1": "C:G17:CA",
+        "atom2": "C:P21:CG",
+        "tolerance": 0.02
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Wrong coordinates; computes 19.08 and boxed final not parsed.",
+      "step384": "Correct coordinates and 12.20 distance, but says \"We'll present FINAL\" inline; no parsed FINAL.",
+      "tags": [
+        "distance",
+        "format_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "3cc92dcb2b7de595b276900e305318c75f31621192600554edae4268f70453c1",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "566629ec393480e4ebae015117d0f5880ad53975115dfeb43a272ba3d87c04d2",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 3,
+    "id": "pdbthink-g01-9b4bd938bcad18869011",
+    "family": "G01",
+    "group": "group-b2cd3b81804efe99ea2d851b",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "distance",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 21.708
+      },
+      "parameters": {
+        "atom1": "A:G151:CA",
+        "atom2": "A:T213:CB",
+        "tolerance": 0.02
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Copies long atom lists and truncates before finishing.",
+      "step384": "Correct atoms and squared sum; root arithmetic slightly wrong (21.72), accepted within 0.02 tolerance of 21.708.",
+      "tags": [
+        "distance",
+        "completion_gain",
+        "arithmetic"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "ff7c54890ff02736ae493a873035c9847cf853f728c6198a63a6e716249273d5",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": true
+      },
+      "384": {
+        "text_sha256": "1f0984b99a27efc7a74acfe6be55d3384e6ef64d067d7aa0e255214c837a66d2",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "21.72",
+          "fields": {},
+          "value": 21.72,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 4,
+    "id": "pdbthink-g01-c90fc18d48008cadf422",
+    "family": "G01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "distance",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 19.54
+      },
+      "parameters": {
+        "atom1": "C:T104:CB",
+        "atom2": "C:P110:CG",
+        "tolerance": 0.02
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct coordinate lookup and distance 19.54 after correcting a square.",
+      "step384": "Correct coordinate lookup and distance 19.54; long repeated checking.",
+      "tags": [
+        "distance",
+        "correct_method"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "81a170873cb6935846e8f0f4c1a2adb4764aa4489a319c6f8ee2a8532e72ffaa",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "19.54",
+          "fields": {},
+          "value": 19.54,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "a167039d90bca300dde870a8c53b8f0ea29c3c6a58f5405a566cc9c796151602",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "19.54",
+          "fields": {},
+          "value": 19.54,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 5,
+    "id": "pdbthink-g01-d32a21518d4be1f2a28a",
+    "family": "G01",
+    "group": "group-d4b34ad8f14bf85af570ec3e",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "distance",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 7.363
+      },
+      "parameters": {
+        "atom1": "A:G1:CA",
+        "atom2": "A:K8:NZ",
+        "tolerance": 0.02
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct atoms and Euclidean method; small arithmetic error, 7.36 accepted.",
+      "step384": "Correct atoms, squared sum and distance 7.36.",
+      "tags": [
+        "distance",
+        "correct_method"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "1321d4733e1c649b0541526c0bab1c04ecc888551f8976641228b0a30cd7bbe3",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "answer: FINAL: 7.36",
+          "fields": {},
+          "value": 7.36,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "e688928eab837e722d75e593a3a39f9aee159b704068bdf6823fa216c125bc84",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "7.36",
+          "fields": {},
+          "value": 7.36,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 6,
+    "id": "pdbthink-g01-e410c580c153c1b78514",
+    "family": "G01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "distance",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 15.703
+      },
+      "parameters": {
+        "atom1": "A:K698:NZ",
+        "atom2": "A:S704:OG",
+        "tolerance": 0.02
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Wrong NZ/OG coordinates; computes 18.04 rather than 15.703.",
+      "step384": "Correct NZ, initially sees correct OG but substitutes a different residue's coordinates and invents a serine CG; computes 15.07.",
+      "tags": [
+        "distance",
+        "lookup_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "811d1df691644bd1960fadb33d7ad888810b2e58209521bcb4c4b59072b85ad1",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "18.04",
+          "fields": {},
+          "value": 18.04,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "d0eedc46fe0a314f3e40cd084777774fa2afc2ea6c480017ecc100908a023a89",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "15.07",
+          "fields": {},
+          "value": 15.07,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 7,
+    "id": "pdbthink-g02-0a13ea30c05bcb6f5882",
+    "family": "G02",
+    "group": "group-42508844daba0ac859cefd40",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "atom",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:R347:CB"
+      },
+      "parameters": {
+        "atom": "NE",
+        "residue": "B:R347"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-neighbor speculation, excludes same residue too broadly; malformed B:ARG348:CA.",
+      "step384": "Partial distance search, confuses sequence/residue names and selects nonexistent generic VAL CG; malformed answer.",
+      "tags": [
+        "bond_exclusion",
+        "partial_search",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "011279f492562d7a23455e8a0f9e7f7f3233792effd16f59f1537547fcf84dda",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "9dedde1e79905d5700d9a19da7692c491a2dfbff9767e504c219c0038e51cb6b",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "B:VAL B345:CG",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not an atom identifier: 'B:VAL B345:CG'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 8,
+    "id": "pdbthink-g02-45fa8c56214f3ef68d5a",
+    "family": "G02",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "atom",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "E:P9:CD"
+      },
+      "parameters": {
+        "atom": "CG",
+        "residue": "E:E8"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Checks distances and correctly identifies PRO9 CD, but writes three-letter E:PRO9:CD.",
+      "step384": "Computes many distances but selects directly bonded GLU8 CB, which must be excluded; three-letter identifier also fails.",
+      "tags": [
+        "bond_exclusion",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "30bfb7f6b3ceb8ee11a5b4078a8526cb95e976d9ca2bd2d27fbe5901efd38d81",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "E:PRO9:CD",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not an atom identifier: 'E:PRO9:CD'"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "10ae468fa072c422c437f0cc47fe98496d297a9a2f71dbd2674ee44540f16b54",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "E:GLU8:CB",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not an atom identifier: 'E:GLU8:CB'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 9,
+    "id": "pdbthink-g02-93369b0b6d0088581bfa",
+    "family": "G02",
+    "group": "group-95f23ea96073d1bba5c42389",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "atom",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:R52:CG"
+      },
+      "parameters": {
+        "atom": "CZ",
+        "residue": "B:R52"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Uses neighboring CA distances as proxy for target CZ; guesses PRO53 CA; malformed final.",
+      "step384": "Wrong arginine connectivity excludes CG incorrectly; selects CB instead of CG, also malformed identifier.",
+      "tags": [
+        "bond_exclusion",
+        "partial_search",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "83926cdd9e3430f9127f37c0b430f25200e539e7ba267a566feab235e3ecfe32",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "2880a155dcad4eaf95d57e9c2da472a455872be5408f42da7374080e3f99d6c8",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "B:ARG52:CB",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not an atom identifier: 'B:ARG52:CB'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 10,
+    "id": "pdbthink-g02-a05334aaddb277a3ac2e",
+    "family": "G02",
+    "group": "group-d4b34ad8f14bf85af570ec3e",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "atom",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:L7:CA"
+      },
+      "parameters": {
+        "atom": "CD2",
+        "residue": "A:L7"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Incorrect leucine connectivity; guesses from sequence and truncates.",
+      "step384": "Computes target-to-CA distances, correctly keeps own CA three bonds away; correct answer but no exhaustive all-atom proof.",
+      "tags": [
+        "bond_exclusion",
+        "partial_search",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "fd871462d3b49d8e3d6d1847419c77e07d9264588bb87a907cc436e7fd7e5af7",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "f2604eb700cabc4fa0fe4b3cc8e8df5f8e9448e79cac125a2cbb949bbe01e2f7",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:L7:CA",
+          "fields": {},
+          "value": "A:L7:CA",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 11,
+    "id": "pdbthink-g02-a7b76ffd50d590819814",
+    "family": "G02",
+    "group": "group-42508844daba0ac859cefd40",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "atom",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:R349:CD"
+      },
+      "parameters": {
+        "atom": "NH1",
+        "residue": "B:R349"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Repeated claims calculation impossible without tools; truncates.",
+      "step384": "CA screening plus selected sidechain distances identifies own CD at about 2.828 A; correct answer, incomplete global search.",
+      "tags": [
+        "partial_search",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "5fe1524118556c0c53574ebc6910c13809c3da80a2509f953369b64fe0da0614",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "0f28e6937552725c405907dc85ccb64d70a6681dfd0761e035cc5f3a243b95a2",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "B:R349:CD",
+          "fields": {},
+          "value": "B:R349:CD",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 12,
+    "id": "pdbthink-g02-e13b8e044eeff159245b",
+    "family": "G02",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "atom",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:D140:CA"
+      },
+      "parameters": {
+        "atom": "OD2",
+        "residue": "A:D140"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Long listing, speculative sequence neighbors, confused exclusions, truncation.",
+      "step384": "Target-to-CA screening and own-residue checks; excludes CB and picks CA at 3.629 A; correct answer without exhaustive atom search.",
+      "tags": [
+        "partial_search",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "05f912a499f6e2729d7f3ebc1a6710f6f8ae1b8dfe3a354a909f8ace6568d6ba",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": true
+      },
+      "384": {
+        "text_sha256": "b75b89c099028fc24fc04d802ae2f677d254f721cee83e6e6716377d64ad54d6",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:D140:CA",
+          "fields": {},
+          "value": "A:D140:CA",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 13,
+    "id": "pdbthink-g02-eac05bcbd6cf3cac559d",
+    "family": "G02",
+    "group": "group-62e85cc5642bc4890807d115",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "atom",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:R893:CB"
+      },
+      "parameters": {
+        "atom": "NE",
+        "residue": "A:R893"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Enumerates atoms, falsely claims target missing, loops to truncation.",
+      "step384": "Computes many CA and selected sidechain distances; correctly identifies own CB about 2.909 A, checks three-bond eligibility.",
+      "tags": [
+        "partial_search",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "e06e6e41c12e83ac5fdefc89d27d922a8813fc799f8f59f3d819fe4ac9d336d9",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "ad336fb78a6129a4f0d12d86b49598dab51c78e13ceae71403192744eea56f88",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:R893:CB",
+          "fields": {},
+          "value": "A:R893:CB",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 14,
+    "id": "pdbthink-g03-aaa38eebbd31bc7e1b20",
+    "family": "G03",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:V97"
+      },
+      "parameters": {
+        "candidates": [
+          "A:F118",
+          "A:G141",
+          "A:P130",
+          "A:R123",
+          "A:V97"
+        ],
+        "target": "A:V93"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Chooses sequence-nearest V97, explicitly assumes chain linear; right label for invalid rationale.",
+      "step384": "Uses CA-CA distances, V97 wins; correct label but not requested heavy-atom minimum.",
+      "tags": [
+        "ca_proxy",
+        "sequence_heuristic"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "4df704244625023d6cadc75be9dd914b0339f3c98de160a2cd38553f5f694e59",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:V97",
+          "fields": {},
+          "value": "A:V97",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "7e9de4510714de71efe3d5120573de6158bc2e426404640606324ef91037de50",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:V97",
+          "fields": {},
+          "value": "A:V97",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 15,
+    "id": "pdbthink-g03-b8c52dcf813b5fdbaf68",
+    "family": "G03",
+    "group": "group-b2cd3b81804efe99ea2d851b",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:D191"
+      },
+      "parameters": {
+        "candidates": [
+          "A:C192",
+          "A:D191",
+          "A:P209",
+          "A:P215",
+          "A:Q203"
+        ],
+        "target": "A:Q195"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-nearest C192 guess, boxed unparsed.",
+      "step384": "Explicitly substitutes CA-CA distance and chooses C192; true all-heavy-atom winner D191.",
+      "tags": [
+        "ca_proxy",
+        "proxy_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "3f518c6b94d8df3281d800e00a2389a8d12ebd9806e2fb0af552428f0f4b084e",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "76c0d399a99c719f9eecb81788e492e1ad43e7a3b46a6d7b74676bdbf49e605d",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:C192",
+          "fields": {},
+          "value": "A:C192",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 16,
+    "id": "pdbthink-g03-b8dd716f48aaca153aa8",
+    "family": "G03",
+    "group": "group-9711b21ec18fd25e13e46350",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:K254"
+      },
+      "parameters": {
+        "candidates": [
+          "A:E263",
+          "A:G255",
+          "A:K254",
+          "A:N243",
+          "A:Y277"
+        ],
+        "target": "A:K258"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Guesses K254 using sequence/sidechain arguments, even suggests Lys-Lys salt bridge; malformed final.",
+      "step384": "Uses CA-CA proxy with miscopied coordinates; picks G255, also the true CA-proxy winner, instead of all-heavy-atom winner K254.",
+      "tags": [
+        "ca_proxy",
+        "proxy_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "043514728bc670f2c88e2cd631118c6c938f0217b6ea76a4d2875c5033186e7d",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "Answer: The final answer is A:K254. I'll put that after FINAL",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: \"Answer: The final answer is A:K254. I'll put that after FINAL\""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "767ce379ac58fdff22a35f71b3be328e9298d19ccc5aea74e498ef6089119b0c",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:G255",
+          "fields": {},
+          "value": "A:G255",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 17,
+    "id": "pdbthink-g03-b8e42ce58c960e7a9581",
+    "family": "G03",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:V128"
+      },
+      "parameters": {
+        "candidates": [
+          "A:F75",
+          "A:H119",
+          "A:K103",
+          "A:T132",
+          "A:V128"
+        ],
+        "target": "A:P125"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-nearest V128 guess is right but boxed unparsed.",
+      "step384": "Numerical CA-CA comparison picks V128; correct label via proxy.",
+      "tags": [
+        "ca_proxy",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "49ac01c7b1959e31a7c2b137ceb0d136eaecfb8d7be2c2bb2cbb7f421ab83844",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "0b1959b06144012652c28f83c796afabfd9cb04232e93513da841e976b6e247c",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:V128",
+          "fields": {},
+          "value": "A:V128",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 18,
+    "id": "pdbthink-g03-d39788371b897d2c6854",
+    "family": "G03",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:A726"
+      },
+      "parameters": {
+        "candidates": [
+          "A:A726",
+          "A:E742",
+          "A:P701",
+          "A:R727",
+          "A:S702"
+        ],
+        "target": "A:F730"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Confused lookup and sequence guess picks A726 correctly.",
+      "step384": "Uses CA-CA proxy (one coordinate is miscopied) and picks R727; true CA-proxy winner is also R727, but all-heavy-atom winner is A726.",
+      "tags": [
+        "ca_proxy",
+        "proxy_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "7d1b0cb49f3350d3c48666b220d3f6f6958864ff13fe70ca2076d05a4951d628",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:A726",
+          "fields": {},
+          "value": "A:A726",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "57a94d4e5d6dd4110206e1014ac5e7de43368216f3a3a2f231aaed11208695e3",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:R727",
+          "fields": {},
+          "value": "A:R727",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 19,
+    "id": "pdbthink-g03-d3d17304af054d3a8090",
+    "family": "G03",
+    "group": "group-9827b67dcbe2d8f9d7dbffe1",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "C:S15"
+      },
+      "parameters": {
+        "candidates": [
+          "C:A18",
+          "C:I16",
+          "C:S15",
+          "C:S19",
+          "C:V17"
+        ],
+        "target": "C:E12"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Attempts selected atom distances and picks S15 correctly.",
+      "step384": "Only CA-CA distances, picks S15 correctly.",
+      "tags": [
+        "ca_proxy",
+        "partial_search"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a393cdfd2cc7045a03be046b97cf37c86c5a2943fe5d1af1a33319eed56f4565",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "C:S15",
+          "fields": {},
+          "value": "C:S15",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "726e866e973448d759cfe367f0e371ef6135c263a3da61a46dd5b371231f77e6",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "C:S15",
+          "fields": {},
+          "value": "C:S15",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 20,
+    "id": "pdbthink-g03-ff62f34e606e9930f42c",
+    "family": "G03",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:R9"
+      },
+      "parameters": {
+        "candidates": [
+          "B:G19",
+          "B:G22",
+          "B:G28",
+          "B:K15",
+          "B:R9"
+        ],
+        "target": "B:N12"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Misidentifies ASN as LYS and gets stuck listing atoms; truncates.",
+      "step384": "Recognizes ASN and computes CA-CA distances, picks R9 correctly.",
+      "tags": [
+        "ca_proxy",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "8f9e3d00561835f70146bffaf22b7fe242b5cb00a1b0a4189c942dccd82237bb",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "9c7a40c5b1111be4a5c0c31f2d8b5ce6d04b9c45e0c887265ba7eeae68232f95",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "B:R9",
+          "fields": {},
+          "value": "B:R9",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 21,
+    "id": "pdbthink-g04-55369d6376f773133850",
+    "family": "G04",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue_pair",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "E:E8--E:P9"
+      },
+      "parameters": {
+        "pair": "E:E8--E:P9"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Attempts many distances but repeats identical estimates and truncates.",
+      "step384": "Partial pair search finds no positive overlap, then reports least-negative TPO--MET; invalid criterion and identifier.",
+      "tags": [
+        "clash",
+        "partial_search",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "f9d8906bd2b57253f8b163c94422fd05b28e74b9e26b2f963af10f00675c5bf4",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "555b271e949acdf5e4b28e1e64a58017ec08812427e0f16d04958eb49dc353e8",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "TPO--MET",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'TPO'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 22,
+    "id": "pdbthink-g04-ec33a251c9d7f1fddc18",
+    "family": "G04",
+    "group": "group-9827b67dcbe2d8f9d7dbffe1",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue_pair",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "C:L122--C:T21"
+      },
+      "parameters": {
+        "pair": "C:L122--C:T21"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "CA-distance shortcut with miscopied coordinates; picks TPO14--SER15, invalid identifier.",
+      "step384": "Uses residue-average radii and assumed 2.8 A separation instead of closest atom pair; guesses LEU--GLU, invalid identifier.",
+      "tags": [
+        "clash",
+        "assumed_geometry",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "0ab793fc137947da18c941f27f3f21dec2cad59f20c06e18963c9f94dbbd44f2",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "1f992b04ebb77130a3cc267fbf0fc601c678c9dca7a2071ca658287cfc247bae",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "LEU C11--GLU C12",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'LEU C11'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 23,
+    "id": "pdbthink-g04-ed3c5d17f53366383bb7",
+    "family": "G04",
+    "group": "group-d4b34ad8f14bf85af570ec3e",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue_pair",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:G1--A:L10"
+      },
+      "parameters": {
+        "pair": "A:G1--A:L10"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Excludes nonpolymer ligand, loops about needing tools and truncates.",
+      "step384": "CA-CA surrogate and selected contacts; chooses least-negative overlap GLU9--ILE10, misses ligand clash and invalid identifier.",
+      "tags": [
+        "clash",
+        "ca_proxy",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "5a00ce0d30da56fc9a444ab35c050e1deef5884fd7fd83803d5b107621e231fd",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "e7c431461379f7f28bd5ceae1a08e4b4badabf099d291953c769384d6eb5f48f",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "GLU A9--ILE A10",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'GLU A9'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 24,
+    "id": "pdbthink-n01-042badfe4ccddfb8399e",
+    "family": "N01",
+    "group": "group-1b872b3ca152b0c34dac8501",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:S33"
+      },
+      "parameters": {
+        "anchor_a": "A:N29",
+        "anchor_b": "A:R37"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Confused residue numbering and midpoint/sequence guesses, loops to truncation.",
+      "step384": "Enumerates CA distances with 4 A cutoff instead of all-heavy-atom contacts; truncates without answer.",
+      "tags": [
+        "ca_proxy",
+        "contact_failure",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "ac0fd66e997cbbfa3a08f5dc436873a64bcaf6fa3b21e84869ed4039f89676bd",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "4bbe8c74c514b0de8c362ca215ec448c27cfa88b2e75f7082b83f9dc34e4fd35",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 25,
+    "id": "pdbthink-n01-0e296986440388362055",
+    "family": "N01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:D729"
+      },
+      "parameters": {
+        "anchor_a": "A:D725",
+        "anchor_b": "A:G733"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Midpoint heuristic guesses residue729 correctly but omits amino-acid code.",
+      "step384": "CA-distance screen finds no shared contact and repeats calculations to truncation.",
+      "tags": [
+        "ca_proxy",
+        "contact_failure",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "29438726ab052272278bedb2e8b0d7e5cab185fe53b20ad74084f63ad87493b4",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:729",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'A:729'"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "cc27179084b2df2d1c41cea863a424afe9b54fd98702c0c1b1b8cec8e5902d07",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 26,
+    "id": "pdbthink-n01-6aba22c1ed9650543bde",
+    "family": "N01",
+    "group": "group-1b872b3ca152b0c34dac8501",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:N34"
+      },
+      "parameters": {
+        "anchor_a": "A:N30",
+        "anchor_b": "A:Y39"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Confused sequence/residue identity, midpoint speculation, truncation.",
+      "step384": "CA-distance screen and even self-contact speculation, truncates without finding N34.",
+      "tags": [
+        "ca_proxy",
+        "contact_failure",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "cfc71a3b79bbe25fb6aa2dec2467db0f98e00fa80eecae1633ceb87c94f2cf42",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "b1af1c1092aa65e2f71bb198870acfd23052a7de26fe0f2a115dfcab8fc7d9de",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 27,
+    "id": "pdbthink-n01-6c054aa0e97241324843",
+    "family": "N01",
+    "group": "group-95f23ea96073d1bba5c42389",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:E66"
+      },
+      "parameters": {
+        "anchor_a": "B:E62",
+        "anchor_b": "B:Q70"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-based guess GLU69, wrong partner.",
+      "step384": "Misnumbers residues, computes CA distances, then repetitive verbal loop; truncation.",
+      "tags": [
+        "ca_proxy",
+        "contact_failure",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "6535b50d12a57bbb9e1dde1b0f32c371fd4cbc702118b51da0c87a765ba0fa3f",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "B:GLU69",
+          "fields": {},
+          "value": "B:GLU69",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "e6c930b17f74fb3f0a6ff722b196d66daadc00da9190c58bd62737d0d2064ae7",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 28,
+    "id": "pdbthink-n01-9c4ded25b7879e22b8a0",
+    "family": "N01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:F696"
+      },
+      "parameters": {
+        "anchor_a": "A:C692",
+        "anchor_b": "A:F700"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Misidentifies CYS as MSE; midpoint guess696, missing residue code and refusal flag.",
+      "step384": "CA-distance screening with confused identities, truncates without finding F696.",
+      "tags": [
+        "ca_proxy",
+        "contact_failure",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "9c5c0858f580e1a7a81fa3ccb64f03e09a3556f8effb601f112133b25bc9434d",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:696",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'A:696'"
+        },
+        "truncated": false,
+        "refusal": true
+      },
+      "384": {
+        "text_sha256": "fbeeb5e24f68818e7fab37e0682324b90ee2ba51cc76b9d973708b5ac0a35a22",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 29,
+    "id": "pdbthink-n01-dde84c4aa13319672701",
+    "family": "N01",
+    "group": "group-9711b21ec18fd25e13e46350",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:L257"
+      },
+      "parameters": {
+        "anchor_a": "A:P253",
+        "anchor_b": "A:K261"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-position/lysine prior guesses K258, boxed unparsed.",
+      "step384": "Scans CA distances rather than atom contacts; truncates without finding L257.",
+      "tags": [
+        "ca_proxy",
+        "contact_failure",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "db0163ffc48bb21c9e6de3f27b22819bb8ff1316141e8ecad43a1a5cde565a2f",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "3b743b5e8c6d8031ac91e0bc7eab9a37e47d9d3087cc82cf4203be84d8acebf4",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 30,
+    "id": "pdbthink-n01-f3ee21661ab54b5f2428",
+    "family": "N01",
+    "group": "group-1b872b3ca152b0c34dac8501",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:K5"
+      },
+      "parameters": {
+        "anchor_a": "A:A0",
+        "anchor_b": "A:E9"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Invents unbounded A:A residue list to thousands, truncates.",
+      "step384": "Numerical CA-distance screening but wrong contact surrogate; truncates.",
+      "tags": [
+        "ca_proxy",
+        "contact_failure",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a819e2de47c96e5b7d334fa3b456f7c87b110102e596991091d5b3050d73c3f6",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "086289d99ce56a0154df178599a668a0c8c59a95a06a34bc9ff2c6d5617a6a48",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 31,
+    "id": "pdbthink-p01-1c5de69b97a988c5ff37",
+    "family": "P01",
+    "group": "group-c1ba54a50096f5b26cb7bc7a",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "string_set",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          "A"
+        ]
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly reads single chain A.",
+      "step384": "Correctly reads single chain A, concise FINAL.",
+      "tags": [
+        "chain_lookup"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "589633e54083fc0b16974e6f766ad8ba2c1b9bbb48b793857f84517af40fbed0",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A",
+          "fields": {},
+          "value": [
+            "A"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "56fe16bc5bbc47c168aff8cdb82b8446883d721a5923e5cd33ade94869129c13",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A",
+          "fields": {},
+          "value": [
+            "A"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 32,
+    "id": "pdbthink-p01-3626b2c2edd92266bd9e",
+    "family": "P01",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "string_set",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          "B"
+        ]
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly reads single chain B.",
+      "step384": "Correctly reads single chain B, concise FINAL.",
+      "tags": [
+        "chain_lookup"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "d2de729619e8688b9248118ef5cc4327504afc613ef2b7a0dd782180b231eb71",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "B",
+          "fields": {},
+          "value": [
+            "B"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "b3f98afc15d84c250856fdfb6b18bda44335dc73bb1190e6386bd2d7c56bcf04",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "B",
+          "fields": {},
+          "value": [
+            "B"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 33,
+    "id": "pdbthink-p01-4e6d164114d60bc16ef6",
+    "family": "P01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "string_set",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          "Y"
+        ]
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly reads chain Y, but FINAL only inline/boxed and unparsed.",
+      "step384": "Same correct chain Y in valid FINAL format.",
+      "tags": [
+        "chain_lookup",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "66f8e8106ff9ae784b412c5918caa62c734fc0f7e0126a3c2bbb1657d64569a3",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "f647f25db5783259bae759ca0eb493bb7de7e1ef493ca03fa202093272081e7c",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "Y",
+          "fields": {},
+          "value": [
+            "Y"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 34,
+    "id": "pdbthink-p01-886b952a14d72529f9e7",
+    "family": "P01",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "string_set",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          "E"
+        ]
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly reads chain E, but FINAL only inline/boxed and unparsed.",
+      "step384": "Same correct chain E in valid FINAL format.",
+      "tags": [
+        "chain_lookup",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "e2bf9a66b7ec5f5295f23da061f65ec3c5c9e8a45045e09c120187624c6daefd",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "221b1a59f09659509de9ad7554aebfc5e71cce683d85bff0b193f7a13c3fad06",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "E",
+          "fields": {},
+          "value": [
+            "E"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 35,
+    "id": "pdbthink-p01-b04a7082daaf0d04c2d7",
+    "family": "P01",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "string_set",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          "G"
+        ]
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct chain G, but trailing \"Final Answer\" overrides parsed value with ANSWER.",
+      "step384": "Correct chain G with clean final field.",
+      "tags": [
+        "chain_lookup",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "bf7a83c916232b2f0db12e07609dcfd45f25c4fd560d67cab291567c48305a62",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "Answer",
+          "fields": {},
+          "value": [
+            "ANSWER"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "d5ef645741afb643dddcf207ec450b9d20fcaa6c3707a9351dbca20de960b9d9",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "G",
+          "fields": {},
+          "value": [
+            "G"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 36,
+    "id": "pdbthink-p01-da81c82017f235e96bd8",
+    "family": "P01",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "string_set",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          "A"
+        ]
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly reads single chain A.",
+      "step384": "Correctly reads single chain A, concise FINAL.",
+      "tags": [
+        "chain_lookup"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "1eab21a86643adff7088b06cb37c7691a216adbde1d3f1f634813340ac7c5e7c",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A",
+          "fields": {},
+          "value": [
+            "A"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "ce2a22e4a07bf3dbdfbfbd53e0a1f61075d4b40705120b6bbbe3890d201de508",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A",
+          "fields": {},
+          "value": [
+            "A"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 37,
+    "id": "pdbthink-p01-f1b3aaf8b39d4ea2727d",
+    "family": "P01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "string_set",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          "C"
+        ]
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly reads chain C, but FINAL only inline/boxed and unparsed.",
+      "step384": "Same correct chain C in valid FINAL format.",
+      "tags": [
+        "chain_lookup",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "36e6a3151c6057d3ce3b494a627d2c4f20aa5c42ac3ffe62191c72931ac42fe8",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "3308a3547b78132854ea5e5d5c4ee0663ed1bb99d89df5848bac32689a1bd40b",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "C",
+          "fields": {},
+          "value": [
+            "C"
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 38,
+    "id": "pdbthink-p02-0e516812e3e00d5bb293",
+    "family": "P02",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "integer",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 22
+      },
+      "parameters": {
+        "chain": "G"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Lists22 residues but miscounts21.",
+      "step384": "Counts22 then wrongly excludes TPO as non-amino-acid triphosphate; answers21.",
+      "tags": [
+        "counting",
+        "modified_residue_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "2fddd05b038ca47413b8b2d6a9b35c57d0d9125c81154f27b4db9ec2d1f5e950",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "21",
+          "fields": {},
+          "value": 21,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "b46b7b8fc19ad7cded87a123baf29cd43f5cceefb25419ac467a5d3dc8ae4627",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "21",
+          "fields": {},
+          "value": 21,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 39,
+    "id": "pdbthink-p02-3ba49f7068c2ac316262",
+    "family": "P02",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "integer",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 78
+      },
+      "parameters": {
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct inclusive span150-73+1=78.",
+      "step384": "Enumerates using author numbers73..150 then confuses last author number with count; answers150.",
+      "tags": [
+        "counting",
+        "numbering_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "d7d519ccabe75bb0354095e80f7d55b936339922c1ef0c08d31ff769e62f3294",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "78",
+          "fields": {},
+          "value": 78,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "07758bd110fd297aa481de9c27e7676c727b63dc7c8344e4151a1581b6149444",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "150",
+          "fields": {},
+          "value": 150,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 40,
+    "id": "pdbthink-p02-3fc51a2a8e831be302f1",
+    "family": "P02",
+    "group": "group-42508844daba0ac859cefd40",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "integer",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 35
+      },
+      "parameters": {
+        "chain": "B"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Lists35 distinct numbers, correct35 but malformed final.",
+      "step384": "Invents/duplicates sequence entries and residue368; answers36.",
+      "tags": [
+        "counting",
+        "enumeration_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "821b0134f5b4559e06547af7aa937fa55035fcbdcac69c69c116bf4257906ec6",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "67f743af544d1c9fdd7361041d19f2e874acd025e4b9e2d1222f1e9750a4c714",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "36",
+          "fields": {},
+          "value": 36,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 41,
+    "id": "pdbthink-p02-535fc17ac77638245254",
+    "family": "P02",
+    "group": "group-dc953f8ed8611fbb049a5a45",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "integer",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 59
+      },
+      "parameters": {
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Omits residues12 and32 and returns57.",
+      "step384": "Enumerates59 positions and answers59; some sequence transcription remains inconsistent.",
+      "tags": [
+        "counting",
+        "content_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "c5c2ba7f6921fb7246f8986da617046d74667893bfb3b0c6da741d7881993b0a",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "57",
+          "fields": {},
+          "value": 57,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "1c5bcf130bcc89cec2034447c901cc047800403d293f5ec45fddb7345a281fc7",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "59",
+          "fields": {},
+          "value": 59,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 42,
+    "id": "pdbthink-p02-556576bc66cde9224992",
+    "family": "P02",
+    "group": "group-9711b21ec18fd25e13e46350",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "integer",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 60
+      },
+      "parameters": {
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Enumerates60 entries yet claims83; first residue also wrong.",
+      "step384": "Correctly enumerates224..283 as60.",
+      "tags": [
+        "counting",
+        "content_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "4e072c2951b78656a7c2720d07944e44b5e6940e359b1e0e61b59c489b2ba5c0",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "\\boxed{83}",
+          "fields": {},
+          "value": 83,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "1c4dc94f6d42789a8c932391ed771f60257d96833ff708d4a34fd7bf252b1316",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "60",
+          "fields": {},
+          "value": 60,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 43,
+    "id": "pdbthink-p02-6837b5c90341cbb2aeed",
+    "family": "P02",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "integer",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 38
+      },
+      "parameters": {
+        "chain": "C"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly enumerates38 residues.",
+      "step384": "Correctly enumerates38 residues.",
+      "tags": [
+        "counting"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "c4174e7942bcd13c7efccc9b18cda1a49f1ccfae06fa0568c7d0143a33ca473e",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "38",
+          "fields": {},
+          "value": 38,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "44b1cf05cc74a252b424f1a302f5970a05947b504b1b317037e8e59ef408f8e1",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "38",
+          "fields": {},
+          "value": 38,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 44,
+    "id": "pdbthink-p02-dbad3107f376709840b0",
+    "family": "P02",
+    "group": "group-d4b34ad8f14bf85af570ec3e",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "integer",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": 29
+      },
+      "parameters": {
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct29, excludes ligand.",
+      "step384": "Correct29 and valid FINAL, but generation continues and hits length limit; native truncation makes reward0. The raw tail is a long repeated sequence string after the correct answer.",
+      "tags": [
+        "counting",
+        "post_answer_truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "42652166447dfd2c32abcf826fbe86058b9fa78f8674fdb86ab9c666649a0ab1",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "29",
+          "fields": {},
+          "value": 29,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "64fee7c539557d89e8e36345a6d48601951aabdc69780c5e6adb29eb372148a1",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "29",
+          "fields": {},
+          "value": 29,
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 45,
+    "id": "pdbthink-p03-0deb94b2b5395dea3aff",
+    "family": "P03",
+    "group": "group-95f23ea96073d1bba5c42389",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "numeric_triple",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          -4.689,
+          1.288,
+          6.099
+        ]
+      },
+      "parameters": {
+        "atom": "CG2",
+        "residue": "B:V59",
+        "tolerance": 0.001
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Finds requested atom and copies correct coordinates.",
+      "step384": "Finds requested atom and copies correct coordinates.",
+      "tags": [
+        "coordinate_lookup"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "8ecaef4185978f9db539f8acf1775b53af258cd4e4f66660e9ca421dab85bbb3",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "-4.689, 1.288, 6.099",
+          "fields": {},
+          "value": [
+            -4.689,
+            1.288,
+            6.099
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "54783e386b5891b4a4ffe88ca669c30f83bd0a32485d83a8444741c10ad56f62",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "-4.689, 1.288, 6.099",
+          "fields": {},
+          "value": [
+            -4.689,
+            1.288,
+            6.099
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 46,
+    "id": "pdbthink-p03-1005fd0d9a9a7e260de1",
+    "family": "P03",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "numeric_triple",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          2.366,
+          1.446,
+          1.744
+        ]
+      },
+      "parameters": {
+        "atom": "CG",
+        "residue": "E:M6",
+        "tolerance": 0.001
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Finds requested atom and copies correct coordinates.",
+      "step384": "Finds requested atom and copies correct coordinates.",
+      "tags": [
+        "coordinate_lookup"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "f9365643d5769d6a64733a09b680a08affcfcd989a3034859fbfce383aadb4e3",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "2.366, 1.446, 1.744",
+          "fields": {},
+          "value": [
+            2.366,
+            1.446,
+            1.744
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "e54ce722fcf4a6deaa06bcce24e7c6fea728ed0a384ff7df008065b00c627355",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "2.366, 1.446, 1.744",
+          "fields": {},
+          "value": [
+            2.366,
+            1.446,
+            1.744
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 47,
+    "id": "pdbthink-p03-78deef03b65a3ee5debc",
+    "family": "P03",
+    "group": "group-b2cd3b81804efe99ea2d851b",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "numeric_triple",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          1.185,
+          2.082,
+          3.636
+        ]
+      },
+      "parameters": {
+        "atom": "CG2",
+        "residue": "A:I189",
+        "tolerance": 0.001
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Reports wrong coordinate triple for I189 CG2.",
+      "step384": "Correct residue context but substitutes another coordinate triple for CG2; wrong answer.",
+      "tags": [
+        "coordinate_lookup",
+        "lookup_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "c60176a22fff40984b98f2c778ffb4529adcb1c7c68cc62dd3c78ab21a7ecd40",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "6.527, -2.668, -1.861",
+          "fields": {},
+          "value": [
+            6.527,
+            -2.668,
+            -1.861
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "07845f2d2ca2489323e0740223c91db354be33718c7992f60dd92ae2454c4c10",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "-0.892, 8.717, 3.815",
+          "fields": {},
+          "value": [
+            -0.892,
+            8.717,
+            3.815
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 48,
+    "id": "pdbthink-p03-d6e1a628b1a14a793f0f",
+    "family": "P03",
+    "group": "group-dc953f8ed8611fbb049a5a45",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "numeric_triple",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          0.524,
+          -12.107,
+          -3.51
+        ]
+      },
+      "parameters": {
+        "atom": "CD",
+        "residue": "A:Q32",
+        "tolerance": 0.001
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct x but wrong y/z for Q32 CD.",
+      "step384": "Correct full Q32 CD triple.",
+      "tags": [
+        "coordinate_lookup",
+        "lookup_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "3457431cb0a2a62d4e97df09918ce020a4722c3ea3ddef82e181ddfc8444aec7",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "0.524, -7.283, -2.884",
+          "fields": {},
+          "value": [
+            0.524,
+            -7.283,
+            -2.884
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "b928e6f09b47ab7bf30c7129ee183f1c167ade85221c6ab8feac77620c27d486",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "0.524, -12.107, -3.510",
+          "fields": {},
+          "value": [
+            0.524,
+            -12.107,
+            -3.51
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 49,
+    "id": "pdbthink-p03-dcf450aa37957ad9e600",
+    "family": "P03",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "numeric_triple",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          -6.841,
+          -6.857,
+          3.708
+        ]
+      },
+      "parameters": {
+        "atom": "CD1",
+        "residue": "A:I724",
+        "tolerance": 0.001
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Wrong x (5.668 rather than -6.841) for I724 CD1.",
+      "step384": "Correct full I724 CD1 triple.",
+      "tags": [
+        "coordinate_lookup",
+        "lookup_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "cc33f1e8d394af165d5fb02f4691753aebdf746e3fc22c8d7d65c35f8ab86488",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "5.668, -6.857, 3.708",
+          "fields": {},
+          "value": [
+            5.668,
+            -6.857,
+            3.708
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "d8f71a06c359ce7ea57ef9971fd8c85d5db6dec4c0c941cdbdf3316b9d82e730",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "-6.841, -6.857, 3.708",
+          "fields": {},
+          "value": [
+            -6.841,
+            -6.857,
+            3.708
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 50,
+    "id": "pdbthink-p03-e325d678f44432b07f87",
+    "family": "P03",
+    "group": "group-42508844daba0ac859cefd40",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "numeric_triple",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          -7.831,
+          -21.44,
+          -1.959
+        ]
+      },
+      "parameters": {
+        "atom": "NH1",
+        "residue": "B:R349",
+        "tolerance": 0.001
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Wrong NH1 coordinates and malformed final.",
+      "step384": "Correct R349 NH1 coordinates and format.",
+      "tags": [
+        "coordinate_lookup",
+        "lookup_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "5362598b9e6fa029bd96ecc6c744117419df96e06f36cf6a44c4490a63e11e0c",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "733fb9b2ac1aae4271aeeb29fd24669d2a700af8f960c178081e9d2c02d317ef",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "-7.831, -21.440, -1.959",
+          "fields": {},
+          "value": [
+            -7.831,
+            -21.44,
+            -1.959
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 51,
+    "id": "pdbthink-p03-f4f1255c38a7abc2b4f3",
+    "family": "P03",
+    "group": "group-dc953f8ed8611fbb049a5a45",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "numeric_triple",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": [
+          3.394,
+          4.922,
+          -1.942
+        ]
+      },
+      "parameters": {
+        "atom": "SE",
+        "residue": "A:M33",
+        "tolerance": 0.001
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Returns SE of MSE1 rather than MSE33.",
+      "step384": "Same MSE1-for-MSE33 error, now correctly formatted.",
+      "tags": [
+        "coordinate_lookup",
+        "lookup_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "6df4ad1e55fa748541d493fdac9e949d6970e1aafad350be9e83cfcc693f5c80",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "63e9576ac554130b817fe3d8aa0105af401cd7e95ca7e77f412e41fa1ed9299d",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "-8.282, -2.818, 11.482",
+          "fields": {},
+          "value": [
+            -8.282,
+            -2.818,
+            11.482
+          ],
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 52,
+    "id": "pdbthink-s01-14cf6f33b6243fb40ff2",
+    "family": "S01",
+    "group": "group-f9faf1231ce754aa477353f6",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:D151"
+      },
+      "parameters": {
+        "residue": "A:R155"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Wrong/mixed coordinates; concludes GLU125 and encodes glutamate as G.",
+      "step384": "Attempts acidic partners but CA proxies and incomplete nitrogen search; never finishes. Independent check: NH1-OD2=3.764 A satisfies contact, whereas both NE-OD distances exceed4 A.",
+      "tags": [
+        "salt_bridge",
+        "partial_search",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "daeb17be8c240f9335d13244490226fd8df8de014252efc7a2303587278dd87c",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:G125",
+          "fields": {},
+          "value": "A:G125",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "ea667d7c006fd63c02cd231dd5dd617dca5ac3e0d171a84a786dfdc766f2f2ba",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 53,
+    "id": "pdbthink-s01-1898ea7f0fb5738b95c3",
+    "family": "S01",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:D725"
+      },
+      "parameters": {
+        "residue": "A:R706"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-based acidic-partner guess ASP685; malformed final.",
+      "step384": "Calculates CA and then NE distances, confused acidic identities, truncates before complete nitrogen search. Independent check: NH1-OD1=3.768 A satisfies contact, whereas both NE-OD distances exceed6 A.",
+      "tags": [
+        "salt_bridge",
+        "partial_search",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "c1317f0b74397b5607e57c4d1018426e15b818940cfa5e49edcec1881d9bdad9",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "f0f40b89e581380a2e28fa15953e21e4eae167c9261fd9637bc083e5a1a4c58b",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 54,
+    "id": "pdbthink-s01-387af46b559a66878f81",
+    "family": "S01",
+    "group": "group-62e85cc5642bc4890807d115",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:K889"
+      },
+      "parameters": {
+        "residue": "A:E860"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-nearest basic residue guess K876; malformed identifier.",
+      "step384": "Uses explicit E860 OE1/OE2 to K889 NZ distances3.799/3.174 A, correct partner.",
+      "tags": [
+        "salt_bridge",
+        "charged_atom_geometry",
+        "content_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "645013ee9cdf52546926a61e4d07df081299e936365674f394c2f7eb6471d0b5",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "4fc10de6a612ac13c50f2601a62f5e8659e37f38323da215b0e4606bdc4820bc",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:K889",
+          "fields": {},
+          "value": "A:K889",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 55,
+    "id": "pdbthink-s01-a2888039258cd7aa6a8f",
+    "family": "S01",
+    "group": "group-b2cd3b81804efe99ea2d851b",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:E162"
+      },
+      "parameters": {
+        "residue": "A:R170"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence-neighbor speculation picks GLU162, but malformed identifier.",
+      "step384": "Computes NE-to-OE1/OE2 distances3.745/2.696 A and finds correct partner, but writes A:Glu162 rather than A:E162.",
+      "tags": [
+        "salt_bridge",
+        "charged_atom_geometry",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a1ca8fc3ea09ca60d63b2dacf7b20e92326f628581b2986dce3bd7c5df2ba2d8",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "e1b986687319a9a2984369a30cbbb453e9f502aa7b28642e17ab1f85887292fe",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:Glu162",
+          "fields": {},
+          "value": "A:GLU162",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 56,
+    "id": "pdbthink-s01-b0f0c59d7ce76313a097",
+    "family": "S01",
+    "group": "group-1b872b3ca152b0c34dac8501",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:K13"
+      },
+      "parameters": {
+        "residue": "A:E9"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence/helix heuristic guesses Lys13 correctly, malformed identifier.",
+      "step384": "Checks charged-atom distances and finds Lys13 NZ within4 A of Glu9 OE2, correct one-letter identifier.",
+      "tags": [
+        "salt_bridge",
+        "charged_atom_geometry",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "3c7835c29ea1f967da1b13a754fc51a66fe91b18adcb4e1ccaea7a65ea7cb773",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "a63fc7120ba20670fed05f606355c441315e9113b263efbb9018cef80a2a2431",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "A:K13",
+          "fields": {},
+          "value": "A:K13",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 57,
+    "id": "pdbthink-s01-f33d19b7091e744c8119",
+    "family": "S01",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "A:D127"
+      },
+      "parameters": {
+        "residue": "A:R149"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Atom/residue-number confusion and endless listing, truncates.",
+      "step384": "Mostly uses Arg NE and carboxylate carbon/oxygen proxies, misidentifies residues and truncates. Independent check: NH1-OD1=2.999 A satisfies contact; NE-OD distances are4.375/4.756 A.",
+      "tags": [
+        "salt_bridge",
+        "partial_search",
+        "truncation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "01546e1e4b749fdd153b4db8b15c57f0600f0415a243c3023a06aadccf3348cf",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "f696d6ecbff180f406ab8c5bc17aa97ca76ff47290bc65d605070afedb0a6ff8",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 58,
+    "id": "pdbthink-s01-fa708c8afeed9655d2c8",
+    "family": "S01",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:K3"
+      },
+      "parameters": {
+        "residue": "B:D6"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Starts coordinate lookup then unbounded invented sequence repetition, truncates.",
+      "step384": "Checks Lys/Arg nitrogen to Asp6 oxygen distances and identifies Lys3; corrects chainA toB before final.",
+      "tags": [
+        "salt_bridge",
+        "charged_atom_geometry",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "92bd6871a85c7006a8fb3900643cb0f5c7269449439c6f61314aac3ac0f38fad",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "f31c48d03b97bc695699f2d90a10d712797eafa7ad6382334192188915d12ea7",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "B:K3",
+          "fields": {},
+          "value": "B:K3",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 59,
+    "id": "pdbthink-s02-0e901babb294a47b1aed",
+    "family": "S02",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "X:S5"
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Incorrectly calls SEP selenocysteine, loops to truncation.",
+      "step384": "Rejects SEP as nonprotein/triphosphate despite phosphate atoms, picks generic Ser by frequency prior; invalid identifier.",
+      "tags": [
+        "phosphorylation",
+        "modified_residue_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "cf9a8a179fdadf2947f430ac584fbd5781a460ffa421cf90ce6402ca35da4c2c",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "6d1022bf05e21fc1ccaf91437a590e4814dc92c3ae99cf758b526b027499d084",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "A:Ser",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'A:Ser'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 60,
+    "id": "pdbthink-s02-4944f8404e8565535336",
+    "family": "S02",
+    "group": "group-cb7ddfceb8fd51cec5f33067",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:S1493"
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly identifies SEP1493 as phosphoserine but omits number in final.",
+      "step384": "Misidentifies SEP as sodium ethyl phosphate and chooses terminal SER; invalid identifier.",
+      "tags": [
+        "phosphorylation",
+        "modified_residue_failure",
+        "semantic_regression"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a0d2b5938e6b2abbafe8482e19af01a1b925224c9c09c25218f3d294a2a263dc",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "B:SEP",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'B:SEP'"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "cde9f21a81bbd0ab46b8a3a21ce730de5ad6ce22c72e70cacdcd12abf6fa0a30",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "B:SER",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'B:SER'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 61,
+    "id": "pdbthink-s02-733ea89e853501b52c10",
+    "family": "S02",
+    "group": "group-2a905cb425c978eedbb1b046",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "B:S1212"
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Rejects SEP as phosphorylatable, speculates about other S/T/Y residues, truncates.",
+      "step384": "Selects ordinary Ser1184/sequence-position14 from priors; invalid S:14 identifier.",
+      "tags": [
+        "phosphorylation",
+        "modified_residue_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "065ccdfb7abdb61bc3ceb79a28f6574f7c456645f0676e9152e91b24ffb56299",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "86a4f999a65c48e30a3825797dce6c2549b45f097c006662430813d9e6ba4464",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "S:14",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'S:14'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 62,
+    "id": "pdbthink-s02-7f11b16bfe86ea3f49f3",
+    "family": "S02",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "E:T5"
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly identifies TPO5 as phosphothreonine but uses three-letter modified code.",
+      "step384": "Eventually identifies TPO but omits number and required T one-letter code.",
+      "tags": [
+        "phosphorylation",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "70135d2dbb1210384305946586fff61d65837528b6c462af1b1c19a0adf30d68",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "E:TPO5",
+          "fields": {},
+          "value": "E:TPO5",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "64eb467b96872558f37bec089c382b98ec99ec9e95a1019bee7dd746a1fd3050",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "E:TPO",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'E:TPO'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 63,
+    "id": "pdbthink-s02-b793e33d783844f71cb6",
+    "family": "S02",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "Y:S26"
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly identifies SEP26 as phosphoserine, but uses SEP instead of S.",
+      "step384": "Wrongly calls SEP sulfate/nonprotein and infers Thr25 phosphorylation; invalid identifier.",
+      "tags": [
+        "phosphorylation",
+        "modified_residue_failure",
+        "semantic_regression"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "36fccf07d4df668d2f4d843e255eb2b21dff20fafa3158240e7e1b7fab301192",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "Y:SEP26",
+          "fields": {},
+          "value": "Y:SEP26",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "401ed8b9547af74e15c355ef9f0762fe05d8d097a5e4c187788e64f5e9e35afe",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "T:pThr",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'T:pThr'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 64,
+    "id": "pdbthink-s02-e98afd677b93afdd2b37",
+    "family": "S02",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "E:T5"
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct TPO5 identification, wrong modified residue code.",
+      "step384": "Recognizes TPO5 phosphothreonine but outputs E:TPO without number.",
+      "tags": [
+        "phosphorylation",
+        "identifier_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "e891e4597cee339328712da258dafa09e303ee43df159b98eff503b5ea917514",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "E:TPO5",
+          "fields": {},
+          "value": "E:TPO5",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "1547180f37b0eb306e89fe73cfe12cdd613b937b11cde68ab2b45c0ca028962e",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "E:TPO",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'E:TPO'"
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 65,
+    "id": "pdbthink-s02-f6e1880304ac9eb7dec6",
+    "family": "S02",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "residue",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "G:T378"
+      },
+      "parameters": {},
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correctly identifies TPO378 but malformed identifier.",
+      "step384": "Wrongly calls TPO phosphorylated thymidine/nucleotide, picks ordinary SER385 from frequency prior.",
+      "tags": [
+        "phosphorylation",
+        "modified_residue_failure",
+        "semantic_regression"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a7a9d32ef25675c7002d0f4e2df639f3502b29d0f0ecc7810063669c0c87f4f4",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "Answer: \\boxed{G:378 TPO}",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "not a residue identifier: 'Answer: \\\\boxed{G:378 TPO}'"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "708596418930e0e8404d41d846b988798bca049623752065bd9ada47a50fdec6",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "G:SER385",
+          "fields": {},
+          "value": "G:SER385",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 66,
+    "id": "pdbthink-s03-1a87d8bc274e61c8c679",
+    "family": "S03",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "buried"
+      },
+      "parameters": {
+        "categories": [
+          "buried",
+          "solvent-exposed"
+        ],
+        "residue": "A:R721"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Default solvent-exposed guess, wrong buried Arg.",
+      "step384": "Invents typical Arg RSA around0.45, no coordinate occlusion computation; wrong solvent-exposed.",
+      "tags": [
+        "surface_area",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "6d7728b2540848b002e60ed8b8fce84534e7d68bf6f286e66878e260a59f5f9e",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "d3f13f3eab55cf3976931486564292c071776fbe50018503dfeb6163e85ad6eb",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 67,
+    "id": "pdbthink-s03-1eade67d68f9e20a8837",
+    "family": "S03",
+    "group": "group-95f23ea96073d1bba5c42389",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "solvent-exposed"
+      },
+      "parameters": {
+        "categories": [
+          "buried",
+          "solvent-exposed"
+        ],
+        "residue": "B:P58"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Falsely claims P58 absent and loops/refuses to truncation.",
+      "step384": "Invents typical Pro RSA0.45/0.46, no actual surface calculation; correct exposed label.",
+      "tags": [
+        "surface_area",
+        "class_prior",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "35002ae4732b7a7777c938aa1d7f0946edea2f8d79129d92ea597cf54b905577",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": true
+      },
+      "384": {
+        "text_sha256": "b39ccbfe5067f7f8f4ce595bfdaeb2c0448d381045e0eda8db9361fd47f0c395",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 68,
+    "id": "pdbthink-s03-375152b0490a9f864d2d",
+    "family": "S03",
+    "group": "group-b2cd3b81804efe99ea2d851b",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "buried"
+      },
+      "parameters": {
+        "categories": [
+          "buried",
+          "solvent-exposed"
+        ],
+        "residue": "A:E162"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Misidentifies Glu as Asp; interior-position heuristic gives correct buried label.",
+      "step384": "Uses charged-residue prior and invented typical RSA0.52; wrong exposed label.",
+      "tags": [
+        "surface_area",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "de2745a02748b68b4ed98f86efb200a0dafcd2964b12f6df8bd5195ffe4ae3cb",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "buried",
+          "fields": {},
+          "value": "buried",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "75f84cd9f464e624d2ed6f78a67ce6079726664d8ef9a1c5fe059781acc5af26",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 69,
+    "id": "pdbthink-s03-66571901f19bad228378",
+    "family": "S03",
+    "group": "group-dc953f8ed8611fbb049a5a45",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "buried"
+      },
+      "parameters": {
+        "categories": [
+          "buried",
+          "solvent-exposed"
+        ],
+        "residue": "A:I4"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Hydrophobic Ile burial heuristic gives correct label.",
+      "step384": "Assumes typical Ile environment is exposed, no computed SASA; wrong label.",
+      "tags": [
+        "surface_area",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "3b5114fed7b7ec8860013bbea4523bb9de5e4030748bf6d5ae4222006f3e93ea",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "buried",
+          "fields": {},
+          "value": "buried",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "66df681364d5d35a9c5d8e9082310728a0821d5518391a336c499f7e5bf86801",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 70,
+    "id": "pdbthink-s03-76c290cc180df4c0bb0e",
+    "family": "S03",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "solvent-exposed"
+      },
+      "parameters": {
+        "categories": [
+          "buried",
+          "solvent-exposed"
+        ],
+        "residue": "A:Q108"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Polar/linear-chain heuristic gives correct exposed label.",
+      "step384": "Invented typical GLN RSA0.45-0.55, no actual geometry; correct exposed label.",
+      "tags": [
+        "surface_area",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "814b8ceeeb34b9aad257bf1000b6a2d84234c113dfefcafe50ec7f358c6bb741",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "16b16ace0deab92fda210b652cf460da99964f3c6276650b9c2edc5c4047f6e9",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 71,
+    "id": "pdbthink-s03-93d1d33b8b0f9b3d7612",
+    "family": "S03",
+    "group": "group-1b872b3ca152b0c34dac8501",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "buried"
+      },
+      "parameters": {
+        "categories": [
+          "buried",
+          "solvent-exposed"
+        ],
+        "residue": "A:G4"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Gly/N-terminal exposure heuristic, wrong label and malformed final.",
+      "step384": "Assumes Gly SASA near maximum, gives wrong exposed label.",
+      "tags": [
+        "surface_area",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "c0db6a85656bf899b7d435f1d96038fc50b12e7606140a1bf45000051687c48c",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "776d99776f3c58ece0cdfce1f98a573e324fb61fa350d9c28c8479b50add072d",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 72,
+    "id": "pdbthink-s03-aee73415e190766108d4",
+    "family": "S03",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "solvent-exposed"
+      },
+      "parameters": {
+        "categories": [
+          "buried",
+          "solvent-exposed"
+        ],
+        "residue": "E:P9"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "C-terminal Pro exposure guess gives correct label.",
+      "step384": "Invented typical Pro SASA values, mentions Shrake-Rupley without executing it; correct exposed label.",
+      "tags": [
+        "surface_area",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "cfcfc29b430fdef888256784fd8475082e4c60893e892b8d79c05d3c0fa65ec6",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "350628a861562268350078a641ff3f34157c742c94ba3bbeea375a844df9e678",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "solvent-exposed",
+          "fields": {},
+          "value": "solvent-exposed",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 73,
+    "id": "pdbthink-s04-064ef4ff0d977acbdbba",
+    "family": "S04",
+    "group": "group-f9faf1231ce754aa477353f6",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "helix"
+      },
+      "parameters": {
+        "categories": [
+          "helix",
+          "strand",
+          "coil"
+        ],
+        "residue": "A:R143"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence helix-propensity guess happens to be correct.",
+      "step384": "Claims simulated DSSP gives coil without calculations; wrong label.",
+      "tags": [
+        "local_secondary",
+        "class_prior",
+        "fictitious_computation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a95ea976ef5994f109979f45f5264817b9ef50cbce8df1cbd90e0f99b0de131b",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "helix",
+          "fields": {},
+          "value": "helix",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "abe111bd8197dd069c3ad71527502909847cf5a5aac7bd6993533d312efef51c",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 74,
+    "id": "pdbthink-s04-1113ec03b05888fda20c",
+    "family": "S04",
+    "group": "group-f9faf1231ce754aa477353f6",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "helix"
+      },
+      "parameters": {
+        "categories": [
+          "helix",
+          "strand",
+          "coil"
+        ],
+        "residue": "A:L145"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Leucine helix-propensity guess happens to be correct.",
+      "step384": "Misidentifies Leu145 as Glu and invents typical phi/psi values; wrong coil.",
+      "tags": [
+        "local_secondary",
+        "class_prior",
+        "fictitious_computation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "6157f5ed680b3d434fa6c3d6eef32e98358a0de66ca37918770e39a2617465c0",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "helix",
+          "fields": {},
+          "value": "helix",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "23c2827ba6df33ee8fac141eaa1afa70d635c43a8a661d291cdc2ff24bc10d7a",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 75,
+    "id": "pdbthink-s04-4c7551ab5335ff00be01",
+    "family": "S04",
+    "group": "group-b2cd3b81804efe99ea2d851b",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "coil"
+      },
+      "parameters": {
+        "categories": [
+          "helix",
+          "strand",
+          "coil"
+        ],
+        "residue": "A:D155"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Coil guess based on absent annotations, boxed unparsed.",
+      "step384": "Conceptual Python comment asserts coil, no DSSP/angle calculation; right label and format.",
+      "tags": [
+        "local_secondary",
+        "class_prior",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "0189543fd1ddec7ef777275a8ee5785a397a17ea5aceab0aa3e4e4871e9797c1",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "6d18dabbec7b74626aade87da1c5683a224ee070dc43f3027287fb9be1589414",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 76,
+    "id": "pdbthink-s04-80cb05fdaeadb52db361",
+    "family": "S04",
+    "group": "group-c1ba54a50096f5b26cb7bc7a",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "coil"
+      },
+      "parameters": {
+        "categories": [
+          "helix",
+          "strand",
+          "coil"
+        ],
+        "residue": "A:L17"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Leucine helix guess, malformed final.",
+      "step384": "Repeated simulated-DSSP claims and coil prior, right label.",
+      "tags": [
+        "local_secondary",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a44a134219603df00353970be730d679bc5cff8a4d9f24027d3fabc5052c8e1c",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "db02f8cfb7ca95fff6798a0a6efac2ac76652913c1b8d07586f64771b66cd1ce",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 77,
+    "id": "pdbthink-s04-ceb6ea12c11f39a9614a",
+    "family": "S04",
+    "group": "group-9711b21ec18fd25e13e46350",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "helix"
+      },
+      "parameters": {
+        "categories": [
+          "helix",
+          "strand",
+          "coil"
+        ],
+        "residue": "A:K271"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Default coil in absence of annotations, wrong helix.",
+      "step384": "Claims typical DSSP/known result coil, no actual calculation; wrong helix.",
+      "tags": [
+        "local_secondary",
+        "class_prior",
+        "fictitious_computation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "4757392e5654e8570007b89b63bfa52b2c3cbcd7a83b0a1e2790ee4d3209470a",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "89d8c1226288b06182854dc5774414a017114772e0f4c5adc6c07807d51f307a",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 78,
+    "id": "pdbthink-s04-d19843e976ccbfbe45c2",
+    "family": "S04",
+    "group": "group-cb7ddfceb8fd51cec5f33067",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "coil"
+      },
+      "parameters": {
+        "categories": [
+          "helix",
+          "strand",
+          "coil"
+        ],
+        "residue": "B:D1488"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Defaults coil despite confusion over whether target exists; correct label.",
+      "step384": "Invented typical phi/psi and inconsistent structural ranges, final coil correct.",
+      "tags": [
+        "local_secondary",
+        "class_prior",
+        "fictitious_computation"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "e834f9f5dc310a23926f869858df738644f16ae0f086423c9fa72315290eff33",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "2e39bd0a93a28c1008d4c94709e219513c921b2109301134d9721eb313feaea0",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 79,
+    "id": "pdbthink-s04-d973760836233043d5af",
+    "family": "S04",
+    "group": "group-62e85cc5642bc4890807d115",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "helix"
+      },
+      "parameters": {
+        "categories": [
+          "helix",
+          "strand",
+          "coil"
+        ],
+        "residue": "A:Q875"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Polar-residue/loop propensity guess coil, wrong helix.",
+      "step384": "Claims absent 3D data and imagined DSSP result coil, wrong helix.",
+      "tags": [
+        "local_secondary",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "68be74fb52405a6663f95cb9478737c25b7d130478fc2488bb5110041d1c9d77",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "\\boxed{coil}",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "df4795bb235216e9ff547f61b354b8439ea7cd47349577ecea596f4a53f3a61b",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "coil",
+          "fields": {},
+          "value": "coil",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 80,
+    "id": "pdbthink-s05-1da4447909b792b66e68",
+    "family": "S05",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "predominantly alpha helical"
+      },
+      "parameters": {
+        "categories": [
+          "predominantly alpha helical",
+          "predominantly beta sheet",
+          "mixed alpha/beta"
+        ],
+        "chain": "B"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Defaults mixed alpha/beta from chain length/lack of annotations; wrong helix.",
+      "step384": "Imagined DSSP and generic composition prior, chooses mixed despite briefly saying helix; wrong.",
+      "tags": [
+        "global_secondary",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "a830ffc6c4c54a9f27a808395919fca06d1cf95df0b210599e8d8ccfe25b1d29",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "mixed alpha/beta",
+          "fields": {},
+          "value": "mixed alpha/beta",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "839bd8db8fd737cf29682d55b2c65ec6ea59a4270fe9fb13cf5c320d88bc8f07",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "mixed alpha/beta",
+          "fields": {},
+          "value": "mixed alpha/beta",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 81,
+    "id": "pdbthink-s05-2b02ff803542cc679d69",
+    "family": "S05",
+    "group": "group-4bab73dab4889558cfe72337",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "predominantly beta sheet"
+      },
+      "parameters": {
+        "categories": [
+          "predominantly alpha helical",
+          "predominantly beta sheet",
+          "mixed alpha/beta"
+        ],
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Default mixed in absence of annotations, wrong beta.",
+      "step384": "Helix propensity/imagined DSSP claims, wrong beta.",
+      "tags": [
+        "global_secondary",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "f079e9e6bd780e67c1752d95c001d959cb365713627f47553038e7f53036ea8b",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "mixed alpha/beta",
+          "fields": {},
+          "value": "mixed alpha/beta",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "a218b529be277e1202a226a8a1b3b3a4a98845dc5fd19d46ba6de33d6afb96a6",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 82,
+    "id": "pdbthink-s05-6491a9f0ba5f8398cf12",
+    "family": "S05",
+    "group": "group-9711b21ec18fd25e13e46350",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "predominantly alpha helical"
+      },
+      "parameters": {
+        "categories": [
+          "predominantly alpha helical",
+          "predominantly beta sheet",
+          "mixed alpha/beta"
+        ],
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Sequence helix-propensity guess correct, boxed unparsed.",
+      "step384": "Same general helix-prior reasoning, no geometry, correct final format.",
+      "tags": [
+        "global_secondary",
+        "class_prior",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "4285cc2853de9dbe75c1457d855caeece2b67be5ecaa609b32552b59be6fc740",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "2900bc2d2022f5c40f1254743273024e7f0ad48f837e3dc0079f757c52865754",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 83,
+    "id": "pdbthink-s05-935fd4833f2d5d88ac61",
+    "family": "S05",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "predominantly alpha helical"
+      },
+      "parameters": {
+        "categories": [
+          "predominantly alpha helical",
+          "predominantly beta sheet",
+          "mixed alpha/beta"
+        ],
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Helix assumption without calculated angles or H bonds; correct label.",
+      "step384": "Long confused atom/residue enumeration then generic helix prior; correct label.",
+      "tags": [
+        "global_secondary",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "f6d9dfa00f734d09cc9db13c05a77b11bf65ea408163f632c940753876251357",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "9593671dc9fdc588dfe8849e6ed3c87d5cc8a03249a7d1e5b55ecd3914a80351",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 84,
+    "id": "pdbthink-s05-9922e3fbacc94f0967f1",
+    "family": "S05",
+    "group": "group-f9faf1231ce754aa477353f6",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "predominantly alpha helical"
+      },
+      "parameters": {
+        "categories": [
+          "predominantly alpha helical",
+          "predominantly beta sheet",
+          "mixed alpha/beta"
+        ],
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Invents long sequence span and helix rationale, correct label.",
+      "step384": "Imagined DSSP and composition prior, no calculated structure, correct helix.",
+      "tags": [
+        "global_secondary",
+        "class_prior"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "32ecaa7727567c018910e4ea87e7ae8d0ee52106ec60cc7da155ebd2441b65c8",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "a1a3ffb41560a93b74bbc1de1f1299508db4cf40aedc1283cf219190d50d077c",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 85,
+    "id": "pdbthink-s05-ba17ccb48c5c29215a24",
+    "family": "S05",
+    "group": "group-2a905cb425c978eedbb1b046",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "mixed alpha/beta"
+      },
+      "parameters": {
+        "categories": [
+          "predominantly alpha helical",
+          "predominantly beta sheet",
+          "mixed alpha/beta"
+        ],
+        "chain": "B"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Hesitant mixed guess is semantically correct but refusal/unparsed.",
+      "step384": "Generic helix frequency prior changes answer to wrong helix.",
+      "tags": [
+        "global_secondary",
+        "class_prior",
+        "semantic_regression"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "ac16eedbba48101c4ecb9e53d7732ac9f468ba969d4415bdf908f3e523b2ff6b",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": true
+      },
+      "384": {
+        "text_sha256": "ca6bcb433b6379fcad4436456a8b27aaaaee15ed93260bd8493029146ccf21e4",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 86,
+    "id": "pdbthink-s05-f90567232a33288834f5",
+    "family": "S05",
+    "group": "group-1b872b3ca152b0c34dac8501",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "predominantly alpha helical"
+      },
+      "parameters": {
+        "categories": [
+          "predominantly alpha helical",
+          "predominantly beta sheet",
+          "mixed alpha/beta"
+        ],
+        "chain": "A"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Unbounded repeated invented sequence, truncation.",
+      "step384": "General helix-propensity argument, no geometry, correct helix and completion.",
+      "tags": [
+        "global_secondary",
+        "class_prior",
+        "completion_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "bac9fefb1075b467ce21a2e0442104e734627c181b3761efde79c9da077e34ce",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "44e91831045400b26bb4de25a6f1b347e540b48905d53f5bb732bf7987a7f943",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "predominantly alpha helical",
+          "fields": {},
+          "value": "predominantly alpha helical",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 87,
+    "id": "pdbthink-s09-00e61ebcad77f449d5ac",
+    "family": "S09",
+    "group": "group-d4b34ad8f14bf85af570ec3e",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g-"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "A:E2"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct input points but wrong torsion denominator (normal dot middle bond, zero by construction); -90 degrees gives right g-, boxed FINAL unparsed.",
+      "step384": "Correct four points; atan2 omits middle-bond norm; -54 rather than -64.851 degrees, still g-.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "format_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "baf3f86b76e3e2127df212385d7d62ee6c4004c485b6b6342ebc5094906b7bd5",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "e1dd487f320f0f0524ac0d10146a2cd82a9fdf11ad3391683586b5e4813bc8c2",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 88,
+    "id": "pdbthink-s09-05ad620dea98eba272f9",
+    "family": "S09",
+    "group": "group-9711b21ec18fd25e13e46350",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g-"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "A:E240"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Invented input coordinates and wrong norm-product denominator; -16.6 degrees and g- unparsed.",
+      "step384": "N x sign copied incorrectly; missing-norm formula and inaccurate atan estimate yield about -82 degrees; g- correct despite wrong geometry.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "lookup_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "5de261eadb2781db91c9cfba9494b00463ac5c05d3aca432342843a8537319ae",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "786c1dc9ab6d007b0b6f0054d0c7221a2eb52a8b703dd0f2a93ad4c31984cfb5",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 89,
+    "id": "pdbthink-s09-1238597964105a6e0234",
+    "family": "S09",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "t"
+      },
+      "parameters": {
+        "atom4": "OG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "P:S112"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Invented coordinates and chemical misidentification; approximately -178.55 degrees yields correct t.",
+      "step384": "Correct points; omits norm and replaces atan2 with atan(y/x), losing quadrant: -1.508 degrees instead of +177.692; wrong g-.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "quadrant_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "10521445710e2442e37400e0982e0ba4effb0c39489e3bab38dd1a040ae88876",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "t",
+          "fields": {},
+          "value": "t",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "f341c2f5cfd2205645fac8a1ddfe0b995fa89ab2a3d059a321afea443d388381",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 90,
+    "id": "pdbthink-s09-18bb0a0277996b7c14dc",
+    "family": "S09",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "t"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "A:K25"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Confuses NZ with N, later invents a different coordinate set; 169.5 degrees yields correct t.",
+      "step384": "Uses terminal lysine NZ instead of backbone N; missing-norm calculation gives -10.3 degrees and wrong g- (true -177.982/t).",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "lookup_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "21b2da9fd170afd199a0358d022134de2cb3ab570d90419f0f416e5752fdd6f8",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "t",
+          "fields": {},
+          "value": "t",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "ef0be778e0b6cff9a7592f34e9a70f8fdb49adeae2aa2ade3a5437c0dd816058",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 91,
+    "id": "pdbthink-s09-27908dbdd70df9caa959",
+    "family": "S09",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g+"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "C:E33"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Misidentifies residue and later uses wrong coordinates; -34.6 degrees and malformed g-.",
+      "step384": "Initially correct points, later CB-z transcription error; about +50.8 degrees but labels positive interval g-; true +61.758/g+.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "bin_sign_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "460de7c7226e5da97de033b38bcdd994d8b0f49edd5804284b5b4e0f56e1312a",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "124e324a6454677d58efb86bea4d7ddaf70406b8dec3723720cef2b3863d1993",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 92,
+    "id": "pdbthink-s09-65f1805f38c56084285b",
+    "family": "S09",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g+"
+      },
+      "parameters": {
+        "atom4": "OG1",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "X:T4"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Unbounded atom enumeration, no finished angle or FINAL.",
+      "step384": "Correct points; missing-norm angle +45.14 degrees, falsely claims prompt duplicates g- bin, answers g-; true +57.067/g+.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "bin_sign_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "20929da756e4ccfb8561e27b240712bca52485e21cb3aaddee8509e0ba2ec093",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "d458903e355e8f34f61de5e8439086f8688d6c0cc7342ed1cd2362e1b7ce674d",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 93,
+    "id": "pdbthink-s09-6ea578199e0816dc8e23",
+    "family": "S09",
+    "group": "group-c0bb94b02503c173095621fc",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "t"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "A:K31"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Invented coordinate set, inconsistent formulas; -170.9 degrees yields correct t.",
+      "step384": "Correct points; missing-norm -177.326 degrees versus true -175.917; handles quadrant and t correctly.",
+      "tags": [
+        "torsion",
+        "missing_norm"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "00cf4b88422cad5cec1b9d04e47afe2a586519beefe7acb7ebfc10ef923fcc88",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "t",
+          "fields": {},
+          "value": "t",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "b19ddd57b95376ced5157b7926dcad1e6d3ad0248c6820117b2afded6b7756bc",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "t",
+          "fields": {},
+          "value": "t",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 94,
+    "id": "pdbthink-s09-714945209b1ba67d620c",
+    "family": "S09",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "01",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "t"
+      },
+      "parameters": {
+        "atom4": "OG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "C:S109"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Invented coordinate set and wrong formula; 103.5 degrees/g+, scoring also marks refusal.",
+      "step384": "Correct points; missing-norm -179.2 degrees versus true -178.782; correct wrapping and t.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "lookup_gain"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "176916e05bfeec5c9df8ee83aa5a5800e9672f805fb4c83e5c54aca6144ba3e3",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": false,
+        "refusal": true
+      },
+      "384": {
+        "text_sha256": "630e5cf1e1d8981a76ae8cc99071a6b2ce63ba52b2dfc5fa57f09544bf76a038",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "t",
+          "fields": {},
+          "value": "t",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 95,
+    "id": "pdbthink-s09-8100dc4b872225eab41e",
+    "family": "S09",
+    "group": "group-95f23ea96073d1bba5c42389",
+    "transition": "10",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "t"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "B:Q70"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Invented points include implausibly long bond; wrong formula still gives -177 degrees and correct t.",
+      "step384": "Wrong N coordinates, other three correct; missing-norm 90.6 degrees/g+ instead of true -174.724/t.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "lookup_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "aa043efdd5e1c259383223558eed124d8526f395b532cd57bd8f612137cbd581",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "t",
+          "fields": {},
+          "value": "t",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "d090a88c2ef9331c6280a17fa8eb9f505fdc4a5d74a6f317539195621635e6ac",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "g+",
+          "fields": {},
+          "value": "g+",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 96,
+    "id": "pdbthink-s09-b432ff6735b8a390c2d6",
+    "family": "S09",
+    "group": "group-95f23ea96073d1bba5c42389",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g-"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "B:R55"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Correct four coordinates but cross-product component and sign errors; eventually chooses correct g-.",
+      "step384": "Correct points; missing-norm -41.6 degrees instead of -53.650, correct g-.",
+      "tags": [
+        "torsion",
+        "missing_norm"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "b8164dcf941f268df2103b7c94dcabf3eb2d439e868a2ee03a09e04e678416e9",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "49a6b6fba7f9f36f93f99e47a0ae60ec554d0f61f16e73fb5ac7258834580fd8",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 97,
+    "id": "pdbthink-s09-c2f5987840cc6e243a68",
+    "family": "S09",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g+"
+      },
+      "parameters": {
+        "atom4": "OG1",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "X:T4"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Wrong N/CA coordinates and wrong norm-product formula; 38.3 degrees gives correct g+.",
+      "step384": "Correct points but missing norm plus cross/dot/arctangent arithmetic errors; switches from 56.5 to 48.9 degrees, right g+ (true48.318).",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "arithmetic"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "1d9d02dda0aab12ef223dc943910a2a2af4a3f429b53b4738400c761cb87e34a",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g+",
+          "fields": {},
+          "value": "g+",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "ef0f78680000adf65b1b5093279fd55f909ace34a6e9b53ef58c0c0581d0197c",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g+",
+          "fields": {},
+          "value": "g+",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 98,
+    "id": "pdbthink-s09-df09cf8da6916725f250",
+    "family": "S09",
+    "group": "group-a03b21c590c51e217104e404",
+    "transition": "00",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g+"
+      },
+      "parameters": {
+        "atom4": "CG1",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "A:I735"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Hallucinates coincident N/CA, repeats undefined-torsion argument and truncates.",
+      "step384": "Drops x signs and mixes/fabricates N/CA components; -102.5 degrees/g- instead of true +62.575/g+.",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "lookup_failure"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "2c9aeddae1eb97e9be899d01fd63fc67031c7e09e9d36bab54d98eeac04b6f5e",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "",
+          "fields": {},
+          "value": null,
+          "format_error": true,
+          "error": "no FINAL field found"
+        },
+        "truncated": true,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "198dda0c2e5070320ce9c3dd3ecb85f231b3cb1a810f62b677d2d9b2c7e6cda6",
+        "reward": 0.0,
+        "parsed": {
+          "raw_final": "g-",
+          "fields": {},
+          "value": "g-",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  },
+  {
+    "index": 99,
+    "id": "pdbthink-s09-e07a5c69968b5c356336",
+    "family": "S09",
+    "group": "group-1ddf4c0d1f51a95b839313b3",
+    "transition": "11",
+    "gold": {
+      "answer_schema": "category",
+      "definition_version": "v1.0.0",
+      "gold_answer": {
+        "value": "g+"
+      },
+      "parameters": {
+        "atom4": "CG",
+        "categories": [
+          "g+",
+          "t",
+          "g-"
+        ],
+        "residue": "G:F393"
+      },
+      "reward": "exact_correct",
+      "scoring_version": "1.1.0",
+      "version": "1.1.0"
+    },
+    "review": {
+      "step0": "Explicit educated rotamer-prior guess with invented coordinates; no completed valid calculation, correct g+.",
+      "step384": "Correct initial points; starts missing-norm formula, then substitutes unrelated cross-product component into denominator; 97.5 degrees gives correct g+ (true74.291).",
+      "tags": [
+        "torsion",
+        "missing_norm",
+        "arithmetic"
+      ]
+    },
+    "steps": {
+      "0": {
+        "text_sha256": "efd6f8091259f4bf4fe9a6c4fd97c8e88e04ca09c70f97464da99bd449f44d1e",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g+",
+          "fields": {},
+          "value": "g+",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      },
+      "384": {
+        "text_sha256": "ec6db22b919500627933499b2af652fdf7b7796c8021e80acd27aa0b11a41f54",
+        "reward": 1.0,
+        "parsed": {
+          "raw_final": "g+",
+          "fields": {},
+          "value": "g+",
+          "format_error": false,
+          "error": ""
+        },
+        "truncated": false,
+        "refusal": false
+      }
+    }
+  }
+]

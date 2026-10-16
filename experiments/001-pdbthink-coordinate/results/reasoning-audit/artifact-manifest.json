@@ -1,0 +1,66 @@
+{
+  "files": {
+    "sample.json.gz": {
+      "sha256": "c6361e1e9c31dfabc7a7a7ec7f96b546889306b3c69b36bbd5cd3ee9e19541ac",
+      "bytes": 1302240
+    },
+    "sample-manifest.json": {
+      "sha256": "1f2cd32a2b4c9b58becd16e1aff2db24809d6dda3bdef4fc9d3b158fcc91cdfc",
+      "bytes": 28468
+    },
+    "annotations.json": {
+      "sha256": "61169ef71ba7723056a10a9d8bcd4e9c2446f760f54101f0f06cf67689206e12",
+      "bytes": 159170
+    },
+    "review-notes.json": {
+      "sha256": "1866db052ffbd398069e4fc2e8a667444b4d1d0fb3a0692ad7085a6fb6dbef5e",
+      "bytes": 27823
+    },
+    "statistics.json": {
+      "sha256": "f121fbf5be429b5f7ca0911ec59694fae18ed6e4e800edd1a330726564ac908e",
+      "bytes": 36867
+    },
+    "geometry.json": {
+      "sha256": "eea598dbc12b05f886150c104d27a2d8470fc44b3cb8884475fbdeab97bba2f6",
+      "bytes": 146987
+    },
+    "category-findings.json": {
+      "sha256": "45d4227881104e1c2f4adebe2228eb3738753550193a88571c95ba963b7cc3cb",
+      "bytes": 10106
+    },
+    "rollout-audit.html": {
+      "sha256": "bec46eab557d60b4b64c7827e6fe975aa4b11e2fa508193584b67541af4ac25f",
+      "bytes": 6081828
+    },
+    "rollout-audit.pdf": {
+      "sha256": "4472968815daa60a9283413bcd6987990ec559571274e119c9208b39cfd95f09",
+      "bytes": 538708
+    },
+    "category-controls.png": {
+      "sha256": "0e819a7ceb4db1555a039661a23efc0e26bb77e44a50c20116ba9732c0a1faaa",
+      "bytes": 226614
+    },
+    "category-controls.pdf": {
+      "sha256": "a5478c3ce8669a4c5e00aa53edefb92a0ad78b3de014b798a9e2f24aba9052e4",
+      "bytes": 29440
+    },
+    "rotamer-audit.png": {
+      "sha256": "a37a15bf135df8887bac999f19a11e5ab8fa620dd825811a9a93fb7f0c4c8dba",
+      "bytes": 217685
+    },
+    "rotamer-audit.pdf": {
+      "sha256": "7f3ed45d6179d8b56a49db28419bda5b3c7872b6757ec359b245eefee70e8281",
+      "bytes": 33115
+    }
+  },
+  "date": "2026-10-16",
+  "review": "Codex qualitative review; not an independent blinded human or multi-rater study",
+  "review_scope": "All 100 paired questions reviewed through deduplicated text views and targeted passages; full raw text preserved. Selected computations independently checked, not every arithmetic line.",
+  "source_code_sha256": {
+    "sample_reasoning_audit.py": "45294466f0000489fa80e5b9ac207199f2125c6994ca10db37f3663eb6ad3312",
+    "analyze_reasoning_audit.py": "81586560fd8629d31e65ac43d086f2090998b0b206f20eaa38c6f1b70c2c257a",
+    "plot_reasoning_audit.py": "d00d7ae1d761a602fa75607aeb14060fc52819db9d539e5f7af5a17bd686ec5a",
+    "build_reasoning_audit.py": "86a978393d890fc9036cb53ab5ba9f45e542fe4d02798fc058c02f6536a4b7c4"
+  },
+  "combined_report_sha256": "1c80626a97c59c222bb32ab042b5181bfc582e1c5633e8089f9bf43133ba98e6"
+}

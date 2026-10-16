@@ -1,0 +1,678 @@
+{
+  "frozen_at": "2026-10-16T17:50:18.558924+00:00",
+  "version": 1,
+  "seed": 20261016,
+  "selection_unit": "question; the same 100 IDs at both steps, 200 responses total",
+  "method": "7 questions per family, except all 3 G04 and 13 S09; equal allocation over available paired binary outcome strata within each family, capacity-limited; uniform random sampling without replacement inside each stratum",
+  "strata": "family \u00d7 (step-0 success, step-384 success); 00=both fail, 01=gain, 10=loss, 11=both succeed",
+  "scope": "All 14 categories present in the 1003-task validation cohort. I01/S06/S07/S08/T01 have no validation tasks and cannot be assessed here.",
+  "limitation": "Outcome-stratified descriptive sample, not representative accuracy estimates. Archived standalone step-0 and native step-384 serving paths differ.",
+  "validation_sha256": "5627d95cc0050f1b8de8add89e5bad3312d8398464914e46b6f46f6ce72eed8b",
+  "native_records_sha256": "650bec926dd046f6cfb7b126d24944ac58817fe6ec97de6773df08a2c85c5733",
+  "allocation": {
+    "G01": {
+      "population": {
+        "00": 10,
+        "01": 89,
+        "11": 11
+      },
+      "sample": {
+        "00": 2,
+        "01": 2,
+        "11": 3
+      }
+    },
+    "G02": {
+      "population": {
+        "00": 116,
+        "01": 4
+      },
+      "sample": {
+        "00": 3,
+        "01": 4
+      }
+    },
+    "G03": {
+      "population": {
+        "00": 29,
+        "01": 61,
+        "10": 1,
+        "11": 17
+      },
+      "sample": {
+        "00": 2,
+        "01": 2,
+        "10": 1,
+        "11": 2
+      }
+    },
+    "G04": {
+      "population": {
+        "00": 3
+      },
+      "sample": {
+        "00": 3
+      }
+    },
+    "N01": {
+      "population": {
+        "00": 72
+      },
+      "sample": {
+        "00": 7
+      }
+    },
+    "P01": {
+      "population": {
+        "01": 12,
+        "11": 20
+      },
+      "sample": {
+        "01": 4,
+        "11": 3
+      }
+    },
+    "P02": {
+      "population": {
+        "00": 3,
+        "01": 7,
+        "10": 4,
+        "11": 9
+      },
+      "sample": {
+        "00": 2,
+        "01": 2,
+        "10": 2,
+        "11": 1
+      }
+    },
+    "P03": {
+      "population": {
+        "00": 4,
+        "01": 87,
+        "11": 27
+      },
+      "sample": {
+        "00": 2,
+        "01": 3,
+        "11": 2
+      }
+    },
+    "S01": {
+      "population": {
+        "00": 36,
+        "01": 14
+      },
+      "sample": {
+        "00": 4,
+        "01": 3
+      }
+    },
+    "S02": {
+      "population": {
+        "00": 9
+      },
+      "sample": {
+        "00": 7
+      }
+    },
+    "S03": {
+      "population": {
+        "00": 18,
+        "01": 31,
+        "10": 4,
+        "11": 66
+      },
+      "sample": {
+        "00": 2,
+        "01": 1,
+        "10": 2,
+        "11": 2
+      }
+    },
+    "S04": {
+      "population": {
+        "00": 40,
+        "01": 16,
+        "10": 3,
+        "11": 52
+      },
+      "sample": {
+        "00": 2,
+        "01": 2,
+        "10": 2,
+        "11": 1
+      }
+    },
+    "S05": {
+      "population": {
+        "00": 4,
+        "01": 3,
+        "11": 5
+      },
+      "sample": {
+        "00": 3,
+        "01": 2,
+        "11": 2
+      }
+    },
+    "S09": {
+      "population": {
+        "00": 28,
+        "01": 77,
+        "10": 3,
+        "11": 8
+      },
+      "sample": {
+        "00": 3,
+        "01": 3,
+        "10": 3,
+        "11": 4
+      }
+    }
+  },
+  "selected_ids": [
+    "pdbthink-g01-37da72df37f7fdc06014",
+    "pdbthink-g01-42d1e9b9cd0c41faec01",
+    "pdbthink-g01-8c9718bbadeec9826f24",
+    "pdbthink-g01-9b4bd938bcad18869011",
+    "pdbthink-g01-c90fc18d48008cadf422",
+    "pdbthink-g01-d32a21518d4be1f2a28a",
+    "pdbthink-g01-e410c580c153c1b78514",
+    "pdbthink-g02-0a13ea30c05bcb6f5882",
+    "pdbthink-g02-45fa8c56214f3ef68d5a",
+    "pdbthink-g02-93369b0b6d0088581bfa",
+    "pdbthink-g02-a05334aaddb277a3ac2e",
+    "pdbthink-g02-a7b76ffd50d590819814",
+    "pdbthink-g02-e13b8e044eeff159245b",
+    "pdbthink-g02-eac05bcbd6cf3cac559d",
+    "pdbthink-g03-aaa38eebbd31bc7e1b20",
+    "pdbthink-g03-b8c52dcf813b5fdbaf68",
+    "pdbthink-g03-b8dd716f48aaca153aa8",
+    "pdbthink-g03-b8e42ce58c960e7a9581",
+    "pdbthink-g03-d39788371b897d2c6854",
+    "pdbthink-g03-d3d17304af054d3a8090",
+    "pdbthink-g03-ff62f34e606e9930f42c",
+    "pdbthink-g04-55369d6376f773133850",
+    "pdbthink-g04-ec33a251c9d7f1fddc18",
+    "pdbthink-g04-ed3c5d17f53366383bb7",
+    "pdbthink-n01-042badfe4ccddfb8399e",
+    "pdbthink-n01-0e296986440388362055",
+    "pdbthink-n01-6aba22c1ed9650543bde",
+    "pdbthink-n01-6c054aa0e97241324843",
+    "pdbthink-n01-9c4ded25b7879e22b8a0",
+    "pdbthink-n01-dde84c4aa13319672701",
+    "pdbthink-n01-f3ee21661ab54b5f2428",
+    "pdbthink-p01-1c5de69b97a988c5ff37",
+    "pdbthink-p01-3626b2c2edd92266bd9e",
+    "pdbthink-p01-4e6d164114d60bc16ef6",
+    "pdbthink-p01-886b952a14d72529f9e7",
+    "pdbthink-p01-b04a7082daaf0d04c2d7",
+    "pdbthink-p01-da81c82017f235e96bd8",
+    "pdbthink-p01-f1b3aaf8b39d4ea2727d",
+    "pdbthink-p02-0e516812e3e00d5bb293",
+    "pdbthink-p02-3ba49f7068c2ac316262",
+    "pdbthink-p02-3fc51a2a8e831be302f1",
+    "pdbthink-p02-535fc17ac77638245254",
+    "pdbthink-p02-556576bc66cde9224992",
+    "pdbthink-p02-6837b5c90341cbb2aeed",
+    "pdbthink-p02-dbad3107f376709840b0",
+    "pdbthink-p03-0deb94b2b5395dea3aff",
+    "pdbthink-p03-1005fd0d9a9a7e260de1",
+    "pdbthink-p03-78deef03b65a3ee5debc",
+    "pdbthink-p03-d6e1a628b1a14a793f0f",
+    "pdbthink-p03-dcf450aa37957ad9e600",
+    "pdbthink-p03-e325d678f44432b07f87",
+    "pdbthink-p03-f4f1255c38a7abc2b4f3",
+    "pdbthink-s01-14cf6f33b6243fb40ff2",
+    "pdbthink-s01-1898ea7f0fb5738b95c3",
+    "pdbthink-s01-387af46b559a66878f81",
+    "pdbthink-s01-a2888039258cd7aa6a8f",
+    "pdbthink-s01-b0f0c59d7ce76313a097",
+    "pdbthink-s01-f33d19b7091e744c8119",
+    "pdbthink-s01-fa708c8afeed9655d2c8",
+    "pdbthink-s02-0e901babb294a47b1aed",
+    "pdbthink-s02-4944f8404e8565535336",
+    "pdbthink-s02-733ea89e853501b52c10",
+    "pdbthink-s02-7f11b16bfe86ea3f49f3",
+    "pdbthink-s02-b793e33d783844f71cb6",
+    "pdbthink-s02-e98afd677b93afdd2b37",
+    "pdbthink-s02-f6e1880304ac9eb7dec6",
+    "pdbthink-s03-1a87d8bc274e61c8c679",
+    "pdbthink-s03-1eade67d68f9e20a8837",
+    "pdbthink-s03-375152b0490a9f864d2d",
+    "pdbthink-s03-66571901f19bad228378",
+    "pdbthink-s03-76c290cc180df4c0bb0e",
+    "pdbthink-s03-93d1d33b8b0f9b3d7612",
+    "pdbthink-s03-aee73415e190766108d4",
+    "pdbthink-s04-064ef4ff0d977acbdbba",
+    "pdbthink-s04-1113ec03b05888fda20c",
+    "pdbthink-s04-4c7551ab5335ff00be01",
+    "pdbthink-s04-80cb05fdaeadb52db361",
+    "pdbthink-s04-ceb6ea12c11f39a9614a",
+    "pdbthink-s04-d19843e976ccbfbe45c2",
+    "pdbthink-s04-d973760836233043d5af",
+    "pdbthink-s05-1da4447909b792b66e68",
+    "pdbthink-s05-2b02ff803542cc679d69",
+    "pdbthink-s05-6491a9f0ba5f8398cf12",
+    "pdbthink-s05-935fd4833f2d5d88ac61",
+    "pdbthink-s05-9922e3fbacc94f0967f1",
+    "pdbthink-s05-ba17ccb48c5c29215a24",
+    "pdbthink-s05-f90567232a33288834f5",
+    "pdbthink-s09-00e61ebcad77f449d5ac",
+    "pdbthink-s09-05ad620dea98eba272f9",
+    "pdbthink-s09-1238597964105a6e0234",
+    "pdbthink-s09-18bb0a0277996b7c14dc",
+    "pdbthink-s09-27908dbdd70df9caa959",
+    "pdbthink-s09-65f1805f38c56084285b",
+    "pdbthink-s09-6ea578199e0816dc8e23",
+    "pdbthink-s09-714945209b1ba67d620c",
+    "pdbthink-s09-8100dc4b872225eab41e",
+    "pdbthink-s09-b432ff6735b8a390c2d6",
+    "pdbthink-s09-c2f5987840cc6e243a68",
+    "pdbthink-s09-df09cf8da6916725f250",
+    "pdbthink-s09-e07a5c69968b5c356336"
+  ],
+  "selected_response_sha256": {
+    "pdbthink-g01-37da72df37f7fdc06014": {
+      "0": "c9a492575459481d3c7a48747b34aa6b57535a0be37aa99de495ee0e324893fd",
+      "384": "e70180b0caf124a3e01c0cfe4ffa522ebb6c271e2a1f63b2f6b4420a09107496"
+    },
+    "pdbthink-g01-42d1e9b9cd0c41faec01": {
+      "0": "5d2ff4daa9346ff58b09c0e213492fbab2fdaf863eb8c9601e0a481f698f7c9f",
+      "384": "5378dfa8ebab4198708fab4eec09acaa54cb7e618044743eac0eb5ec7eb8e83c"
+    },
+    "pdbthink-g01-8c9718bbadeec9826f24": {
+      "0": "3cc92dcb2b7de595b276900e305318c75f31621192600554edae4268f70453c1",
+      "384": "566629ec393480e4ebae015117d0f5880ad53975115dfeb43a272ba3d87c04d2"
+    },
+    "pdbthink-g01-9b4bd938bcad18869011": {
+      "0": "ff7c54890ff02736ae493a873035c9847cf853f728c6198a63a6e716249273d5",
+      "384": "1f0984b99a27efc7a74acfe6be55d3384e6ef64d067d7aa0e255214c837a66d2"
+    },
+    "pdbthink-g01-c90fc18d48008cadf422": {
+      "0": "81a170873cb6935846e8f0f4c1a2adb4764aa4489a319c6f8ee2a8532e72ffaa",
+      "384": "a167039d90bca300dde870a8c53b8f0ea29c3c6a58f5405a566cc9c796151602"
+    },
+    "pdbthink-g01-d32a21518d4be1f2a28a": {
+      "0": "1321d4733e1c649b0541526c0bab1c04ecc888551f8976641228b0a30cd7bbe3",
+      "384": "e688928eab837e722d75e593a3a39f9aee159b704068bdf6823fa216c125bc84"
+    },
+    "pdbthink-g01-e410c580c153c1b78514": {
+      "0": "811d1df691644bd1960fadb33d7ad888810b2e58209521bcb4c4b59072b85ad1",
+      "384": "d0eedc46fe0a314f3e40cd084777774fa2afc2ea6c480017ecc100908a023a89"
+    },
+    "pdbthink-g02-0a13ea30c05bcb6f5882": {
+      "0": "011279f492562d7a23455e8a0f9e7f7f3233792effd16f59f1537547fcf84dda",
+      "384": "9dedde1e79905d5700d9a19da7692c491a2dfbff9767e504c219c0038e51cb6b"
+    },
+    "pdbthink-g02-45fa8c56214f3ef68d5a": {
+      "0": "30bfb7f6b3ceb8ee11a5b4078a8526cb95e976d9ca2bd2d27fbe5901efd38d81",
+      "384": "10ae468fa072c422c437f0cc47fe98496d297a9a2f71dbd2674ee44540f16b54"
+    },
+    "pdbthink-g02-93369b0b6d0088581bfa": {
+      "0": "83926cdd9e3430f9127f37c0b430f25200e539e7ba267a566feab235e3ecfe32",
+      "384": "2880a155dcad4eaf95d57e9c2da472a455872be5408f42da7374080e3f99d6c8"
+    },
+    "pdbthink-g02-a05334aaddb277a3ac2e": {
+      "0": "fd871462d3b49d8e3d6d1847419c77e07d9264588bb87a907cc436e7fd7e5af7",
+      "384": "f2604eb700cabc4fa0fe4b3cc8e8df5f8e9448e79cac125a2cbb949bbe01e2f7"
+    },
+    "pdbthink-g02-a7b76ffd50d590819814": {
+      "0": "5fe1524118556c0c53574ebc6910c13809c3da80a2509f953369b64fe0da0614",
+      "384": "0f28e6937552725c405907dc85ccb64d70a6681dfd0761e035cc5f3a243b95a2"
+    },
+    "pdbthink-g02-e13b8e044eeff159245b": {
+      "0": "05f912a499f6e2729d7f3ebc1a6710f6f8ae1b8dfe3a354a909f8ace6568d6ba",
+      "384": "b75b89c099028fc24fc04d802ae2f677d254f721cee83e6e6716377d64ad54d6"
+    },
+    "pdbthink-g02-eac05bcbd6cf3cac559d": {
+      "0": "e06e6e41c12e83ac5fdefc89d27d922a8813fc799f8f59f3d819fe4ac9d336d9",
+      "384": "ad336fb78a6129a4f0d12d86b49598dab51c78e13ceae71403192744eea56f88"
+    },
+    "pdbthink-g03-aaa38eebbd31bc7e1b20": {
+      "0": "4df704244625023d6cadc75be9dd914b0339f3c98de160a2cd38553f5f694e59",
+      "384": "7e9de4510714de71efe3d5120573de6158bc2e426404640606324ef91037de50"
+    },
+    "pdbthink-g03-b8c52dcf813b5fdbaf68": {
+      "0": "3f518c6b94d8df3281d800e00a2389a8d12ebd9806e2fb0af552428f0f4b084e",
+      "384": "76c0d399a99c719f9eecb81788e492e1ad43e7a3b46a6d7b74676bdbf49e605d"
+    },
+    "pdbthink-g03-b8dd716f48aaca153aa8": {
+      "0": "043514728bc670f2c88e2cd631118c6c938f0217b6ea76a4d2875c5033186e7d",
+      "384": "767ce379ac58fdff22a35f71b3be328e9298d19ccc5aea74e498ef6089119b0c"
+    },
+    "pdbthink-g03-b8e42ce58c960e7a9581": {
+      "0": "49ac01c7b1959e31a7c2b137ceb0d136eaecfb8d7be2c2bb2cbb7f421ab83844",
+      "384": "0b1959b06144012652c28f83c796afabfd9cb04232e93513da841e976b6e247c"
+    },
+    "pdbthink-g03-d39788371b897d2c6854": {
+      "0": "7d1b0cb49f3350d3c48666b220d3f6f6958864ff13fe70ca2076d05a4951d628",
+      "384": "57a94d4e5d6dd4110206e1014ac5e7de43368216f3a3a2f231aaed11208695e3"
+    },
+    "pdbthink-g03-d3d17304af054d3a8090": {
+      "0": "a393cdfd2cc7045a03be046b97cf37c86c5a2943fe5d1af1a33319eed56f4565",
+      "384": "726e866e973448d759cfe367f0e371ef6135c263a3da61a46dd5b371231f77e6"
+    },
+    "pdbthink-g03-ff62f34e606e9930f42c": {
+      "0": "8f9e3d00561835f70146bffaf22b7fe242b5cb00a1b0a4189c942dccd82237bb",
+      "384": "9c7a40c5b1111be4a5c0c31f2d8b5ce6d04b9c45e0c887265ba7eeae68232f95"
+    },
+    "pdbthink-g04-55369d6376f773133850": {
+      "0": "f9d8906bd2b57253f8b163c94422fd05b28e74b9e26b2f963af10f00675c5bf4",
+      "384": "555b271e949acdf5e4b28e1e64a58017ec08812427e0f16d04958eb49dc353e8"
+    },
+    "pdbthink-g04-ec33a251c9d7f1fddc18": {
+      "0": "0ab793fc137947da18c941f27f3f21dec2cad59f20c06e18963c9f94dbbd44f2",
+      "384": "1f992b04ebb77130a3cc267fbf0fc601c678c9dca7a2071ca658287cfc247bae"
+    },
+    "pdbthink-g04-ed3c5d17f53366383bb7": {
+      "0": "5a00ce0d30da56fc9a444ab35c050e1deef5884fd7fd83803d5b107621e231fd",
+      "384": "e7c431461379f7f28bd5ceae1a08e4b4badabf099d291953c769384d6eb5f48f"
+    },
+    "pdbthink-n01-042badfe4ccddfb8399e": {
+      "0": "ac0fd66e997cbbfa3a08f5dc436873a64bcaf6fa3b21e84869ed4039f89676bd",
+      "384": "4bbe8c74c514b0de8c362ca215ec448c27cfa88b2e75f7082b83f9dc34e4fd35"
+    },
+    "pdbthink-n01-0e296986440388362055": {
+      "0": "29438726ab052272278bedb2e8b0d7e5cab185fe53b20ad74084f63ad87493b4",
+      "384": "cc27179084b2df2d1c41cea863a424afe9b54fd98702c0c1b1b8cec8e5902d07"
+    },
+    "pdbthink-n01-6aba22c1ed9650543bde": {
+      "0": "cfc71a3b79bbe25fb6aa2dec2467db0f98e00fa80eecae1633ceb87c94f2cf42",
+      "384": "b1af1c1092aa65e2f71bb198870acfd23052a7de26fe0f2a115dfcab8fc7d9de"
+    },
+    "pdbthink-n01-6c054aa0e97241324843": {
+      "0": "6535b50d12a57bbb9e1dde1b0f32c371fd4cbc702118b51da0c87a765ba0fa3f",
+      "384": "e6c930b17f74fb3f0a6ff722b196d66daadc00da9190c58bd62737d0d2064ae7"
+    },
+    "pdbthink-n01-9c4ded25b7879e22b8a0": {
+      "0": "9c5c0858f580e1a7a81fa3ccb64f03e09a3556f8effb601f112133b25bc9434d",
+      "384": "fbeeb5e24f68818e7fab37e0682324b90ee2ba51cc76b9d973708b5ac0a35a22"
+    },
+    "pdbthink-n01-dde84c4aa13319672701": {
+      "0": "db0163ffc48bb21c9e6de3f27b22819bb8ff1316141e8ecad43a1a5cde565a2f",
+      "384": "3b743b5e8c6d8031ac91e0bc7eab9a37e47d9d3087cc82cf4203be84d8acebf4"
+    },
+    "pdbthink-n01-f3ee21661ab54b5f2428": {
+      "0": "a819e2de47c96e5b7d334fa3b456f7c87b110102e596991091d5b3050d73c3f6",
+      "384": "086289d99ce56a0154df178599a668a0c8c59a95a06a34bc9ff2c6d5617a6a48"
+    },
+    "pdbthink-p01-1c5de69b97a988c5ff37": {
+      "0": "589633e54083fc0b16974e6f766ad8ba2c1b9bbb48b793857f84517af40fbed0",
+      "384": "56fe16bc5bbc47c168aff8cdb82b8446883d721a5923e5cd33ade94869129c13"
+    },
+    "pdbthink-p01-3626b2c2edd92266bd9e": {
+      "0": "d2de729619e8688b9248118ef5cc4327504afc613ef2b7a0dd782180b231eb71",
+      "384": "b3f98afc15d84c250856fdfb6b18bda44335dc73bb1190e6386bd2d7c56bcf04"
+    },
+    "pdbthink-p01-4e6d164114d60bc16ef6": {
+      "0": "66f8e8106ff9ae784b412c5918caa62c734fc0f7e0126a3c2bbb1657d64569a3",
+      "384": "f647f25db5783259bae759ca0eb493bb7de7e1ef493ca03fa202093272081e7c"
+    },
+    "pdbthink-p01-886b952a14d72529f9e7": {
+      "0": "e2bf9a66b7ec5f5295f23da061f65ec3c5c9e8a45045e09c120187624c6daefd",
+      "384": "221b1a59f09659509de9ad7554aebfc5e71cce683d85bff0b193f7a13c3fad06"
+    },
+    "pdbthink-p01-b04a7082daaf0d04c2d7": {
+      "0": "bf7a83c916232b2f0db12e07609dcfd45f25c4fd560d67cab291567c48305a62",
+      "384": "d5ef645741afb643dddcf207ec450b9d20fcaa6c3707a9351dbca20de960b9d9"
+    },
+    "pdbthink-p01-da81c82017f235e96bd8": {
+      "0": "1eab21a86643adff7088b06cb37c7691a216adbde1d3f1f634813340ac7c5e7c",
+      "384": "ce2a22e4a07bf3dbdfbfbd53e0a1f61075d4b40705120b6bbbe3890d201de508"
+    },
+    "pdbthink-p01-f1b3aaf8b39d4ea2727d": {
+      "0": "36e6a3151c6057d3ce3b494a627d2c4f20aa5c42ac3ffe62191c72931ac42fe8",
+      "384": "3308a3547b78132854ea5e5d5c4ee0663ed1bb99d89df5848bac32689a1bd40b"
+    },
+    "pdbthink-p02-0e516812e3e00d5bb293": {
+      "0": "2fddd05b038ca47413b8b2d6a9b35c57d0d9125c81154f27b4db9ec2d1f5e950",
+      "384": "b46b7b8fc19ad7cded87a123baf29cd43f5cceefb25419ac467a5d3dc8ae4627"
+    },
+    "pdbthink-p02-3ba49f7068c2ac316262": {
+      "0": "d7d519ccabe75bb0354095e80f7d55b936339922c1ef0c08d31ff769e62f3294",
+      "384": "07758bd110fd297aa481de9c27e7676c727b63dc7c8344e4151a1581b6149444"
+    },
+    "pdbthink-p02-3fc51a2a8e831be302f1": {
+      "0": "821b0134f5b4559e06547af7aa937fa55035fcbdcac69c69c116bf4257906ec6",
+      "384": "67f743af544d1c9fdd7361041d19f2e874acd025e4b9e2d1222f1e9750a4c714"
+    },
+    "pdbthink-p02-535fc17ac77638245254": {
+      "0": "c5c2ba7f6921fb7246f8986da617046d74667893bfb3b0c6da741d7881993b0a",
+      "384": "1c5bcf130bcc89cec2034447c901cc047800403d293f5ec45fddb7345a281fc7"
+    },
+    "pdbthink-p02-556576bc66cde9224992": {
+      "0": "4e072c2951b78656a7c2720d07944e44b5e6940e359b1e0e61b59c489b2ba5c0",
+      "384": "1c4dc94f6d42789a8c932391ed771f60257d96833ff708d4a34fd7bf252b1316"
+    },
+    "pdbthink-p02-6837b5c90341cbb2aeed": {
+      "0": "c4174e7942bcd13c7efccc9b18cda1a49f1ccfae06fa0568c7d0143a33ca473e",
+      "384": "44b1cf05cc74a252b424f1a302f5970a05947b504b1b317037e8e59ef408f8e1"
+    },
+    "pdbthink-p02-dbad3107f376709840b0": {
+      "0": "42652166447dfd2c32abcf826fbe86058b9fa78f8674fdb86ab9c666649a0ab1",
+      "384": "64fee7c539557d89e8e36345a6d48601951aabdc69780c5e6adb29eb372148a1"
+    },
+    "pdbthink-p03-0deb94b2b5395dea3aff": {
+      "0": "8ecaef4185978f9db539f8acf1775b53af258cd4e4f66660e9ca421dab85bbb3",
+      "384": "54783e386b5891b4a4ffe88ca669c30f83bd0a32485d83a8444741c10ad56f62"
+    },
+    "pdbthink-p03-1005fd0d9a9a7e260de1": {
+      "0": "f9365643d5769d6a64733a09b680a08affcfcd989a3034859fbfce383aadb4e3",
+      "384": "e54ce722fcf4a6deaa06bcce24e7c6fea728ed0a384ff7df008065b00c627355"
+    },
+    "pdbthink-p03-78deef03b65a3ee5debc": {
+      "0": "c60176a22fff40984b98f2c778ffb4529adcb1c7c68cc62dd3c78ab21a7ecd40",
+      "384": "07845f2d2ca2489323e0740223c91db354be33718c7992f60dd92ae2454c4c10"
+    },
+    "pdbthink-p03-d6e1a628b1a14a793f0f": {
+      "0": "3457431cb0a2a62d4e97df09918ce020a4722c3ea3ddef82e181ddfc8444aec7",
+      "384": "b928e6f09b47ab7bf30c7129ee183f1c167ade85221c6ab8feac77620c27d486"
+    },
+    "pdbthink-p03-dcf450aa37957ad9e600": {
+      "0": "cc33f1e8d394af165d5fb02f4691753aebdf746e3fc22c8d7d65c35f8ab86488",
+      "384": "d8f71a06c359ce7ea57ef9971fd8c85d5db6dec4c0c941cdbdf3316b9d82e730"
+    },
+    "pdbthink-p03-e325d678f44432b07f87": {
+      "0": "5362598b9e6fa029bd96ecc6c744117419df96e06f36cf6a44c4490a63e11e0c",
+      "384": "733fb9b2ac1aae4271aeeb29fd24669d2a700af8f960c178081e9d2c02d317ef"
+    },
+    "pdbthink-p03-f4f1255c38a7abc2b4f3": {
+      "0": "6df4ad1e55fa748541d493fdac9e949d6970e1aafad350be9e83cfcc693f5c80",
+      "384": "63e9576ac554130b817fe3d8aa0105af401cd7e95ca7e77f412e41fa1ed9299d"
+    },
+    "pdbthink-s01-14cf6f33b6243fb40ff2": {
+      "0": "daeb17be8c240f9335d13244490226fd8df8de014252efc7a2303587278dd87c",
+      "384": "ea667d7c006fd63c02cd231dd5dd617dca5ac3e0d171a84a786dfdc766f2f2ba"
+    },
+    "pdbthink-s01-1898ea7f0fb5738b95c3": {
+      "0": "c1317f0b74397b5607e57c4d1018426e15b818940cfa5e49edcec1881d9bdad9",
+      "384": "f0f40b89e581380a2e28fa15953e21e4eae167c9261fd9637bc083e5a1a4c58b"
+    },
+    "pdbthink-s01-387af46b559a66878f81": {
+      "0": "645013ee9cdf52546926a61e4d07df081299e936365674f394c2f7eb6471d0b5",
+      "384": "4fc10de6a612ac13c50f2601a62f5e8659e37f38323da215b0e4606bdc4820bc"
+    },
+    "pdbthink-s01-a2888039258cd7aa6a8f": {
+      "0": "a1ca8fc3ea09ca60d63b2dacf7b20e92326f628581b2986dce3bd7c5df2ba2d8",
+      "384": "e1b986687319a9a2984369a30cbbb453e9f502aa7b28642e17ab1f85887292fe"
+    },
+    "pdbthink-s01-b0f0c59d7ce76313a097": {
+      "0": "3c7835c29ea1f967da1b13a754fc51a66fe91b18adcb4e1ccaea7a65ea7cb773",
+      "384": "a63fc7120ba20670fed05f606355c441315e9113b263efbb9018cef80a2a2431"
+    },
+    "pdbthink-s01-f33d19b7091e744c8119": {
+      "0": "01546e1e4b749fdd153b4db8b15c57f0600f0415a243c3023a06aadccf3348cf",
+      "384": "f696d6ecbff180f406ab8c5bc17aa97ca76ff47290bc65d605070afedb0a6ff8"
+    },
+    "pdbthink-s01-fa708c8afeed9655d2c8": {
+      "0": "92bd6871a85c7006a8fb3900643cb0f5c7269449439c6f61314aac3ac0f38fad",
+      "384": "f31c48d03b97bc695699f2d90a10d712797eafa7ad6382334192188915d12ea7"
+    },
+    "pdbthink-s02-0e901babb294a47b1aed": {
+      "0": "cf9a8a179fdadf2947f430ac584fbd5781a460ffa421cf90ce6402ca35da4c2c",
+      "384": "6d1022bf05e21fc1ccaf91437a590e4814dc92c3ae99cf758b526b027499d084"
+    },
+    "pdbthink-s02-4944f8404e8565535336": {
+      "0": "a0d2b5938e6b2abbafe8482e19af01a1b925224c9c09c25218f3d294a2a263dc",
+      "384": "cde9f21a81bbd0ab46b8a3a21ce730de5ad6ce22c72e70cacdcd12abf6fa0a30"
+    },
+    "pdbthink-s02-733ea89e853501b52c10": {
+      "0": "065ccdfb7abdb61bc3ceb79a28f6574f7c456645f0676e9152e91b24ffb56299",
+      "384": "86a4f999a65c48e30a3825797dce6c2549b45f097c006662430813d9e6ba4464"
+    },
+    "pdbthink-s02-7f11b16bfe86ea3f49f3": {
+      "0": "70135d2dbb1210384305946586fff61d65837528b6c462af1b1c19a0adf30d68",
+      "384": "64eb467b96872558f37bec089c382b98ec99ec9e95a1019bee7dd746a1fd3050"
+    },
+    "pdbthink-s02-b793e33d783844f71cb6": {
+      "0": "36fccf07d4df668d2f4d843e255eb2b21dff20fafa3158240e7e1b7fab301192",
+      "384": "401ed8b9547af74e15c355ef9f0762fe05d8d097a5e4c187788e64f5e9e35afe"
+    },
+    "pdbthink-s02-e98afd677b93afdd2b37": {
+      "0": "e891e4597cee339328712da258dafa09e303ee43df159b98eff503b5ea917514",
+      "384": "1547180f37b0eb306e89fe73cfe12cdd613b937b11cde68ab2b45c0ca028962e"
+    },
+    "pdbthink-s02-f6e1880304ac9eb7dec6": {
+      "0": "a7a9d32ef25675c7002d0f4e2df639f3502b29d0f0ecc7810063669c0c87f4f4",
+      "384": "708596418930e0e8404d41d846b988798bca049623752065bd9ada47a50fdec6"
+    },
+    "pdbthink-s03-1a87d8bc274e61c8c679": {
+      "0": "6d7728b2540848b002e60ed8b8fce84534e7d68bf6f286e66878e260a59f5f9e",
+      "384": "d3f13f3eab55cf3976931486564292c071776fbe50018503dfeb6163e85ad6eb"
+    },
+    "pdbthink-s03-1eade67d68f9e20a8837": {
+      "0": "35002ae4732b7a7777c938aa1d7f0946edea2f8d79129d92ea597cf54b905577",
+      "384": "b39ccbfe5067f7f8f4ce595bfdaeb2c0448d381045e0eda8db9361fd47f0c395"
+    },
+    "pdbthink-s03-375152b0490a9f864d2d": {
+      "0": "de2745a02748b68b4ed98f86efb200a0dafcd2964b12f6df8bd5195ffe4ae3cb",
+      "384": "75f84cd9f464e624d2ed6f78a67ce6079726664d8ef9a1c5fe059781acc5af26"
+    },
+    "pdbthink-s03-66571901f19bad228378": {
+      "0": "3b5114fed7b7ec8860013bbea4523bb9de5e4030748bf6d5ae4222006f3e93ea",
+      "384": "66df681364d5d35a9c5d8e9082310728a0821d5518391a336c499f7e5bf86801"
+    },
+    "pdbthink-s03-76c290cc180df4c0bb0e": {
+      "0": "814b8ceeeb34b9aad257bf1000b6a2d84234c113dfefcafe50ec7f358c6bb741",
+      "384": "16b16ace0deab92fda210b652cf460da99964f3c6276650b9c2edc5c4047f6e9"
+    },
+    "pdbthink-s03-93d1d33b8b0f9b3d7612": {
+      "0": "c0db6a85656bf899b7d435f1d96038fc50b12e7606140a1bf45000051687c48c",
+      "384": "776d99776f3c58ece0cdfce1f98a573e324fb61fa350d9c28c8479b50add072d"
+    },
+    "pdbthink-s03-aee73415e190766108d4": {
+      "0": "cfcfc29b430fdef888256784fd8475082e4c60893e892b8d79c05d3c0fa65ec6",
+      "384": "350628a861562268350078a641ff3f34157c742c94ba3bbeea375a844df9e678"
+    },
+    "pdbthink-s04-064ef4ff0d977acbdbba": {
+      "0": "a95ea976ef5994f109979f45f5264817b9ef50cbce8df1cbd90e0f99b0de131b",
+      "384": "abe111bd8197dd069c3ad71527502909847cf5a5aac7bd6993533d312efef51c"
+    },
+    "pdbthink-s04-1113ec03b05888fda20c": {
+      "0": "6157f5ed680b3d434fa6c3d6eef32e98358a0de66ca37918770e39a2617465c0",
+      "384": "23c2827ba6df33ee8fac141eaa1afa70d635c43a8a661d291cdc2ff24bc10d7a"
+    },
+    "pdbthink-s04-4c7551ab5335ff00be01": {
+      "0": "0189543fd1ddec7ef777275a8ee5785a397a17ea5aceab0aa3e4e4871e9797c1",
+      "384": "6d18dabbec7b74626aade87da1c5683a224ee070dc43f3027287fb9be1589414"
+    },
+    "pdbthink-s04-80cb05fdaeadb52db361": {
+      "0": "a44a134219603df00353970be730d679bc5cff8a4d9f24027d3fabc5052c8e1c",
+      "384": "db02f8cfb7ca95fff6798a0a6efac2ac76652913c1b8d07586f64771b66cd1ce"
+    },
+    "pdbthink-s04-ceb6ea12c11f39a9614a": {
+      "0": "4757392e5654e8570007b89b63bfa52b2c3cbcd7a83b0a1e2790ee4d3209470a",
+      "384": "89d8c1226288b06182854dc5774414a017114772e0f4c5adc6c07807d51f307a"
+    },
+    "pdbthink-s04-d19843e976ccbfbe45c2": {
+      "0": "e834f9f5dc310a23926f869858df738644f16ae0f086423c9fa72315290eff33",
+      "384": "2e39bd0a93a28c1008d4c94709e219513c921b2109301134d9721eb313feaea0"
+    },
+    "pdbthink-s04-d973760836233043d5af": {
+      "0": "68be74fb52405a6663f95cb9478737c25b7d130478fc2488bb5110041d1c9d77",
+      "384": "df4795bb235216e9ff547f61b354b8439ea7cd47349577ecea596f4a53f3a61b"
+    },
+    "pdbthink-s05-1da4447909b792b66e68": {
+      "0": "a830ffc6c4c54a9f27a808395919fca06d1cf95df0b210599e8d8ccfe25b1d29",
+      "384": "839bd8db8fd737cf29682d55b2c65ec6ea59a4270fe9fb13cf5c320d88bc8f07"
+    },
+    "pdbthink-s05-2b02ff803542cc679d69": {
+      "0": "f079e9e6bd780e67c1752d95c001d959cb365713627f47553038e7f53036ea8b",
+      "384": "a218b529be277e1202a226a8a1b3b3a4a98845dc5fd19d46ba6de33d6afb96a6"
+    },
+    "pdbthink-s05-6491a9f0ba5f8398cf12": {
+      "0": "4285cc2853de9dbe75c1457d855caeece2b67be5ecaa609b32552b59be6fc740",
+      "384": "2900bc2d2022f5c40f1254743273024e7f0ad48f837e3dc0079f757c52865754"
+    },
+    "pdbthink-s05-935fd4833f2d5d88ac61": {
+      "0": "f6d9dfa00f734d09cc9db13c05a77b11bf65ea408163f632c940753876251357",
+      "384": "9593671dc9fdc588dfe8849e6ed3c87d5cc8a03249a7d1e5b55ecd3914a80351"
+    },
+    "pdbthink-s05-9922e3fbacc94f0967f1": {
+      "0": "32ecaa7727567c018910e4ea87e7ae8d0ee52106ec60cc7da155ebd2441b65c8",
+      "384": "a1a3ffb41560a93b74bbc1de1f1299508db4cf40aedc1283cf219190d50d077c"
+    },
+    "pdbthink-s05-ba17ccb48c5c29215a24": {
+      "0": "ac16eedbba48101c4ecb9e53d7732ac9f468ba969d4415bdf908f3e523b2ff6b",
+      "384": "ca6bcb433b6379fcad4436456a8b27aaaaee15ed93260bd8493029146ccf21e4"
+    },
+    "pdbthink-s05-f90567232a33288834f5": {
+      "0": "bac9fefb1075b467ce21a2e0442104e734627c181b3761efde79c9da077e34ce",
+      "384": "44e91831045400b26bb4de25a6f1b347e540b48905d53f5bb732bf7987a7f943"
+    },
+    "pdbthink-s09-00e61ebcad77f449d5ac": {
+      "0": "baf3f86b76e3e2127df212385d7d62ee6c4004c485b6b6342ebc5094906b7bd5",
+      "384": "e1dd487f320f0f0524ac0d10146a2cd82a9fdf11ad3391683586b5e4813bc8c2"
+    },
+    "pdbthink-s09-05ad620dea98eba272f9": {
+      "0": "5de261eadb2781db91c9cfba9494b00463ac5c05d3aca432342843a8537319ae",
+      "384": "786c1dc9ab6d007b0b6f0054d0c7221a2eb52a8b703dd0f2a93ad4c31984cfb5"
+    },
+    "pdbthink-s09-1238597964105a6e0234": {
+      "0": "10521445710e2442e37400e0982e0ba4effb0c39489e3bab38dd1a040ae88876",
+      "384": "f341c2f5cfd2205645fac8a1ddfe0b995fa89ab2a3d059a321afea443d388381"
+    },
+    "pdbthink-s09-18bb0a0277996b7c14dc": {
+      "0": "21b2da9fd170afd199a0358d022134de2cb3ab570d90419f0f416e5752fdd6f8",
+      "384": "ef0be778e0b6cff9a7592f34e9a70f8fdb49adeae2aa2ade3a5437c0dd816058"
+    },
+    "pdbthink-s09-27908dbdd70df9caa959": {
+      "0": "460de7c7226e5da97de033b38bcdd994d8b0f49edd5804284b5b4e0f56e1312a",
+      "384": "124e324a6454677d58efb86bea4d7ddaf70406b8dec3723720cef2b3863d1993"
+    },
+    "pdbthink-s09-65f1805f38c56084285b": {
+      "0": "20929da756e4ccfb8561e27b240712bca52485e21cb3aaddee8509e0ba2ec093",
+      "384": "d458903e355e8f34f61de5e8439086f8688d6c0cc7342ed1cd2362e1b7ce674d"
+    },
+    "pdbthink-s09-6ea578199e0816dc8e23": {
+      "0": "00cf4b88422cad5cec1b9d04e47afe2a586519beefe7acb7ebfc10ef923fcc88",
+      "384": "b19ddd57b95376ced5157b7926dcad1e6d3ad0248c6820117b2afded6b7756bc"
+    },
+    "pdbthink-s09-714945209b1ba67d620c": {
+      "0": "176916e05bfeec5c9df8ee83aa5a5800e9672f805fb4c83e5c54aca6144ba3e3",
+      "384": "630e5cf1e1d8981a76ae8cc99071a6b2ce63ba52b2dfc5fa57f09544bf76a038"
+    },
+    "pdbthink-s09-8100dc4b872225eab41e": {
+      "0": "aa043efdd5e1c259383223558eed124d8526f395b532cd57bd8f612137cbd581",
+      "384": "d090a88c2ef9331c6280a17fa8eb9f505fdc4a5d74a6f317539195621635e6ac"
+    },
+    "pdbthink-s09-b432ff6735b8a390c2d6": {
+      "0": "b8164dcf941f268df2103b7c94dcabf3eb2d439e868a2ee03a09e04e678416e9",
+      "384": "49a6b6fba7f9f36f93f99e47a0ae60ec554d0f61f16e73fb5ac7258834580fd8"
+    },
+    "pdbthink-s09-c2f5987840cc6e243a68": {
+      "0": "1d9d02dda0aab12ef223dc943910a2a2af4a3f429b53b4738400c761cb87e34a",
+      "384": "ef0f78680000adf65b1b5093279fd55f909ace34a6e9b53ef58c0c0581d0197c"
+    },
+    "pdbthink-s09-df09cf8da6916725f250": {
+      "0": "2c9aeddae1eb97e9be899d01fd63fc67031c7e09e9d36bab54d98eeac04b6f5e",
+      "384": "198dda0c2e5070320ce9c3dd3ecb85f231b3cb1a810f62b677d2d9b2c7e6cda6"
+    },
+    "pdbthink-s09-e07a5c69968b5c356336": {
+      "0": "efd6f8091259f4bf4fe9a6c4fd97c8e88e04ca09c70f97464da99bd449f44d1e",
+      "384": "ec6db22b919500627933499b2af652fdf7b7796c8021e80acd27aa0b11a41f54"
+    }
+  }
+}

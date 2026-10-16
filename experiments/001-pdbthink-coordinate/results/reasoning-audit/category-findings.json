@@ -1,0 +1,72 @@
+{
+  "G01": [
+    "Stronger atom lookup plus actual Euclidean distance calculation.",
+    "The model uses coordinate differences, squares, sums and a square root. This is substantive task-relevant behavior, already present in some baseline answers and substantially more reliable at step 384. In case 1, the baseline uses D73/L79 instead of D80/L94; step 384 selects the requested atoms and obtains23.86 \u00c5. Case 3 now finishes the computation instead of exhausting its output budget.",
+    "Residual failures include wrong residue/atom lookup, arithmetic and formatting. Case 6 substitutes a different oxygen and invents a serine CG. Case 2 correctly computes12.20 \u00c5 but never supplies a parseable FINAL field. Case 3 gives21.72 for a gold21.708 and passes the 0.02 \u00c5 tolerance despite a square-root error."
+  ],
+  "G02": [
+    "Some coordinate-based search and bond-exclusion reasoning; no robust general solution.",
+    "All four step 384 successes in the entire120-question category are included because the success stratum is so small. They compute distances to alpha carbons and selected sidechain atoms, then sometimes recover the correct allowed atom in the target residue. Cases 10\u201313 show progress from sequence guesses, missing-target claims or unfinished loops.",
+    "The searches are incomplete, and the covalent-bond graph is unreliable. Case 8 selects directly bonded GLU8 CB even though it must be excluded. Case 9 uses an incorrect arginine connectivity and selects CB instead of CG. Three-letter or otherwise invalid atom identifiers are common. Four successes out of 120 is weak evidence of general nearest-nonbonded-atom competence."
+  ],
+  "G03": [
+    "A clear coordinate shortcut: nearest alpha carbon substitutes for minimum heavy-atom distance.",
+    "All seven sampled step 384 traces explicitly compare CA\u2013CA distances. Their answers all match the independently computed CA proxy. On the full108-question category,104 predictions match that proxy. The proxy itself scores 79/108; the model scores 78/108. This strongly supports a useful but incomplete geometric heuristic.",
+    "The proxy is wrong on29 questions. The model follows its wrong answer on27 of those 29, and solves only one. In case 15, C192 is closer by CA distance (5.010 vs6.253 \u00c5), but D191 is closer by the required heavy-atom minimum (2.976 vs3.298 \u00c5). Cases 16 and18 show the same structural failure, with additional coordinate-copying mistakes."
+  ],
+  "G04": [
+    "No demonstrated success at finding the worst steric clash.",
+    "The entire validation category has only three questions, and all three are reviewed. Step 384 makes more numerical attempts, including distance and radius arithmetic, but no response computes the required maximum positive atom-pair overlap reliably.",
+    "It substitutes CA distances or residue-average radii, assumes unmeasured contact distances, mishandles bonded exclusions and omits relevant nonpolymer atoms. Cases 21 and23 report the least-negative overlap despite the requirement for a positive clash. Case 22 assumes2.8 \u00c5 contacts and averages residue radii. All three final identifiers are also invalid."
+  ],
+  "N01": [
+    "More arithmetic, but the wrong contact definition and no demonstrated solution.",
+    "Baseline answers largely speculate about sequence midpoints or get stuck listing residues. All seven step 384 samples attempt CA-distance screens at the 4 \u00c5 cutoff, whereas the task requires any heavy-atom pair within 4 \u00c5 to each anchor.",
+    "All seven trained responses truncate without a final answer; full-category performance remains0/72. A CA pair farther than 4 \u00c5 cannot rule out a sidechain contact. Misnumbered residues and repeated rescanning compound this invalid screening rule. Numerical effort alone is not evidence that the contact-intersection task was learned."
+  ],
+  "P01": [
+    "Formatting and completion improve; the sampled chain-identification knowledge was already present.",
+    "Both checkpoints identify the right chain in all seven sampled questions. The four scored gains are output-contract repairs: boxed/inline FINAL is not parsed, or a trailing \u201cFinal Answer\u201d overrides G with ANSWER. Step 384 gives a clean final field. These examples are single-chain structures.",
+    "No failure remains at step 384 in the 32-question validation category. That does not establish more complex multichain parsing, nor does this sample show new molecular geometry knowledge."
+  ],
+  "P02": [
+    "More consistent enumeration in some cases, with substantial counting and interpretation errors.",
+    "Case 41 recovers the 59-residue count after the baseline omits two positions. Case 42 enumerates 60 residues correctly where the baseline lists60 but claims83. Both checkpoints can count the 38-residue example in case 43.",
+    "Case 39 regresses from 78 to 150 by mistaking the last author residue number for the count. Case 38 counts 22 then wrongly excludes TPO as a nonprotein triphosphate. Case 40 invents an extra entry. Case 44 gives the correct 29 but continues generating a repeated sequence until the length cap, so native reward is zero."
+  ],
+  "P03": [
+    "Strong evidence of improved retrieval and faithful copying of supplied coordinates.",
+    "The three sampled gains repair wrong coordinate content, including incorrect signs/components and wrong residue lookup. Case 49 changes x from 5.668 to the supplied\u22126.841; case 50 finds the requested R349 NH1 rather than another coordinate triple. The full category improves from 27/118 to 114/118.",
+    "Lookup is still imperfect. Case 51 returns the SE atom of MSE1 instead of MSE33 at both checkpoints. Case 47 locates the correct residue context but substitutes a wrong CG2 triple. These tasks test reading the PDB, not deriving a physical quantity."
+  ],
+  "S01": [
+    "Some real charged-atom distance calculations, especially for lysine partners.",
+    "Cases 54,56 and58 compute the specified oxygen\u2013nitrogen distances and return the correct partners. Independent checks recover E860 OE2\u2013K889 NZ=3.174 \u00c5, E9 OE2\u2013K13 NZ=2.863 \u00c5 and D6 OD1\u2013K3 NZ=3.210 \u00c5. Case 55 computes the correct R170\u2013E162 contact but uses the wrong residue identifier format.",
+    "Arginine searches often stop at NE or use CA/carboxylate-carbon proxies, missing NH1/NH2. Cases 52,53 and57 all have a qualifying NH1 contact even though every NE-to-partner-oxygen distance exceeds4 \u00c5. Those step 384 traces truncate. This explains a concrete limit of the apparent salt-bridge procedure."
+  ],
+  "S02": [
+    "No scored improvement, and several sampled answers lose correct biochemical identification.",
+    "The baseline often recognizes SEP as phosphoserine or TPO as phosphothreonine but fails to convert to the requested parent one-letter residue identifier, e.g. Y:S26. Step 384 still recognizes TPO in cases 62 and64, but omits the residue number.",
+    "In cases 60,63 and65, step 384 instead calls SEP/TPO a separate small molecule, sulfate or nucleotide and guesses an ordinary Ser/Thr. Case 59 ignores phosphate atoms and guesses a common serine site. All seven sampled responses and all nine validation tasks fail. This category illustrates why a zero-to-zero score can hide semantic regressions."
+  ],
+  "S03": [
+    "A near-constant solvent-exposed answer; no demonstrated solvent-accessibility calculation.",
+    "All seven sampled step 384 answers assume a typical accessible area or invent a relative SASA value, without computing occlusion from surrounding atoms. Across all 119 tasks,118 parsed answers are solvent-exposed and one is unparsed; none is buried.",
+    "Always answering solvent-exposed scores 98/119, slightly above the model\u2019s97/119. All 21 buried questions fail. Cases 68 and69 regress from correct burial heuristics to exposure. The score increase is therefore not evidence that the model learned to calculate solvent accessibility."
+  ],
+  "S04": [
+    "A near-constant coil answer; no demonstrated DSSP or backbone-geometry computation.",
+    "All seven sampled step 384 answers say coil. They refer to imagined DSSP runs, generic sequence propensities or invented phi/psi values. No actual tool is available or called. Across111 tasks,110 parsed predictions are coil and one is unparsed.",
+    "Always answering coil scores 68/111, exactly the model\u2019s score. It solves none of the 33 helix or10 strand questions. Cases 73 and74 lose correct helix guesses. The apparent gain reflects class selection and output reliability, not demonstrated secondary-structure assignment."
+  ],
+  "S05": [
+    "An alpha-helical class preference and sequence-propensity rhetoric, without structural calculation.",
+    "The sampled responses do not calculate hydrogen bonds, backbone angles or helix/strand fractions. At step 384,10 of 12 full-category predictions are predominantly alpha helical and two are mixed. All eight correct answers are alpha-helical chains.",
+    "Always answering alpha helical also scores 8/12. The single beta-sheet and all three mixed chains fail. Cases 81 and85 show wrong helix guesses; case 80 remains wrong mixed. One sampled gain (case 82) merely formats the baseline\u2019s already correct helix guess."
+  ],
+  "S09": [
+    "A more consistent explicit torsion-calculation template, but not a validated dihedral algorithm.",
+    "All 13 sampled step 384 responses attempt coordinate subtraction, cross products and angle calculation. Nine start with the correct four coordinates; four have clear extraction errors. Seven receive reward1, but none survives all checks of coordinates, formula, arithmetic and bin mapping. This is more than an always-g\u2212 rule, yet less than reliable rotamer computation.",
+    "A recurring formula omits the middle-bond norm; there are also wrong atom selections, sign transcription errors, lost atan2 quadrants and positive-angle-to-g\u2212 bin mistakes. Correct category rewards frequently tolerate an incorrect angle. The dedicated rotamer section shows exactly why."
+  ]
+}

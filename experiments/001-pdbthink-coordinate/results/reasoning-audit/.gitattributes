@@ -1,0 +1,4 @@
+# PDFs are generated binary documents, including ReportLab's ASCII-encoded output.
+*.pdf binary
+# Preserve trailing spaces that were present in the model's verbatim responses.
+rollout-audit.html whitespace=-blank-at-eol
