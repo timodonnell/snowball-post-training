@@ -1,0 +1,33 @@
+{
+  "run": "snowball-pdbthink-replay-20261021-v1",
+  "remote_root": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v1",
+  "overlay": "overlay-33c9e6c4b90fffd68f098f1ee5b204141b1caca7ac809c962bd1fdb537032b46.zip",
+  "overlay_sha256": "33c9e6c4b90fffd68f098f1ee5b204141b1caca7ac809c962bd1fdb537032b46",
+  "starting_checkpoint": {
+    "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+    "identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+    "local_path": "/tmp/marinskyrl/models/snowball-pdbthink-step38",
+    "tokenizer_uri": "open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38",
+    "tokenizer_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+    "chat_template": null
+  },
+  "fresh_optimizer": true,
+  "training_tasks": 28045,
+  "validation_tasks": 1003,
+  "validation_interval": 32,
+  "optimizer_updates": 876,
+  "learning_rate": 1e-06,
+  "samples_per_prompt": 4,
+  "batch_prompts": 32,
+  "rollout_temperature": 1.0,
+  "importance_cap": 4,
+  "grug_query_bias_update_mode": "frozen",
+  "hardware": "H100",
+  "score_centering": "Deferred: absent from inspected upstream main 82396a7; needs new top-K distribution path",
+  "total_router_recall": "Deferred: replaying weights changes router gradients and requires capture support",
+  "kernel_alignment": "Deferred: extensive backend/model-specific work; no claim of zero mismatch",
+  "sources": [
+    "https://kiddyboots216.github.io/mismatch/",
+    "https://arxiv.org/abs/2609.20807"
+  ]
+}

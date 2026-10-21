@@ -1,0 +1,45 @@
+{
+  "base_commit": "5663f6129f53bb6aaa09549fa6cb423571503e94",
+  "upstream_backports": {
+    "prediction-position-routes.patch": "b1264f778cc69fd0bfd6a0863d0775da7c0b7daa",
+    "recomputation-routes.patch": "81ae0ef7033c500207b191a2ae7c3806f6dc78ff"
+  },
+  "files": {
+    "skyrl-train/skyrl_train/callbacks/builtin.py": {
+      "base_sha256": "db5f8fa41298bcdecc35827f2cbee7f2f3735e3471dd37b51e6b04b12abf3af0",
+      "installed_sha256": "d467abe9306dc95d79cc82ce5d3da2a5aa90dd8a6f3df30d4e35eb458e52e70a"
+    },
+    "skyrl-train/skyrl_train/inference_engines/base.py": {
+      "base_sha256": "003ca98b3aebfd18128dcc3ea05b278bd9584b380048429bd797227423f0efeb",
+      "installed_sha256": "57ba9e24ed919c83dbc6793c9bc42918ebc99b73e7ecf313164376f72536b076"
+    },
+    "skyrl-train/skyrl_train/inference_engines/inference_engine_client.py": {
+      "base_sha256": "eea8e4ebac872639203bf99f13969466afe50a873560a67e575d4a64df3077f7",
+      "installed_sha256": "94cff282c6bc9e216aab47101f98455e10ba5a6f10cfe68cd3ca055f6d7ec93c"
+    },
+    "skyrl-train/skyrl_train/inference_engines/vllm/route_capture.py": {
+      "base_sha256": null,
+      "installed_sha256": "d5c842e0f1a65787c17cbaa41ad0aa4d1e72dcae4a3c6d008f5c6c79164098c2"
+    },
+    "skyrl-train/skyrl_train/inference_engines/vllm/vllm_engine.py": {
+      "base_sha256": "63f0262835c84ea822ad0cea0c4ea379a8d2bd068c98b3fbbb204b8c271bb152",
+      "installed_sha256": "52372275eda4ebab8e6038bbf9b9c37e1253367e34c95bd2b821620e06130aab"
+    },
+    "skyrl-train/skyrl_train/models/megatron_router_replay.py": {
+      "base_sha256": "d39d76ab7d9eed4c3e51791c5685f332b28947533a2c201054949996f2b96a81",
+      "installed_sha256": "46075bc5f09aff58783946e6b9513edd9e2570fe07f7f917df4a12fc706f3a96"
+    },
+    "skyrl-train/skyrl_train/trajectory_runners/routed_experts.py": {
+      "base_sha256": "75d6079bdc09ea9c7bf4b565cb0cebf6848051b979edd156901bc643ada359cf",
+      "installed_sha256": "a9159c1ae6a5eabf413d6b5cb91e4dd10490b73da13dc4a4bc7b9158975e6f95"
+    },
+    "skyrl-train/skyrl_train/workers/megatron/megatron_model_wrapper.py": {
+      "base_sha256": "d075c1ff06be241ac919d7bbb4f1ad4025dc2460b604229fc56069f7852eaf45",
+      "installed_sha256": "e6f4495a7f2cd9455d20776ecfcb82874c3a793498646224260d779d8f370759"
+    },
+    "skyrl-train/skyrl_train/workers/megatron/megatron_worker.py": {
+      "base_sha256": "5db281256c1403f5150d869ed00d5ad2e3fbb17fc7f9744bbe68078699bfd566",
+      "installed_sha256": "d5dc58d722ea3fb7329a0afeb77c50a7f3c08c9630bdb3929417c31a175f5b5c"
+    }
+  }
+}
