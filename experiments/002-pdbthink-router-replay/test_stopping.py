@@ -1,5 +1,6 @@
 """Guard Snowball's termination semantics through the real chat request path."""
 
+import json
 from pathlib import Path
 from unittest.mock import AsyncMock, MagicMock
 
@@ -68,9 +69,62 @@ def test_validation_audit_rejects_invalid_baseline(monkeypatch, failure):
     monkeypatch.setenv("SNOWBALL_REPLAY_AUDIT_URI", "unused")
     records = []
     monkeypatch.setattr(audit, "write_json", lambda *args: records.append(args))
-    metrics = {"eval/G01/sequences": 1003 if failure == "execution" else 1002}
+    metrics = json.loads((Path(__file__).parent / "results/baseline-step0.json").read_text())["metrics"]
     if failure == "execution":
         metrics["eval/G01/environment/pdbthink/agent_loop_error"] = 1.0
+    else:
+        metrics["eval/G01/sequences"] -= 1
     with pytest.raises(ValueError, match="execution errors|Incomplete validation"):
         audit.ReplayAuditCallback(None).on_evaluate(SimpleNamespace(global_step=0), None, metrics=metrics)
     assert records  # Preserve evidence before stopping the run.
+
+
+def test_validation_accepts_both_aggregate_and_family_counts(monkeypatch):
+    from types import SimpleNamespace
+
+    import snowball_replay_runtime as audit
+
+    monkeypatch.setenv("SNOWBALL_REPLAY_AUDIT_URI", "unused")
+    monkeypatch.setattr(audit, "write_json", lambda *args: None)
+    metrics = json.loads((Path(__file__).parent / "results/baseline-step0.json").read_text())["metrics"]
+    control = object()
+    assert (
+        audit.ReplayAuditCallback(None).on_evaluate(SimpleNamespace(global_step=0), control, metrics=metrics) is control
+    )
+
+
+@pytest.mark.asyncio
+@pytest.mark.parametrize("failure", [None, "checksum", "bias"])
+async def test_baseline_reuse_checks_identity_and_logs_provenance(monkeypatch, failure):
+    import hashlib
+    import io
+    from types import SimpleNamespace
+
+    import snowball_replay_runtime as audit
+
+    payload = (Path(__file__).parent / "results/baseline-step0.json").read_bytes()
+    monkeypatch.setenv("SNOWBALL_REPLAY_AUDIT_URI", "unused")
+    monkeypatch.setenv("SNOWBALL_REPLAY_CODE_SHA256", "code")
+    monkeypatch.setenv("SNOWBALL_REPLAY_BASELINE_URI", "baseline")
+    monkeypatch.setenv(
+        "SNOWBALL_REPLAY_BASELINE_SHA256", "bad" if failure == "checksum" else hashlib.sha256(payload).hexdigest()
+    )
+    monkeypatch.setenv("SNOWBALL_REPLAY_BASELINE_BIAS_SHA256", "bad" if failure == "bias" else "bias")
+    monkeypatch.setattr(audit, "verify_weights", AsyncMock())
+    monkeypatch.setattr(audit, "StoragePath", lambda uri: SimpleNamespace(open=lambda mode: io.BytesIO(payload)))
+    records = []
+    monkeypatch.setattr(audit, "write_json", lambda *args: records.append(args))
+    cfg = OmegaConf.create({"trainer": {"policy": {"grug_query_bias_update_mode": "frozen"}}})
+    callback = audit.ReplayAuditCallback(cfg)
+    callback.bias_digest = AsyncMock(return_value="bias")
+    trainer = MagicMock()
+    if failure:
+        with pytest.raises(ValueError, match="checksum|step-zero policy"):
+            await callback.on_train_begin_async(SimpleNamespace(global_step=0), None, trainer=trainer)
+        trainer.tracker.log.assert_not_called()
+    else:
+        await callback.on_train_begin_async(SimpleNamespace(global_step=0), None, trainer=trainer)
+        metrics = trainer.tracker.log.call_args.args[0]
+        assert metrics["eval/baseline_reused"] == 1.0
+        assert metrics["eval/all/sequences"] == 1003
+        assert records[-1][2]["baseline_origin"] == "baseline"

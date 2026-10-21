@@ -1,19 +1,19 @@
 {
   "software_base": "5663f6129f53bb6aaa09549fa6cb423571503e94",
-  "overlay_sha256": "f4913f493b901a8c0c0d1dbe484357b9c0ec1e8e505b7799bad3212e7cc55bbe",
+  "overlay_sha256": "8f7e2ac5242e9949f727f449c15985d12017be0502b83d4168ab883fd21f687d",
   "cpu_suites": [
     {
-      "log": "v4-final-tests.log",
-      "passed": 273,
-      "log_sha256": "f27be9fc8683408fc654e7eb33d69a745ff32601d0c9c77874f7803f4faeecf7"
+      "log": "v5-final-tests.log",
+      "passed": 277,
+      "log_sha256": "3be01b2dd7322f60f3f7a5c0eaee6b55a92f95ffdca4f7697312ec7ad7041422"
     }
   ],
   "native_launch_validation": {
     "valid": true,
-    "job": "snowball-pdbthink-replay-20261021-v4",
+    "job": "snowball-pdbthink-replay-20261021-v5",
     "runtime_bundle_verified": true
   },
   "callback_import_check": "Replay callback imports and shared verification path OK",
   "scope": "CPU source and transport checks; GPU training acceptance recorded separately.",
-  "cpu_total_passed": 273
+  "cpu_total_passed": 277
 }

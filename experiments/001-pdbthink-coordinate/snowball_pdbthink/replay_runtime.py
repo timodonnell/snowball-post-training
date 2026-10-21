@@ -1,12 +1,14 @@
 """Checks and durable metrics for the route-replay training retry."""
 
 import hashlib
+import json
 import math
 import os
 
 import ray
 import torch
 from loguru import logger
+from rigging.filesystem.storage_path import StoragePath
 from skyrl_train.callbacks.base import TrainerCallback
 from snowball_parity_runtime import verify_weights, write_json
 
@@ -67,6 +69,22 @@ class ReplayAuditCallback(TrainerCallback):
             },
         )
         logger.info("REPLAY_AUDIT startup weight equality verified; bias={}", self.bias_hash)
+        baseline_uri = os.environ.get("SNOWBALL_REPLAY_BASELINE_URI")
+        if baseline_uri:
+            if state.global_step != 0 or self.bias_hash != os.environ["SNOWBALL_REPLAY_BASELINE_BIAS_SHA256"]:
+                raise ValueError("Baseline reuse requires the verified original step-zero policy")
+            with StoragePath(baseline_uri).open("rb") as stream:
+                payload = stream.read()
+            if hashlib.sha256(payload).hexdigest() != os.environ["SNOWBALL_REPLAY_BASELINE_SHA256"]:
+                raise ValueError("Reused baseline checksum mismatch")
+            baseline = json.loads(payload)
+            if baseline["global_step"] != 0:
+                raise ValueError("Only an unchanged step-zero baseline may be reused")
+            metrics = {**baseline["metrics"], "eval/baseline_reused": 1.0}
+            self.on_evaluate(state, control, metrics=metrics, baseline_origin=baseline_uri)
+            trainer._log_metrics_stdout(metrics, step=0, kind="eval")
+            trainer.tracker.log(metrics, step=0, commit=True)
+            logger.info("REPLAY_AUDIT reused verified step-zero baseline from {}", baseline_uri)
         return control
 
     async def on_step_end_async(self, state, control, **kwargs):
@@ -101,14 +119,34 @@ class ReplayAuditCallback(TrainerCallback):
                 "global_step": state.global_step,
                 "metrics": metrics,
                 "expected_tasks": 1003,
+                "baseline_origin": kwargs.get("baseline_origin"),
             },
         )
         errors = {key: value for key, value in metrics.items() if key.endswith("/agent_loop_error") and value > 0}
         if errors:
             raise ValueError(f"Validation had execution errors; refusing to train on an invalid baseline: {errors}")
-        coverage = sum(
-            value for key, value in metrics.items() if key.startswith("eval/") and key.endswith("/sequences")
-        )
-        if coverage != 1003:
-            raise ValueError(f"Incomplete validation coverage: {coverage}/1003")
+        family_counts = {
+            "G01": 110,
+            "G02": 120,
+            "G03": 108,
+            "G04": 3,
+            "N01": 72,
+            "P01": 32,
+            "P02": 23,
+            "P03": 118,
+            "S01": 50,
+            "S02": 9,
+            "S03": 119,
+            "S04": 111,
+            "S05": 12,
+            "S09": 116,
+        }
+        expected = {"all": 1003, **family_counts}
+        bad_counts = {
+            key: metrics.get(f"eval/{key}/sequences")
+            for key, count in expected.items()
+            if metrics.get(f"eval/{key}/sequences") != count
+        }
+        if bad_counts:
+            raise ValueError(f"Incomplete validation coverage: {bad_counts}")
         return control

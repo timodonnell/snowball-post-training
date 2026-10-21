@@ -59,6 +59,7 @@ def main():
         "startup": startup,
         "completed_optimizer_step": training[-1]["global_step"] if training else 0,
         "target_step": design["optimizer_updates"],
+        "baseline_origin": design.get("baseline_origin", {}).get("run"),
         "training": training,
         "validation": summarize_history(validation, counts),
     }
@@ -83,6 +84,7 @@ def main():
                 "job": design["run"],
                 "completed_optimizer_step": result["completed_optimizer_step"],
                 "startup_checks_completed": bool(startup),
+                "baseline_origin": result["baseline_origin"],
                 "latest_metrics": {key: latest.get(key) for key in keys},
                 "latest_validation": result["validation"][-1] if validation else None,
             },

@@ -18,7 +18,7 @@ PREVIOUS = ROOT / "experiments/001-pdbthink-coordinate"
 SOURCE = ROOT / "data/MarinSkyRL"
 OUT = ROOT / "runs/002-replay"
 BASE = "5663f6129f53bb6aaa09549fa6cb423571503e94"
-PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4"
+PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v5"
 PATCHES = {
     "prediction-position-routes.patch": "b1264f778cc69fd0bfd6a0863d0775da7c0b7daa",
     "recomputation-routes.patch": "81ae0ef7033c500207b191a2ae7c3806f6dc78ff",
@@ -172,7 +172,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     bundle, digest = build_overlay()
     cfg = yaml.safe_load((PREVIOUS / "epoch-launch.yaml").read_text())
-    name = "snowball-pdbthink-replay-20261021-v4"
+    name = "snowball-pdbthink-replay-20261021-v5"
     cfg["run"].update(id=name, attempt_id=digest[:12], export_hf=False, submission="wait")
     cluster = "cw-us-east-08a" if args.hardware == "GB200" else "cw-rno2a"
     cfg["iris"].update(
@@ -205,7 +205,7 @@ def main():
         resume_mode="none",
         resume_path=None,
         max_steps=876,
-        eval_before_train=True,
+        eval_before_train=False,
         eval_interval=32,
         ckpt_interval=32,
         hf_save_interval=32,
@@ -233,6 +233,14 @@ def main():
     # Evaluation has no importance-weighted loss; its deterministic policy does
     # not satisfy the training-only behavior-probability validation contract.
     generator["eval_sampling_params"]["logprobs"] = None
+    baseline_origin = json.loads((HERE / "results/baseline-step0.json").read_text())["origin"]
+    if baseline_origin["inputs"] != cfg["inputs"] or baseline_origin["sampling"] != generator["eval_sampling_params"]:
+        raise ValueError("Baseline reuse requires identical frozen inputs and evaluation sampling")
+    env.update(
+        SNOWBALL_REPLAY_BASELINE_URI=baseline_origin["uri"],
+        SNOWBALL_REPLAY_BASELINE_SHA256=baseline_origin["sha256"],
+        SNOWBALL_REPLAY_BASELINE_BIAS_SHA256=baseline_origin["frozen_bias_sha256"],
+    )
     generator["trajectory_retention"]["publish_timeout_seconds"] = 600
     (HERE / "launch.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
     (OUT / "launch.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
@@ -248,6 +256,7 @@ def main():
                 "training_tasks": 28045,
                 "validation_tasks": 1003,
                 "validation_interval": 32,
+                "baseline_origin": baseline_origin,
                 "optimizer_updates": 876,
                 "learning_rate": 1e-6,
                 "samples_per_prompt": 4,

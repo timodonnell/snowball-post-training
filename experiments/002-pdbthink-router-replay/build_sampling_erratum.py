@@ -76,11 +76,18 @@ def main():
         "mask cannot create an unmatched sampling processor. No new RL improvement is claimed here."
     )
     paragraph(
+        "The corrected step-zero evaluation scored 239/1,003 (23.83%), with no execution errors. "
+        "Submission v4 then stopped because an audit guard double-counted aggregate and category totals. "
+        "Submission v5 reuses that valid baseline with recorded provenance and checksum; no optimizer "
+        "updates occurred before the baseline was measured.",
+        "SmallD",
+    )
+    paragraph(
         "<b>Evidence:</b> pinned MarinSkyRL 5663f612, skyrl_train/entrypoints/main_base.py "
         "(create_ray_wrapped_inference_engines_from_config) and inference_engines/vllm/utils.py "
         "(apply_openai_sampling); original resolved launch artifact; retry v3 validation failure and "
         "v4 request-path regression tests. See experiments/002-pdbthink-router-replay/README.md and "
-        "results/v3-startup-and-failure.json for the execution record. All 273 final CPU checks passed; "
+        "results/baseline-step0.json for the execution record. All 277 final CPU checks passed; "
         "these are not evidence of training improvement.",
         "SmallD",
     )

@@ -106,14 +106,14 @@ stop the run.
 
 CPU validation passed 268 upstream checks across route capture, prediction
 alignment, retries, transport, replay control, sampling, importance correction
-and full objective gradients, plus five experiment-specific checks of stop IDs,
-training/evaluation request settings and rejection of invalid validation results.
+and full objective gradients, plus nine experiment-specific checks of stop IDs,
+training/evaluation request settings, validation coverage and baseline reuse.
 The native launcher accepted the configuration and verified its runtime bundle.
 GPU startup and optimizer-step results are recorded separately; these CPU
 checks are not evidence that model training has succeeded.
 
 Run artifacts use
-`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4`.
+`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v5`.
 The audit stores startup weight checks, per-step metrics and validation results.
 Run `status.py` to download the audit and summarize completed optimizer steps,
 probability mismatch, correction clipping and validation accuracy.
@@ -127,15 +127,26 @@ Version v3 passed all-parameter equality checks on 16 rollout workers and 832
 full-FP32 router comparisons with zero mismatches. It was cancelled with no
 completed optimizer updates recorded after its initial evaluation exposed the
 shared wrapper's sampling override. Its all-zero validation scores are execution
-failures and must not be used as model measurements. The corrected v4 job is
-`/bizon/snowball-pdbthink-replay-20261021-v4`.
-Its [live dashboard](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xiboj3xy)
-corresponds to source commit `bfd9cdb`; `results/live-config.json` records the
-job's actual configuration.
-Startup passed: 32 learner ranks and 16 rollout workers; 314,452,475,904 compared
+failures and must not be used as model measurements.
+
+Version v4 completed valid greedy baseline evaluation: **239/1,003 correct
+(23.8285%)**, family-macro accuracy 24.3987%, with no execution errors. A bug in
+the experiment's new coverage guard then summed both aggregate and per-family
+counts and stopped the job before any optimizer update. The corrected guard
+checks the aggregate and each family's expected count separately.
+
+Version v5 (`/bizon/snowball-pdbthink-replay-20261021-v5`) reuses that completed
+baseline. `results/baseline-step0.json` preserves its metrics, original storage
+URI/checksum, immutable input identities and sampling settings. Preparation
+requires identical inputs and evaluation sampling; startup verifies fresh policy
+weights and the original frozen router-bias digest, verifies the baseline file
+checksum, and logs its source plus `eval/baseline_reused=1`. Evaluation then runs
+normally every 32 updates. No baseline is silently recomputed or relabeled.
+
+Version v4's startup passed: 32 learner ranks and 16 rollout workers; 314,452,475,904 compared
 bytes including replicated parameters, with zero mismatches; 832 full-FP32
 router tensor comparisons with zero unequal elements. The evidence is in
-`results/startup-verification.json`. This verifies the starting installation,
+`results/baseline-startup-verification.json`. This verifies the starting installation,
 not training efficacy.
 
 ## Correction to previous validation descriptions

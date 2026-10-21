@@ -1,8 +1,8 @@
 {
-  "run": "snowball-pdbthink-replay-20261021-v4",
-  "remote_root": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4",
-  "overlay": "overlay-f4913f493b901a8c0c0d1dbe484357b9c0ec1e8e505b7799bad3212e7cc55bbe.zip",
-  "overlay_sha256": "f4913f493b901a8c0c0d1dbe484357b9c0ec1e8e505b7799bad3212e7cc55bbe",
+  "run": "snowball-pdbthink-replay-20261021-v5",
+  "remote_root": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v5",
+  "overlay": "overlay-8f7e2ac5242e9949f727f449c15985d12017be0502b83d4168ab883fd21f687d.zip",
+  "overlay_sha256": "8f7e2ac5242e9949f727f449c15985d12017be0502b83d4168ab883fd21f687d",
   "starting_checkpoint": {
     "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
     "identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
@@ -15,6 +15,51 @@
   "training_tasks": 28045,
   "validation_tasks": 1003,
   "validation_interval": 32,
+  "baseline_origin": {
+    "run": "snowball-pdbthink-replay-20261021-v4",
+    "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4/audit/validation/000000.json",
+    "sha256": "18c10e1d9554317934d6df45f0896907bd8d8d15fb5303a2d5a651c361a43f25",
+    "inputs": {
+      "model": {
+        "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+        "identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
+        "local_path": "/tmp/marinskyrl/models/snowball-pdbthink-step38",
+        "tokenizer_uri": "open-athena/Snowball-67B-A2B-5.7T-Mixed-RLVR-Step38",
+        "tokenizer_revision": "cfc1d845dae89b067cdc7250d0164abefa5a69cf",
+        "chat_template": null
+      },
+      "data_kind": "parquet",
+      "train_data": [
+        {
+          "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3",
+          "identity": "documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3",
+          "local_path": "/tmp/marinskyrl/data/snowball-pdbthink",
+          "relative_path": "train.parquet",
+          "kind": "directory"
+        }
+      ],
+      "validation_data": [
+        {
+          "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/inputs/2026.10.07-v3",
+          "identity": "documents/bizon/snowball-pdbthink@2026.10.07.3:276de0b3",
+          "local_path": "/tmp/marinskyrl/data/snowball-pdbthink",
+          "relative_path": "validation.parquet",
+          "kind": "directory"
+        }
+      ]
+    },
+    "sampling": {
+      "logprobs": null,
+      "max_generate_length": 32768,
+      "temperature": 0.0,
+      "top_p": 1.0,
+      "stop_token_ids": [
+        128001,
+        128009
+      ]
+    },
+    "frozen_bias_sha256": "ed84e55f05178893737eb63eeb4b2a6543c03ee8828303d335b54a993c49e15b"
+  },
   "optimizer_updates": 876,
   "learning_rate": 1e-06,
   "samples_per_prompt": 4,
