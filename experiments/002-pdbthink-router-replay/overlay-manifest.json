@@ -9,6 +9,10 @@
       "base_sha256": "db5f8fa41298bcdecc35827f2cbee7f2f3735e3471dd37b51e6b04b12abf3af0",
       "installed_sha256": "d467abe9306dc95d79cc82ce5d3da2a5aa90dd8a6f3df30d4e35eb458e52e70a"
     },
+    "skyrl-train/skyrl_train/config/ppo_base_config.yaml": {
+      "base_sha256": "c51e8da722880c5de505f5e81f7535fe59b51c3c4697067c43267aa66f247e7e",
+      "installed_sha256": "e58c60a79b5cf4d0299ef50d9f25728bb5f1ccae3f600539de3ee6416045105b"
+    },
     "skyrl-train/skyrl_train/inference_engines/base.py": {
       "base_sha256": "003ca98b3aebfd18128dcc3ea05b278bd9584b380048429bd797227423f0efeb",
       "installed_sha256": "57ba9e24ed919c83dbc6793c9bc42918ebc99b73e7ecf313164376f72536b076"

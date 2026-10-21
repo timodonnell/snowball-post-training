@@ -29,7 +29,7 @@ def main():
         region_name=env["AWS_DEFAULT_REGION"],
         config=Config(s3={"addressing_style": "virtual"}),
     )
-    cache = ROOT / "runs/002-replay/audit"
+    cache = ROOT / "runs/002-replay/audit" / design["run"]
     prefix = uri.path.lstrip("/")
     training, validation, startup = [], [], []
     for page in client.get_paginator("list_objects_v2").paginate(Bucket=uri.netloc, Prefix=prefix):

@@ -18,7 +18,7 @@ PREVIOUS = ROOT / "experiments/001-pdbthink-coordinate"
 SOURCE = ROOT / "data/MarinSkyRL"
 OUT = ROOT / "runs/002-replay"
 BASE = "5663f6129f53bb6aaa09549fa6cb423571503e94"
-PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v2"
+PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v3"
 PATCHES = {
     "prediction-position-routes.patch": "b1264f778cc69fd0bfd6a0863d0775da7c0b7daa",
     "recomputation-routes.patch": "81ae0ef7033c500207b191a2ae7c3806f6dc78ff",
@@ -66,6 +66,13 @@ def build_overlay():
     )
     subprocess.run(["git", "apply"], input=test_patch, cwd=stage, check=True)
     prefix = "skyrl-train/skyrl_train/"
+    config_file = prefix + "config/ppo_base_config.yaml"
+    changed.add(config_file)
+    config_path = stage / config_file
+    config_text = config_path.read_text()
+    if config_text.count("    stop: null\n") != 2:
+        raise ValueError("Expected training and evaluation stop configuration")
+    config_path.write_text(config_text.replace("    stop: null\n", "    stop: null\n    stop_token_ids: null\n"))
     worker = prefix + "workers/megatron/megatron_worker.py"
     changed.add(worker)
     path = stage / worker
@@ -145,7 +152,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     bundle, digest = build_overlay()
     cfg = yaml.safe_load((PREVIOUS / "epoch-launch.yaml").read_text())
-    name = "snowball-pdbthink-replay-20261021-v2"
+    name = "snowball-pdbthink-replay-20261021-v3"
     cfg["run"].update(id=name, attempt_id=digest[:12], export_hf=False, submission="wait")
     cluster = "cw-us-east-08a" if args.hardware == "GB200" else "cw-rno2a"
     cfg["iris"].update(
@@ -197,6 +204,12 @@ def main():
         )
     generator["engine_init_kwargs"].update(enable_return_routed_experts=True, logprobs_mode="processed_logprobs")
     generator["sampling_params"].update(top_k=-1, top_p=1.0, min_p=0.0, repetition_penalty=1.0)
+    # Behavior-logprob correction forces generation_config="vllm", which drops
+    # checkpoint EOS defaults. Preserve both original Snowball terminators in
+    # each request without changing the pre-termination sampling distribution.
+    eos_ids = json.loads((ROOT / "data/model-metadata/generation_config.json").read_text())["eos_token_id"]
+    for sampling_key in ("sampling_params", "eval_sampling_params"):
+        generator[sampling_key]["stop_token_ids"] = eos_ids
     generator["trajectory_retention"]["publish_timeout_seconds"] = 600
     (HERE / "launch.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
     (OUT / "launch.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
@@ -217,6 +230,7 @@ def main():
                 "samples_per_prompt": 4,
                 "batch_prompts": 32,
                 "rollout_temperature": 1.0,
+                "stop_token_ids": eos_ids,
                 "importance_cap": 4,
                 "grug_query_bias_update_mode": "frozen",
                 "hardware": args.hardware,

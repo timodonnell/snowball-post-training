@@ -58,10 +58,23 @@ def main():
             command.append("--validate")
         raise SystemExit(subprocess.call(command))
 
-    from cloud.iris import iris_backend, role_plan
+    from cloud.iris import iris_backend, rl_config_translation, role_plan
     from cloud.iris.launch_config import load_launch_config
     from cloud.iris.runtime_bundle import validate_bundled_runtime
     from iris.cluster.types import CoschedulingConfig
+    from omegaconf import OmegaConf
+
+    # Match the two stop-token fields declared by our GPU runtime overlay.
+    # Extend composition in memory; never edit the shared launcher cache.
+    original_compose = rl_config_translation._compose_config_groups
+
+    def replay_compose(*values, **options):
+        config = original_compose(*values, **options)
+        for phase in ("sampling_params", "eval_sampling_params"):
+            OmegaConf.update(config, f"generator.{phase}.stop_token_ids", None, force_add=True)
+        return config
+
+    rl_config_translation._compose_config_groups = replay_compose
 
     raw = yaml.safe_load(args.config.read_text())
     if raw["iris"]["allocation"]["gpu_variant"] == "GB200":

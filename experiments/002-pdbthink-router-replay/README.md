@@ -23,6 +23,9 @@ optimizer update per batch, that latter ratio is approximately one. This is
 TIS plus the existing objective, not a claim to have implemented CISPO or score
 centering. It corrects residual sampling mismatch while bounding its upward
 gradient multiplier. No token is discarded solely for exceeding the cap.
+Simply selecting this pinned trainer's CISPO loss would still use the old
+learner as its ratio denominator. The added TIS factor explicitly compares
+learner probabilities with the probabilities used to generate the rollouts.
 
 The [mismatch article](https://kiddyboots216.github.io/mismatch/) motivates
 bounded correction and warns that expert IDs alone cannot eliminate differences
@@ -56,6 +59,9 @@ checks a full-model bias digest periodically.
 - Learning rate 1e-6; one optimizer pass; gradient norm cap 1.
 - Training temperature 1, top-p 1, top-k disabled, min-p 0; 8,192 response-token
   cap and 32,768 total context. Greedy validation uses remaining native context.
+- Both original Snowball stop IDs (128001, 128009) are supplied explicitly in
+  training and evaluation requests. Importance correction forces vLLM's neutral
+  generation config, so checkpoint generation defaults cannot supply them.
 - Validation and checkpoint retention every 32 steps. Full trajectories retained.
 - Existing per-family rewards, validation success, probability-ratio tails,
   effective sample size, and correction clipping metrics remain enabled.
@@ -84,18 +90,25 @@ contains the resolved experiment overrides; `design.json` records the decisions.
 The shared experiment adapter installs the new files inside the job's runtime,
 without modifying shared package caches. `submit.py` verifies the uploaded
 overlay and starts a detached, durable Marin/Iris launcher.
+The overlay also declares `stop_token_ids` in the sampling configuration schema;
+launcher composition declares the same fields in memory. The existing native
+request conversion and chat transport carry these IDs to vLLM.
 
-CPU validation passed 190 upstream checks across route capture, prediction
-alignment, retries, transport, replay control and importance correction.
+CPU validation passed 268 upstream checks across route capture, prediction
+alignment, retries, transport, replay control, sampling, importance correction
+and full objective gradients, plus two experiment-specific checks that preserve
+both stop IDs through the real training and validation chat request paths.
 The native launcher accepted the configuration and verified its runtime bundle.
 GPU startup and optimizer-step results are recorded separately; these CPU
 checks are not evidence that model training has succeeded.
 
 Run artifacts use
-`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v2`.
+`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v3`.
 The audit stores startup weight checks, per-step metrics and validation results.
+Run `status.py` to download the audit and summarize completed optimizer steps,
+probability mismatch, correction clipping and validation accuracy.
 
-The first submission was cancelled during model startup, before any optimizer
-updates, to remove an override that would have discarded the original
-end-of-turn generation configuration. The active v2 run inherits the original
-EOS IDs (128001 and 128009).
+Submissions v1 and v2 were cancelled during model startup, before any optimizer
+updates. The first removed an explicit neutral-generation-config override; the
+second revealed that MarinSkyRL restores it internally for importance
+correction. Version v3 preserves termination using explicit stop-token IDs.

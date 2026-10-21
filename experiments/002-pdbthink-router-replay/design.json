@@ -1,8 +1,8 @@
 {
-  "run": "snowball-pdbthink-replay-20261021-v2",
-  "remote_root": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v2",
-  "overlay": "overlay-8b6849361b41bb04bb0ed9893364b4f4b2db16b5722a6777982857361c8688f9.zip",
-  "overlay_sha256": "8b6849361b41bb04bb0ed9893364b4f4b2db16b5722a6777982857361c8688f9",
+  "run": "snowball-pdbthink-replay-20261021-v3",
+  "remote_root": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v3",
+  "overlay": "overlay-642ab3b754da5d2d29f5879e1cd4c64d6350577b557bd7cd179e19d0bb60db1f.zip",
+  "overlay_sha256": "642ab3b754da5d2d29f5879e1cd4c64d6350577b557bd7cd179e19d0bb60db1f",
   "starting_checkpoint": {
     "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
     "identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",
@@ -20,6 +20,10 @@
   "samples_per_prompt": 4,
   "batch_prompts": 32,
   "rollout_temperature": 1.0,
+  "stop_token_ids": [
+    128001,
+    128009
+  ],
   "importance_cap": 4,
   "grug_query_bias_update_mode": "frozen",
   "hardware": "H100",
