@@ -129,6 +129,9 @@ completed optimizer updates recorded after its initial evaluation exposed the
 shared wrapper's sampling override. Its all-zero validation scores are execution
 failures and must not be used as model measurements. The corrected v4 job is
 `/bizon/snowball-pdbthink-replay-20261021-v4`.
+Its [live dashboard](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xiboj3xy)
+corresponds to source commit `bfd9cdb`; `results/live-config.json` records the
+job's actual configuration.
 
 ## Correction to previous validation descriptions
 
