@@ -39,7 +39,7 @@
     },
     "skyrl-train/skyrl_train/workers/megatron/megatron_worker.py": {
       "base_sha256": "5db281256c1403f5150d869ed00d5ad2e3fbb17fc7f9744bbe68078699bfd566",
-      "installed_sha256": "d5dc58d722ea3fb7329a0afeb77c50a7f3c08c9630bdb3929417c31a175f5b5c"
+      "installed_sha256": "12c507a5f1f4dcd24519a4e26a88a8b87c9a3211deb9b53b86c211fb290e961e"
     }
   }
 }

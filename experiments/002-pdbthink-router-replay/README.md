@@ -33,9 +33,11 @@ changes the treatment of router gradients. We make no zero-mismatch claim.
 [Score centering](https://arxiv.org/abs/2609.20807) is promising but deferred.
 The paper subtracts an expected-score drift term, approximated using a saved
 top-token distribution. That implementation is absent from upstream main
-`82396a7` inspected on October 21, 2026. Implementing and validating a new
-distribution-capture and gradient path would add a substantial independent
-change to this retry. The paper also studies TIS and identifies limitations of
+`82396a7` inspected on October 21, 2026. The unmerged
+[draft implementation](https://github.com/marin-community/MarinSkyRL/pull/968)
+reports CPU/GPU qualification but no established learning benefit. Adopting and
+qualifying its distribution-capture and gradient path in this pinned experiment
+would add a substantial independent change. The paper also studies TIS and identifies limitations of
 its deliberately amplified mismatch experiments.
 
 **Quantile/query-bias balancing remains frozen.** The original resolved config
@@ -90,5 +92,10 @@ GPU startup and optimizer-step results are recorded separately; these CPU
 checks are not evidence that model training has succeeded.
 
 Run artifacts use
-`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v1`.
+`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v2`.
 The audit stores startup weight checks, per-step metrics and validation results.
+
+The first submission was cancelled during model startup, before any optimizer
+updates, to remove an override that would have discarded the original
+end-of-turn generation configuration. The active v2 run inherits the original
+EOS IDs (128001 and 128009).

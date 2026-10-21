@@ -1,0 +1,18 @@
+{
+  "software_base": "5663f6129f53bb6aaa09549fa6cb423571503e94",
+  "overlay_sha256": "8b6849361b41bb04bb0ed9893364b4f4b2db16b5722a6777982857361c8688f9",
+  "cpu_suites": [
+    {
+      "log": "final-cpu-tests.log",
+      "passed": 190,
+      "log_sha256": "a4e092523c13f617273a3bf8bda96ed288730b1bdc0dc54125574890ed1d0310"
+    }
+  ],
+  "native_launch_validation": {
+    "valid": true,
+    "job": "snowball-pdbthink-replay-20261021-v2",
+    "runtime_bundle_verified": true
+  },
+  "callback_import_check": "Replay callback imports and shared verification path OK",
+  "scope": "CPU source and transport checks; GPU training acceptance recorded separately."
+}
