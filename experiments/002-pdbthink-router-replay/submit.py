@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 
 import boto3
 import yaml
+from botocore.config import Config
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = Path(__file__).resolve().parent
@@ -28,6 +29,7 @@ def main():
     env = credential_environment("/home/bizon/.kube/coreweave-iris-rno2a")
     storage = boto3.client(
         "s3",
+        config=Config(s3={"addressing_style": "virtual"}),
         endpoint_url=env["AWS_ENDPOINT_URL"],
         aws_access_key_id=env["AWS_ACCESS_KEY_ID"],
         aws_secret_access_key=env["AWS_SECRET_ACCESS_KEY"],
