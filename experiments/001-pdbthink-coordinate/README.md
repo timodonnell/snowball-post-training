@@ -14,6 +14,8 @@ the separately deployed, matched original-benchmark comparison did not use
 that wrapper. This adds a sampling difference to comparisons between the
 standalone baseline and native training validation; archived responses and
 their scores are unchanged.
+The [corrected complete PDF](../002-pdbthink-router-replay/results/snowball-rl-report-corrected.pdf)
+prepends the dated correction to the historical report.
 
 ## Paired validation rollout audit
 

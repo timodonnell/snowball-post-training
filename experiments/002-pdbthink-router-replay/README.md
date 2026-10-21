@@ -132,6 +132,10 @@ failures and must not be used as model measurements. The corrected v4 job is
 
 ## Correction to previous validation descriptions
 
+Read the [corrected complete PDF](results/snowball-rl-report-corrected.pdf), with a
+dated correction prepended to the 62-page historical report, or the
+[one-page correction](results/validation-sampling-erratum.pdf).
+
 The pinned serving entrypoint passes training sampling settings to the shared
 OpenAI wrapper. That wrapper unconditionally overwrote each chat request's
 temperature, including validation requests. Therefore, the previous native
