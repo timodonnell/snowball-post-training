@@ -142,6 +142,19 @@ requires identical inputs and evaluation sampling; startup verifies fresh policy
 weights and the original frozen router-bias digest, verifies the baseline file
 checksum, and logs its source plus `eval/baseline_reused=1`. Evaluation then runs
 normally every 32 updates. No baseline is silently recomputed or relabeled.
+Its [active dashboard](https://wandb.ai/timodonnell/snowball-pdbthink/runs/zrfy4wut)
+corresponds to submitted commit `4164e44`. `results/live-config.json` records the
+actual v5 configuration.
+The v5 startup equality and baseline checks passed; see
+`results/startup-verification.json`. The first optimizer update also completed:
+100% replay hit fraction, unchanged router biases, zero rollout staleness, and
+finite metrics. Across 286,341 scored response tokens, mean absolute log-probability
+gap was 0.011383, 0.023748% of tokens had learner/rollout probability ratios outside
+[0.5, 2], and effective sample fraction was 99.8563%. No weight reached the
+importance cap in that batch. `results/first-optimizer-step.json` preserves all
+numeric metrics; `results/training-acceptance.json` summarizes the checks.
+These establish a working first update, not an accuracy gain or a controlled
+comparison with the previous run's later checkpoints.
 
 Version v4's startup passed: 32 learner ranks and 16 rollout workers; 314,452,475,904 compared
 bytes including replicated parameters, with zero mismatches; 832 full-FP32

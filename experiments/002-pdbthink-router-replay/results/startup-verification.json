@@ -1,7 +1,7 @@
 {
-  "job": "snowball-pdbthink-replay-20261021-v4",
-  "wandb_url": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/xiboj3xy",
-  "source_commit": "bfd9cdb0b9af67ab4ea5476fd969d89d45822736",
+  "job": "snowball-pdbthink-replay-20261021-v5",
+  "wandb_url": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/zrfy4wut",
+  "source_commit": "4164e44ef6e401998bbbf9e05f0c9bda5bcf85e1",
   "policy_ranks": 32,
   "rollout_workers": 16,
   "compared_bytes_including_replicated_parameters": 314452475904,
@@ -16,7 +16,8 @@
     "frozen_bias_sha256": "ed84e55f05178893737eb63eeb4b2a6543c03ee8828303d335b54a993c49e15b",
     "router_replay": true,
     "importance_correction_cap": 4.0,
-    "overlay_sha256": "f4913f493b901a8c0c0d1dbe484357b9c0ec1e8e505b7799bad3212e7cc55bbe"
+    "overlay_sha256": "8f7e2ac5242e9949f727f449c15985d12017be0502b83d4168ab883fd21f687d"
   },
-  "scope": "Startup weight equality only; no optimizer or accuracy acceptance implied."
+  "baseline_origin": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4/audit/validation/000000.json",
+  "scope": "Startup weight equality and baseline reuse verified; optimizer acceptance recorded separately."
 }

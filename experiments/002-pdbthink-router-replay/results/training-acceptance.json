@@ -1,0 +1,37 @@
+{
+  "job": "snowball-pdbthink-replay-20261021-v5",
+  "wandb_url": "https://wandb.ai/timodonnell/snowball-pdbthink/runs/zrfy4wut",
+  "completed_optimizer_step": 1,
+  "baseline": {
+    "step": 0,
+    "family_accuracy": {
+      "G01": 0.09090909090909091,
+      "G02": 0.008333333333333333,
+      "G03": 0.18518518518518517,
+      "G04": 0.0,
+      "N01": 0.0,
+      "P01": 0.65625,
+      "P02": 0.6956521739130435,
+      "P03": 0.1694915254237288,
+      "S01": 0.0,
+      "S02": 0.0,
+      "S03": 0.5966386554621849,
+      "S04": 0.5765765765765766,
+      "S05": 0.3333333333333333,
+      "S09": 0.10344827586206896
+    },
+    "family_macro_accuracy": 0.2439870107141818,
+    "task_weighted_accuracy": 0.2382851445663011,
+    "covered_tasks": 1003,
+    "expected_tasks": 1003
+  },
+  "baseline_origin": "snowball-pdbthink-replay-20261021-v4",
+  "replay_hit_fraction": 1.0,
+  "router_bias_unchanged": 1.0,
+  "rollout_staleness_max": 0.0,
+  "mean_absolute_logprob_gap": 0.011383020953257904,
+  "fraction_outside_half_to_double": 0.00023747908961692528,
+  "importance_effective_sample_fraction": 0.9985629472375501,
+  "importance_truncated_fraction": 0.0,
+  "interpretation": "GPU plumbing accepted through first update; no post-training validation result yet."
+}
