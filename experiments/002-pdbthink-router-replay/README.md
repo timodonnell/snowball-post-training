@@ -132,6 +132,11 @@ failures and must not be used as model measurements. The corrected v4 job is
 Its [live dashboard](https://wandb.ai/timodonnell/snowball-pdbthink/runs/xiboj3xy)
 corresponds to source commit `bfd9cdb`; `results/live-config.json` records the
 job's actual configuration.
+Startup passed: 32 learner ranks and 16 rollout workers; 314,452,475,904 compared
+bytes including replicated parameters, with zero mismatches; 832 full-FP32
+router tensor comparisons with zero unequal elements. The evidence is in
+`results/startup-verification.json`. This verifies the starting installation,
+not training efficacy.
 
 ## Correction to previous validation descriptions
 
