@@ -5,6 +5,16 @@ Train Snowball directly against PDBThink's native verifier with Marin's artifact
 launcher, MarinSkyRL, Megatron, vLLM, and Iris on CoreWeave. No GLM responses or
 other teacher traces are used.
 
+**October 21 validation correction:** inspection during the
+[router-replay retry](../002-pdbthink-router-replay/README.md#correction-to-previous-validation-descriptions)
+found that the shared serving wrapper replaced native in-training validation's
+requested temperature 0 with training temperature 1. Earlier descriptions of
+that curve as greedy are incorrect. The standalone step-zero validation and
+the separately deployed, matched original-benchmark comparison did not use
+that wrapper. This adds a sampling difference to comparisons between the
+standalone baseline and native training validation; archived responses and
+their scores are unchanged.
+
 ## Paired validation rollout audit
 
 The [updated PDF report](results/snowball-rl-result-report-with-rollout-audit.pdf)

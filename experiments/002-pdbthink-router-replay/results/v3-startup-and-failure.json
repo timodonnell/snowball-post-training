@@ -1,0 +1,11 @@
+{
+  "job": "snowball-pdbthink-replay-20261021-v3",
+  "status": "cancelled; invalid baseline; no completed optimizer update recorded",
+  "policy_ranks": 32,
+  "rollout_workers": 16,
+  "compared_bytes_including_replicated_parameters": 314452475904,
+  "mismatched_bytes": 0,
+  "fp32_router_tensor_comparisons": 832,
+  "router_unequal_elements": 0,
+  "failure": "Validation min_tokens=1 rejected by training-only behavior-probability validation; training sampling overrides also replaced requested validation temperature."
+}

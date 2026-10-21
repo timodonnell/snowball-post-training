@@ -66,9 +66,13 @@ def main():
     latest = training[-1]["metrics"] if training else {}
     keys = [
         "reward/avg_raw_reward",
+        "policy/mismatch/pooled/log_ratio_abs_mean",
+        "policy/mismatch/pooled/log_ratio_abs_p999",
         "policy/mismatch/pooled/kl_k3",
         "policy/mismatch/pooled/ess_fraction",
         "policy/mismatch/pooled/frac_outside_0_5_2",
+        "policy/mismatch/pooled/pos_first256/log_ratio_abs_mean",
+        "policy/mismatch/pooled/pos_last256/log_ratio_abs_mean",
         "policy/correction/truncated_fraction",
         "policy/router_replay/hit_fraction",
         "policy/frozen_router_bias_unchanged",

@@ -93,13 +93,22 @@ class ReplayAuditCallback(TrainerCallback):
         return control
 
     def on_evaluate(self, state, control, **kwargs):
+        metrics = kwargs["metrics"]
         write_json(
             self.root,
             f"validation/{state.global_step:06d}.json",
             {
                 "global_step": state.global_step,
-                "metrics": kwargs["metrics"],
+                "metrics": metrics,
                 "expected_tasks": 1003,
             },
         )
+        errors = {key: value for key, value in metrics.items() if key.endswith("/agent_loop_error") and value > 0}
+        if errors:
+            raise ValueError(f"Validation had execution errors; refusing to train on an invalid baseline: {errors}")
+        coverage = sum(
+            value for key, value in metrics.items() if key.startswith("eval/") and key.endswith("/sequences")
+        )
+        if coverage != 1003:
+            raise ValueError(f"Incomplete validation coverage: {coverage}/1003")
         return control

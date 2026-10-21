@@ -18,7 +18,7 @@ PREVIOUS = ROOT / "experiments/001-pdbthink-coordinate"
 SOURCE = ROOT / "data/MarinSkyRL"
 OUT = ROOT / "runs/002-replay"
 BASE = "5663f6129f53bb6aaa09549fa6cb423571503e94"
-PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v3"
+PREFIX = "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4"
 PATCHES = {
     "prediction-position-routes.patch": "b1264f778cc69fd0bfd6a0863d0775da7c0b7daa",
     "recomputation-routes.patch": "81ae0ef7033c500207b191a2ae7c3806f6dc78ff",
@@ -66,6 +66,26 @@ def build_overlay():
     )
     subprocess.run(["git", "apply"], input=test_patch, cwd=stage, check=True)
     prefix = "skyrl-train/skyrl_train/"
+    entrypoint = prefix + "entrypoints/main_base.py"
+    changed.add(entrypoint)
+    replace_once(
+        stage / entrypoint,
+        '"openai_sampling_params": OmegaConf.to_container(cfg.generator.sampling_params, resolve=True),',
+        "# SkyRL-Gym supplies separate training/evaluation settings on each request.\n"
+        '        "openai_sampling_params": {},',
+    )
+    sampling_utils = prefix + "inference_engines/vllm/utils.py"
+    changed.add(sampling_utils)
+    sampling_path = stage / sampling_utils
+    sampling_text = sampling_path.read_text()
+    start = sampling_text.index("    body.update(\n", sampling_text.index("def apply_openai_sampling("))
+    end = sampling_text.index("    # Completion logprobs", start)
+    block = sampling_text[start:end]
+    replace_once(
+        sampling_path,
+        block,
+        "    if sampling_params:\n" + "".join("    " + line for line in block.splitlines(keepends=True)),
+    )
     config_file = prefix + "config/ppo_base_config.yaml"
     changed.add(config_file)
     config_path = stage / config_file
@@ -152,7 +172,7 @@ def main():
     OUT.mkdir(parents=True, exist_ok=True)
     bundle, digest = build_overlay()
     cfg = yaml.safe_load((PREVIOUS / "epoch-launch.yaml").read_text())
-    name = "snowball-pdbthink-replay-20261021-v3"
+    name = "snowball-pdbthink-replay-20261021-v4"
     cfg["run"].update(id=name, attempt_id=digest[:12], export_hf=False, submission="wait")
     cluster = "cw-us-east-08a" if args.hardware == "GB200" else "cw-rno2a"
     cfg["iris"].update(
@@ -210,6 +230,9 @@ def main():
     eos_ids = json.loads((ROOT / "data/model-metadata/generation_config.json").read_text())["eos_token_id"]
     for sampling_key in ("sampling_params", "eval_sampling_params"):
         generator[sampling_key]["stop_token_ids"] = eos_ids
+    # Evaluation has no importance-weighted loss; its deterministic policy does
+    # not satisfy the training-only behavior-probability validation contract.
+    generator["eval_sampling_params"]["logprobs"] = None
     generator["trajectory_retention"]["publish_timeout_seconds"] = 600
     (HERE / "launch.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))
     (OUT / "launch.yaml").write_text(yaml.safe_dump(cfg, sort_keys=False))

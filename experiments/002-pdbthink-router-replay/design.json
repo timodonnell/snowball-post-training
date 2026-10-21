@@ -1,8 +1,8 @@
 {
-  "run": "snowball-pdbthink-replay-20261021-v3",
-  "remote_root": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v3",
-  "overlay": "overlay-642ab3b754da5d2d29f5879e1cd4c64d6350577b557bd7cd179e19d0bb60db1f.zip",
-  "overlay_sha256": "642ab3b754da5d2d29f5879e1cd4c64d6350577b557bd7cd179e19d0bb60db1f",
+  "run": "snowball-pdbthink-replay-20261021-v4",
+  "remote_root": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4",
+  "overlay": "overlay-f4913f493b901a8c0c0d1dbe484357b9c0ec1e8e505b7799bad3212e7cc55bbe.zip",
+  "overlay_sha256": "f4913f493b901a8c0c0d1dbe484357b9c0ec1e8e505b7799bad3212e7cc55bbe",
   "starting_checkpoint": {
     "uri": "s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/models/cfc1d845dae89b067cdc7250d0164abefa5a69cf",
     "identity": "models/bizon/snowball-pdbthink-step38@2026.10.07.1:ab2dd1ec",

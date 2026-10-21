@@ -13,6 +13,10 @@
       "base_sha256": "c51e8da722880c5de505f5e81f7535fe59b51c3c4697067c43267aa66f247e7e",
       "installed_sha256": "e58c60a79b5cf4d0299ef50d9f25728bb5f1ccae3f600539de3ee6416045105b"
     },
+    "skyrl-train/skyrl_train/entrypoints/main_base.py": {
+      "base_sha256": "81184167bc7d349b8dd220c790f2988285464f49a08f6057066b106fb3c0434e",
+      "installed_sha256": "84d38393a29a2c4df60ef0eaff8c6160db7901cd419447afa9349279b8898cfd"
+    },
     "skyrl-train/skyrl_train/inference_engines/base.py": {
       "base_sha256": "003ca98b3aebfd18128dcc3ea05b278bd9584b380048429bd797227423f0efeb",
       "installed_sha256": "57ba9e24ed919c83dbc6793c9bc42918ebc99b73e7ecf313164376f72536b076"
@@ -24,6 +28,10 @@
     "skyrl-train/skyrl_train/inference_engines/vllm/route_capture.py": {
       "base_sha256": null,
       "installed_sha256": "d5c842e0f1a65787c17cbaa41ad0aa4d1e72dcae4a3c6d008f5c6c79164098c2"
+    },
+    "skyrl-train/skyrl_train/inference_engines/vllm/utils.py": {
+      "base_sha256": "146da1c4dc3dc6474746f0b513430c6d4ea772eabca2c2bb39733ea33b51a3a5",
+      "installed_sha256": "389005dd1904c52250168c6b37abcfd26db1d3baa7788b03fc0d6e026c02fc34"
     },
     "skyrl-train/skyrl_train/inference_engines/vllm/vllm_engine.py": {
       "base_sha256": "63f0262835c84ea822ad0cea0c4ea379a8d2bd068c98b3fbbb204b8c271bb152",

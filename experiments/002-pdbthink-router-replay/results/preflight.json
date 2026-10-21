@@ -1,29 +1,19 @@
 {
   "software_base": "5663f6129f53bb6aaa09549fa6cb423571503e94",
-  "overlay_sha256": "642ab3b754da5d2d29f5879e1cd4c64d6350577b557bd7cd179e19d0bb60db1f",
+  "overlay_sha256": "f4913f493b901a8c0c0d1dbe484357b9c0ec1e8e505b7799bad3212e7cc55bbe",
   "cpu_suites": [
     {
-      "log": "final-cpu-tests.log",
-      "passed": 190,
-      "log_sha256": "a4e092523c13f617273a3bf8bda96ed288730b1bdc0dc54125574890ed1d0310"
-    },
-    {
-      "log": "objective-tests.log",
-      "passed": 60,
-      "log_sha256": "e0f5053e60177eeee235188275525b997df667f52de77061944aa2b1c8ef109c"
-    },
-    {
-      "log": "sampling-tests.log",
-      "passed": 20,
-      "log_sha256": "071e5dd46e3672da107acbbf1bf698f010795255f11deb472070b3f256b90dce"
+      "log": "v4-final-tests.log",
+      "passed": 273,
+      "log_sha256": "f27be9fc8683408fc654e7eb33d69a745ff32601d0c9c77874f7803f4faeecf7"
     }
   ],
   "native_launch_validation": {
     "valid": true,
-    "job": "snowball-pdbthink-replay-20261021-v3",
+    "job": "snowball-pdbthink-replay-20261021-v4",
     "runtime_bundle_verified": true
   },
   "callback_import_check": "Replay callback imports and shared verification path OK",
   "scope": "CPU source and transport checks; GPU training acceptance recorded separately.",
-  "cpu_total_passed": 270
+  "cpu_total_passed": 273
 }

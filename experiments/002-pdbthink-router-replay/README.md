@@ -50,7 +50,7 @@ Adaptive quantile updates therefore do not explain that run. This retry checks
 that local bias buffers stay byte-identical across every optimizer update and
 checks a full-model bias digest periodically.
 
-## Unchanged protocol and monitoring
+## Training protocol and monitoring
 
 - Original model revision `cfc1d845dae89b067cdc7250d0164abefa5a69cf`.
 - Same frozen split: 28,045 training tasks; all 1,003 validation tasks from step
@@ -62,6 +62,11 @@ checks a full-model bias digest periodically.
 - Both original Snowball stop IDs (128001, 128009) are supplied explicitly in
   training and evaluation requests. Importance correction forces vLLM's neutral
   generation config, so checkpoint generation defaults cannot supply them.
+- Training now explicitly uses `min_tokens=0`, as required by the native
+  behavior-probability check. The previous transport default was 1, which
+  suppressed EOS on the first generated token. Removing that processor makes
+  the sampling distribution compatible with temperature-only learner scoring.
+  Greedy validation retains its previous minimum-token default.
 - Validation and checkpoint retention every 32 steps. Full trajectories retained.
 - Existing per-family rewards, validation success, probability-ratio tails,
   effective sample size, and correction clipping metrics remain enabled.
@@ -93,17 +98,22 @@ overlay and starts a detached, durable Marin/Iris launcher.
 The overlay also declares `stop_token_ids` in the sampling configuration schema;
 launcher composition declares the same fields in memory. The existing native
 request conversion and chat transport carry these IDs to vLLM.
+The shared engine is configured without global sampling overrides, and its
+wrapper honors the per-request sampling settings when those overrides are
+empty. Greedy validation requests no unused rollout probabilities; the training
+probability guard remains enabled. Validation errors or incomplete task coverage
+stop the run.
 
 CPU validation passed 268 upstream checks across route capture, prediction
 alignment, retries, transport, replay control, sampling, importance correction
-and full objective gradients, plus two experiment-specific checks that preserve
-both stop IDs through the real training and validation chat request paths.
+and full objective gradients, plus five experiment-specific checks of stop IDs,
+training/evaluation request settings and rejection of invalid validation results.
 The native launcher accepted the configuration and verified its runtime bundle.
 GPU startup and optimizer-step results are recorded separately; these CPU
 checks are not evidence that model training has succeeded.
 
 Run artifacts use
-`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v3`.
+`s3://marin-us-east-02a/marin/bizon/snowball-pdbthink/replay/2026.10.21-v4`.
 The audit stores startup weight checks, per-step metrics and validation results.
 Run `status.py` to download the audit and summarize completed optimizer steps,
 probability mismatch, correction clipping and validation accuracy.
@@ -112,3 +122,28 @@ Submissions v1 and v2 were cancelled during model startup, before any optimizer
 updates. The first removed an explicit neutral-generation-config override; the
 second revealed that MarinSkyRL restores it internally for importance
 correction. Version v3 preserves termination using explicit stop-token IDs.
+
+Version v3 passed all-parameter equality checks on 16 rollout workers and 832
+full-FP32 router comparisons with zero mismatches. It was cancelled with no
+completed optimizer updates recorded after its initial evaluation exposed the
+shared wrapper's sampling override. Its all-zero validation scores are execution
+failures and must not be used as model measurements. The corrected v4 job is
+`/bizon/snowball-pdbthink-replay-20261021-v4`.
+
+## Correction to previous validation descriptions
+
+The pinned serving entrypoint passes training sampling settings to the shared
+OpenAI wrapper. That wrapper unconditionally overwrote each chat request's
+temperature, including validation requests. Therefore, the previous native
+in-training validation was configured with temperature 0 but executed with
+temperature 1. Earlier descriptions of those measurements as greedy were
+incorrect. This finding follows the executed source path, not just the declared
+configuration.
+
+Version v4 honors the validation request's actual temperature 0. Its accuracy
+curve should be compared against its own fixed step-zero baseline; the old
+in-training curve used a different sampling protocol. The separately run
+original PDBThink benchmark uses a direct deployed endpoint and its frozen
+temperature-0.6 requests, outside this wrapper. This finding does not change
+those benchmark results. The separate full-validation baseline also used its
+own direct endpoint.
